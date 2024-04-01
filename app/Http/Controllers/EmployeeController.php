@@ -35,7 +35,7 @@ class EmployeeController extends Controller
         ]);
           // store image
       if($request->hasFile('image')){
-        $newImage = $request->file('Image');
+        $newImage = $request->file('image');
         //for change image name
         $newImageName = 'image_' . $emp->id . '.' . $newImage->getClientOriginalExtension();
         $newImage->move('assets/img/emp/', $newImageName);
