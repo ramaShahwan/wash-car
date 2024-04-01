@@ -19,15 +19,25 @@ class BeforAfterController extends Controller
             'afterImage' => 'required',
         ]);
 
-        $pay= BeforAfter::create([
-            'beforeImage'=>$request->beforeImage,
-            'afterImage'=>$request->afterImage,
-        ]);
+    $images = new BeforAfter(); 
+        //store before image
+    $newBeforeImage = $request->file('beforeImage');
+    //for change image name
+    $newBeforeImageName = 'beforeImage' . time(). '.' . $newBeforeImage->getClientOriginalExtension();
+    $newBeforeImage->move('assets/img/gallery/', $newBeforeImageName);
+    $images->beforeImage = $newBeforeImage;     
 
+      //store after image
+    $newAfterImage = $request->file('afterImage');
+    //for change image name
+    $newAfterImageName = 'afterImage' . time(). '.' . $newAfterImage->getClientOriginalExtension();
+    $newAfterImage->move('assets/img/gallery/', $newAfterImageName);
+    $images->afterImage = $newAfterImageName;     
+    
         session()->flash('Add', 'تم إضافة الصور بنجاح');
         return back();
     }
-
+    
     public function show()
     { 
          $data = BeforAfter::orderBy('created_at','Asc')->get();
