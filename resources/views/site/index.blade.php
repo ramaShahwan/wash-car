@@ -80,46 +80,52 @@
       <!-- choose section start -->
       <div class="choose_section layout_padding">
          <div class="container">
-            <h1 class="services_taital">Why <span style="color: #0c426e">Choose Us?</span></h1>
+            <h1 class="services_taital"><span style="color: #0c426e">اطلب الآن</span></h1>
 
-            <div class="choose_box">
+            <div class="layout_padding" style="text-align: right; direction: rtl;">
                <div class="number_1">
-                  <h4 class="number_text">01</h4>
-                  <h4 class="trusted_text">Trusted Services</h4>
+                  <h4 class="number_text" style="font-size: 18px; font-weight: bolder">01</h4> &nbsp;&nbsp;
+                  <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder">حجم السيارة</h4>
                </div>
-               <p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The  </p>
+               <p class="dummy_text" style="font-size: 16px; font-weight: bolder">اختر حجم السيارة</p>
             </div>
+            <br><br>
 
-            <div class="choose_section_2 layout_padding">
+            <div class="choose_section_2">
                <div class="row">
+
                   <div class="col-md-4">
-                     <div class="choose_box">
-                        <div class="number_1">
-                           <h4 class="number_text">01</h4>
-                           <h4 class="trusted_text">Trusted Services</h4>
-                        </div>
-                        <p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The  </p>
+                     <div class="choose_box" style="text-align: center;">
+                        <img src="assets/images/van.png" alt="" style="width: 100px;">
+                        <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة كبيرة الحجم </p>
                      </div>
                   </div>
+
                   <div class="col-md-4">
-                     <div class="choose_box">
-                        <div class="number_1">
-                           <h4 class="number_text">02</h4>
-                           <h4 class="trusted_text">Talented Workers</h4>
-                        </div>
-                        <p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The  </p>
+                     <div class="choose_box" style="text-align: center;">
+                        <img src="assets/images/car1.png" alt="" style="width: 100px;">
+                        <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة متوسطة الحجم </p>
                      </div>
                   </div>
+
                   <div class="col-md-4">
-                     <div class="choose_box">
-                        <div class="number_1">
-                           <h4 class="number_text">03</h4>
-                           <h4 class="trusted_text">Organic Products</h4>
-                        </div>
-                        <p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The  </p>
+                     <div class="choose_box" style="text-align: center;">
+                        <img src="assets/images/car.png" alt="" style="width: 100px;">
+                        <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة صغيرة الحجم </p>
                      </div>
                   </div>
                </div>
+               <br><br>
+
+               <div class="layout_padding" style="text-align: right; direction: rtl;">
+                  <div class="number_1">
+                     <h4 class="number_text" style="font-size: 18px; font-weight: bolder">02</h4> &nbsp;&nbsp;
+                     <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder">نوع الغسيل</h4>
+                  </div>
+                  <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> ما هو الغسيل الأفضل لسيارتك </p>
+               </div>
+               <br><br>
+
             </div>
          </div>
       </div>
