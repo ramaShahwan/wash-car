@@ -21,7 +21,7 @@ class EmployeeController extends Controller
             'Gender'=>'required',
             'phone'=>'required',
             'aboutYou'=>'required',
-            'image'=>'required'
+           // 'image'=>'required'
         ]);
 
         $emp= Employee::create([
@@ -31,9 +31,19 @@ class EmployeeController extends Controller
             'Gender'=>$request->Gender,
             'phone'=>$request->phone,
             'aboutYou'=>$request->aboutYou,
-            'image'=>$request->image,
 
         ]);
+          // store image
+      if($request->hasFile('image')){
+        $newImage = $request->file('Image');
+        //for change image name
+        $newImageName = 'image_' . $emp->id . '.' . $newImage->getClientOriginalExtension();
+        $newImage->move('assets/img/emp/', $newImageName);
+
+        Employee::find($emp->id)->update([
+            'image'=> $newImageName,
+        ]);
+   }
 
         session()->flash('Add', 'تم إرسال طلبك بنجاح');
         return back();
