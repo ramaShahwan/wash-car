@@ -50,6 +50,15 @@
 
 @section('content')
 
+@if(session()->has('Add'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+	<strong>{{ session()->get('Add') }}</strong>
+	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
+		<span aria_hidden="true">&times;</span>
+	</button>
+</div>
+@endif
+
 <body>
 
     <div class="services_section layout_padding">
@@ -65,7 +74,7 @@
 
 				<div class="card-body">
 
-					<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+					<form action="{{ route('emp.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                     @csrf
 
                         <div class="row" style="text-align: right;">
@@ -150,6 +159,8 @@
                             <label for="image" style="font-weight: bold; color: black;">صورة شخصية</label>
                             <input type="file" class="form-control" id="image" name="image">
                         </div><br><br>
+
+                        
 
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">إرسال البيانات</button>

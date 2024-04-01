@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/j', function () {
-    return view('site.join');
+
+
+Route::get('/', function () {
+    return view('site.index');
 });
+
+
+Route::get('add', [EmployeeController::class, 'create']);
+Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
+
 
 require __DIR__.'/auth.php';
