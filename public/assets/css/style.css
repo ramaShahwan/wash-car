@@ -35,6 +35,10 @@ body {
     overflow-x: hidden;
 }
 
+#inputName {
+    direction: rtl;
+}
+
 a {
     color: #1f1f1f;
     text-decoration: none !important;
