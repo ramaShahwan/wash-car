@@ -11,6 +11,7 @@ class OrderService extends Model
     use HasFactory;
 
     protected $fillable = ['service_id','order_id'];
+    
     public function services(): HasMany
     {
         return $this->hasMany(Service::class,'service_id');

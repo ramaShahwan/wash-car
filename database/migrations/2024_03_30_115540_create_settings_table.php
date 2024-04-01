@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('socialMidiaTelegram' , 128)->nullable();
             $table->string('socialMidiaInstagram' , 128)->nullable();
             $table->string('socialMidiaYoutube' , 128)->nullable();
-            $table->tinyInteger('insertQuick')->nullable()->default('0');
-            $table->string('favicon' , 191)->nullable();
+           // $table->tinyInteger('insertQuick')->nullable()->default('0');
+            $table->string('icon' , 191)->nullable();
             $table->timestamps();
         });
     }
