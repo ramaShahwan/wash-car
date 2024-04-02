@@ -24,6 +24,7 @@ class OrderController extends Controller
             'location_id' => 'required',
             'user_id' => 'required',
             'payWay_id' => 'required',
+            'orderTime'=>'required'
         ]);
 
         $order= Order::create([
@@ -32,6 +33,7 @@ class OrderController extends Controller
             'numOfCar'=>$request->numOfCar,
             'totalPrice'=>$request->totalPrice,
             'orderDate'=>$request->orderDate,
+            'orderTime'=>$request->orderTime,
             'location_id'=>$request->location_id,
             'user_id'=>$request->user_id,
             'payWay_id'=>$request->payWay_id,
