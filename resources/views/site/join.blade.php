@@ -164,7 +164,7 @@
 
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">إرسال البيانات</button>
-                          </div>
+                        </div>
             </form>
 
 

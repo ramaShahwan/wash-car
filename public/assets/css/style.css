@@ -562,6 +562,32 @@ img.image_1 {
     color: #ffffff;
 }
 
+/* ***************************************** */
+
+.choose_box1 {
+    width: 100%;
+    padding: 40px 20px;
+}
+
+.choose_box1:hover {
+    background-color: #0c426e;
+}
+
+.choose_box1:hover .number_text {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.choose_box1:hover .trusted_text {
+    color: #ffffff;
+}
+
+.choose_box1:hover .dummy_text {
+    color: #ffffff;
+}
+
+/* ***************************************** */
+
 .number_1 {
     width: 100%;
     display: flex;

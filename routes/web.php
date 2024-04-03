@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -39,6 +41,10 @@ Route::get('/', function () {
 
 Route::get('add', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
+
+
+Route::get('add', [OrderController::class, 'create']);
+Route::post('save', [OrderController::class, 'store'])->name('ord.save');
 
 
 require __DIR__.'/auth.php';

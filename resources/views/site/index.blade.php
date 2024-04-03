@@ -5,6 +5,18 @@
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+<style>
+.selected {
+    background-color: blue;
+    color: white;
+}
+
+.selected p {
+    color: white; /* يمكنك تغيير لون الخط هنا */
+}
+
+</style>
+
 @endsection
 
 
@@ -21,12 +33,12 @@
                      <div class="row">
                         <div class="col-md-6">
                            <div class="banner_taital">
-                              <h1 class="banner_taital">Keep your Clean Cars Always</h1>
-                              <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p>
+                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
+                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                            </div>
                            <div class="btn_main">
-                              <div class="quote_bt active"><a href="#">Get A Quote</a></div>
-                              <div class="contact_bt"><a href="#">Contact Us</a></div>
+                              <div class="quote_bt active"><a href="#">احجز الآن</a></div>
+                              <div class="contact_bt"><a href="#">تواصل معنا</a></div>
                            </div>
                         </div>
                         <div class="col-md-6">
@@ -38,12 +50,12 @@
                      <div class="row">
                         <div class="col-md-6">
                            <div class="banner_taital">
-                              <h1 class="banner_taital">Keep your Clean Cars Always</h1>
-                              <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p>
+                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
+                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                            </div>
                            <div class="btn_main">
-                              <div class="quote_bt active"><a href="#">Get A Quote</a></div>
-                              <div class="contact_bt"><a href="#">Contact Us</a></div>
+                              <div class="quote_bt active"><a href="#">احجز الآن</a></div>
+                              <div class="contact_bt"><a href="#">تواصل معنا</a></div>
                            </div>
                         </div>
                         <div class="col-md-6">
@@ -55,12 +67,12 @@
                      <div class="row">
                         <div class="col-md-6">
                            <div class="banner_taital">
-                              <h1 class="banner_taital">Keep your Clean Cars Always</h1>
-                              <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p>
+                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
+                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                            </div>
                            <div class="btn_main">
-                              <div class="quote_bt active"><a href="#">Get A Quote</a></div>
-                              <div class="contact_bt"><a href="#">Contact Us</a></div>
+                              <div class="quote_bt active"><a href="#">احجز الآن</a></div>
+                              <div class="contact_bt"><a href="#">تواصل معنا</a></div>
                            </div>
                         </div>
                         <div class="col-md-6">
@@ -81,12 +93,20 @@
       <!-- banner section end -->
       
       <!-- choose section start -->
+   
+
       <div class="choose_section layout_padding">
          <div class="container">
             <h1 class="services_taital"><span style="color: #0c426e">اطلب الآن</span></h1>
 
-{{-- -------------1------------- --}}
 
+            <form action="{{ route('ord.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+               @csrf
+               @method('POST')
+
+
+
+            {{-- -------------1------------- --}}
             <div class="layout_padding" style="text-align: right; direction: rtl;">
                <div class="number_1">
                   <h4 class="number_text" style="font-size: 18px; font-weight: bolder">01</h4> &nbsp;&nbsp;
@@ -96,36 +116,40 @@
             </div>
             <br><br>
 
+
             <div class="choose_section_2">
                <div class="row">
 
-                  <div class="col-md-4">
-                     <div class="choose_box" style="text-align: center;">
-                        <img src="assets/images/van.png" alt="" style="width: 100px;">
-                        <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة كبيرة الحجم </p>
-                     </div>
-                  </div>
+                        <div class="col-md-4">
+                           <div class="choose_box" style="text-align: center;">
+                              <input type="hidden" name="sizeOfCar" value="كبيرة">
+                              <img src="assets/images/van.png" alt="" style="width: 100px;">
+                              <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة كبيرة الحجم </p>
+                           </div>
+                        </div>
 
-                  <div class="col-md-4">
-                     <div class="choose_box" style="text-align: center;">
-                        <img src="assets/images/car1.png" alt="" style="width: 100px;">
-                        <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة متوسطة الحجم </p>
-                     </div>
-                  </div>
+                        <div class="col-md-4">
+                           <div class="choose_box" style="text-align: center;">
+                              <input type="hidden" name="sizeOfCar" value="متوسطة">
+                              <img src="assets/images/car1.png" alt="" style="width: 100px;">
+                              <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة متوسطة الحجم </p>
+                           </div>
+                        </div>
 
-                  <div class="col-md-4">
-                     <div class="choose_box" style="text-align: center;">
-                        <img src="assets/images/car.png" alt="" style="width: 100px;">
-                        <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة صغيرة الحجم </p>
-                     </div>
-                  </div>
+                        <div class="col-md-4">
+                           <div class="choose_box" style="text-align: center;">
+                              <input type="hidden" name="sizeOfCar" value="صغيرة">
+                              <img src="assets/images/car.png" alt="" style="width: 100px;">
+                              <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة صغيرة الحجم </p>
+                           </div>
+                        </div>
+
                </div>
                <br><br>
 
-
             </div>
 
-            
+
 {{-- -------------2------------- --}}
 
 <div class="layout_padding" style="text-align: right; direction: rtl;">
@@ -141,7 +165,7 @@
    <div class="row">
 
       <div class="col-md-4">
-         <div class="choose_box" style="text-align: center;">
+         <div class="choose_box1" style="text-align: center;">
             <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> غسيل كامل للسيارة </p>
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
@@ -153,7 +177,7 @@
       </div>
 
       <div class="col-md-4">
-         <div class="choose_box" style="text-align: center;">
+         <div class="choose_box1" style="text-align: center;">
             <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> غسيل خارجي للسيارة </p>
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
@@ -165,7 +189,7 @@
       </div>
 
       <div class="col-md-4">
-         <div class="choose_box" style="text-align: center;">
+         <div class="choose_box1" style="text-align: center;">
             <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> غسيل داخلي للسيارة </p>
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
@@ -307,9 +331,17 @@
    <br><br>
 </div>
 
+<br><br><br>
+<br><br><br>
+<br><br><br>
 
+<div class="d-flex justify-content-center">
+   <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">تثبيت الطلب</button>
+ </div>
 
+<br><br>
 
+         </form>
 
 
 
@@ -331,6 +363,24 @@
       <!-- javascript --> 
       <script src="{{URL::asset('assets/js/owl.carousel.js')}}"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+         $(document).ready(function() {
+            $('.choose_box').click(function() {
+               $('.choose_box').removeClass('selected'); // إزالة الفئة من جميع الديفات
+               $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
+            });
+
+            $('.choose_box1').click(function() {
+               $('.choose_box1').removeClass('selected'); // إزالة الفئة من جميع الديفات
+               $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
+            });
+
+         });
+      </script>
 
 
       

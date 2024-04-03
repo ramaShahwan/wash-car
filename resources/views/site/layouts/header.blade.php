@@ -45,22 +45,22 @@
            <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="index.html">الصفحة الرئيسية</a>
                  </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="services.html">Services</a>
+                    <a class="nav-link" href="services.html">خدماتنا</a>
                  </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="quality.html">Quality</a>
+                    <a class="nav-link" href="quality.html">أعمالنا</a>
                  </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="choose.html">Choose</a>
+                    <a class="nav-link" href="choose.html">من نحن</a>
                  </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="testimonial.html">Testimonial</a>
+                    <a class="nav-link" href="join.html">انضم لفريقنا</a>
                  </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
+                    <a class="nav-link" href="contact.html"> تواصل معنا </a>
                  </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">

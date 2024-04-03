@@ -15,17 +15,17 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'typeOfCar' => 'required',
-            'sizeOfCar' => 'required',
-            'numOfCar' => 'required',
-            'totalPrice' => 'required',
-            'orderDate' => 'required',
-            'location_id' => 'required',
-            'user_id' => 'required',
-            'payWay_id' => 'required',
-            'orderTime'=>'required'
-        ]);
+        // $validated = $request->validate([
+        //     'typeOfCar' => 'required',
+        //     'sizeOfCar' => 'required',
+        //     'numOfCar' => 'required',
+        //     'totalPrice' => 'required',
+        //     'orderDate' => 'required',
+        //     'location_id' => 'required',
+        //     'user_id' => 'required',
+        //     'payWay_id' => 'required',
+        //     'orderTime'=>'required'
+        // ]);
 
         $order= Order::create([
             'typeOfCar'=>$request->typeOfCar,
