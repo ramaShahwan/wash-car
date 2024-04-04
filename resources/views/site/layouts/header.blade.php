@@ -43,7 +43,45 @@
            <span class="navbar-toggler-icon"></span>
            </button>
            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto" style="direction: rtl; right: 0;">
+
+
+                 <li class="nav-item">
+
+                  @if (auth()->user())
+                  
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button class="nav-link" title="تسجيل خروج" style="background: none; color:white; font-size: 20px;" type="submit"><i class="fa fa-sign-in"></i></button>
+                  {{-- <button class="nav-link" style="background: none; border: none; color:white;" type="submit">تسجيل خروج</button> --}}
+                
+               </form>
+
+            {{-- <div class="row search order-lg-3 order-md-2 order-3 ml-auto">      
+
+              @if(auth()->user()->role == "admin")
+                <div class="content"> <a class="read-more-btn" style="font-size: 20px;" href="{{ url('cpanel') }}">Dashboard</a></div>                  
+                @endif
+              
+            </div> --}}
+
+        @else
+
+        <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
+          <div class="row">      
+            {{-- <div class="content">  --}}
+            <a class="nav-link" title="إنشاء حساب" style="font-size: 20px; color: white;" href="{{ route('register') }}"><i class="fa fa-user"></i></a>
+            <a class="nav-link" title="تسجيل دخول" style="font-size: 20px; color: white;" href="{{ route('login') }}"><i class="fa fa-sign-in"></i></a>                 
+         </div>                  
+          {{-- </div> --}}
+      </form>
+
+      
+
+        @endif
+                 </li>
+
+
                  <li class="nav-item">
                     <a class="nav-link" href="index.html">الصفحة الرئيسية</a>
                  </li>
@@ -64,35 +102,7 @@
                  </li>
 
 
-                 <li class="nav-item">
 
-                  @if (auth()->user())
-                  
-                <form method="POST" action="{{ route('logout') }}">
-                  @csrf
-                  <button class="nav-link" style="background: none; border: none; color:white;" type="submit">تسجيل خروج</button>
-                </form>
-
-            {{-- <div class="row search order-lg-3 order-md-2 order-3 ml-auto">      
-
-              @if(auth()->user()->role == "admin")
-                <div class="content"> <a class="read-more-btn" style="font-size: 20px;" href="{{ url('cpanel') }}">Dashboard</a></div>                  
-                @endif
-              
-            </div> --}}
-
-        @else
-
-        <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
-          <div class="row">      
-            {{-- <div class="content">  --}}
-            <a class="nav-link" style="font-size: 20px;" href="{{ route('login') }}">تسجيل دخول</a>                 
-            <a class="nav-link" style="font-size: 20px;" href="{{ route('register') }}">إنشاء حساب</a></div>                  
-          {{-- </div> --}}
-      </form>
-
-        @endif
-                 </li>
               </ul>
              
            </div>

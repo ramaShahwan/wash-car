@@ -335,13 +335,13 @@
 <br><br><br>
 <br><br><br>
 
-<div class="d-flex justify-content-center">
-   <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">تثبيت الطلب</button>
- </div>
+   <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">تثبيت الطلب</button>
+   </div>
 
-<br><br>
+   <br><br>
 
-         </form>
+      </form>
 
 
 

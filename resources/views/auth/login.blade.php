@@ -20,10 +20,19 @@
         @csrf
 
         <div class="row">
+
+            <div class="col-md-6">
+                <div class="map_main">
+                   <div class="map-responsive">
+                    <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=الحزب الديمقراطي السوري+Al,Jumailya Institute+Aljamiliah+Aleppo+Syria" width="600" height="360" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
+                   </div>
+                </div>
+             </div>
+
             <div class="col-md-6">
                <div class="mail_section_1">
                 <div class="mt-4">
-                  <input type="text" class="mail_text_1 @error('password') is-invalid @enderror" 
+                  <input style="direction: rtl" type="text" class="mail_text_1 @error('password') is-invalid @enderror" 
                   placeholder="رقم الموبايل" name="phone">
                   @error('phone')
                   <span class="invalid-feedback" role="alert">
@@ -33,7 +42,7 @@
                 </div>
 
                   <div class="mt-4">
-                  <input id="password" type="password" class="mail_text_1 @error('password') is-invalid @enderror" 
+                  <input style="direction: rtl" id="password" type="password" class="mail_text_1 @error('password') is-invalid @enderror" 
                   placeholder="كلمة السر"
                   required autocomplete="current-password" 
                   name="password"  :value="__('Password')" >
@@ -44,25 +53,26 @@
                   @enderror
                   </div>
 
+             &nbsp;  
+
                    <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
+            <label for="remember_me" class="inline-flex items-center" style="direction: rtl; float: right; font-size: 16px;">
                 <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
                 <span class="ms-2 text-sm text-gray-600">{{ __(' تذكرني') }}</span>
             </label>
         </div>
+        <br><br>
 
-                  <div class="send_bt"><button type="submit" style="color: blue">تسجيل الدخول</a></div>
+                  <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary" type="submit" style="color: white; background-color: #0c426e;">تسجيل الدخول</button>
+                </div>
 
                </div>
             </div>
-            <div class="col-md-6">
-               <div class="map_main">
-                  <div class="map-responsive">
-                     <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="360" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                  </div>
-               </div>
-            </div>
+        
+
+
          </div>
 
         </form>
