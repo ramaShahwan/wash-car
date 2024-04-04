@@ -62,10 +62,39 @@
                  <li class="nav-item">
                     <a class="nav-link" href="contact.html"> تواصل معنا </a>
                  </li>
+
+
+                 <li class="nav-item">
+
+                  @if (auth()->user())
+                  
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button class="nav-link" style="background: none; border: none; color:white;" type="submit">تسجيل خروج</button>
+                </form>
+
+            {{-- <div class="row search order-lg-3 order-md-2 order-3 ml-auto">      
+
+              @if(auth()->user()->role == "admin")
+                <div class="content"> <a class="read-more-btn" style="font-size: 20px;" href="{{ url('cpanel') }}">Dashboard</a></div>                  
+                @endif
+              
+            </div> --}}
+
+        @else
+
+        <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
+          <div class="row">      
+            {{-- <div class="content">  --}}
+            <a class="nav-link" style="font-size: 20px;" href="{{ route('login') }}">تسجيل دخول</a>                 
+            <a class="nav-link" style="font-size: 20px;" href="{{ route('register') }}">إنشاء حساب</a></div>                  
+          {{-- </div> --}}
+      </form>
+
+        @endif
+                 </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0">
-                 <div class="search_icon"><a href="#"><img src="{{URL::asset('assets/images/search-icon.png')}}"></a></div>
-              </form>
+             
            </div>
         </nav>
      </div>
