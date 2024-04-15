@@ -232,14 +232,14 @@
    @if(isset($services) && !$services->isEmpty()) 
 
    @foreach($services as $ser)
-   @if($ser->type == 'إضافية')
+   {{-- @if($ser->type == 'إضافية') --}}
 
    <div class="col-md-12">
       <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
       <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
       <hr>
    </div>
-   @endif
+   {{-- @endif --}}
 
    @endforeach
 

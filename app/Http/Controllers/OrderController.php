@@ -14,7 +14,7 @@ class OrderController extends Controller
         // $services = Service::all();
         // return view('site.index',compact('services'));
 
-        $services = Service::get();
+        $services = Service::all();
        return view('site.index',
        ['services' => $services]);
 
