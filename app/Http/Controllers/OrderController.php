@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function create()
     {
-       return view('site.index');
+        $services = Service::get();
+       return view('site.index',compact('services'));
     }
 
 

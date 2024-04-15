@@ -25,7 +25,8 @@ class ServiceController extends Controller
             'type'=>$request->type,
             'Name'=>$request->Name,
             'price'=>$request->price,
-
+            'period'=>$request->period,
+            'description'=>$request->description
         ]);
 
         session()->flash('Add', 'تم إضافة الخدمة بنجاح');
