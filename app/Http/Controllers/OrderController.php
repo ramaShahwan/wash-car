@@ -10,8 +10,8 @@ class OrderController extends Controller
 {
     public function create()
     {
-        $services = Service::get();
-       return view('site.index',compact('services'));
+        $services = Service::all();
+        return view('site.index',compact('services'));
     }
 
 

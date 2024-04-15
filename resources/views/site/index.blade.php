@@ -216,12 +216,39 @@
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
    <div class="row">
 
+   {{-- @foreach($services as $ser)
+   @if($services->type == 'إضافية')
+
    <div class="col-md-12">
-      <p class="testimonial_text" style="display: inline;"> غسيل صندوق السيارة </p>
+      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
       <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
       <hr>
    </div>
+   @endif
+
+   @endforeach --}}
+
+
+   @if(isset($services) && !$services->isEmpty()) 
+
+   @foreach($services as $ser)
+   @if($ser->type == 'إضافية')
+
    <div class="col-md-12">
+      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
+      <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
+      <hr>
+   </div>
+   @endif
+
+   @endforeach
+
+   @endif
+
+
+
+
+   {{-- <div class="col-md-12">
       <p class="testimonial_text" style="display: inline;"> تعقيم هواء السيارة </p>
       <button class="btn btn-primary" style="display: inline;  float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
       <hr>
@@ -229,7 +256,7 @@
    <div class="col-md-12">
       <p class="testimonial_text" style="display: inline;"> تلميع زجاج السيارة </p>
       <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
-   </div>
+   </div> --}}
 
    </div>
 <br><br>
@@ -338,9 +365,7 @@
 
    <br><br>
 
-      </form>
-
-
+   </form>
 
       </div>
    </div>
