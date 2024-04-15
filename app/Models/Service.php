@@ -11,7 +11,7 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type','name','price'];
+    protected $fillable = ['type','name','price','period','description'];
 
     public function order_service(): BelongsTo
     {
