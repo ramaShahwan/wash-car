@@ -15,6 +15,14 @@
     color: white; /* يمكنك تغيير لون الخط هنا */
 }
 
+.selected h2 {
+    color: white; /* يمكنك تغيير لون الخط هنا */
+}
+
+.choose_box1:hover h2 {
+    color: white;
+}
+
 </style>
 
 @endsection
@@ -116,39 +124,28 @@
             </div>
             <br><br>
 
-
             <div class="choose_section_2">
                <div class="row">
-
-                        <div class="col-md-4">
-                           <div class="choose_box" style="text-align: center;">
-                              <input type="hidden" name="sizeOfCar" value="كبيرة">
-                              <img src="assets/images/van.png" alt="" style="width: 100px;">
-                              <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة كبيرة الحجم </p>
-                           </div>
-                        </div>
-
-                        <div class="col-md-4">
-                           <div class="choose_box" style="text-align: center;">
-                              <input type="hidden" name="sizeOfCar" value="متوسطة">
-                              <img src="assets/images/car1.png" alt="" style="width: 100px;">
-                              <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة متوسطة الحجم </p>
-                           </div>
-                        </div>
-
-                        <div class="col-md-4">
-                           <div class="choose_box" style="text-align: center;">
-                              <input type="hidden" name="sizeOfCar" value="صغيرة">
-                              <img src="assets/images/car.png" alt="" style="width: 100px;">
-                              <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة صغيرة الحجم </p>
-                           </div>
-                        </div>
-
+                   <div class="col-md-4">
+                       <div class="choose_box" style="text-align: center;">
+                           <img src="assets/images/van.png" alt="" style="width: 100px;">
+                           <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة كبيرة الحجم </p>
+                       </div>
+                   </div>
+                   <div class="col-md-4">
+                       <div class="choose_box" style="text-align: center;">
+                           <img src="assets/images/car1.png" alt="" style="width: 100px;">
+                           <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة متوسطة الحجم </p>
+                       </div>
+                   </div>
+                   <div class="col-md-4">
+                       <div class="choose_box" style="text-align: center;">
+                           <img src="assets/images/car.png" alt="" style="width: 100px;">
+                           <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة صغيرة الحجم </p>
+                       </div>
+                   </div>
                </div>
-               <br><br>
-
-            </div>
-
+           </div>
 
 {{-- -------------2------------- --}}
 
@@ -166,7 +163,7 @@
 
       <div class="col-md-4">
          <div class="choose_box1" style="text-align: center;">
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> غسيل كامل للسيارة </p>
+            <h2 style="font-weight: bolder"> غسيل كامل للسيارة </h2>
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
             <hr>
@@ -178,7 +175,7 @@
 
       <div class="col-md-4">
          <div class="choose_box1" style="text-align: center;">
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> غسيل خارجي للسيارة </p>
+            <h2 style="font-weight: bolder"> غسيل خارجي للسيارة </h2>
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
             <hr>
@@ -190,7 +187,7 @@
 
       <div class="col-md-4">
          <div class="choose_box1" style="text-align: center;">
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> غسيل داخلي للسيارة </p>
+            <h2 style="font-weight: bolder"> غسيل داخلي للسيارة </h2>
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
             <hr>
@@ -366,21 +363,36 @@
 
 
 
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
          $(document).ready(function() {
-            $('.choose_box').click(function() {
-               $('.choose_box').removeClass('selected'); // إزالة الفئة من جميع الديفات
-               $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
-            });
-
-            $('.choose_box1').click(function() {
-               $('.choose_box1').removeClass('selected'); // إزالة الفئة من جميع الديفات
-               $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
-            });
-
+         $('.choose_box').click(function() {
+             $('.choose_box').removeClass('selected'); // إزالة الفئة من جميع الديفات
+             $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
+     
+             var selectedValue = $(this).find('p').text(); // الحصول على القيمة من الديف المختار
+     
+             // يمكنك الآن استخدام selectedValue لتخزينها في قاعدة البيانات
+             // على سبيل المثال، يمكنك إضافة هذه القيمة إلى نموذجك كقيمة مخفية
+             $('form').append('<input type="hidden" name="sizeOfCar" value="' + selectedValue + '">');
          });
-      </script>
+     });
+</script>
+     
+<script>
+   $(document).ready(function() {
+   $('.choose_box1').click(function() {
+       $('.choose_box1').removeClass('selected'); // إزالة الفئة من جميع الديفات
+       $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
+
+       var selectedValue = $(this).find('h2').text(); // الحصول على القيمة من الديف المختار
+
+       // يمكنك الآن استخدام selectedValue لتخزينها في قاعدة البيانات
+       // على سبيل المثال، يمكنك إضافة هذه القيمة إلى نموذجك كقيمة مخفية
+       $('form').append('<input type="hidden" name="sizeOfCar" value="' + selectedValue + '">');
+   });
+});
+</script>
 
 
       

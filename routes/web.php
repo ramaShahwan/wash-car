@@ -44,7 +44,7 @@ Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 
 Route::get('add', [OrderController::class, 'create']);
-Route::post('save', [OrderController::class, 'store'])->name('ord.save');
+Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
 
 
 require __DIR__.'/auth.php';
