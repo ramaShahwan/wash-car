@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    public function index()
+    {
+        $services = Service::get();
+        return view('site.index',
+        ['services' => $services]);
+    }
     public function create()
     {
 
