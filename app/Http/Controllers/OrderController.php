@@ -11,7 +11,8 @@ class OrderController extends Controller
     public function create()
     {
         $services = Service::get();
-       return view('site.index',compact('services'));
+       return view('site.index',
+       ['services' => $services]);
     }
 
 
