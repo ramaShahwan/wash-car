@@ -23,14 +23,17 @@
            <h1 class="services_taital"><span style="color: #0c426e">مراجعة الطلب</span></h1>
            <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p>
 
-           <form action="{{ route('ord.summary') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+           <form action="{{ route('ord.summary') }}" method="GET" enctype="multipart/form-data" autocomplete="off">
             @csrf
-            @method('POST')
+            @method('GET')
 
            <div class="services_section_2 layout_padding">
               <div class="row">
                 
                 <div class="choose_section_2" style="text-align: right; direction: rtl;">
+
+                    {{-- @foreach ($order as $ord) --}}
+                        
 
                     <div class="row">
                       
@@ -40,7 +43,7 @@
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> تاريخ الحجز </p>
                              <hr>
-                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{  }} </p>
+                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{ $date }} </p>
                           </div>
                        </div>
                  
@@ -50,7 +53,7 @@
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> وقت الحجز </p>
                              <hr>
-                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> ؟؟؟ </p>
+                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{ $time }} </p>
                           </div>
                        </div>
                  
@@ -60,12 +63,14 @@
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder;"> السعر الكلي </p>
                              <hr>
-                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> ؟؟؟ </p>
+                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{ $totalPrice }} </p>
                           </div>
                        </div>
                  
                    </div>
                  
+                   {{-- @endforeach --}}
+
                     <br><br>
                  </div>
 

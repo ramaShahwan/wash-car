@@ -60,22 +60,26 @@ class OrderController extends Controller
         ]);
 
 
-        $order = Order::latest()->first()->id;
+        $order_ser = Order::latest()->first()->id;
         Order_Service::create([
-            'order_id'=> $order,
+            'order_id'=> $order_ser,
             'service_id'=> $request->service,
         ]);
 
         foreach($request->service_ids as $service)
         {
-            $order = Order::latest()->first()->id;
+            $order_ser = Order::latest()->first()->id;
             Order_Service::create([
-                'order_id'=> $order,
+                'order_id'=> $order_ser,
                 'service_id'=> $service,
             ]);
          
         }
+
+        // $order= Order::latest()->first();
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
+        // return view('site.summary', compact('order'));
+
         return view('site.summary');
     }
 
@@ -83,16 +87,17 @@ class OrderController extends Controller
     {
         $totalPrice = 0;
         $order = Order::find($orderId);
-       $allServices = Order_Service::where('order_id',$orderId)->get('service_id');
+        $allServices = Order_Service::where('order_id',$orderId)->get('service_id');
+
         foreach($allServices as $serviceId){
             $service = Service::find($serviceId);
             if ($service) 
             {
-          $totalPrice += $service->price;
-             }
+                $totalPrice += $service->price;
+            }
         }
       
-     //   $extraServices = $request->service_ids; 
+        // $extraServices = $request->service_ids; 
         // $totalPrice = 0;
         // foreach ($extraServices as $serviceId) {
         //     $service = Service::find($serviceId);
@@ -107,13 +112,13 @@ class OrderController extends Controller
         //     $totalPrice += $primary->price;
         // }
 
-        $date =  $order->orderDate;
-        $time = $order->orderTime;
+       $date =  $order->orderDate;
+       $time = $order->orderTime;
         Order::find($orderId)->update([
             'totalPrice' => $totalPrice,
         ]);
 
-        return view('site.index',compact('totalPrice','date','time'));
+        return view('site.index');
 
     }
  }

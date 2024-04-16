@@ -297,7 +297,7 @@
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
-                  <input name="orderDate" type="text" class="form-control">
+                  <input name="numOfCar" type="text" class="form-control">
               </div>
           </div>
       </div>
@@ -306,7 +306,7 @@
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
               <div class="time-icon" style="display: flex; align-items: center;">
-                  <input name="orderTime" type="text" class="form-control">
+                  <input name="typeOfCar" type="text" class="form-control">
               </div>
           </div>
       </div>
@@ -319,21 +319,21 @@
 
 {{-- -------------6------------- --}}
 
-<div class="layout_padding" style="text-align: right; direction: rtl;">
+{{-- <div class="layout_padding" style="text-align: right; direction: rtl;">
    <div class="number_1">
       <h4 class="number_text" style="font-size: 18px; font-weight: bolder">06</h4> &nbsp;&nbsp;
       <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder"> ملخص الحجز </h4>
    </div>
    <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> يرجى التأكد من معلومات الطلب </p>
 </div>
-<br><br>
+<br><br> --}}
 
 
 
 {{-- -------------7------------- --}}
 
 
-<div class="layout_padding" style="text-align: right; direction: rtl;">
+{{-- <div class="layout_padding" style="text-align: right; direction: rtl;">
    <div class="number_1">
       <h4 class="number_text" style="font-size: 18px; font-weight: bolder">07</h4> &nbsp;&nbsp;
       <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder"> ملخص الحجز </h4>
@@ -380,7 +380,7 @@
   </div>
 
    <br><br>
-</div>
+</div> --}}
 
 
 
