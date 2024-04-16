@@ -76,7 +76,7 @@ class OrderController extends Controller
          
         }
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-        return back();
+        return view('site.summary');
     }
 
     public function summary($orderId)
@@ -113,7 +113,7 @@ class OrderController extends Controller
             'totalPrice' => $totalPrice,
         ]);
 
-        return view('site.summary',compact('totalPrice','date','time'));
+        return view('site.index',compact('totalPrice','date','time'));
 
     }
  }
