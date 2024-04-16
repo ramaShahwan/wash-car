@@ -76,7 +76,7 @@ class OrderController extends Controller
          
         }
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-        return back();
+        return view('site.summary');
     }
 
     public function summary($orderId)
@@ -110,14 +110,10 @@ class OrderController extends Controller
         $date =  $order->orderDate;
         $time = $order->orderTime;
         Order::find($orderId)->update([
-            'total_price' => $totalPrice,
+            'totalPrice' => $totalPrice,
         ]);
 
-        return view('site.summary',
-        ['total_price' => $totalPrice,
-        'orderDate'=>$date,
-        'orderTime'=>$time
-    ]);
+        return view('site.index',compact('totalPrice','date','time'));
 
     }
  }
