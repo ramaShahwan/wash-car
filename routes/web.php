@@ -34,9 +34,9 @@ Route::middleware('auth')->group(function () {
 
 
 
-// Route::get('/index', function () {
-//     return view('site.index');
-// });
+Route::get('/summary', function () {
+    return view('site.summary');
+});
 
 Route::get('/index', [OrderController::class, 'create']);
 

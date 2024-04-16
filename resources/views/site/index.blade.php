@@ -145,6 +145,7 @@
                        </div>
                    </div>
                </div>
+   <br><br>
            </div>
 
 {{-- -------------2------------- --}}
@@ -210,12 +211,8 @@
    @if($ser->type == 'إضافية')
 
    <div class="col-md-12">
-      {{-- <input type="hidden" name="service_id" value="{{ $ser->id }}"> --}}
-      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
-
       <input type="checkbox" name="service_ids[]" value="{{ $ser->id }}">
-
-      {{-- <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button> --}}
+      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
       <hr>
    </div>
 
@@ -275,9 +272,62 @@
 <div class="layout_padding" style="text-align: right; direction: rtl;">
    <div class="number_1">
       <h4 class="number_text" style="font-size: 18px; font-weight: bolder">05</h4> &nbsp;&nbsp;
+      <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder"> تفاصيل السيارة </h4>
+   </div>
+   <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> أضف معلومات السيارة </p>
+</div>
+<br><br>
+
+
+<div class="choose_section_2" style="text-align: right; direction: rtl;">
+
+   <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
+              <div class="cal-icon" style="display: flex; align-items: center;">
+                  <input name="orderDate" type="text" class="form-control">
+              </div>
+          </div>
+      </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+              <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
+              <div class="time-icon" style="display: flex; align-items: center;">
+                  <input name="orderTime" type="text" class="form-control">
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+   <br><br>
+</div>
+
+
+{{-- -------------6------------- --}}
+
+<div class="layout_padding" style="text-align: right; direction: rtl;">
+   <div class="number_1">
+      <h4 class="number_text" style="font-size: 18px; font-weight: bolder">06</h4> &nbsp;&nbsp;
       <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder"> ملخص الحجز </h4>
    </div>
-   <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> تأكد من معلومات الحجز </p>
+   <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> يرجى التأكد من معلومات الطلب </p>
+</div>
+<br><br>
+
+
+
+{{-- -------------7------------- --}}
+
+
+<div class="layout_padding" style="text-align: right; direction: rtl;">
+   <div class="number_1">
+      <h4 class="number_text" style="font-size: 18px; font-weight: bolder">07</h4> &nbsp;&nbsp;
+      <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder"> ملخص الحجز </h4>
+   </div>
+   <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> يرجى التأكد من معلومات الطلب </p>
 </div>
 <br><br>
 
@@ -321,6 +371,8 @@
    <br><br>
 </div>
 
+
+
 <br><br><br>
 <br><br><br>
 <br><br><br>
@@ -329,7 +381,7 @@
       <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">تثبيت الطلب</button>
    </div>
 
-   <br><br>
+   <br><br><br>
 
    </form>
 
