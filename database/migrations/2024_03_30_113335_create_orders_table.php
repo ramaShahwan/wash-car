@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('numOfCar')->nullable();
             $table->string('totalPrice')->nullable();
             $table->date('orderDate')->nullable();
-            $table->time('orderTime')->nullable();
+            $table->string('orderTime')->nullable();
             $table->timestamps();
             
               //locations_table
