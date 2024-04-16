@@ -79,11 +79,11 @@ class OrderController extends Controller
         return view('site.summary');
     }
 
-    public function summary($orderId)
+    public function summary()
     {
         $totalPrice = 0;
-        $order = Order::find($orderId);
-       $allServices = Order_Service::where('order_id',$orderId)->get('service_id');
+        $order = Order::latest()->first();
+       $allServices = Order_Service::where('order_id',$order->id)->get('service_id');
         foreach($allServices as $serviceId){
             $service = Service::find($serviceId);
             if ($service) 
@@ -109,7 +109,7 @@ class OrderController extends Controller
 
         $date =  $order->orderDate;
         $time = $order->orderTime;
-        Order::find($orderId)->update([
+        Order::find($order->id)->update([
             'totalPrice' => $totalPrice,
         ]);
 
