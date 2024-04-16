@@ -88,7 +88,9 @@ class OrderController extends Controller
     {
         $totalPrice = 0;
         $order = Order::latest()->first();
-       $allServices = Order_Service::where('order_id',$order->id)->get('service_id');
+    //    $allServices = Order_Service::where('order_id',$order->id)->get('service_id');
+    $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
+    
         foreach($allServices as $serviceId){
             $service = Service::find($serviceId);
             if ($service) 
@@ -96,22 +98,7 @@ class OrderController extends Controller
                 $totalPrice += $service->price;
             }
         }
-      
-        // $extraServices = $request->service_ids; 
-        // $totalPrice = 0;
-        // foreach ($extraServices as $serviceId) {
-        //     $service = Service::find($serviceId);
-            
-        //     if ($service) {
-        //         $totalPrice += $service->price;
-        //     }
-        // }
-        // $primaryService= $request->service;
-        // $primary = Service::find($primaryService);
-        // if ($primary) {
-        //     $totalPrice += $primary->price;
-        // }
-
+    
         $date =  $order->orderDate;
         $time = $order->orderTime;
         Order::find($order->id)->update([
