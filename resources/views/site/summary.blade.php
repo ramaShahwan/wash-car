@@ -20,10 +20,10 @@
 
     <div class="services_section layout_padding">
         <div class="container">
-           <h1 class="services_taital"><span style="color: #0c426e">مراجعة الطلب</span></h1>
-           <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p>
+           <h1 class="services_taital"><span style="color: #0c426e">ملخص الطلب</span></h1>
+           {{-- <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p> --}}
 
-           <form action="{{ route('ord.summary') }}" method="GET" enctype="multipart/form-data" autocomplete="off">
+         <form action="{{ route('ord.summary') }}" method="GET" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @method('GET')
 
@@ -71,14 +71,15 @@
                  
                    {{-- @endforeach --}}
 
-                    <br><br>
+         <br><br>
+         <br><br>
                  </div>
 
               </div>
            </div>
 
            <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary" style="background-color: #0c426e;"> &nbsp; تم  &nbsp; <i class="fa fa-check"></i> &nbsp; </button>
+            <button type="submit" class="btn btn-primary" style="background-color: #0c426e;"> &nbsp; <i class="fa fa-arrow-left"></i> &nbsp; انتقل للدفع &nbsp; </button>
          </div>
 
          <br><br><br>
@@ -86,7 +87,6 @@
         </form>
 
         </div>
-     <br><br><br><br><br>
     </div>
 
 </body>

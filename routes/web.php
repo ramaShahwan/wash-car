@@ -34,9 +34,9 @@ Route::middleware('auth')->group(function () {
 
 
 
-// Route::get('/summary', function () {
-//     return view('site.summary');
-// });
+Route::get('/pay', function () {
+    return view('site.pay');
+});
 
 Route::get('/index', [OrderController::class, 'create']);
 
@@ -52,6 +52,7 @@ Route::get('add', [OrderController::class, 'create']);
 Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
 Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
 
+// Route::get('pay', [OrderController::class, 'pay'])->name('ord.pay');
 
 
 
