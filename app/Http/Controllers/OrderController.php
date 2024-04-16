@@ -60,6 +60,12 @@ class OrderController extends Controller
         ]);
 
 
+        $order = Order::latest()->first()->id;
+        Order_Service::create([
+            'order_id'=> $order,
+            'service_id'=> $request->service,
+        ]);
+
         foreach($request->service_ids as $service)
         {
             $order = Order::latest()->first()->id;
@@ -70,11 +76,7 @@ class OrderController extends Controller
          
         }
 
-        $order = Order::latest()->first()->id;
-        Order_Service::create([
-            'order_id'=> $order,
-            'service_id'=> $request->service_id,
-        ]);
+    
 
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
         return back();

@@ -168,7 +168,7 @@
    
       <div class="col-md-4">
          <div class="choose_box1" style="text-align: center;">
-            <input type="hidden" name="service_id" value="{{ $ser->id }}">
+            <input type="hidden" name="service" value="{{ $ser->id }}">
             <h2 style="font-weight: bolder"> {{ $ser->name }} </h2>
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $ser->price }} </p>

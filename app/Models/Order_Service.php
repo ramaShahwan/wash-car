@@ -10,6 +10,8 @@ class Order_Service extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_service';
+
     protected $fillable = ['service_id','order_id'];
     
     public function services(): HasMany
