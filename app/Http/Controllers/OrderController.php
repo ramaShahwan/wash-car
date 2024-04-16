@@ -10,6 +10,7 @@ use App\Models\Order_Service;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
+use DateTime;
 
 class OrderController extends Controller
 {
@@ -116,8 +117,11 @@ class OrderController extends Controller
         Order::find($order->id)->update([
             'totalPrice' => $totalPrice,
         ]);
-
-        return view('site.index');
+        return response()->json(['totalprice' => $totalPrice,
+                                 'orderDate'=>$date,
+                                  'orderTime'=>$time  ]);
+    
+       // return view('site.index',compact('totalPrice','date','time'));
 
     }
  }
