@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type')->nullable()->default('أساسية');
             $table->string('name')->nullable();
-            $table->string('price')->nullable();
+            $table->integer('price')->nullable();
             $table->string('period')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();

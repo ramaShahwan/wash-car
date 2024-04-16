@@ -81,7 +81,7 @@ class OrderController extends Controller
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
         // return view('site.summary', compact('order'));
 
-        return view('site.summary');
+        return redirect()->route('ord.summary');
     }
 
     public function summary()
