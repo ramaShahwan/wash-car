@@ -34,18 +34,23 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/index', function () {
-    return view('site.index');
-});
+// Route::get('/index', function () {
+//     return view('site.index');
+// });
+
+Route::get('/index', [OrderController::class, 'create']);
+
 
 
 Route::get('add', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 
-Route::get('show', [OrderController::class, 'index']);
+
+// Route::get('show', [OrderController::class, 'index']);
 Route::get('add', [OrderController::class, 'create']);
 Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+
 
 
 require __DIR__.'/auth.php';

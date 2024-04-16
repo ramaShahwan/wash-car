@@ -9,26 +9,28 @@ use App\Models\OrderService;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 class OrderController extends Controller
 {
 
-    public function index()
-    {
-        $services = Service::get();
-        return view('site.index',
-        ['services' => $services]);
-    }
+    // public function index()
+    // {
+    //     $services = Service::get();
+
+    //     return view('site.index',
+    //     ['services' => $services]);
+    // }
+
+    
     public function create()
     {
-
-        // $services = Service::all();
-        // return view('site.index',compact('services'));
-
         $services = Service::all();
+
        return view('site.index',
        ['services' => $services]);
-
     }
+
 
 
     public function store(Request $request)

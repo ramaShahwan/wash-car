@@ -161,41 +161,29 @@
 <div class="choose_section_2">
    <div class="row">
 
+      @if(isset($services) && !$services->isEmpty()) 
+
+      @foreach($services as $ser)
+      @if($ser->type == 'أساسية')
+   
       <div class="col-md-4">
          <div class="choose_box1" style="text-align: center;">
-            <h2 style="font-weight: bolder"> غسيل كامل للسيارة </h2>
+            <input type="hidden" name="service_id" value="{{ $ser->id }}">
+            <h2 style="font-weight: bolder"> {{ $ser->name }} </h2>
             <hr>
-            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
+            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $ser->price }} </p>
             <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> 20 min </p>
+            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->period }} min </p>
             <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> ...للتخلص من الروائح مثل دخان السجائر  </p>
+            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->description }} </p>
          </div>
       </div>
 
-      <div class="col-md-4">
-         <div class="choose_box1" style="text-align: center;">
-            <h2 style="font-weight: bolder"> غسيل خارجي للسيارة </h2>
-            <hr>
-            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
-            <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> 20 min </p>
-            <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> ...تنظيف الزجاج وغسيل عجلات السيارة  </p>
-         </div>
-      </div>
+      @endif
+      @endforeach
+   
+      @endif
 
-      <div class="col-md-4">
-         <div class="choose_box1" style="text-align: center;">
-            <h2 style="font-weight: bolder"> غسيل داخلي للسيارة </h2>
-            <hr>
-            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> 100.000 SYP </p>
-            <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> 20 min </p>
-            <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> ...تنظيف المقاعد وتنظيف الأرضيات  </p>
-         </div>
-      </div>
    </div>
    <br><br>
 
@@ -216,47 +204,25 @@
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
    <div class="row">
 
-   {{-- @foreach($services as $ser)
-   @if($services->type == 'إضافية')
-
-   <div class="col-md-12">
-      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
-      <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
-      <hr>
-   </div>
-   @endif
-
-   @endforeach --}}
-
-
    @if(isset($services) && !$services->isEmpty()) 
 
    @foreach($services as $ser)
-   {{-- @if($ser->type == 'إضافية') --}}
+   @if($ser->type == 'إضافية')
 
    <div class="col-md-12">
+      {{-- <input type="hidden" name="service_id" value="{{ $ser->id }}"> --}}
       <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
-      <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
+
+      <input type="checkbox" name="service_ids[]" value="{{ $ser->id }}">
+
+      {{-- <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button> --}}
       <hr>
    </div>
-   {{-- @endif --}}
 
+   @endif
    @endforeach
 
    @endif
-
-
-
-
-   {{-- <div class="col-md-12">
-      <p class="testimonial_text" style="display: inline;"> تعقيم هواء السيارة </p>
-      <button class="btn btn-primary" style="display: inline;  float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
-      <hr>
-   </div>
-   <div class="col-md-12">
-      <p class="testimonial_text" style="display: inline;"> تلميع زجاج السيارة </p>
-      <button class="btn btn-primary" style="display: inline; float: left; background-color: #0c426e;"><a href="#" style="color: white;">اختر</a></button>
-   </div> --}}
 
    </div>
 <br><br>
@@ -282,7 +248,7 @@
               <label style="font-size: 16px; font-weight: bolder; color: black;">التاريخ</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
                   <img src="assets/images/calander.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input type="datetime-local" class="form-control">
+                  <input name="orderDate" type="datetime-local" class="form-control">
               </div>
           </div>
       </div>
@@ -292,7 +258,7 @@
               <label style="font-size: 16px; font-weight: bolder; color: black;">الوقت</label>
               <div class="time-icon" style="display: flex; align-items: center;">
                   <img src="assets/images/clock.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input type="datetime" class="form-control">
+                  <input name="orderTime" type="datetime" class="form-control">
               </div>
           </div>
       </div>
@@ -410,11 +376,11 @@
        $('.choose_box1').removeClass('selected'); // إزالة الفئة من جميع الديفات
        $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
 
-       var selectedValue = $(this).find('h2').text(); // الحصول على القيمة من الديف المختار
+       var selectedValue = $(this).find('input').text(); // الحصول على القيمة من الديف المختار
 
        // يمكنك الآن استخدام selectedValue لتخزينها في قاعدة البيانات
        // على سبيل المثال، يمكنك إضافة هذه القيمة إلى نموذجك كقيمة مخفية
-       $('form').append('<input type="hidden" name="sizeOfCar" value="' + selectedValue + '">');
+       $('form').append('<input type="hidden" name="service_id" value="' + selectedValue + '">');
    });
 });
 </script>
@@ -429,7 +395,7 @@
 	config = {
     noCalendar: true,
     enableTime: true,
-    dateFormat: 'h K'
+    dateFormat: 'h:i K'
 	}
 	flatpickr("input[type=datetime]", config);
 </script>
