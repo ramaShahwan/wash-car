@@ -30,15 +30,14 @@
 
 @section('content')
 
-
-@if(session()->has('Add'))
+{{-- @if(session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
 	<strong>{{ session()->get('Add') }}</strong>
 	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
 		<span aria_hidden="true">&times;</span>
 	</button>
 </div>
-@endif
+@endif --}}
 
 
    <body>
@@ -222,8 +221,8 @@
    @if($ser->type == 'إضافية')
 
    <div class="col-md-12">
-      <input type="checkbox" name="service_ids[]" value="{{ $ser->id }}">
-      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} </p>
+      <input type="checkbox" name="service_ids[]" value="{{ $ser->id }}"> &nbsp;
+      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} : {{ $ser->description }} </p>
       <hr>
    </div>
 
