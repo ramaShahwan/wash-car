@@ -60,7 +60,6 @@ class OrderController extends Controller
             'payWay_id'=>$request->payWay_id,
         ]);
 
-
         $order_ser = Order::latest()->first()->id;
         Order_Service::create([
             'order_id'=> $order_ser,
@@ -74,12 +73,11 @@ class OrderController extends Controller
                 'order_id'=> $order_ser,
                 'service_id'=> $service,
             ]);
-         
         }
 
         // $order= Order::latest()->first();
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-        // return view('site.summary', compact('order'));
+        // return view('site.summary');
 
         return redirect()->route('ord.summary');
     }
@@ -90,13 +88,10 @@ class OrderController extends Controller
         $order = Order::latest()->first();
     //    $allServices = Order_Service::where('order_id',$order->id)->get('service_id');
     $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
-    
         foreach($allServices as $serviceId){
             $service = Service::find($serviceId);
             if ($service) 
-            {
-                $totalPrice += $service->price;
-            }
+            { $totalPrice += $service->price;}
         }
     
         $date =  $order->orderDate;
@@ -104,13 +99,14 @@ class OrderController extends Controller
         Order::find($order->id)->update([
             'totalPrice' => $totalPrice,
         ]);
-        return response()->json(['totalprice' => $totalPrice,
-                                 'orderDate'=>$date,
+        return view('site.summary',['totalPrice' => $totalPrice,
+                                  'orderDate'=>$date,
                                   'orderTime'=>$time  ]);
     
        // return view('site.index',compact('totalPrice','date','time'));
 
     }
+
  }
 
 

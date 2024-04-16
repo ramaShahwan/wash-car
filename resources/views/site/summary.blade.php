@@ -43,7 +43,7 @@
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> تاريخ الحجز </p>
                              <hr>
-                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{ $date }} </p>
+                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{ $orderDate }} </p>
                           </div>
                        </div>
                  
@@ -53,7 +53,7 @@
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> وقت الحجز </p>
                              <hr>
-                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{ $time }} </p>
+                             <p class="dummy_text" style="font-size: 20px; font-weight: bolder; "> {{ $orderTime }} </p>
                           </div>
                        </div>
                  
