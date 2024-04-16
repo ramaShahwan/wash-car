@@ -75,11 +75,51 @@ class OrderController extends Controller
             ]);
          
         }
-
-    
-
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
         return back();
     }
 
-}
+    public function summary($orderId)
+    {
+        $totalPrice = 0;
+        $order = Order::find($orderId);
+       $allServices = Order_Service::where('order_id',$orderId)->get('service_id');
+        foreach($allServices as $serviceId){
+            $service = Service::find($serviceId);
+            if ($service) 
+            {
+          $totalPrice += $service->price;
+             }
+        }
+      
+     //   $extraServices = $request->service_ids; 
+        // $totalPrice = 0;
+        // foreach ($extraServices as $serviceId) {
+        //     $service = Service::find($serviceId);
+            
+        //     if ($service) {
+        //         $totalPrice += $service->price;
+        //     }
+        // }
+        // $primaryService= $request->service;
+        // $primary = Service::find($primaryService);
+        // if ($primary) {
+        //     $totalPrice += $primary->price;
+        // }
+
+        $date =  $order->orderDate;
+        $time = $order->orderTime;
+        Order::find($orderId)->update([
+            'total_price' => $totalPrice,
+        ]);
+
+        return view('site.summary',
+        ['total_price' => $totalPrice,
+        'orderDate'=>$date,
+        'orderTime'=>$time
+    ]);
+
+    }
+ }
+
+

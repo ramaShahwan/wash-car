@@ -50,6 +50,8 @@ Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 // Route::get('show', [OrderController::class, 'index']);
 Route::get('add', [OrderController::class, 'create']);
 Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+Route::get('summary/{orderId}', [OrderController::class, 'summary'])->name('ord.summary');
+
 
 
 
