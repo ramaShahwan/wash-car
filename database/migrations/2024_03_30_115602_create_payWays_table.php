@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('way')->nullable();
             $table->string('accountNumber')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
