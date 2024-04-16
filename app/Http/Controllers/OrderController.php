@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Service;
+use App\Models\OrderService;
+
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -52,6 +55,23 @@ class OrderController extends Controller
             'location_id'=>$request->location_id,
             'user_id'=>$request->user_id,
             'payWay_id'=>$request->payWay_id,
+        ]);
+
+
+        foreach($request->service_ids as $service)
+        {
+            $order = Order::latest()->first()->id;
+            OrderService::create([
+                'order_id'=> $order,
+                'service_ids'=> $service,
+            ]);
+         
+        }
+
+        $order = Order::latest()->first()->id;
+        OrderService::create([
+            'order_id'=> $order,
+            'service_id'=> $request->service_id,
         ]);
 
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
