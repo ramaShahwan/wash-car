@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Service;
-use App\Models\OrderService;
+use App\Models\Order_Service;
 
 
 use Illuminate\Http\Request;
@@ -63,15 +63,15 @@ class OrderController extends Controller
         foreach($request->service_ids as $service)
         {
             $order = Order::latest()->first()->id;
-            OrderService::create([
+            Order_Service::create([
                 'order_id'=> $order,
-                'service_ids'=> $service,
+                'service_id'=> $service,
             ]);
          
         }
 
         $order = Order::latest()->first()->id;
-        OrderService::create([
+        Order_Service::create([
             'order_id'=> $order,
             'service_id'=> $request->service_id,
         ]);

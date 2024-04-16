@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orderServices', function (Blueprint $table) {
+        Schema::create('order_service', function (Blueprint $table) {
             $table->id();
               //services_table
               $table->foreignId('service_id')->nullable();
