@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Order_Service;
-
-
+use App\Models\PayWay;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -105,6 +104,22 @@ class OrderController extends Controller
     
        // return view('site.index',compact('totalPrice','date','time'));
 
+    }
+
+    public function getPayway()
+    {
+        $pay = PayWay::all();
+        return view('site.pay',compact('pay'));
+    }
+
+    public function setPayway($id)
+    {
+        $order = Order::latest()->first();
+        $pay = PayWay::find($id);
+
+        Order::find($order->id)->update([
+          'payWay_id' => $pay,
+        ]);
     }
 
  }
