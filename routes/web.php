@@ -23,6 +23,13 @@ Route::get('/', function () {
     return view('site.home');
 });
 
+// Route::get('/', function () {
+//     return view('auth.register');
+// });
+
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -35,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
 
 // Admin Routes
-Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(function () {
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
 
 
@@ -44,7 +51,7 @@ Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(functi
 
 
 // User Routes
-Route::middleware(['auth', 'verified', 'user'])-> prefix('user')->group(function () {
+Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
     Route::get('/index', [OrderController::class, 'create']);
 
@@ -58,7 +65,6 @@ Route::middleware(['auth', 'verified', 'user'])-> prefix('user')->group(function
 
     Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
     Route::get('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
-
     
 });
 
