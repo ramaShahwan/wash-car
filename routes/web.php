@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BeforAfterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +63,9 @@ Route::middleware(['auth', 'verified', 'user'])-> prefix('user')->group(function
 });
 
 
+
+
+Route::get('get_img', [BeforAfterController::class, 'show']);
 
 
 
