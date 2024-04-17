@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('site.index');
-// });
+Route::get('/', function () {
+    return view('site.home');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,25 +33,36 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-// Route::get('/pay', function () {
-//     return view('site.pay');
-// });
-
-Route::get('/', [OrderController::class, 'create']);
-
-Route::get('add', [EmployeeController::class, 'create']);
-Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
+// Admin Routes
+Route::middleware(['auth', 'verified', 'admin'])-> prefix('admin')->group(function () {
 
 
 
-// Route::get('show', [OrderController::class, 'index']);
-Route::get('add', [OrderController::class, 'create']);
-Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
-Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
+});
 
-Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
-Route::get('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
+
+
+// User Routes
+Route::middleware(['auth', 'verified', 'user'])-> prefix('user')->group(function () {
+
+    Route::get('/index', [OrderController::class, 'create']);
+
+    Route::get('add', [EmployeeController::class, 'create']);
+    Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
+
+    // Route::get('show', [OrderController::class, 'index']);
+    Route::get('add', [OrderController::class, 'create']);
+    Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+    Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
+
+    Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
+    Route::get('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
+
+    
+});
+
+
+
 
 
 

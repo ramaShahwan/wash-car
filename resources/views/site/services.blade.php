@@ -13,7 +13,7 @@
       <div class="services_section layout_padding">
          <div class="container">
             <h1 class="services_taital"><span style="color: #0c426e">خدماتنا</span></h1>
-            <p class="services_text">t is a long established fact that a reader will be distracted by the readable content of a page when looking </p>
+            {{-- <p class="services_text">t is a long established fact that a reader will be distracted by the readable content of a page when looking </p> --}}
             <div class="services_section_2 layout_padding">
                <div class="row">
                   <div class="col-md-4">

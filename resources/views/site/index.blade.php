@@ -55,7 +55,7 @@
                               {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                            </div>
                            <div class="btn_main">
-                              <div class="quote_bt active"><a href="#">احجز الآن</a></div>
+                              <div class="quote_bt active"><a href="#">اطلب الآن</a></div>
                               <div class="contact_bt"><a href="#">تواصل معنا</a></div>
                            </div>
                         </div>

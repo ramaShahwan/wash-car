@@ -86,7 +86,7 @@ class OrderController extends Controller
         $totalPrice = 0;
         $order = Order::latest()->first();
     //    $allServices = Order_Service::where('order_id',$order->id)->get('service_id');
-    $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
+        $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
         foreach($allServices as $serviceId){
             $service = Service::find($serviceId);
             if ($service) 
