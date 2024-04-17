@@ -9,7 +9,7 @@ class BeforAfterController extends Controller
 {
     public function create()
     {
-       return view('admin.beforeAfter.create');
+       return view('admin.before_after.create');
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class BeforAfterController extends Controller
     public function show()
     { 
          $data = BeforAfter::orderBy('created_at','Asc')->get();
-         return view('site.beforeAfter',compact('data'));
+         return view('site.before_after',compact('data'));
     }
 
 }

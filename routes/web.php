@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BeforAfterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,9 @@ Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
 
 Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
 Route::get('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
+
+Route::get('get_img', [BeforAfterController::class, 'show']);
+
 
 
 

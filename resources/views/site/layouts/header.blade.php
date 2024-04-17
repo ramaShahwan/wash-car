@@ -89,7 +89,7 @@
                     <a class="nav-link" href="services.html">خدماتنا</a>
                  </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="quality.html">أعمالنا</a>
+                    <a class="nav-link" href="{{ url('get_img') }}">أعمالنا</a>
                  </li>
                  <li class="nav-item">
                     <a class="nav-link" href="choose.html">من نحن</a>
