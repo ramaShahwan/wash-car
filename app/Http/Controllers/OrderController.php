@@ -14,13 +14,13 @@ use DateTime;
 class OrderController extends Controller
 {
 
-    // public function index()
-    // {
-    //     $services = Service::get();
+    public function index()
+    {
+        $services = Service::all();
 
-    //     return view('site.index',
-    //     ['services' => $services]);
-    // }
+        return view('site.index',
+        ['services' => $services]);
+    }
 
     
     public function create()
@@ -121,6 +121,8 @@ class OrderController extends Controller
           'payWay_id' => $pay,
         ]);
     }
+
+
 
  }
 

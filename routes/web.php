@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site.index');
-});
+// Route::get('/', function () {
+//     return view('site.index');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -38,9 +38,7 @@ Route::get('/pay', function () {
     return view('site.pay');
 });
 
-Route::get('/index', [OrderController::class, 'create']);
-
-
+Route::get('/', [OrderController::class, 'create']);
 
 Route::get('add', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
