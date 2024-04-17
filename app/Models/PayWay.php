@@ -10,6 +10,8 @@ class PayWay extends Model
 {
     use HasFactory;
 
+    protected $table = 'payWays';
+
     protected $fillable = ['way','accountNumber'];
 
     public function order(): BelongsTo
