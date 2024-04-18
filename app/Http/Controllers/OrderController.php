@@ -138,6 +138,7 @@ class OrderController extends Controller
         Order::find($order->id)->update([
           'payWay_id' => $pay,
         ]);
+        return view('site.home');
     }
 
 

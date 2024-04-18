@@ -96,59 +96,36 @@
                 <div class="choose_section_2" style="text-align: right; direction: rtl;">
                     <div class="row">
 
-                @foreach ($pay as $pay)
-                            
-                    {{-- <a href="{{ route('member.details', $member->id)}}"> --}}
-
-                        {{-- <a class="dropdown-item" href="#" data-pay_id="{{ $pay->id }}"
-                            data-toggle="modal" data-target="#account_number"> --}}
-
-
-
-                        <div class="col-md-4">
-                            <div class="choose_box" style="text-align: center; border: 2px solid #0c426e;">
-
-                              @if ($pay->image)
-                                <img src="{{URL::asset('/assets/img/pay/'.$pay->image)}}" style="width: 100px;">
-                              @else  
-                                <img src="{{URL::asset('assets/img/pay/mobile-payment.png')}}" style="width: 100px;">
-                              @endif
-
-                                <br><br>
-                                <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $pay->way }} </p>
-                                <br><br>
-                                <hr>
-                            
-                            <button type="submit" class="btn" onclick="openPopup()"
-                             style="background-color: goldenrod; color:black">تفاصيل الدفع</button>
-
-                                <div class="popup" id="popup">
-                                    <img src="{{URL::asset('assets/images/correct.png')}}" alt="">
-                                    <br><br>
-                                    {{-- @if (is_numeric($pay->accountNumber)) --}}
-                                        <h3>يرجى التحويل على رقم الحساب التالي: </h3>  <h3> {{ $pay->accountNumber }} </h3>  
-                                    {{-- @else
-                                        {{ $pay->accountNumber }}
-                                    @endif --}}
-
-                                    {{-- <br><br> --}}
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <button class="btn" type="button" onclick="closePopup()"> إلغاء </button>
-                                        </div>
-                                        <div class="col-6">
-                                            <button class="btn" type="submit" onclick="closePopup()"> تأكيد </button>
-                                        </div>
-                                    </div>
-                                
-                                </div>
-
-                            </div>
-                        </div>
-
-                    {{-- </a> --}}
-                @endforeach
+                       @foreach ($pay as $item)
+    <div class="col-md-4">
+        <div class="choose_box" style="text-align: center; border: 2px solid #0c426e;">
+            @if ($item->image)
+                <img src="{{URL::asset('/assets/img/pay/'.$item->image)}}" style="width: 100px;">
+            @else  
+                <img src="{{URL::asset('assets/img/pay/mobile-payment.png')}}" style="width: 100px;">
+            @endif
+            <br><br>
+            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->way }} </p>
+            <br><br>
+            <hr>
+            <button type="submit" class="btn" onclick="openPopup()"
+                    style="background-color: goldenrod; color:black">تفاصيل الدفع</button>
+            {{-- <div class="popup" id="popup">
+                <img src="{{URL::asset('assets/images/correct.png')}}" alt="">
+                <br><br>
+                <h3>يرجى التحويل على رقم الحساب التالي: </h3>  <h3> {{ $item->accountNumber }} </h3>  
+                <div class="row">
+                    <div class="col-6">
+                        <button class="btn" type="button" onclick="closePopup()"> إلغاء </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn" type="submit" onclick="closePopup()"> تأكيد </button>
+                    </div>
+                </div>
+            </div> --}}
+        </div>
+    </div>
+@endforeach
 
          <br><br>
          <br><br>
@@ -177,7 +154,7 @@
 @section('js')
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+{{-- <script>
          $(document).ready(function() {
          $('.choose_box').click(function() {
              $('.choose_box').removeClass('selected'); // إزالة الفئة من جميع الديفات
@@ -190,18 +167,31 @@
              $('form').append('<input type="hidden" name="id" value="' + selectedValue + '">');
          });
      });
+ 
+</script> --}}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   $(document).ready(function() {
+      $('.choose_box').click(function() {
+         $('.choose_box').removeClass('selected'); // إزالة الفئة من جميع الديفات
+         $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
+      });
+   });
 </script>
+
+
 
 
 <script>
     let popup = document.getElementById("popup");
 
     function openPopup(){
-        popup.classlist.add("open-popup");  
+        popup.classList.add("open-popup");  
     }
 
     function closePopup(){
-        popup.classlist.remove("open-popup");  
+        popup.classList.remove("open-popup");  
     }
 </script>
 
