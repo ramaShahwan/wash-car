@@ -16,10 +16,27 @@ class OrderController extends Controller
 
     public function index()
     {
-        $services = Service::all();
+        if(!auth()->check())
+        {
+            return view('auth.login');
+        }
+        else if(auth()->user()->role == "admin") {
+
+         $services = Service::all();
 
         return view('site.index',
         ['services' => $services]);
+
+        }
+        else if(auth()->user()->role == "user") {
+          
+          $services = Service::all();
+          
+        return view('site.index',
+        ['services' => $services]);
+        }
+
+      
     }
 
     
@@ -35,6 +52,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        $user = auth()->user();
         // $validated = $request->validate([
         //     'typeOfCar' => 'required',
         //     'sizeOfCar' => 'required',
@@ -55,11 +73,12 @@ class OrderController extends Controller
             'orderDate'=>$request->orderDate,
             'orderTime'=>$request->orderTime,
             'location_id'=>$request->location_id,
-            'user_id'=>$request->user_id,
+            'user_id'=>$user->id,
             'payWay_id'=>$request->payWay_id,
         ]);
 
-        $order_ser = Order::latest()->first()->id;
+        $order_ser = Order::where('user_id',$user->id)->first()->id;
+        // $order_ser = Order::latest()->first()->id;
         Order_Service::create([
             'order_id'=> $order_ser,
             'service_id'=> $request->service,
@@ -67,7 +86,8 @@ class OrderController extends Controller
 
         foreach($request->service_ids as $service)
         {
-            $order_ser = Order::latest()->first()->id;
+           // $order_ser = Order::latest()->first()->id;
+        $order_ser = Order::where('user_id',$user->id)->first()->id;
             Order_Service::create([
                 'order_id'=> $order_ser,
                 'service_id'=> $service,
@@ -84,8 +104,8 @@ class OrderController extends Controller
     public function summary()
     {
         $totalPrice = 0;
-        $order = Order::latest()->first();
-    //    $allServices = Order_Service::where('order_id',$order->id)->get('service_id');
+        $user = auth()->user();
+        $order = Order::where('user_id',$user->id)->first();
         $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
         foreach($allServices as $serviceId){
             $service = Service::find($serviceId);
@@ -101,9 +121,6 @@ class OrderController extends Controller
         return view('site.summary',['totalPrice' => $totalPrice,
                                   'orderDate'=>$date,
                                   'orderTime'=>$time  ]);
-    
-       // return view('site.index',compact('totalPrice','date','time'));
-
     }
 
     public function getPayway()
@@ -114,7 +131,8 @@ class OrderController extends Controller
 
     public function setPayway($id)
     {
-        $order = Order::latest()->first();
+        $user = auth()->user();
+        $order = Order::where('user_id',$user->id);
         $pay = PayWay::find($id);
 
         Order::find($order->id)->update([
