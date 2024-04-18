@@ -80,7 +80,7 @@
                         <div class="row" style="text-align: right;">
                             <div class="col">
                                 <label for="inputName" class="control-label" style="font-weight: bold; color: black;">الاسم</label>
-                                <input type="text" class="form-control @error('firstName') is-invalid @enderror" 
+                                <input style="direction: rtl;" type="text" class="form-control @error('firstName') is-invalid @enderror" 
                                 id="inputName" name="firstName" required>
 
                                 @error('firstName')
@@ -92,7 +92,7 @@
                         <div class="row" style="text-align: right;">
                             <div class="col">
                                 <label for="inputName" class="control-label" style="font-weight: bold; color: black;">النسبة</label>
-                                <input type="text" class="form-control @error('lastName') is-invalid @enderror" 
+                                <input style="direction: rtl;" type="text" class="form-control @error('lastName') is-invalid @enderror" 
                                 id="inputName" name="lastName" required>
 
                                 @error('lastName')
@@ -104,7 +104,7 @@
                         <div class="row" style="text-align: right;">
                             <div class="col">
                               <label style="font-weight: bold; color: black;" for="inputName" class="control-label">رقم الموبايل</label>
-                              <input type="text" class="form-control @error('phone') is-invalid @enderror" 
+                              <input style="direction: rtl;" type="text" class="form-control @error('phone') is-invalid @enderror" 
                               id="inputName" name="phone">
 
                             @error('phone')
@@ -146,7 +146,7 @@
 						<div class="row" style="text-align: right;">
 							<div class="col">
 								<label for="inputName" class="control-label" style="font-weight: bold; color: black;">نبذة حولك</label>
-								<textarea type="text" class="form-control @error('aboutYou') is-invalid @enderror" 
+								<textarea style="direction: rtl;" type="text" class="form-control @error('aboutYou') is-invalid @enderror" 
 								id="inputName" name="aboutYou" rows="3" cols="30"></textarea>
 
 								@error('aboutYou')
@@ -157,7 +157,7 @@
                     
                         <div class="input-container">
                             <label for="image" style="font-weight: bold; color: black;">صورة شخصية</label>
-                            <input type="file" class="form-control" id="image" name="image">
+                            <input type="file" style="direction: rtl;" class="form-control" id="image" name="image">
                         </div><br><br>
 
                         
@@ -170,13 +170,12 @@
 
                 </div>
             </div>
-            
 
 
               </div>
            </div>
         </div>
-     <br><br><br><br><br>
+     <br><br>
     </div>
 
 
@@ -189,8 +188,10 @@
 		altInput: true,
 		altFormat: "F j, Y",
 
-        locale: "ar",
-        position: "right",
+        // locale: "ar",
+        // position: "right",
+        // static: true,
+        // rtl: true
 	}
 	flatpickr("input[type=datetime]", config);
 </script>
