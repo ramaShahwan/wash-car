@@ -23,12 +23,6 @@ Route::get('/', function () {
     return view('site.home');
 });
 
-// Route::get('/', function () {
-//     return view('auth.register');
-// });
-
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -55,7 +49,7 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
     Route::get('/index', [OrderController::class, 'create']);
 
-    Route::get('add', [EmployeeController::class, 'create']);
+    Route::get('add_emp', [EmployeeController::class, 'create']);
     Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
     // Route::get('show', [OrderController::class, 'index']);
@@ -65,14 +59,21 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
     Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
     Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
+    Route::Post('set_pay/{id}', [OrderController::class, 'setPayway'])->name('ord.setPay');
     
 });
 
 
-
-
 Route::get('get_img', [BeforAfterController::class, 'show']);
 
+
+Route::get('/services', function () {
+    return view('site.services');
+});
+
+Route::get('/about_us', function () {
+    return view('site.about_us');
+});
 
 
 

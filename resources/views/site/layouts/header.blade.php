@@ -38,14 +38,33 @@
        <!--header section start -->
        <div class="header_section">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-           <a class="navbar-brand"><a href="index.html"><img src="{{URL::asset('assets/images/logo.png')}}"></a>
+           {{-- <a class="navbar-brand"><a href="index.html"><img src="{{URL::asset('assets/images/logo.png')}}"></a> --}}
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
            </button>
            <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto" style="direction: rtl; right: 0;">
 
-
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('index') }}">الصفحة الرئيسية</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('services') }}">خدماتنا</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('get_img') }}">أعمالنا</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('about_us') }}">من نحن؟</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('add_emp') }}">انضم لفريقنا</a>
+                 </li>
+                 {{-- <li class="nav-item">
+                    <a class="nav-link" href="contact.html"> تواصل معنا </a>
+                 </li> --}}
+                 
+                 
                  <li class="nav-item">
 
                   @if (auth()->user())
@@ -77,34 +96,13 @@
       </form>
 
       
-
         @endif
-                 </li>
+      </li>
 
-
-                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">الصفحة الرئيسية</a>
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="services.html">خدماتنا</a>
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('get_img') }}">أعمالنا</a>
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="choose.html">من نحن</a>
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="join.html">انضم لفريقنا</a>
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html"> تواصل معنا </a>
-                 </li>
-
-
-
-              </ul>
+   </ul>
              
+   <a class="navbar-brand"><a href="index.html"><img src="{{URL::asset('assets/images/logo.png')}}"></a>
+
            </div>
         </nav>
      </div>
