@@ -35,7 +35,6 @@ class OrderController extends Controller
         return view('site.index',
         ['services' => $services]);
         }
-
       
     }
 

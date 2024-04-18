@@ -31,7 +31,7 @@
            <h1 class="services_taital"><span style="color: #0c426e"> طريقة الدفع </span></h1>
            {{-- <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p> --}}
 
-           <form action="{{ route('ord.setPay') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+           <form action="{{ route('ord.setPay', $pay->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @method('POST')
 
@@ -40,26 +40,26 @@
                 <div class="choose_section_2" style="text-align: right; direction: rtl;">
                     <div class="row">
 
-                @foreach ($pay as $pay)
+                @foreach ($pay as $item)
 
                         <div class="col-md-4">
                             <div class="" style="text-align: center; border: 2px solid #0c426e; padding: 20px;">
 
-                              @if ($pay->image)
-                                <img src="{{URL::asset('/assets/img/pay/'.$pay->image)}}" style="width: 100px;">
+                              @if ($item->image)
+                                <img src="{{URL::asset('/assets/img/pay/'.$item->image)}}" style="width: 100px;">
                               @else  
                                 <img src="{{URL::asset('assets/img/pay/mobile-payment.png')}}" style="width: 100px;">
                               @endif
 
                                 <br><br>
-                                <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $pay->way }} </p>
+                                <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->way }} </p>
                                 <br><br>
                                 <hr>
                                 <p class="dummy_text" style="font-size: 20px;"> رقم الحساب: </p> <br>
-                                <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $pay->accountNumber }} </p>
+                                <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->accountNumber }} </p>
                                 <hr>
 
-                                <button class="btn" value="{{ $pay->id }}"
+                                <button class="btn"
                                 style="background-color: goldenrod; color:black"> اختر </button>
 
                             </div>
@@ -120,11 +120,11 @@
     let popup = document.getElementById("popup");
 
     function openPopup(){
-        popup.classList.add("open-popup");  
+        popup.classlist.add("open-popup");  
     }
 
     function closePopup(){
-        popup.classList.remove("open-popup");  
+        popup.classlist.remove("open-popup");  
     }
 </script> --}}
 
