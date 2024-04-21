@@ -67,7 +67,7 @@
                   
                   <div class="col-md-4">
                      <div class="" style="text-align: center;">
-                        <img src="assets/images/back-in-time.png" alt="" style="width: 50px;">
+                        <img src="site/images/back-in-time.png" alt="" style="width: 50px;">
                         <br><br>
                         <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> الوقت </p>
                         <hr>
@@ -77,7 +77,7 @@
             
                   <div class="col-md-4">
                      <div class="" style="text-align: center; background-color: rgb(255, 255, 45);">
-                        <img src="assets/images/award.png" alt="" style="width: 100px; margin: 30px"> 
+                        <img src="site/images/award.png" alt="" style="width: 100px; margin: 30px"> 
                         <br><br>
                         <p class="dummy_text" style="font-size: 30px; font-weight: bolder;"> الجودة </p>
                         <hr>
@@ -88,7 +88,7 @@
             
                   <div class="col-md-4">
                      <div class="" style="text-align: center;">
-                        <img src="assets/images/customer.png" alt="" style="width: 50px;">
+                        <img src="site/images/customer.png" alt="" style="width: 50px;">
                         <br><br>
                         <p class="dummy_text" style="font-size: 20px; font-weight: bolder;"> العملاء </p>
                         <hr>

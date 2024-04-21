@@ -60,7 +60,7 @@
                            </div>
                         </div>
                         <div class="col-md-6">
-                           <div><img src="{{URL::asset('assets/images/banner-img-1.png')}}" class="banner_img"></div>
+                           <div><img src="{{URL::asset('site/images/banner-img-1.png')}}" class="banner_img"></div>
                         </div>
                      </div>
                   </div>
@@ -77,7 +77,7 @@
                            </div>
                         </div>
                         <div class="col-md-6">
-                           <div><img src="{{URL::asset('assets/images/banner-img.png')}}" class="banner_img"></div>
+                           <div><img src="{{URL::asset('site/images/banner-img.png')}}" class="banner_img"></div>
                         </div>
                      </div>
                   </div>
@@ -94,7 +94,7 @@
                            </div>
                         </div>
                         <div class="col-md-6">
-                           <div><img src="{{URL::asset('assets/images/banner-img-2.png')}}" class="banner_img"></div>
+                           <div><img src="{{URL::asset('site/images/banner-img-2.png')}}" class="banner_img"></div>
                         </div>
                      </div>
                   </div>
@@ -138,19 +138,19 @@
                <div class="row">
                    <div class="col-md-4">
                        <div class="choose_box" style="text-align: center;">
-                           <img src="assets/images/van.png" alt="" style="width: 100px;">
+                           <img src="site/images/van.png" alt="" style="width: 100px;">
                            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة كبيرة الحجم </p>
                        </div>
                    </div>
                    <div class="col-md-4">
                        <div class="choose_box" style="text-align: center;">
-                           <img src="assets/images/car1.png" alt="" style="width: 100px;">
+                           <img src="site/images/car1.png" alt="" style="width: 100px;">
                            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة متوسطة الحجم </p>
                        </div>
                    </div>
                    <div class="col-md-4">
                        <div class="choose_box" style="text-align: center;">
-                           <img src="assets/images/car.png" alt="" style="width: 100px;">
+                           <img src="site/images/car.png" alt="" style="width: 100px;">
                            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> سيارة صغيرة الحجم </p>
                        </div>
                    </div>
@@ -254,7 +254,7 @@
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">التاريخ</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
-                  <img src="assets/images/calander.png" alt="" style="width:20px; height: 20px;"> &nbsp;
+                  <img src="site/images/calander.png" alt="" style="width:20px; height: 20px;"> &nbsp;
                   <input name="orderDate" type="datetime-local" class="form-control">
               </div>
           </div>
@@ -264,7 +264,7 @@
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">الوقت</label>
               <div class="time-icon" style="display: flex; align-items: center;">
-                  <img src="assets/images/clock.png" alt="" style="width:20px; height: 20px;"> &nbsp;
+                  <img src="site/images/clock.png" alt="" style="width:20px; height: 20px;"> &nbsp;
                   <input name="orderTime" type="datetime" class="form-control">
               </div>
           </div>
@@ -402,16 +402,16 @@
 
 
       <!-- Javascript files-->
-      <script src="{{URL::asset('assets/js/jquery.min.js')}}"></script>
-      <script src="{{URL::asset('assets/js/popper.min.js')}}"></script>
-      <script src="{{URL::asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-      <script src="{{URL::asset('assets/js/jquery-3.0.0.min.js')}}"></script>
-      <script src="{{URL::asset('assets/js/plugin.js')}}"></script>
+      <script src="{{URL::asset('site/js/jquery.min.js')}}"></script>
+      <script src="{{URL::asset('site/js/popper.min.js')}}"></script>
+      <script src="{{URL::asset('site/js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{URL::asset('site/js/jquery-3.0.0.min.js')}}"></script>
+      <script src="{{URL::asset('site/js/plugin.js')}}"></script>
       <!-- sidebar -->
-      <script src="{{URL::asset('assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-      <script src="{{URL::asset('assets/js/custom.js')}}"></script>
+      <script src="{{URL::asset('site/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+      <script src="{{URL::asset('site/js/custom.js')}}"></script>
       <!-- javascript --> 
-      <script src="{{URL::asset('assets/js/owl.carousel.js')}}"></script>
+      <script src="{{URL::asset('site/js/owl.carousel.js')}}"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 

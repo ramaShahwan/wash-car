@@ -20,14 +20,14 @@
                <div class="col-md-6">
                    <div class="services_box">
                        <h4 class="express_text">بعد</h4>
-                       <div><img src="{{ URL::asset('assets/img/gallery/'.$item->afterImage) }}" class="image_1"></div>
+                       <div><img src="{{ URL::asset('site/img/gallery/'.$item->afterImage) }}" class="image_1"></div>
                    </div>
                </div>
                
                <div class="col-md-6">
                    <div class="services_box">
                        <h4 class="express_text">قبل</h4>
-                       <div><img src="{{ URL::asset('assets/img/gallery/'.$item->beforeImage) }}" class="image_1"></div>
+                       <div><img src="{{ URL::asset('site/img/gallery/'.$item->beforeImage) }}" class="image_1"></div>
                    </div>
                </div>
                <br><br><br>

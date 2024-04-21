@@ -39,7 +39,7 @@
                       
                        <div class="col-md-4">
                           <div class="" style="text-align: center;">
-                             <img src="assets/images/check-mark.png" alt="" style="width: 50px;">
+                             <img src="site/images/check-mark.png" alt="" style="width: 50px;">
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> تاريخ الحجز </p>
                              <hr>
@@ -49,7 +49,7 @@
                  
                        <div class="col-md-4">
                           <div class="" style="text-align: center;">
-                             <img src="assets/images/clock1.png" alt="" style="width: 50px;"> 
+                             <img src="site/images/clock1.png" alt="" style="width: 50px;"> 
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> وقت الحجز </p>
                              <hr>
@@ -59,7 +59,7 @@
                  
                        <div class="col-md-4">
                           <div class="" style="text-align: center;">
-                             <img src="assets/images/cart.png" alt="" style="width: 50px;">
+                             <img src="site/images/cart.png" alt="" style="width: 50px;">
                              <br><br>
                              <p class="dummy_text" style="font-size: 20px; font-weight: bolder;"> السعر الكلي </p>
                              <hr>

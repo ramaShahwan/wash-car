@@ -35,10 +35,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
+
+Route::get('/admin_index', function () {
+    return view('admin.index');
+});
+
+
+
 // Admin Routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-
-    
 
 });
 

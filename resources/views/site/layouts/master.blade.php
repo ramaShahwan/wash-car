@@ -19,21 +19,21 @@
  @yield('css')
 
  <!-- bootstrap css -->
- <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/css/bootstrap.min.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{URL::asset('site/css/bootstrap.min.css')}}">
  <!-- style css -->
- <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/css/style.css')}}">
+ <link rel="stylesheet" type="text/css" href="{{URL::asset('site/css/style.css')}}">
  <!-- Responsive-->
- <link rel="stylesheet" href="{{URL::asset('assets/css/responsive.css')}}">
+ <link rel="stylesheet" href="{{URL::asset('site/css/responsive.css')}}">
  <!-- fevicon -->
- <link rel="icon" href="{{URL::asset('assets/images/fevicon.png')}}" type="image/gif" />
+ <link rel="icon" href="{{URL::asset('site/images/fevicon.png')}}" type="image/gif" />
  <!-- Scrollbar Custom CSS -->
- <link rel="stylesheet" href="{{URL::asset('assets/css/jquery.mCustomScrollbar.min.css')}}">
+ <link rel="stylesheet" href="{{URL::asset('site/css/jquery.mCustomScrollbar.min.css')}}">
  <!-- Tweaks for older IEs-->
  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
  <!-- owl stylesheets --> 
  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="{{URL::asset('assets/css/owl.carousel.min.css')}}">
- <link rel="stylesoeet" href="{{URL::asset('assets/css/owl.theme.default.min.css')}}">
+ <link rel="stylesheet" href="{{URL::asset('site/css/owl.carousel.min.css')}}">
+ <link rel="stylesoeet" href="{{URL::asset('site/css/owl.theme.default.min.css')}}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
  @include('site.layouts.header')
