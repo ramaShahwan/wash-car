@@ -433,12 +433,12 @@
 </script>
      
 <script>
-   $(document).ready(function() {
+ $(document).ready(function() {
    $('.choose_box1').click(function() {
        $('.choose_box1').removeClass('selected'); // إزالة الفئة من جميع الديفات
        $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
 
-       var selectedValue = $(this).find('input').text(); // الحصول على القيمة من الديف المختار
+       var selectedValue = $(this).find('input').val(); // الحصول على القيمة من الديف المختار
 
        // يمكنك الآن استخدام selectedValue لتخزينها في قاعدة البيانات
        // على سبيل المثال، يمكنك إضافة هذه القيمة إلى نموذجك كقيمة مخفية

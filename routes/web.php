@@ -48,9 +48,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
     Route::get('/index', [OrderController::class, 'create']);
-
+    
     Route::get('add_emp', [EmployeeController::class, 'create']);
-    Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
+    Route::post('save', [EmployeeController::class, '   store'])->name('emp.save');
 
     // Route::get('show', [OrderController::class, 'index']);
     Route::get('add', [OrderController::class, 'create']);

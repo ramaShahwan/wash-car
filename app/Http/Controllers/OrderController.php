@@ -70,56 +70,83 @@ class OrderController extends Controller
             'totalPrice'=>$request->totalPrice,
             'orderDate'=>$request->orderDate,
             'orderTime'=>$request->orderTime,
+            'status'=>'معلق',
+            'note'=>'',
             'location_id'=>$request->location_id,
             'user_id'=>$user->id,
             'payWay_id'=>$request->payWay_id,
         ]);
 
-        $order_ser = Order::where('user_id',$user->id)->first()->id;
-        // $order_ser = Order::latest()->first()->id;
+        $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
         Order_Service::create([
             'order_id'=> $order_ser,
-            'service_id'=> $request->service,
+            'service_id'=> $request->service_id,
         ]);
 
         foreach($request->service_ids as $service)
         {
-           // $order_ser = Order::latest()->first()->id;
-        $order_ser = Order::where('user_id',$user->id)->first()->id;
+        $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
             Order_Service::create([
                 'order_id'=> $order_ser,
                 'service_id'=> $service,
             ]);
         }
-
-        // $order= Order::latest()->first();
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-        // return view('site.summary');
-
         return redirect()->route('ord.summary');
     }
 
-    public function summary()
-    {
-        $totalPrice = 0;
-        $user = auth()->user();
-        $order = Order::where('user_id',$user->id)->first();
-        $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
-        foreach($allServices as $serviceId){
-            $service = Service::find($serviceId);
-            if ($service) 
-            { $totalPrice += $service->price;}
-        }
+    // public function summary()
+    // {
+    //     $totalPrice = 0;
+    //     $user = auth()->user();
+    //     $order = Order::where('user_id',$user->id)->latest()->first();
+    //     $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
+    //     foreach($allServices as $serviceId){
+    //         $service = Service::find($serviceId);
+    //         if ($service) 
+    //         { $totalPrice += $service->price;}
+    //     }
     
-        $date =  $order->orderDate;
-        $time = $order->orderTime;
-        Order::find($order->id)->update([
-            'totalPrice' => $totalPrice,
-        ]);
-        return view('site.summary',['totalPrice' => $totalPrice,
-                                  'orderDate'=>$date,
-                                  'orderTime'=>$time  ]);
+    //     $date =  $order->orderDate;
+    //     $time = $order->orderTime;
+    //     Order::find($order->id)->update([
+    //         'totalPrice' => $totalPrice,
+    //     ]);
+    //     return view('site.summary',['totalPrice' => $totalPrice,
+    //                               'orderDate'=>$date,
+    //                               'orderTime'=>$time  ]);
+    // }
+
+    public function summary()
+{
+    $user = auth()->user();
+    $order = Order::where('user_id', $user->id)->latest()->first();
+    
+    $totalPrice = 0;
+    $date = $order->orderDate;
+    $time = $order->orderTime;
+    
+    // حساب القيمة الإجمالية لجميع الخدمات في الطلب
+    $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
+    foreach ($allServices as $serviceId) {
+        $service = Service::find($serviceId);
+        if ($service) {
+            $totalPrice += $service->price;
+        }
     }
+    
+    // تحديث قيمة totalPrice في الطلب الحالي
+    Order::find($order->id)->update([
+        'totalPrice' => $totalPrice,
+    ]);
+    
+    return view('site.summary', [
+        'totalPrice' => $totalPrice,
+        'orderDate' => $date,
+        'orderTime' => $time,
+    ]);
+}
+
 
     public function getPayway()
     {
@@ -139,20 +166,16 @@ class OrderController extends Controller
     public function setPayway(Request $request)
     {
         $user = auth()->user();
-        $order = Order::where('user_id',$user->id)->first();
-        $pay = PayWay::find($request->id);
-
-        return dd($pay);
-
-        // if ($order) {
-            $order->update([
-                'payWay_id' => $pay->id,
-            ]);
-        // }
-        // return view('site.home');
-
-        return redirect()->route("/");
+        $order = Order::where('user_id', $user->id)->latest()->first();
+        $pay = PayWay::find($request->pay_id); // استخدام $request->pay_id بدلاً من $request->id
+        
+        $order->update([
+            'payWay_id' => $pay->id,
+        ]);
+        
+        return view('site.home'); // تغيير الراوت إلى اسم الراوت الصحيح
     }
+    
 
 
 

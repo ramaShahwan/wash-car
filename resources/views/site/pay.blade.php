@@ -54,8 +54,8 @@
                                 <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->accountNumber }} </p>
                                 <hr>
 
-                                <button class="btn" value="{{ $item->id }}"
-                                style="background-color: goldenrod; color:black"> اختر </button>
+                                <button type="submit" name="pay_id" value="{{ $item->id }}" class="btn" style="background-color: goldenrod; color:black"> اختر </button>
+
                             </div>
                         </div>
                 @endforeach
