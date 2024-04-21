@@ -136,18 +136,20 @@ class OrderController extends Controller
     //     ]);
     //     return view('site.home');}
     
-    public function setPayway($id)
-{
-    $user = auth()->user();
-    $order = Order::where('user_id', $user->id)->first(); 
-    $pay = PayWay::findOrFail($id); 
+    public function setPayway(Request $request)
+    {
+        $user = auth()->user();
+        $order = Order::where('user_id',$user->id)->first();
+        $pay = PayWay::findOrFail($request->id);
+        if ($order) {
+            $order->update([
+                'payWay_id' => $pay->id,
+            ]);
+        }
+        // return view('site.home');
 
-    $order->update([
-        'payWay_id' => $pay->id,
-    ]);
-
-    return view('site.home');
-}
+        return redirect()->route("/");
+    }
 
 
 
