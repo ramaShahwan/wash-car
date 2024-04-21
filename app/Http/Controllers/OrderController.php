@@ -37,7 +37,6 @@ class OrderController extends Controller
         }
       
     }
-
     
     public function create()
     {
@@ -129,30 +128,29 @@ class OrderController extends Controller
     }
 
     // public function setPayway($id)
-    // {
-    //     $user = auth()->user();
+    // {  $user = auth()->user();
     //     $order = Order::where('user_id',$user->id);
     //     $pay = PayWay::find($id);
-
     //     Order::find($order->id)->update([
     //       'payWay_id' => $pay,
     //     ]);
-    //     return view('site.home');
-    // }
-
-    public function setPayway(Request $request)
-    {
-        $user = auth()->user();
-        $order = Order::where('user_id',$user->id)->first();
-        $pay = PayWay::findOrFail($id);
-        if ($order) {
-            $order->update([
-                'payWay_id' => $pay->id,
-            ]);
-        }
-        return view('site.home');
-    }
+    //     return view('site.home');}
     
+    public function setPayway($id)
+{
+    $user = auth()->user();
+    $order = Order::where('user_id', $user->id)->first(); 
+    $pay = PayWay::findOrFail($id); 
+
+    $order->update([
+        'payWay_id' => $pay->id,
+    ]);
+
+    return view('site.home');
+}
+
+
+
 
  }
 
