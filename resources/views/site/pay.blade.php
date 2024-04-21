@@ -31,7 +31,7 @@
            <h1 class="services_taital"><span style="color: #0c426e"> طريقة الدفع </span></h1>
            {{-- <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p> --}}
 
-           <form action="{{ route('ord.setPay', $pay->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+           <form action="{{ route('ord.setPay') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @method('POST')
 
@@ -59,7 +59,7 @@
                                 <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->accountNumber }} </p>
                                 <hr>
 
-                                <button class="btn"
+                                <button class="btn" value="{{ $item->id }}"
                                 style="background-color: goldenrod; color:black"> اختر </button>
 
                             </div>

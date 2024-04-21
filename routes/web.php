@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
 // Admin Routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
-
+    
 
 });
 
@@ -58,7 +58,7 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
 
     Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
-    Route::Post('set_pay/{id}', [OrderController::class, 'setPayway'])->name('ord.setPay');
+    Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
     
 });
 

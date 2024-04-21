@@ -137,10 +137,6 @@
      <!-- quality section end -->
 
 
-
-
-
-
 </body>
 
 @endsection

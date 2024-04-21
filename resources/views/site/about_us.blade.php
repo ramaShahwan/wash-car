@@ -25,9 +25,30 @@
                      </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6" style="text-align: right">
                      <div class="mail_section_1">
-                     
+                        <br>
+                        <p class="dummy_text" style="font-size: 18px;"> 
+                        {{-- <i class="fa fa-circle" style="direction: rtl;"> &nbsp; --}}
+                           تعد شركة المغسلة المتنقلة أول مغسلة سيارات متنقلة تم إنشاؤها وافضل شركة غسيل سيارات متنقلة في سوريا لتقديم خدمة تنظيف وتلميع السيارات لكافة العملاء في مكان تواجدهم سواء كان بالمنزل أو العمل أو أي مكان يرغب به العميل
+                        {{-- </i> --}}
+
+                        </p>
+                        <br>
+                        <p class="dummy_text" style="font-size: 18px;"> 
+                        {{-- <i class="fa fa-circle" style="direction: rtl;"> &nbsp; --}}
+                           خدمات شركة المغسلة المتنقلة  تتضمن غسل السيارات من الخارج والداخل بالمكنسة والبخار إضافة إلى تلميع الديكورات والأبواب وتنظيف فتحات المكيف بالبخار والتعطير الداخلي للسيارات والعديد من الخدمات التي تساعد العملاء في الحفاظ على نظافة سياراتهم في كل مكان وفي أي وقت
+                        {{-- </i> --}}
+                        
+                        </p>
+                        <br>
+                        <p class="dummy_text" style="font-size: 18px;"> 
+                        {{-- <i class="fa fa-circle" style="direction: rtl;"> &nbsp; --}}
+
+                           تعتمد شركتنا على استخدام أحدث التقنيات والمعدات والمواد في عملية تنظيف وتلميع السيارات لضمان الحصول على أفضل النتائج التي ترضي العميل، بالإضافة إلى استخدام البخار الجاف في عملية التنظيف الداخلي وما يتم استخدام مناشف مخصصة لكل عميل مصنوعة من الميكروفايبر، بالإضافة إلى غسيل وتلميع الاطارات وتوفير كيس نفايات داخل السيارة مع تعطيرها في آخر مرحلة لتعود نظيفة وجذابة.  فتتم عملية التنظيف بأقل وقت ممكن مع جودة وحرفية عالية وبسعر مناسب للجميع
+                        {{-- </i> --}}
+                       
+                        </p>
                      </div>
                   </div>
 
@@ -42,7 +63,6 @@
       <div class="contact_section layout_padding">
          <div class="container">
             <div class="contact_section_2 layout_padding">
-
                <div class="row">
                   
                   <div class="col-md-4">
@@ -77,12 +97,21 @@
                   </div>
                 
                </div>
+            <br><br>
+            <br><br>
             </div>
+
+            <div class="seemore_bt"><a href="{{ url('/index') }}">اطلب الآن</a></div>
+            <br><br>
+
          </div>
       </div>
       <!-- contact section end -->
 
+
   
+      
+
    </body>
 
    @endsection
