@@ -34,23 +34,18 @@
            <form action="{{ route('ord.setPay', $pay->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @method('POST')
-
-           <div class="services_section_2 layout_padding">
+             <div class="services_section_2 layout_padding">
               <div class="row">
                 <div class="choose_section_2" style="text-align: right; direction: rtl;">
                     <div class="row">
-
                 @foreach ($pay as $item)
-
                         <div class="col-md-4">
                             <div class="" style="text-align: center; border: 2px solid #0c426e; padding: 20px;">
-
                               @if ($item->image)
                                 <img src="{{URL::asset('/assets/img/pay/'.$item->image)}}" style="width: 100px;">
                               @else  
                                 <img src="{{URL::asset('assets/img/pay/mobile-payment.png')}}" style="width: 100px;">
                               @endif
-
                                 <br><br>
                                 <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->way }} </p>
                                 <br><br>
@@ -58,26 +53,20 @@
                                 <p class="dummy_text" style="font-size: 20px;"> رقم الحساب: </p> <br>
                                 <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->accountNumber }} </p>
                                 <hr>
-
                                 <button class="btn"
                                 style="background-color: goldenrod; color:black"> اختر </button>
-
                             </div>
                         </div>
-
                 @endforeach
-
          <br><br>
          <br><br>
                 </div>
               </div>
            </div>
            <br><br>
-
            <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary" style="background-color: #0c426e;"> &nbsp; تأكيد الدفع &nbsp; <i class="fa fa-check"></i> &nbsp; </button>
            </div>
-
          <br><br><br>
 
         </form>
