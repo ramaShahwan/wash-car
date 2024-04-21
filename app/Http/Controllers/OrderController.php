@@ -140,12 +140,15 @@ class OrderController extends Controller
     {
         $user = auth()->user();
         $order = Order::where('user_id',$user->id)->first();
-        $pay = PayWay::findOrFail($request->id);
-        if ($order) {
+        $pay = PayWay::find($request->id);
+
+        return dd($pay);
+
+        // if ($order) {
             $order->update([
                 'payWay_id' => $pay->id,
             ]);
-        }
+        // }
         // return view('site.home');
 
         return redirect()->route("/");
