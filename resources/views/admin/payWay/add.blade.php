@@ -1,5 +1,4 @@
 @extends('admin.layouts.master')
-
 @section('css')
 
 <!--- Internal Select2 css-->
@@ -14,24 +13,22 @@
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 
 @endsection
-
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">طرق الدفع</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل طريقة دفع</span>
+							<h4 class="content-title mb-0 my-auto">طرق الدفع</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ إضافة حالة</span>
 						</div>
 					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection
-
 @section('content')
 
-@if(session()->has('Edit'))
+@if(session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Edit') }}</strong>
+	<strong>{{ session()->get('Add') }}</strong>
 	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
 		<span aria_hidden="true">&times;</span>
 	</button>
@@ -43,80 +40,44 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								{{-- <form action="{{ route('city.update', $city->id) }}" method="post" autocomplete="off">
+			
+								<form action="{{ route('pay.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
-
 									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">الخدمة</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
-
-											@error('Name')
+											<label for="inputName" class="control-label">طريقة الدفع</label>
+											<input type="text" class="form-control @error('way') is-invalid @enderror" 
+											id="inputName" name="way" required>
+											@error('way')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
 									</div><br>
 
-                                    <div class="row">
-										<div class="col">
-											<label for="inputName" class="control-label">النوع</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
+									<div class="row">
+									  <div class="col">
+										<label for="inputName" class="control-label">رقم الحساب</label>
+										<input type="text" class="form-control @error('accountNumber') is-invalid @enderror" 
+										id="inputName" name="accountNumber" required>
+										@error('accountNumber')
+											<div class="alert alert-danger">{{ $message }}</div>
+										@enderror
+									</div>
+								</div><br>
 
-											@error('Name')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
-										</div>
-									</div><br>
-
-                                    <div class="row">
-										<div class="col">
-											<label for="inputName" class="control-label">السعر</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
-
-											@error('Name')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
-										</div>
-									</div><br>
-
-                                    <div class="row">
-										<div class="col">
-											<label for="inputName" class="control-label">المدة</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
-
-											@error('Name')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
-										</div>
-									</div><br>
-
-                                	<div class="row">
-										<div class="col">
-											<label for="inputName" class="control-label">الوصف</label>
-											<input type="hidden" name="NotPad" value="{{ $member->NotPad }}">
-											<textarea type="text" class="form-control @error('NotPad') is-invalid @enderror" 
-											id="inputName" name="NotPad" rows="3" cols="30" value="{{ $member->NotPad }}"></textarea>
-
-											@error('NotPad')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
-										</div>
-									</div><br>
-
-
+								<div class="row">
+									<div class="col">
+									  <label for="exampleTextarea">صورة الحساب</label>
+									  <input type="file" name="image" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
+									  data-height="70" />
+									</div>
+								  </div><br> 
+								</div><br>
 									<div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									</div>
-			
-								</form> --}}
+		                           	<br><br>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -127,7 +88,6 @@
 		</div>
 		<!-- main-content closed -->
 @endsection
-
 @section('js')
 
 <!--Internal  Datepicker js -->

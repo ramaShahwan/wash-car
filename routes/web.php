@@ -3,6 +3,8 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BeforAfterController;
+use App\Http\Controllers\PayWayController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +46,19 @@ Route::get('/admin_index', function () {
 
 // Admin Routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+
+
+//payway
+Route:: prefix('pay')->group(function () {
+
+    Route::get('show', [PayWayController::class, 'index'])->name('pay.show');
+    Route::get('add', [PayWayController::class, 'create']);
+    Route::post('save', [PayWayController::class, 'store'])->name('pay.save');
+    Route::get('edit/{id}', [PayWayController::class, 'edit'])->name('pay.edit');
+    Route::post('update/{id}', [PayWayController::class, 'update'])->name('pay.update');
+    Route::delete('delete/{id}', [PayWayController::class, 'destroy'])->name('pay.delete');
+  });
+
 
 });
 

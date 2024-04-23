@@ -59,8 +59,8 @@
 							<span class="side-menu__label">طرق الدفع</span>
 							<i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/cpanel/tags/show') }}">جميع طرق الدفع</a></li>
-							<li><a class="slide-item" href="{{ url('/cpanel/tags/add') }}">إضافة طريقة دفع</a></li>
+							<li><a class="slide-item" href="{{ url('/pay/show') }}">جميع طرق الدفع</a></li>
+							<li><a class="slide-item" href="{{ url('/pay/add') }}">إضافة طريقة دفع</a></li>
 						</ul>
 					</li>
 				

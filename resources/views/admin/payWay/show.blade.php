@@ -13,7 +13,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">طرق الدفع</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ جميع طرق الدفع</span>
+							<h4 class="content-title mb-0 my-auto">الحسابات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ جميع الحسابات</span>
 						</div>
 					</div>
 				</div>
@@ -45,7 +45,7 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">جميع طرق الدفع</h4>
+									<h4 class="card-title mg-b-0">جميع  طرق الدفع</h4>
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
 							</div>
@@ -55,9 +55,9 @@
 										<thead>
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
-												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
-												<th class="wd-15p border-bottom-0">رقم الحساب</th>
-												<th class="wd-15p border-bottom-0">صورة</th>
+												<th class="wd-15p border-bottom-0">طريقة الدفع </th>
+												<th class="wd-15p border-bottom-0"> رقم الحساب </th>
+												<th class="wd-15p border-bottom-0"> صورة الحساب </th>
 
 												<th class="wd-15p border-bottom-0">تعديل</th>
 												<th class="wd-15p border-bottom-0">حذف</th>
@@ -65,33 +65,31 @@
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
-											{{-- @foreach($cities as $city) --}}
+											@foreach($pay as $p)
 											<tr>
-												{{-- <td>{{$i++}}</td>
-												<td>{{$city->Name}}</td> --}}
-												
-
-
-
-
-
-
-                                                
-												{{-- <td>
-													<a class="btn btn-sm btn-info" href="{{ route('city.edit', $city->id) }}" title="تعديل"><i class="las la-pen"></i></a>
-												</td> --}}
-												{{-- <td>
+												<td>{{$i++}}</td>
+												<td>{{$p->way}}</td>
+												<td>{{$p->accountNumber}}</td>
+	                                            @if ($p->image)
+									           <td><img src="{{asset('/site/img/pay/'.$p->image)}}" style="width: 50px;"></td>
+								              @else
+								        	<td><img src="{{URL::asset('/site/img/pay/mobile-payment.png')}}"  style="width: 50px;"></td>
+							                	@endif
+												<td>
+													<a class="btn btn-sm btn-info" href="{{ route('pay.edit', $p->id) }}" title="تعديل"><i class="las la-pen"></i></a>
+												</td>
+												<td>
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
-													data-target="#delete{{$city->id}}"><i class="las la-trash"></i></a>
-													<form action="{{route('city.delete', $city->id)}}" method="POST" enctype="multipart/form-data">
+													data-target="#delete{{$p->id}}"><i class="las la-trash"></i></a>
+													<form action="{{route('pay.delete', $p->id)}}" method="POST" enctype="multipart/form-data">
 															@csrf
 															@method('DELETE')
-														<div id="delete{{$city->id}}" class="modal fade delete-modal" role="dialog">
+														<div id="delete{{$p->id}}" class="modal fade delete-modal" role="dialog">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$city->Name}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">حذف الحساب: &nbsp; {{$p->way}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			
@@ -109,7 +107,7 @@
 															</div>
 														</div>
 													</form>
-												</td> --}}
+												</td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -126,7 +124,6 @@
 		</div>
 		<!-- main-content closed -->
 
-		
 @endsection
 @section('js')
 <!-- Internal Data tables -->

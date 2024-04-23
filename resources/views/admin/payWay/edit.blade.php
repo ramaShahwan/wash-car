@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+
 @section('css')
 
 <!--- Internal Select2 css-->
@@ -13,22 +14,24 @@
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 
 @endsection
+
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">طرق الدفع</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ إضافة طريقة دفع</span>
+							<h4 class="content-title mb-0 my-auto"> الحسابات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل الحساب</span>
 						</div>
 					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection
+
 @section('content')
 
-@if(session()->has('Add'))
+@if(session()->has('Edit'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Add') }}</strong>
+	<strong>{{ session()->get('Edit') }}</strong>
 	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
 		<span aria_hidden="true">&times;</span>
 	</button>
@@ -40,16 +43,17 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								{{-- <form action="{{ route('user.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+								<form action="{{ route('pay.update', $pay->id) }}" method="post"  enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
-			
-                                    <div class="row">
-										<div class="col">
-											<label for="inputName" class="control-label">الاسم</label>
-											<input type="text" class="form-control @error('email') is-invalid @enderror" 
-											id="inputName" name="email" required>
 
-											@error('email')
+									<div class="row">
+										<div class="col">
+											<label for="inputName" class="control-label">الحساب</label>
+											<input type="hidden" name="way" value="{{ $pay->way }}">
+											<input type="text" class="form-control @error('way') is-invalid @enderror" 
+											id="inputName" name="way" value="{{ $pay->way }}" required>
+
+											@error('way')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -57,23 +61,12 @@
 
 									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">البريد الإلكتروني</label>
-											<input type="email" class="form-control @error('email') is-invalid @enderror" 
-											id="inputName" name="email" required>
+											<label for="inputName" class="control-label">رقم الحساب</label>
+											<input type="hidden" name="accountNumber" value="{{ $pay->accountNumber }}">
+											<input type="text" class="form-control @error('accountNumber') is-invalid @enderror" 
+											id="inputName" name="accountNumber" value="{{ $pay->accountNumber }}" required>
 
-											@error('email')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
-										</div>
-									</div><br>
-		
-                                    <div class="row">
-										<div class="col">
-											<label for="inputName" class="control-label">رقم الموبايل</label>
-											<input type="text" class="form-control @error('email') is-invalid @enderror" 
-											id="inputName" name="email" required>
-
-											@error('email')
+											@error('accountNumber')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -81,39 +74,36 @@
 
 									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">كلمة المرور</label>
-											<input type="password" class="form-control @error('password') is-invalid @enderror" 
-											id="inputName" name="password" required>
-
-											@error('password')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
+											<label for="exampleTextarea">صورة الحساب </label> <br>
+											<br>
+											
+											@if ($pay->image)
+												<img src="{{ URL::asset('/site/img/pay/' . $pay->image) }}" style="width: 100px;">
+											@else
+												<img src="{{ URL::asset('/site/img/pay/mobile-payment.png') }}" style="width: 100px;">
+											@endif
+											
+											<br>    
+											<input type="File"  id="Img" name="image" class="dropify" accept=".jpg, .png, image/jpeg, image/png" data-height="70" />
 										</div>
-									</div><br>
-
-									<div class="form-group">
-										<label>الدور</label>
-											<select name="Role" class="form-control select @error('Role') is-invalid @enderror">
-												<option value="admin">مدير</option>
-												<option value="user">مستخدم</option>
-											</select>
-
-											@error('Role')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
 									</div><br>
 
 									<div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									</div>
-								</form> --}}
+			
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- row closed -->
-
+			</div>
+			<!-- Container closed -->
+		</div>
+		<!-- main-content closed -->
 @endsection
+
 @section('js')
 
 <!--Internal  Datepicker js -->
