@@ -91,7 +91,7 @@
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$ser->way}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$ser->name}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			

@@ -55,10 +55,10 @@
 										<thead>
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
-												<th class="wd-15p border-bottom-0">الاسم</th>
-												<th class="wd-15p border-bottom-0">البريد الإلكتروني</th>
+												<th class="wd-15p border-bottom-0">اسم المستخدم</th>
+												{{-- <th class="wd-15p border-bottom-0">البريد الإلكتروني</th> --}}
 												<th class="wd-15p border-bottom-0">رقم الموبايل</th>
-												<th class="wd-15p border-bottom-0">الدور</th>
+												<th class="wd-15p border-bottom-0">نوع المستخدم</th>
 
 												<th class="wd-15p border-bottom-0">تعديل</th>
 												<th class="wd-15p border-bottom-0">حذف</th>
@@ -66,33 +66,28 @@
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
-											{{-- @foreach($cities as $city) --}}
+											@foreach($users as $user)
 											<tr>
-												{{-- <td>{{$i++}}</td>
-												<td>{{$city->Name}}</td> --}}
-												
-
-
-
-
-
-
+												<td>{{$i++}}</td>
+												<td>{{$user->name}}</td>
+												<td>{{$user->phone}}</td>
+												<td>{{$user->role}}</td>
                                                 
-												{{-- <td>
-													<a class="btn btn-sm btn-info" href="{{ route('city.edit', $city->id) }}" title="تعديل"><i class="las la-pen"></i></a>
-												</td> --}}
-												{{-- <td>
+												<td>
+													<a class="btn btn-sm btn-info" href="{{ route('user.edit', $user->id) }}" title="تعديل"><i class="las la-pen"></i></a>
+												</td>
+												<td>
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
-													data-target="#delete{{$city->id}}"><i class="las la-trash"></i></a>
-													<form action="{{route('city.delete', $city->id)}}" method="POST" enctype="multipart/form-data">
+													data-target="#delete{{$user->id}}"><i class="las la-trash"></i></a>
+													<form action="{{route('user.delete', $user->id)}}" method="POST" enctype="multipart/form-data">
 															@csrf
 															@method('DELETE')
-														<div id="delete{{$city->id}}" class="modal fade delete-modal" role="dialog">
+														<div id="delete{{$user->id}}" class="modal fade delete-modal" role="dialog">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$city->Name}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">حذف المستخدم: &nbsp; {{$user->name}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			
@@ -110,7 +105,7 @@
 															</div>
 														</div>
 													</form>
-												</td> --}}
+												</td>
 											</tr>
 											@endforeach
 										</tbody>

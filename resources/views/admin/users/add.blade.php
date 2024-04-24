@@ -40,22 +40,24 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								{{-- <form action="{{ route('user.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+								<form action="{{ route('user.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
 			
                                     <div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">الاسم</label>
-											<input type="text" class="form-control @error('email') is-invalid @enderror" 
-											id="inputName" name="email" required>
+											<label for="inputName" class="control-label">اسم المستخدم</label>
+											<input type="text" class="form-control @error('name') is-invalid @enderror" 
+											id="inputName" name="name" required>
 
-											@error('email')
+											@error('name')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
 									</div><br>
 
-									<div class="row">
+								
+
+									{{-- <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">البريد الإلكتروني</label>
 											<input type="email" class="form-control @error('email') is-invalid @enderror" 
@@ -65,15 +67,15 @@
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
-									</div><br>
+									</div><br> --}}
 		
                                     <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">رقم الموبايل</label>
-											<input type="text" class="form-control @error('email') is-invalid @enderror" 
-											id="inputName" name="email" required>
+											<input type="text" class="form-control @error('phone') is-invalid @enderror" 
+											id="inputName" name="phone" required>
 
-											@error('email')
+											@error('phone')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -92,13 +94,13 @@
 									</div><br>
 
 									<div class="form-group">
-										<label>الدور</label>
-											<select name="Role" class="form-control select @error('Role') is-invalid @enderror">
-												<option value="admin">مدير</option>
-												<option value="user">مستخدم</option>
+										<label>نوع المستخدم</label>
+											<select name="role" class="form-control select @error('role') is-invalid @enderror">
+												<option value="admin">مدير للموقع</option>
+												<option value="user">مستخدم للموقع</option>
 											</select>
 
-											@error('Role')
+											@error('role')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 									</div><br>
@@ -106,7 +108,7 @@
 									<div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									</div>
-								</form> --}}
+								</form>
 							</div>
 						</div>
 					</div>

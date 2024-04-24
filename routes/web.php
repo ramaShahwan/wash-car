@@ -5,6 +5,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BeforAfterController;
 use App\Http\Controllers\PayWayController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,25 @@ Route:: prefix('service')->group(function () {
     Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
   });
 
+    //user
+Route:: prefix('user')->group(function () {
+
+    Route::get('show', [UserController::class, 'index'])->name('user.show');
+    Route::get('add', [UserController::class, 'create']);
+    Route::post('save', [UserController::class, 'store'])->name('user.save');
+    Route::delete('delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
+  });
+
+    //employee
+Route:: prefix('employee')->group(function () {
+
+    Route::get('show', [EmployeeController::class, 'index'])->name('employee.show');
+    Route::get('add', [EmployeeController::class, 'create']);
+    Route::post('save', [EmployeeController::class, 'store'])->name('employee.save');
+    Route::get('edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::post('update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::delete('delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+  });
 
 });
 
