@@ -4,7 +4,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BeforAfterController;
 use App\Http\Controllers\PayWayController;
-
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +57,17 @@ Route:: prefix('pay')->group(function () {
     Route::get('edit/{id}', [PayWayController::class, 'edit'])->name('pay.edit');
     Route::post('update/{id}', [PayWayController::class, 'update'])->name('pay.update');
     Route::delete('delete/{id}', [PayWayController::class, 'destroy'])->name('pay.delete');
+  });
+
+  //service
+Route:: prefix('service')->group(function () {
+
+    Route::get('show', [ServiceController::class, 'index'])->name('service.show');
+    Route::get('add', [ServiceController::class, 'create']);
+    Route::post('save', [ServiceController::class, 'store'])->name('service.save');
+    Route::get('edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+    Route::post('update/{id}', [ServiceController::class, 'update'])->name('service.update');
+    Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
   });
 
 

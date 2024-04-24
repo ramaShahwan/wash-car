@@ -10,26 +10,26 @@ class ServiceController extends Controller
     public function index()
     { 
          $service = Service::orderBy('created_at','Asc')->get();
-         return view('site.service',compact('service'));
+         return view('admin.service.show',compact('service'));
     }
 
     public function create()
     {
-       return view('admin.service.create');
+       return view('admin.service.add');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'type' => 'required',
-            'Name' => 'required',
+            'name' => 'required',
             'price' => 'required',
 
         ]);
 
         $service= Service::create([
             'type'=>$request->type,
-            'Name'=>$request->Name,
+            'name'=>$request->name,
             'price'=>$request->price,
             'period'=>$request->period,
             'description'=>$request->description
@@ -54,7 +54,7 @@ class ServiceController extends Controller
   {
     $validated = $request->validate([
         'type' => 'required',
-        'Name' => 'required',
+        'name' => 'required',
         'price' => 'required',
 
     ]);
@@ -62,14 +62,14 @@ class ServiceController extends Controller
 
     $service->update([
         'type'=>$request->type,
-        'Name'=>$request->Name,
+        'name'=>$request->name,
         'price'=>$request->price,
         'period'=>$request->period,
         'description'=>$request->description
     ]);
 
 
-      session()->flash('update', 'تم تعديل الخدمة بنجاح');
+      session()->flash('Edit', 'تم تعديل الخدمة بنجاح');
      //   return back();
       return redirect()->route('service.show');
  

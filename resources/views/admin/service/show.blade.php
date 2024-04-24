@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('css')
 <!-- Internal Data table css -->
-<link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+<link href="{{URL::asset('assets/	lugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
 <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
@@ -55,11 +55,11 @@
 										<thead>
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
-												<th class="wd-15p border-bottom-0">الخدمة</th>
-												<th class="wd-15p border-bottom-0">النوع</th>
-												<th class="wd-15p border-bottom-0">السعر</th>
-												<th class="wd-15p border-bottom-0">المدة</th>
-												<th class="wd-15p border-bottom-0">الوصف</th>
+												<th class="wd-15p border-bottom-0">نوع الخدمة  </th>
+												<th class="wd-15p border-bottom-0"> اسم الخدمة  </th>
+												<th class="wd-15p border-bottom-0"> سعر الخدمة  </th>
+												<th class="wd-15p border-bottom-0"> مدة الخدمة بالدقائق  </th>
+												<th class="wd-15p border-bottom-0"> وصف عن الخدمة  </th>
 
 												<th class="wd-15p border-bottom-0">تعديل</th>
 												<th class="wd-15p border-bottom-0">حذف</th>
@@ -67,33 +67,31 @@
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
-											{{-- @foreach($cities as $city) --}}
+											@foreach($service as $ser)
 											<tr>
-												{{-- <td>{{$i++}}</td>
-												<td>{{$city->Name}}</td> --}}
-												
+												<td>{{$i++}}</td>
+												<td>{{$ser->type}}</td>
+												<td>{{$ser->name}}</td>
+												<td>{{$ser->price}}</td>
+												<td>{{$ser->period}}</td>
+												<td>{{$ser->description}}</td>
 
-
-
-
-
-
-                                                
-												{{-- <td>
-													<a class="btn btn-sm btn-info" href="{{ route('city.edit', $city->id) }}" title="تعديل"><i class="las la-pen"></i></a>
-												</td> --}}
-												{{-- <td>
+	                                            
+												<td>
+													<a class="btn btn-sm btn-info" href="{{ route('service.edit', $ser->id) }}" title="تعديل"><i class="las la-pen"></i></a>
+												</td>
+												<td>
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
-													data-target="#delete{{$city->id}}"><i class="las la-trash"></i></a>
-													<form action="{{route('city.delete', $city->id)}}" method="POST" enctype="multipart/form-data">
+													data-target="#delete{{$ser->id}}"><i class="las la-trash"></i></a>
+													<form action="{{route('service.delete', $ser->id)}}" method="POST" enctype="multipart/form-data">
 															@csrf
 															@method('DELETE')
-														<div id="delete{{$city->id}}" class="modal fade delete-modal" role="dialog">
+														<div id="delete{{$ser->id}}" class="modal fade delete-modal" role="dialog">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$city->Name}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$ser->way}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			
@@ -111,7 +109,7 @@
 															</div>
 														</div>
 													</form>
-												</td> --}}
+												</td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -128,7 +126,6 @@
 		</div>
 		<!-- main-content closed -->
 
-		
 @endsection
 @section('js')
 <!-- Internal Data tables -->

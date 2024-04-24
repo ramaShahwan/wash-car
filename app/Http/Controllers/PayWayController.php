@@ -99,7 +99,7 @@ class PayWayController extends Controller
        }
        $pay->update();
 
-       session()->flash('update', 'تم تعديل الحساب بنجاح');
+       session()->flash('Edit', 'تم تعديل الحساب بنجاح');
        return redirect()->route('pay.show');
     // return back();
 
