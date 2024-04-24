@@ -60,7 +60,7 @@
 												<th class="wd-15p border-bottom-0">رقم الموبايل</th>
 												<th class="wd-15p border-bottom-0">نوع المستخدم</th>
 
-												<th class="wd-15p border-bottom-0">تعديل</th>
+												{{-- <th class="wd-15p border-bottom-0">تعديل</th> --}}
 												<th class="wd-15p border-bottom-0">حذف</th>
 											</tr>
 										</thead>
@@ -73,10 +73,10 @@
 												<td>{{$user->phone}}</td>
 												<td>{{$user->role}}</td>
                                                 
-												<td>
+												{{-- <td>
 													<a class="btn btn-sm btn-info" href="{{ route('user.edit', $user->id) }}" title="تعديل"><i class="las la-pen"></i></a>
-												</td>
-												<td>
+												</td>--}}
+												<td> 
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
 													data-target="#delete{{$user->id}}"><i class="las la-trash"></i></a>
 													<form action="{{route('user.delete', $user->id)}}" method="POST" enctype="multipart/form-data">

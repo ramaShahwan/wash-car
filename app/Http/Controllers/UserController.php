@@ -39,7 +39,7 @@ class UserController extends Controller
 
         session()->flash('Add', 'تم إضافة المستخدم بنجاح');
         // return back();
-        return redirect()->route('users.show');
+        return redirect()->route('user.show');
 
     }
 
