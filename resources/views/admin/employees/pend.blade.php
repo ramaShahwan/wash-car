@@ -85,8 +85,13 @@
 													<td><img src="{{URL::asset('site/img/emp/user.jpg')}}"  style="width: 50px;"></td>
 												@endif
 
+
 												<td>
-													<a class="btn btn-sm btn-success" href="{{ route('employee.accepted') }}" title="قبول"><i class="fa fa-check"></i></a>
+													<form action="{{ route('employee.updateAccepted', $emp->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('POST')
+														<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
+													</form>
 												</td>
 
 												<td>

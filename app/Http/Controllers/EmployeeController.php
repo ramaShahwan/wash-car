@@ -171,7 +171,7 @@ class EmployeeController extends Controller
 
        $emp = Employee::findOrFail($id);
        $emp->status = 'accepted';
-        $emp->update();
+       $emp->update();
 
          session()->flash('Edit', 'تم  قبول الموظف بنجاح');
           return back();
@@ -183,7 +183,6 @@ class EmployeeController extends Controller
        $emp = Employee::findOrFail($id);
        $emp->status = 'canceled';
        $emp->note = $request->note;
-
         $emp->update();
 
          session()->flash('delete', 'تم  رفض الموظف بنجاح');
