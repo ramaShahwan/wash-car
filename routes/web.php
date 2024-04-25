@@ -99,9 +99,25 @@ Route:: prefix('employee')->group(function () {
     Route::post('update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::delete('delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
 
-    //for employee
-    Route::get('add', [EmployeeController::class, 'create']);
-    Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
+  
+  });
+
+
+     //beforAfter
+Route:: prefix('beforAfter')->group(function () {
+
+    Route::get('show', [BeforAfterController::class, 'index'])->name('beforAfter.show');
+    Route::get('add', [BeforAfterController::class, 'create']);
+    Route::post('save', [BeforAfterController::class, 'store'])->name('beforAfter.save');
+    Route::get('edit/{id}', [BeforAfterController::class, 'edit'])->name('beforAfter.edit');
+
+    // Route::get('editAfter/{id}', [BeforAfterController::class, 'editAfter'])->name('after.edit');
+    // Route::get('editBefore/{id}', [BeforAfterController::class, 'editBefore'])->name('before.edit');
+    Route::post('updateBefore/{id}', [BeforAfterController::class, 'updateBefore'])->name('before.update');
+    Route::post('updateAfter/{id}', [BeforAfterController::class, 'updateAfter'])->name('after.update');
+    Route::delete('deleteBefore/{id}', [BeforAfterController::class, 'destroyBefore'])->name('before.delete');
+    Route::delete('deleteAfter/{id}', [BeforAfterController::class, 'destroyAfter'])->name('after.delete');
+
   });
 
 });
