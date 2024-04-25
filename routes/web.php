@@ -38,15 +38,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-Route::get('/admin_index', function () {
-    return view('admin.index');
-});
-
-
-
 // Admin Routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+
+    Route::get('/admin_index', function () {
+        return view('admin.index');
+    });
 
 
 //payway
@@ -83,13 +80,13 @@ Route:: prefix('user')->group(function () {
     //employee
 Route:: prefix('employee')->group(function () {
 
-     //for admin
+    //for admin
     Route::get('showAccepted', [EmployeeController::class, 'getAcceptedEmp'])->name('employee.accepted');
     Route::get('showCanceled', [EmployeeController::class, 'getCanceledEmp'])->name('employee.canceled');
     Route::get('showPending', [EmployeeController::class, 'getPendingEmp'])->name('employee.pending');
 
     
-    Route::post('updatePenddingToAccepted/{id}', [EmployeeController::class, 'updatePenddingToAccepted'])->name('employee.updateِAccepted');
+    Route::post('updatePenddingToAccepted/{id}', [EmployeeController::class, 'updatePenddingToAccepted'])->name('employee.updateAccepted');
     Route::post('updatePenddingToCanceled/{id}', [EmployeeController::class, 'updatePenddingToCanceled'])->name('employee.updateCanceled');
 
 

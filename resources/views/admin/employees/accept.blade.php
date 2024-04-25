@@ -69,33 +69,37 @@
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
-											{{-- @foreach($cities as $city) --}}
+											@foreach($employees as $emp)
 											<tr>
-												{{-- <td>{{$i++}}</td>
-												<td>{{$city->Name}}</td> --}}
-												
-
-
-
-
-
-
+												<td>{{$i++}}</td>
+												<td>{{$emp->firstName}}</td>
+												<td>{{$emp->lastName}}</td>
+												<td>{{$emp->birthDate}}</td>
+												<td>{{$emp->Gender}}</td>
+												<td>{{$emp->phone}}</td>
+												<td>{{$emp->aboutYou}}</td>
                                                 
-												{{-- <td>
-													<a class="btn btn-sm btn-info" href="{{ route('city.edit', $city->id) }}" title="تعديل"><i class="las la-pen"></i></a>
-												</td> --}}
-												{{-- <td>
-													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
-													data-target="#delete{{$city->id}}"><i class="las la-trash"></i></a>
-													<form action="{{route('city.delete', $city->id)}}" method="POST" enctype="multipart/form-data">
+                                                @if ($emp->image)
+									                <td><img src="{{URL::asset('site/img/emp/'.$emp->image)}}" style="width: 50px;"></td>
+								                @else
+									                <td><img src="{{URL::asset('site/img/emp/user.jpg')}}"  style="width: 50px;"></td>
+								                @endif
+
+												<td>
+													<a class="btn btn-sm btn-info" href="{{ route('employee.edit', $emp->id) }}" title="تعديل"><i class="las la-pen"></i></a>
+												</td>
+												<td>
+													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="حذف" style="cursor: pointer;"
+													data-target="#delete{{$emp->id}}"><i class="las la-trash"></i></a>
+													<form action="{{route('employee.delete', $emp->id)}}" method="POST" enctype="multipart/form-data">
 															@csrf
 															@method('DELETE')
-														<div id="delete{{$city->id}}" class="modal fade delete-modal" role="dialog">
+														<div id="delete{{$emp->id}}" class="modal fade delete-modal" role="dialog">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$city->Name}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">حذف الموظف: &nbsp; {{$emp->firstName}} {{$emp->lastName}} </h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			
@@ -113,7 +117,7 @@
 															</div>
 														</div>
 													</form>
-												</td> --}}
+												</td>
 											</tr>
 											@endforeach
 										</tbody>

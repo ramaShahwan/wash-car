@@ -2,6 +2,10 @@
 
 @section('css')
 
+{{-- flatpicker --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
 <!--- Internal Select2 css-->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <!---Internal Fileupload css-->
@@ -43,17 +47,17 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								{{-- <form action="{{ route('city.update', $city->id) }}" method="post" autocomplete="off">
+								<form action="{{ route('employee.update', $emp->id) }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
 
 									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">الخدمة</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
+											<label for="inputName" class="control-label">الاسم</label>
+											<input type="hidden" name="firstName" value="{{ $emp->firstName }}">
+											<input type="text" class="form-control @error('firstName') is-invalid @enderror" 
+											id="inputName" name="firstName" value="{{ $emp->firstName }}" required>
 
-											@error('Name')
+											@error('firstName')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -61,12 +65,12 @@
 
                                     <div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">النوع</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
+											<label for="inputName" class="control-label">النسبة</label>
+											<input type="hidden" name="lastName" value="{{ $emp->lastName }}">
+											<input type="text" class="form-control @error('lastName') is-invalid @enderror" 
+											id="inputName" name="lastName" value="{{ $emp->lastName }}" required>
 
-											@error('Name')
+											@error('lastName')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -74,49 +78,105 @@
 
                                     <div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">السعر</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
+											<label for="inputName" class="control-label">تاريخ الولادة</label>
+											<input type="hidden" name="birthDate" value="{{ $emp->birthDate }}">
+											<input type="datetime" class="form-control @error('birthDate') is-invalid @enderror" 
+											id="inputName" name="birthDate" value="{{ $emp->birthDate }}" required>
 
-											@error('Name')
+											@error('birthDate')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
 									</div><br>
 
-                                    <div class="row">
+									<div class="form-group">
+										<label class="display-block">الجنس</label> <br>
+
+										@if ($emp->Gender == 'ذكر')
+											
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" value="ذكر" name="Gender" id="status_active" checked>
+											<label class="form-check-label" for="status_active">
+												&nbsp; ذكر 
+											</label>
+										</div> 
+
+										@else
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" value="ذكر" name="Gender" id="status_active">
+											<label class="form-check-label" for="status_active">
+												&nbsp; ذكر 
+											</label>
+										</div> 
+
+										@endif
+
+										@if ($emp->Gender == 'أنثى')
+
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" value="أنثى" name="Gender" id="status_inactive" checked>
+											<label class="form-check-label" for="status_inactive">
+												&nbsp; أنثى
+											</label>
+										</div>
+
+										@else
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" value="أنثى" name="Gender" id="status_inactive">
+											<label class="form-check-label" for="status_inactive">
+												&nbsp; أنثى
+											</label>
+										</div>
+										@endif
+									</div><br>
+
+									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">المدة</label>
-											<input type="hidden" name="Name" value="{{ $city->Name }}">
-											<input type="text" class="form-control @error('Name') is-invalid @enderror" 
-											id="inputName" name="Name" value="{{ $city->Name }}" required>
+											<label for="inputName" class="control-label">رقم الموبايل</label>
+											<input type="hidden" name="phone" value="{{ $emp->phone }}">
+											<input type="text" class="form-control @error('phone') is-invalid @enderror" 
+											id="inputName" name="phone" value="{{ $emp->phone }}">
 
-											@error('Name')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
+											@error('phone')
+											<div class="alert alert-danger">{{ $message }}</div>
+										@enderror
 										</div>
 									</div><br>
 
-                                	<div class="row">
+									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">الوصف</label>
-											<input type="hidden" name="NotPad" value="{{ $member->NotPad }}">
-											<textarea type="text" class="form-control @error('NotPad') is-invalid @enderror" 
-											id="inputName" name="NotPad" rows="3" cols="30" value="{{ $member->NotPad }}"></textarea>
+											<label for="inputName" class="control-label">نبذة حول الموظف</label>
+											<input type="hidden" name="aboutYou" value="{{ $emp->aboutYou }}">
+											<input type="text" class="form-control @error('aboutYou') is-invalid @enderror" 
+											id="inputName" name="aboutYou" value="{{ $emp->aboutYou }}">
 
-											@error('NotPad')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
+											@error('aboutYou')
+											<div class="alert alert-danger">{{ $message }}</div>
+										@enderror
 										</div>
 									</div><br>
 
+									<div class="row">
+										<div class="col">
+											<label for="exampleTextarea">صورة الموظف</label> <br>
+											<br>
+											
+											@if ($emp->image)
+												<img src="{{ URL::asset('site/img/emp/' . $emp->image) }}" style="width: 100px;">
+											@else
+												<img src="{{ URL::asset('site/img/emp/user.jpg') }}" style="width: 100px;">
+											@endif
+
+											<br>    
+											<input type="File"  id="Img" name="image" class="dropify" accept=".jpg, .png, image/jpeg, image/png" data-height="70" />
+										</div>
+									</div><br>
 
 									<div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									</div>
 			
-								</form> --}}
+								</form>
 							</div>
 						</div>
 					</div>
@@ -129,6 +189,25 @@
 @endsection
 
 @section('js')
+
+{{-- flatpicker --}}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+	config = {
+    	// enableTime: true,
+    	dateFormat: "Y-m-d",
+		// dateFormat: "Y/m/d H:i",
+		// dateFormat: "Y",
+
+		altInput: true,
+		altFormat: "F j, Y"
+		// altFormat: "Y"
+
+	}
+	flatpickr("input[type=datetime]", config);
+</script>
+
+
 
 <!--Internal  Datepicker js -->
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>

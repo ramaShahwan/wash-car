@@ -12,18 +12,18 @@ class EmployeeController extends Controller
     public function getAcceptedEmp()
     { 
          $employees = Employee::where('status','accepted')->orderBy('created_at','Asc')->get();
-         return view('admin.employees.showAcceptedEmp',compact('employees'));
+         return view('admin.employees.accept',compact('employees'));
     }
 
     public function getCanceledEmp()
     { 
          $employees = Employee::where('status','canceled')->orderBy('created_at','Asc')->get();
-         return view('admin.employees.showCanceledEmp',compact('employees'));
+         return view('admin.employees.cancel',compact('employees'));
     }
     public function getPendingEmp()
     { 
          $employees = Employee::where('status','Pending')->orderBy('created_at','Asc')->get();
-         return view('admin.employees.showPendingEmp',compact('employees'));
+         return view('admin.employees.pend',compact('employees'));
     }
 
     public function create()
@@ -186,7 +186,7 @@ class EmployeeController extends Controller
 
         $emp->update();
 
-         session()->flash('Edit', 'تم  رفض الموظف بنجاح');
+         session()->flash('delete', 'تم  رفض الموظف بنجاح');
           return back();
     }
 

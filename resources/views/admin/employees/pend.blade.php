@@ -63,49 +63,57 @@
 												<th class="wd-15p border-bottom-0">نبذة حول الموظف</th>
 												<th class="wd-15p border-bottom-0">صورة</th>
 
-												<th class="wd-15p border-bottom-0">تعديل</th>
-												<th class="wd-15p border-bottom-0">حذف</th>
+												<th class="wd-15p border-bottom-0">قبول</th>
+												<th class="wd-15p border-bottom-0">رفض</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
-											{{-- @foreach($cities as $city) --}}
+											@foreach($employees as $emp)
 											<tr>
-												{{-- <td>{{$i++}}</td>
-												<td>{{$city->Name}}</td> --}}
+												<td>{{$i++}}</td>
+												<td>{{$emp->firstName}}</td>
+												<td>{{$emp->lastName}}</td>
+												<td>{{$emp->birthDate}}</td>
+												<td>{{$emp->Gender}}</td>
+												<td>{{$emp->phone}}</td>
+												<td>{{$emp->aboutYou}}</td>
 												
+												@if ($emp->image)
+													<td><img src="{{URL::asset('site/img/emp/'.$emp->image)}}" style="width: 50px;"></td>
+												@else
+													<td><img src="{{URL::asset('site/img/emp/user.jpg')}}"  style="width: 50px;"></td>
+												@endif
 
+												<td>
+													<a class="btn btn-sm btn-success" href="{{ route('employee.accepted') }}" title="قبول"><i class="fa fa-check"></i></a>
+												</td>
 
-
-
-
-
-                                                
-												{{-- <td>
-													<a class="btn btn-sm btn-info" href="{{ route('city.edit', $city->id) }}" title="تعديل"><i class="las la-pen"></i></a>
-												</td> --}}
-												{{-- <td>
-													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
-													data-target="#delete{{$city->id}}"><i class="las la-trash"></i></a>
-													<form action="{{route('city.delete', $city->id)}}" method="POST" enctype="multipart/form-data">
+												<td>
+													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"
+													data-target="#delete"><i class="fas fa-times"></i></a>
+													<form action="{{route('employee.updateCanceled', $emp->id)}}" method="POST" enctype="multipart/form-data">
 															@csrf
-															@method('DELETE')
-														<div id="delete{{$city->id}}" class="modal fade delete-modal" role="dialog">
+															@method('POST')
+														<div id="delete" class="modal fade delete-modal" role="dialog">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">حذف الخدمة: &nbsp; {{$city->Name}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">سبب رفض الموظف : &nbsp; {{$emp->firstName}} {{$emp->lastName}} </h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			
 																	<div class="modal-body text-center">
-																		<img src="{{URL::asset('assets/img/media/sent.png')}}" alt="" width="50" height="46">
-																		<br><br>
-																		<h5>هل أنت متأكد من عملية الحذف؟</h5>
+																		<h5>سبب الرفض</h5>
+																		<br>
+																		<input type="text" class="form-control" id="inputName" name="note">
+																		{{-- <img src="{{URL::asset('assets/img/media/sent.png')}}" alt="" width="50" height="46"> --}}
+																		<br>
+																		{{-- <h5>هل أنت متأكد من عملية الحذف؟</h5> --}}
 																		<br>
 																		<div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">إلغاء</a>
-																			<button type="submit" class="btn btn-danger">حذف</button>
+																			<button type="submit" class="btn btn-success">إرسال</button>
 																		</div>
 																		<br>
 																	</div>
@@ -113,7 +121,7 @@
 															</div>
 														</div>
 													</form>
-												</td> --}}
+												</td>
 											</tr>
 											@endforeach
 										</tbody>

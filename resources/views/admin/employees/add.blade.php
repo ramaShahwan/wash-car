@@ -58,16 +58,16 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								{{-- <form action="{{ url('admin/member/save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+								<form action="{{ route('employee.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
 		
 									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">الاسم </label>
-											<input type="text" class="form-control @error('FirstName') is-invalid @enderror" 
-											id="inputName" name="FirstName">
+											<label for="inputName" class="control-label">الاسم</label>
+											<input type="text" class="form-control @error('firstName') is-invalid @enderror" 
+											id="inputName" name="firstName">
 										
-											@error('FirstName')
+											@error('firstName')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -75,11 +75,11 @@
 									
 									<div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label"> النسبة</label>
-											<input type="text" class="form-control @error('LastName') is-invalid @enderror" 
-											id="inputName" name="LastName">
+											<label for="inputName" class="control-label">النسبة</label>
+											<input type="text" class="form-control @error('lastName') is-invalid @enderror" 
+											id="inputName" name="lastName">
 										
-											@error('LastName')
+											@error('lastName')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -89,10 +89,10 @@
 										<div class="col">
 											<div class="form-group">
 												<label>تاريخ الولادة</label>
-													<input type="datetime" class="form-control @error('BirthDate') is-invalid @enderror" 
-													name="BirthDate">
+													<input type="datetime" class="form-control @error('birthDate') is-invalid @enderror" 
+													name="birthDate">
 
-													@error('BirthDate')
+													@error('birthDate')
 														<div class="alert alert-danger">{{ $message }}</div>
 													@enderror
 											</div>
@@ -122,10 +122,10 @@
 									 <div class="row">
 										<div class="col">
 										  <label for="inputName" class="control-label">رقم الموبايل</label>
-										  <input type="text" class="form-control @error('MobilePhone') is-invalid @enderror" 
-										  id="inputName" name="MobilePhone">
+										  <input type="text" class="form-control @error('phone') is-invalid @enderror" 
+										  id="inputName" name="phone">
 
-										@error('MobilePhone')
+										@error('phone')
 											<div class="alert alert-danger">{{ $message }}</div>
 										@enderror
 										</div>
@@ -134,10 +134,10 @@
 									  <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">نبذة حول الموظف</label>
-											<textarea type="text" class="form-control @error('NotPad') is-invalid @enderror" 
-											id="inputName" name="NotPad" rows="3" cols="30"></textarea>
+											<input type="text" class="form-control @error('aboutYou') is-invalid @enderror" 
+										  	id="inputName" name="aboutYou">
 
-											@error('NotPad')
+											@error('aboutYou')
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
@@ -146,7 +146,7 @@
 									  <div class="row">
 										<div class="col">
 										  <label for="exampleTextarea">صورة الموظف</label>
-										  <input type="file" name="Image" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
+										  <input type="file" name="image" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
 										  data-height="70" />
 										</div>
 									  </div><br> 
@@ -155,7 +155,7 @@
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									  </div>
 			
-								</form> --}}
+								</form>
 							</div>
 						</div>
 					</div>
