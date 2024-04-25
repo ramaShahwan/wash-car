@@ -83,12 +83,25 @@ Route:: prefix('user')->group(function () {
     //employee
 Route:: prefix('employee')->group(function () {
 
-    Route::get('show', [EmployeeController::class, 'index'])->name('employee.show');
-    Route::get('add', [EmployeeController::class, 'create']);
-    Route::post('save', [EmployeeController::class, 'store'])->name('employee.save');
+     //for admin
+    Route::get('showAccepted', [EmployeeController::class, 'getAcceptedEmp'])->name('employee.accepted');
+    Route::get('showCanceled', [EmployeeController::class, 'getCanceledEmp'])->name('employee.canceled');
+    Route::get('showPending', [EmployeeController::class, 'getPendingEmp'])->name('employee.pending');
+
+    
+    Route::post('updatePenddingToAccepted/{id}', [EmployeeController::class, 'updatePenddingToAccepted'])->name('employee.updateِAccepted');
+    Route::post('updatePenddingToCanceled/{id}', [EmployeeController::class, 'updatePenddingToCanceled'])->name('employee.updateCanceled');
+
+
+    Route::get('addForAdmin', [EmployeeController::class, 'createForAdmin']);
+    Route::post('saveForAdmin', [EmployeeController::class, 'storeForAdmin'])->name('employee.save');
     Route::get('edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
     Route::post('update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::delete('delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+
+    //for employee
+    Route::get('add', [EmployeeController::class, 'create']);
+    Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
   });
 
 });

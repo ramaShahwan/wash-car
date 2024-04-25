@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('aboutYou')->nullable();
             $table->string('image')->nullable();
+            $table->string('status')->default('Pending')->nullable();
+            $table->string('note')->nullable();
 
             $table->timestamps();
         });
