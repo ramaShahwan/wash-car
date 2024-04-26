@@ -1,5 +1,11 @@
 @extends('admin.layouts.master')
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 @section('css')
+
+{{-- flatpicker --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 <!--- Internal Select2 css-->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -18,11 +24,12 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">الخدمات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ إضافة خدمة</span>
+							<h4 class="content-title mb-0 my-auto">صور أعمالنا</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ إضافة صورة</span>
 						</div>
 					</div>
 				</div>
 				<!-- breadcrumb -->
+
 @endsection
 @section('content')
 
@@ -35,90 +42,53 @@
 </div>
 @endif
 
+
+{{-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif --}}
+
 				<!-- row -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-			
-								<form action="{{ route('service.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+								<form action="{{ route('beforAfter.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
-
-									<div class="form-group">
-										<label> نوع الخدمة</label>
-										<select name="type" class="form-control select @error('type') is-invalid @enderror" id="type"> 
-											<option value="لايوجد">اختر نوع الخدمة</option>
-											
-											<option value="أساسية">أساسية</option>
-											<option value="إضافية">إضافية</option>
-										</select>
-
-										@error('type')
-											<div class="alert alert-danger">{{ $message }}</div>
-										@enderror
-									</div><br>
-
-									<div class="row">
+		
+									  <div class="row">
 										<div class="col">
-											<label for="inputName" class="control-label">اسم الخدمة </label>
-											<input type="text" class="form-control @error('name') is-invalid @enderror" 
-											id="inputName" name="name" required>
-											@error('name')
-												<div class="alert alert-danger">{{ $message }}</div>
-											@enderror
+										  <label for="exampleTextarea">صورة قبل التنظيف</label>
+										  <input type="file" name="beforeImage" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
+										  data-height="70" />
 										</div>
-									</div><br>
+									  </div><br><br>  
+					
+                                      <div class="row">
+										<div class="col">
+										  <label for="exampleTextarea">صورة بعد التنظيف</label>
+										  <input type="file" name="afterImage" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
+										  data-height="70" />
+										</div>
+									  </div><br><br>  
 
-									<div class="row">
-									  <div class="col">
-										<label for="inputName" class="control-label"> سعر الخدمة</label>
-										<input type="text" class="form-control @error('price') is-invalid @enderror" 
-										id="inputName" name="price" required>
-										@error('price')
-											<div class="alert alert-danger">{{ $message }}</div>
-										@enderror
-									</div>
-								</div><br>
+                                      <br><br> 
 
-								<div class="row">
-									<div class="col">
-									  <label for="inputName" class="control-label">مدة الخدمة بالدقائق </label>
-									  <input type="text" class="form-control @error('period') is-invalid @enderror" 
-									  id="inputName" name="period" required>
-									  @error('period')
-										  <div class="alert alert-danger">{{ $message }}</div>
-									  @enderror
-								  </div>
-							  </div><br>
-
-							  
-								<div class="row">
-									<div class="col">
-									  <label for="inputName" class="control-label"> وصف عن الخدمة </label>
-									  <input type="text" class="form-control @error('description') is-invalid @enderror" 
-									  id="inputName" name="description" required>
-									  @error('description')
-										  <div class="alert alert-danger">{{ $message }}</div>
-									  @enderror
-								  </div>
-							  </div><br>
-
-								
-								</div><br>
-									<div class="d-flex justify-content-center">
+									  <div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
-									</div>
-		                           	<br><br>
+									  </div>
+			
 								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
 @endsection
 @section('js')
 

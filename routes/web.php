@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 // Admin Routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
-    Route::get('/admin_index', function () {
+    Route::get('/admin', function () {
         return view('admin.index');
     });
 
@@ -100,7 +100,7 @@ Route:: prefix('employee')->group(function () {
   });
 
 
-     //beforAfter
+    //beforAfter
 Route:: prefix('beforAfter')->group(function () {
 
     Route::get('show', [BeforAfterController::class, 'index'])->name('beforAfter.show');
