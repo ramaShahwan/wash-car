@@ -12,19 +12,19 @@ class BeforAfterController extends Controller
 
     public function index()
     { 
-         $data = BeforAfter::orderBy('created_at','Asc')->get();
-         return view('admin.before_after.show',compact('data'));
+        $data = BeforAfter::orderBy('created_at','Asc')->get();
+        return view('admin.before_after.show',compact('data'));
     }
 
     public function show()
     { 
-         $data = BeforAfter::orderBy('created_at','Asc')->get();
-         return view('site.before_after',compact('data'));
+        $data = BeforAfter::orderBy('created_at','Asc')->get();
+        return view('site.before_after',compact('data'));
     }
 
     public function create()
     {
-       return view('admin.before_after.create');
+       return view('admin.before_after.add');
     }
 
     public function store(Request $request)
@@ -35,28 +35,28 @@ class BeforAfterController extends Controller
         ]);
 
     $images = new BeforAfter(); 
-        //store before image
+    //store before image
     $newBeforeImage = $request->file('beforeImage');
     //for change image name
     $newBeforeImageName = 'beforeImage' .$images->id. '.' . $newBeforeImage->getClientOriginalExtension();
     $newBeforeImage->move(public_path('site/img/gallery/'), $newBeforeImageName);
     $images->beforeImage = $newBeforeImage;     
 
-      //store after image
+    //store after image
     $newAfterImage = $request->file('afterImage');
     //for change image name
     $newAfterImageName = 'afterImage' .$images->id. '.' . $newAfterImage->getClientOriginalExtension();
     $newAfterImage->move(public_path('site/img/gallery/'), $newAfterImageName);
     $images->afterImage = $newAfterImageName;     
     
-        session()->flash('Add', 'تم إضافة الصور بنجاح');
-        return back();
+    session()->flash('Add', 'تم إضافة الصور بنجاح');
+    return back();
     }
      
     public function edit( $id)
     {
-     $data = BeforAfter::findOrFail($id);
-     return view('admin.before_after.edit',compact('data'));
+        $data = BeforAfter::findOrFail($id);
+        return view('admin.before_after.edit',compact('data'));
     }
 
     public function updateBefore(Request $request, $id)
@@ -68,7 +68,7 @@ class BeforAfterController extends Controller
        $before = BeforAfter::findOrFail($id);
        $oldImageName=$before->beforeImage;
     
-     // update newImage
+      // update newImage
        if ($request->hasFile('beforeImage')) {
       // Delete the old image from the server
       if ($oldImageName) {
@@ -80,12 +80,12 @@ class BeforAfterController extends Controller
       $newImage->move('site/img/gallery/', $newImageName);
   
       // Update the image record with the new image name
-         $before->beforeImage = $newImageName;
-         }
+      $before->beforeImage = $newImageName;
+    }
 
-         $before->update();
+        $before->update();
   
-         session()->flash('Edit', 'تم تعديل صورة قبل التنظيف بنجاح');
+        session()->flash('Edit', 'تم تعديل صورة قبل التنظيف بنجاح');
         //   return back();
         return redirect()->route('beforAfter.show');
     }
@@ -111,18 +111,18 @@ class BeforAfterController extends Controller
       $newImage->move('site/img/gallery/', $newImageName);
   
       // Update the image record with the new image name
-         $after->afterImage = $newImageName;
-         }
+        $after->afterImage = $newImageName;
+        }
 
-         $after->update();
+        $after->update();
   
-         session()->flash('Edit', 'تم تعديل صورة بعد التنظيف بنجاح');
+        session()->flash('Edit', 'تم تعديل صورة بعد التنظيف بنجاح');
         //   return back();
         return redirect()->route('beforAfter.show');
     }
     
   
-    public function destroyBefore( $id)
+    public function destroyBefore($id)
     {
        $before=BeforAfter::findOrFail($id);
         $oldImageName =$before->beforeImage;
@@ -136,7 +136,7 @@ class BeforAfterController extends Controller
           return back();
     }
 
-    public function destroyAfter( $id)
+    public function destroyAfter($id)
     {
        $after= BeforAfter::findOrFail($id);
        $oldImageName =$after->afterImage;
