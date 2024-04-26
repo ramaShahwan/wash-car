@@ -59,10 +59,10 @@
                                     <div class="col-md-6">
                                         <div>
                                             <h4>قبل</h4>
-                                            <img src="{{ URL::asset('site/img/gallery/'.$dt->beforeImage) }}" style="height: 300px; width: 300px;">
+                                            <img src="{{ URL::asset('/site/img/gallery/'.$dt->beforeImage) }}" style="height: 300px; width: 300px;">
                                             <br><br>
                                             <div class="d-flex justify-content-right">
-                                                <a class="btn btn-info" href="{{ route('beforAfter.edit', $dt->id) }}" style="color: white"> <i class="las la-pen"></i> تعديل </a> &nbsp;&nbsp;&nbsp;
+                                                <a class="btn btn-info" href="{{ route('before.edit', $dt->id) }}" style="color: white"> <i class="las la-pen"></i> تعديل </a> &nbsp;&nbsp;&nbsp;
           
                                             	<a class="modal-effect btn btn-danger" data-toggle="modal" title="حذف" style="cursor: pointer;"
 													data-target="#delete{{$dt->id}}"> <i class="las la-trash"></i> حذف </a>
@@ -101,10 +101,15 @@
                                     <div class="col-md-6">
                                         <div>
                                             <h4>بعد</h4>
-                                            <img src="{{ URL::asset('site/img/gallery/'.$dt->afterImage) }}" style="height: 300px; width: 300px;">
+                                            <img src="{{ URL::asset('/site/img/gallery/'.$dt->afterImage) }}" style="height: 300px; width: 300px;">
                                             <br><br>
                                             <div class="d-flex justify-content-right">
-                                                <a class="btn btn-info" href="{{ route('beforAfter.edit', $dt->id) }}" style="color: white"> <i class="las la-pen"></i> تعديل </a> &nbsp;&nbsp;&nbsp;
+												{{-- <form action="{{route('after.edit', $dt->id)}}" method="POST" enctype="multipart/form-data">
+													@csrf
+													@method('POST')
+                                                <button class="btn btn-info"  style="color: white"> <i class="las la-pen"></i> تعديل </button> &nbsp;&nbsp;&nbsp;
+												</form> --}}
+                                                <a class="btn btn-info" href="{{ route('after.edit', $dt->id) }}" style="color: white"> <i class="las la-pen"></i> تعديل </a> &nbsp;&nbsp;&nbsp;
           
                                             	<a class="modal-effect btn btn-danger" data-toggle="modal" title="حذف" style="cursor: pointer;"
 													data-target="#delete{{$dt->id}}"> <i class="las la-trash"></i> حذف </a>

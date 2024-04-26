@@ -49,7 +49,7 @@
 							<div class="card-body">
 								<form action="{{ route('before.update', $data->id) }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
-
+									@method('POST')
 									<div class="row">
 										<div class="col">
 											<label for="exampleTextarea">صورة قبل التنظيف</label> <br>
@@ -62,7 +62,7 @@
 											@endif
 
 											<br><br>   
-											<input type="File"  id="Img" name="image" class="dropify" accept=".jpg, .png, image/jpeg, image/png" data-height="70" />
+											<input type="File"  id="Img" name="beforeImage" class="dropify" accept=".jpg, .png, image/jpeg, image/png" data-height="70" />
 										</div>
 									</div><br>
 
