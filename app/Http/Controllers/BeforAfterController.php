@@ -124,16 +124,30 @@ class BeforAfterController extends Controller
   
     public function destroyBefore( $id)
     {
-        BeforAfter::findOrFail($id)->delete();
-       session()->flash('delete', 'تم حذف صورة قبل التنظيف بنجاح');
-      return back();
+       $before=BeforAfter::findOrFail($id);
+        $oldImageName =$before->beforeImage;
+  
+        if ($oldImageName) {
+             File::delete(public_path('site/img/gallery/') . $oldImageName);
+             $before->beforeImage = null;
+        }
+           $before->update();
+          session()->flash('delete', 'تم حذف صورة قبل التنظيف بنجاح');
+          return back();
     }
 
     public function destroyAfter( $id)
     {
-        BeforAfter::findOrFail($id)->delete();
-       session()->flash('delete', 'تم حذف صورة بعد التنظيف بنجاح');
-      return back();
+       $after= BeforAfter::findOrFail($id);
+       $oldImageName =$after->afterImage;
+  
+            if ($oldImageName) {
+                 File::delete(public_path('site/img/gallery/') . $oldImageName);
+                 $after->afterImage = null;
+            }
+               $after->update();
+              session()->flash('delete', 'تم حذف صورة بعد التنظيف بنجاح');
+               return back();
     }
 
 }
