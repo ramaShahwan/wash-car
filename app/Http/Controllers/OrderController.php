@@ -122,7 +122,14 @@ class OrderController extends Controller
             }
         }
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
+        if(auth()->user()->role == "admin")
+        {
+        return redirect()->route('admin_ord.summary');
+        }
+        elseif(auth()->user()->role == "user")
+        {
         return redirect()->route('ord.summary');
+        }
     }
 
 
@@ -206,7 +213,7 @@ class OrderController extends Controller
     //     return view('admin.orders.done',compact('orders'));
     // }
     public function getDoneOrders()
-{ 
+   { 
     $order = Order::where('orderDate', '<', now())->get();
     $order->each(function ($ord) {
         $ord->status = 'منجز';
