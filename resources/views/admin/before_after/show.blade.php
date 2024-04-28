@@ -112,11 +112,11 @@
                                                 <a class="btn btn-info" href="{{ route('after.edit', $dt->id) }}" style="color: white"> <i class="las la-pen"></i> تعديل </a> &nbsp;&nbsp;&nbsp;
           
                                             	<a class="modal-effect btn btn-danger" data-toggle="modal" title="حذف" style="cursor: pointer;"
-													data-target="#delete{{$dt->id}}"> <i class="las la-trash"></i> حذف </a>
+													data-target="#delete1{{$dt->id}}"> <i class="las la-trash"></i> حذف </a>
 													<form action="{{route('after.delete', $dt->id)}}" method="POST" enctype="multipart/form-data">
 															@csrf
 															@method('DELETE')
-														<div id="delete{{$dt->id}}" class="modal fade delete-modal" role="dialog">
+														<div id="delete1{{$dt->id}}" class="modal fade delete-modal" role="dialog">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 			
