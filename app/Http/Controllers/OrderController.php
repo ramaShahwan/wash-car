@@ -62,20 +62,42 @@ class OrderController extends Controller
         //     'payWay_id' => 'required',
         //     'orderTime'=>'required'
         // ]);
+        $order = new Order(); 
 
-        $order= Order::create([
-            'typeOfCar'=>$request->typeOfCar,
-            'sizeOfCar'=>$request->sizeOfCar,
-            'numOfCar'=>$request->numOfCar,
-            'totalPrice'=>$request->totalPrice,
-            'orderDate'=>$request->orderDate,
-            'orderTime'=>$request->orderTime,
-            'status'=>'معلق',
-            'note'=>'',
-            'location_id'=>$request->location_id,
-            'user_id'=>$user->id,
-            'payWay_id'=>$request->payWay_id,
-        ]);
+        // $order= Order::create([
+        //     'typeOfCar'=>$request->typeOfCar,
+        //     'sizeOfCar'=>$request->sizeOfCar,
+        //     'numOfCar'=>$request->numOfCar,
+        //     'totalPrice'=>$request->totalPrice,
+        //     'orderDate'=>$request->orderDate,
+        //     'orderTime'=>$request->orderTime,
+        //     'status'=>'معلق',
+        //     'note'=>'',
+        //     'location_id'=>$request->location_id,
+        //     'user_id'=>$user->id,
+        //     'payWay_id'=>$request->payWay_id,
+        // ]);
+        $order->typeOfCar = $request->typeOfCar;
+        $order->sizeOfCar = $request->sizeOfCar;
+        $order->numOfCar = $request->numOfCar;
+        $order->totalPrice = $request->totalPrice;
+        $order->orderDate = $request->orderDate;
+        $order->orderTime = $request->orderTime;
+        $order->note = '';
+        $order->location_id = $request->location_id;
+        $order->user_id = $request->typeOfCar;
+        $order->user_id = $request->payWay_id;
+
+
+        if(auth()->user()->role == "admin")
+        {
+            $order->status = 'قيد الإنجاز';
+        }
+        elseif(auth()->user()->role == "user")
+        {
+            $order->status = 'معلق';
+        }
+        $order->save();
 
         $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
         Order_Service::create([
@@ -95,27 +117,6 @@ class OrderController extends Controller
         return redirect()->route('ord.summary');
     }
 
-    // public function summary()
-    // {
-    //     $totalPrice = 0;
-    //     $user = auth()->user();
-    //     $order = Order::where('user_id',$user->id)->latest()->first();
-    //     $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
-    //     foreach($allServices as $serviceId){
-    //         $service = Service::find($serviceId);
-    //         if ($service) 
-    //         { $totalPrice += $service->price;}
-    //     }
-    
-    //     $date =  $order->orderDate;
-    //     $time = $order->orderTime;
-    //     Order::find($order->id)->update([
-    //         'totalPrice' => $totalPrice,
-    //     ]);
-    //     return view('site.summary',['totalPrice' => $totalPrice,
-    //                               'orderDate'=>$date,
-    //                               'orderTime'=>$time  ]);
-    // }
 
     public function summary()
 {
@@ -153,15 +154,6 @@ class OrderController extends Controller
         $pay = PayWay::all();
         return view('site.pay',compact('pay'));
     }
-
-    // public function setPayway($id)
-    // {  $user = auth()->user();
-    //     $order = Order::where('user_id',$user->id);
-    //     $pay = PayWay::find($id);
-    //     Order::find($order->id)->update([
-    //       'payWay_id' => $pay,
-    //     ]);
-    //     return view('site.home');}
     
     public function setPayway(Request $request)
     {
@@ -176,9 +168,60 @@ class OrderController extends Controller
         return view('site.home'); // تغيير الراوت إلى اسم الراوت الصحيح
     }
     
+  //functions for admin
+     public function getDoneOrders()
+    { 
+         $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
+         return view('admin.orders.done',compact('orders'));
+    }
 
+    public function getWaitingOrders()
+    { 
+         $orders = Order::where('status','قيد الإنجاز')->orderBy('created_at','Asc')->get();
+         return view('admin.orders.waiting',compact('orders'));
+    }
 
+    public function getPendingOrders()
+    { 
+         $orders = Order::where('status','معلق')->orderBy('created_at','Asc')->get();
+         return view('admin.orders.pend',compact('orders'));
+    }
+    public function getCanceledOrders()
+    { 
+         $orders = Order::where('status','مرفوض')->orderBy('created_at','Asc')->get();
+         return view('admin.orders.cancel',compact('orders'));
+    }
 
+    public function updatePenddingToWaiting($id)
+    {
+
+       $orders = Order::findOrFail($id);
+       $orders->status = 'قيد الإنجاز';
+       $orders->update();
+
+         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
+          return back();
+    }
+
+    public function updatePenddingToCanceled(Request $request,$id)
+    {
+
+       $orders = Order::findOrFail($id);
+       $orders->status = 'مرفوض';
+       $orders->note = $request->note;
+        $orders->update();
+
+         session()->flash('delete', 'تم  رفض الطلب بنجاح');
+          return back();
+    }
+
+    public function updateWaitingToDone()
+    {
+
+        $orders = Order::where('orderDate', '<', now())->get();
+       $orders->status = 'منجز';
+       $orders->update();
+    }
 
 }
 
