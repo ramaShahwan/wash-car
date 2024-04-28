@@ -24,7 +24,7 @@ class OrderController extends Controller
 
          $services = Service::all();
 
-        return view('site.index',
+        return view('admin.site.index',
         ['services' => $services]);
 
         }
@@ -41,9 +41,14 @@ class OrderController extends Controller
     public function create()
     {
         $services = Service::all();
-
-       return view('site.index',
+        if(auth()->user()->role == "admin") {
+       return view('admin.site.index',
        ['services' => $services]);
+        }
+        elseif(auth()->user()->role == "user") {
+            return view('site.index',
+            ['services' => $services]);
+             }
     }
 
 
@@ -88,7 +93,6 @@ class OrderController extends Controller
         $order->user_id = $user->id;
         $order->payWay_id = $request->payWay_id;
 
-
         if(auth()->user()->role == "admin")
         {
             $order->status = 'قيد الإنجاز';
@@ -97,6 +101,7 @@ class OrderController extends Controller
         {
             $order->status = 'معلق';
         }
+
         $order->save();
 
         $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
@@ -143,37 +148,60 @@ class OrderController extends Controller
     Order::find($order->id)->update([
         'totalPrice' => $totalPrice,
     ]);
-    
-    return view('site.summary', [
+
+    if(auth()->user()->role == "admin") {
+    return view('admin.site.summary', [
         'totalPrice' => $totalPrice,
         'orderDate' => $date,
         'orderTime' => $time,
     ]);
-}
+    }
+
+    elseif(auth()->user()->role == "user") {
+        return view('site.summary', [
+            'totalPrice' => $totalPrice,
+            'orderDate' => $date,
+            'orderTime' => $time,
+        ]);
+        }
+  }
 
 
     public function getPayway()
     {
         $pay = PayWay::all();
+      if(auth()->user()->role == "admin") {
+            return view('admin.site.pay',compact('pay'));
+            }
+     elseif(auth()->user()->role == "user") {
         return view('site.pay',compact('pay'));
+            }
     }
     
     public function setPayway(Request $request)
     {
         $user = auth()->user();
         $order = Order::where('user_id', $user->id)->latest()->first();
-        $pay = PayWay::find($request->pay_id); // استخدام $request->pay_id بدلاً من $request->id
+        $pay = PayWay::find($request->pay_id);
         
         $order->update([
             'payWay_id' => $pay->id,
         ]);
-        
-        return view('site.home'); // تغيير الراوت إلى اسم الراوت الصحيح
+        if(auth()->user()->role == "admin") {
+            return view('admin.site.home'); 
+            }
+        elseif(auth()->user()->role == "user") {
+            return view('site.home'); 
+            }
     }
     
   //functions for admin
     public function getDoneOrders()
     { 
+        $ord = Order::where('orderDate', '<', now())->get();
+        $ord->status = 'منجز';
+        $ord->update();
+
         $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
         return view('admin.orders.done',compact('orders'));
     }
