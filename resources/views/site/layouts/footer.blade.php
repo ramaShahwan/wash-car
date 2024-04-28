@@ -3,34 +3,31 @@
         <div class="container">
            <div class="row">
               <div class="col-lg-3 col-sm-6">
-                 <h2 class="useful_text">Contact Us</h2>
-                 <div class="location_text"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_15">Location</span></a></div>
-                 <div class="location_text"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_15">(+71) 8522369417</span></a></div>
-                 <div class="location_text"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_15">demo@gmail.com</span></a></div>
+                 <h2 class="useful_text" style="text-align: right;">تواصل معنا</h2>
+                 <div class="location_text" style="direction: rtl; text-align: right"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; <span class="padding_left_15">الجميلية</span></a></div>
+                 <div class="location_text" style="direction: rtl; text-align: right"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp; <span class="padding_left_15"> 123456789 (+963) </span></a></div>
+                 <div class="location_text" style="direction: rtl; text-align: right"><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp; <span class="padding_left_15">demo@gmail.com</span></a></div>
               </div>
               <div class="col-lg-3 col-sm-6">
-                 <h2 class="useful_text">Useful link </h2>
+                 <h2 class="useful_text" style="text-align: right;">روابط الموقع</h2>
                  <div class="footer_menu">
-                    <ul>
-                       <li class="active"><a href="index.html">Home</a></li>
-                       <li><a href="services.html">Services</a></li>
-                       <li><a href="quality.html">Quality</a></li>
-                       <li><a href="choose.html">Choose</a></li>
-                       <li><a href="testimonial.html">Testimonial</a></li>
-                       <li><a href="contact.html">Contact Us</a></li>
+                    <ul style="text-align: right;">
+                       <li class="active"><a href="{{ url('/') }}">الصفحة الرئيسية</a></li>
+                       <li><a href="{{ url('services') }}">خدماتنا</a></li>
+                       <li><a href="{{ url('get_img') }}">أعمالنا</a></li>
+                       <li><a href="{{ url('about_us') }}">من نحن؟</a></li>
+                       <li><a href="{{ url('add_emp') }}">انضم لفريقنا</a></li>
                     </ul>
                  </div>
               </div>
               <div class="col-lg-3 col-sm-6">
-                 <h2 class="useful_text">Opening Time</h2>
-                 <p class="footer_text">Mon : 07;00am   to  09:00 pm</p>
-                 <p class="footer_text">Mon : 07;00am   to  09:00 pm</p>
-                 <p class="footer_text">Mon : 07;00am   to  09:00 pm</p>
+                 <h2 class="useful_text" style="text-align: right;">وقت الدوام</h2>
+                 <p class="footer_text" style="text-align: right;"> جميع أيام الأسبوع </p>
+                 <p class="footer_text" style="text-align: right;"> 10:00 صباحاً  حتى  6:00 مساءً </p>
               </div>
               <div class="col-sm-6 col-lg-3">
-                 <h1 class="useful_text">Newsletter</h1>
-                 <input type="text" class="Enter_text" placeholder="Enter Your Email" name="Enter Your Email">
-                 <div class="subscribe_bt"><a href="#">Subscribe</a></div>
+                 <h1 class="useful_text" style="text-align: right;">اطلب خدمتك الآن</h1>
+                 <div class="subscribe_bt" style="text-align: right; float: right;"><a href="{{ url('/') }}">اطلب الآن</a></div>
               </div>
            </div>
            <div class="social_icon">
@@ -47,7 +44,7 @@
      <!-- copyright section start -->
      <div class="copyright_section">
         <div class="container">
-           <p class="copyright_text">Copyright 2020 All Rights Reserved.<a href="https://html.design"> Free  html Templates</a></p>
+           <p class="copyright_text">حقوق الطبع والنشر 2024 جميع الحقوق محفوظة<a href="https://html.design"></a></p>
         </div>
      </div>
      <!-- copyright section end -->
