@@ -169,23 +169,24 @@ class OrderController extends Controller
     }
     
   //functions for admin
-     public function getDoneOrders()
+    public function getDoneOrders()
     { 
-         $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
-         return view('admin.orders.done',compact('orders'));
+        $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
+        return view('admin.orders.done',compact('orders'));
     }
 
     public function getWaitingOrders()
     { 
-         $orders = Order::where('status','قيد الإنجاز')->orderBy('created_at','Asc')->get();
-         return view('admin.orders.waiting',compact('orders'));
+        $orders = Order::where('status','قيد الإنجاز')->orderBy('created_at','Asc')->get();
+        return view('admin.orders.waiting',compact('orders'));
     }
 
     public function getPendingOrders()
     { 
-         $orders = Order::where('status','معلق')->orderBy('created_at','Asc')->get();
-         return view('admin.orders.pend',compact('orders'));
+        $orders = Order::where('status','معلق')->orderBy('created_at','Asc')->get();
+        return view('admin.orders.pend',compact('orders'));
     }
+
     public function getCanceledOrders()
     { 
          $orders = Order::where('status','مرفوض')->orderBy('created_at','Asc')->get();
@@ -194,13 +195,12 @@ class OrderController extends Controller
 
     public function updatePenddingToWaiting($id)
     {
-
        $orders = Order::findOrFail($id);
        $orders->status = 'قيد الإنجاز';
        $orders->update();
 
-         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
-          return back();
+        session()->flash('Edit', 'تم  قبول الطلب بنجاح');
+        return back();
     }
 
     public function updatePenddingToCanceled(Request $request,$id)
@@ -211,8 +211,8 @@ class OrderController extends Controller
        $orders->note = $request->note;
         $orders->update();
 
-         session()->flash('delete', 'تم  رفض الطلب بنجاح');
-          return back();
+        session()->flash('delete', 'تم  رفض الطلب بنجاح');
+        return back();
     }
 
     public function updateWaitingToDone()

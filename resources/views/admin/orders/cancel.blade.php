@@ -75,9 +75,9 @@
 											@foreach($orders as $order)
 											<tr>
 												<td>{{$i++}}</td>
-												<td>{{$order->user_id}}</td>
+												<td>{{ App\Models\User::find($order->user_id)->name }}</td>
 												<td>{{$order->location_id}}</td>
-												<td>{{$order->payWay_id}}</td>
+												<td>{{ App\Models\PayWay::find($order->payWay_id)->way }}</td>
 
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
@@ -87,9 +87,8 @@
 												<td>{{$order->orderTime}}</td>
 												
 											    <td>{{$order->note}}</td>
-
 											<td>
-												<form action="{{ route('order.updateAccepted', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+												<form action="{{ route('ord.updatePenddingToWaiting', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 													@csrf
 													@method('POST')
 													<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>

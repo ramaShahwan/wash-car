@@ -75,9 +75,9 @@
 											@foreach($orders as $order)
 											<tr>
 												<td>{{$i++}}</td>
-												<td>{{$order->user_id}}</td>
+												<td>{{ App\Models\User::find($order->user_id)->name }}</td>
 												<td>{{$order->location_id}}</td>
-												<td>{{$order->payWay_id}}</td>
+												<td>{{ App\Models\PayWay::find($order->payWay_id)->way }}</td>
 
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
@@ -87,7 +87,7 @@
 												<td>{{$order->orderTime}}</td>
 												
 												<td>
-													<form action="{{ route('employee.updateAccepted', $emp->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+													<form action="{{ route('ord.updatePenddingToWaiting', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 														@csrf
 														@method('POST')
 														<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
@@ -97,7 +97,7 @@
 												<td>
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"
 													data-target="#delete"><i class="fas fa-times"></i></a>
-													<form action="{{route('employee.updateCanceled', $order->id)}}" method="POST" enctype="multipart/form-data">
+													<form action="{{route('ord.updatePenddingToCanceled', $order->id)}}" method="POST" enctype="multipart/form-data">
 															@csrf
 															@method('POST')
 														<div id="delete" class="modal fade delete-modal" role="dialog">
@@ -105,7 +105,7 @@
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">سبب رفض طلب : &nbsp; {{$order->user_id}} </h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">سبب رفض طلب : &nbsp; {{ App\Models\User::find($order->user_id)->name }} </h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			

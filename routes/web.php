@@ -60,6 +60,22 @@ Route:: prefix('pay')->group(function () {
     Route::delete('delete/{id}', [PayWayController::class, 'destroy'])->name('pay.delete');
   });
 
+//order
+Route:: prefix('order')->group(function () {
+
+    Route::get('show_done', [OrderController::class, 'getDoneOrders'])->name('ord.done');
+    Route::get('show_wait', [OrderController::class, 'getWaitingOrders'])->name('ord.wait');
+    Route::get('show_pend', [OrderController::class, 'getPendingOrders'])->name('ord.pend');
+    Route::get('show_cancel', [OrderController::class, 'getCanceledOrders'])->name('ord.cancel');
+
+    Route::get('add', [OrderController::class, 'create']);
+    Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+    
+    Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
+    Route::post('updatePenddingToCanceled/{id}', [OrderController::class, 'updatePenddingToCanceled'])->name('ord.updatePenddingToCanceled');
+
+  });
+
   //service
 Route:: prefix('service')->group(function () {
 
