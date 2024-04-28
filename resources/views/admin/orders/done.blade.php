@@ -72,9 +72,9 @@
 											@foreach($orders as $order)
 											<tr>
 												<td>{{$i++}}</td>
-												<td>{{ App\Models\User::find($order->user_id)->name }}</td>
+												<td>{{ App\Models\User::findOrFail($order->user_id)->name }}</td>
 												<td>{{$order->location_id}}</td>
-												<td>{{ App\Models\PayWay::find($order->payWay_id)->way }}</td>
+												<td>{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}</td>
 
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
