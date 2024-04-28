@@ -10,13 +10,13 @@
     }
     
     .selected p {
-        color: white; /* يمكنك تغيير لون الخط هنا */
+        color: white; 
     }
 
-    /* .selected .btn{
-        background-color: blue;
-        color: white;
-    } */
+    .choose_section_2 .col-md-4 {
+        margin-bottom: 20px; 
+    }
+
 </style>    
 
 @endsection
@@ -29,7 +29,6 @@
     <div class="services_section layout_padding">
         <div class="container">
            <h1 class="services_taital"><span style="color: #0c426e"> طريقة الدفع </span></h1>
-           {{-- <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p> --}}
 
            <form action="{{ route('admin_ord.setPay') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
@@ -57,13 +56,9 @@
                                 <hr>
 
                                 <button type="submit" name="pay_id" value="{{ $item->id }}" class="btn" style="background-color: goldenrod; color:black"> اختر </button>
-
                             </div>
-                        
                         </div>
-
                     @endforeach
-        
                 </div>
               </div>
            </div>
@@ -80,7 +75,6 @@
 
         </div>
     </div>
-
 
 </body>
 
