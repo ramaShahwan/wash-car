@@ -68,13 +68,18 @@ Route:: prefix('order')->group(function () {
     Route::get('show_pend', [OrderController::class, 'getPendingOrders'])->name('ord.pend');
     Route::get('show_cancel', [OrderController::class, 'getCanceledOrders'])->name('ord.cancel');
 
-    Route::get('add', [OrderController::class, 'create']);
-    Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
-    
     Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
     Route::post('updatePenddingToCanceled/{id}', [OrderController::class, 'updatePenddingToCanceled'])->name('ord.updatePenddingToCanceled');
 
   });
+
+  Route::get('add', [OrderController::class, 'create']);
+  Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+  
+  Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
+  Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
+  Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
+  
 
   //service
 Route:: prefix('service')->group(function () {
