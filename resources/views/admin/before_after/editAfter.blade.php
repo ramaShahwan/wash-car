@@ -47,7 +47,7 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								<form action="{{ route('after.edit', $data->id) }}" method="post" enctype="multipart/form-data" autocomplete="off">
+								<form action="{{ route('after.update', $data->id) }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
                                      @method('POST')
 									<div class="row">
