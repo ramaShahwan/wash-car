@@ -73,13 +73,13 @@ Route:: prefix('order')->group(function () {
 
   });
 
-  Route::get('add', [OrderController::class, 'create']);
-  Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+  Route::get('admin_add', [OrderController::class, 'create']);
+  Route::post('admin_save_order', [OrderController::class, 'store'])->name('admin_ord.save');
   
-  Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
-  Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
-  Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
-  
+  Route::get('admin_summary', [OrderController::class, 'summary'])->name('admin_ord.summary');
+  Route::get('admin_pay', [OrderController::class, 'getPayway'])->name('admin_ord.pay');
+  Route::post('admin_set_pay', [OrderController::class, 'setPayway'])->name('admin_ord.setPay');
+
 
   //service
 Route:: prefix('service')->group(function () {
@@ -148,12 +148,6 @@ Route:: prefix('beforAfter')->group(function () {
 // User Routes
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
-    // Route::get('/index', [OrderController::class, 'create']);
-    
-    Route::get('add_emp', [EmployeeController::class, 'create']);
-    Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
-
-    // Route::get('show', [OrderController::class, 'index']);
     Route::get('add', [OrderController::class, 'create']);
     Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
     Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
@@ -166,7 +160,6 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
 Route::get('get_img', [BeforAfterController::class, 'show']);
 
-
 Route::get('/services', function () {
     return view('site.services');
 });
@@ -175,6 +168,7 @@ Route::get('/about_us', function () {
     return view('site.about_us');
 });
 
-
+Route::get('add_emp', [EmployeeController::class, 'create']);
+Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 require __DIR__.'/auth.php';

@@ -65,9 +65,11 @@
                  <li class="nav-item">
                     <a class="nav-link" href="{{ url('about_us') }}">من نحن؟</a>
                  </li>
+
                  <li class="nav-item">
                     <a class="nav-link" href="{{ url('add_emp') }}">انضم لفريقنا</a>
                  </li>
+
                  {{-- <li class="nav-item">
                     <a class="nav-link" href="contact.html"> تواصل معنا </a>
                  </li> --}}

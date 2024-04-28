@@ -113,7 +113,7 @@
          <div class="container">
             <h1 class="services_taital"><span style="color: #0c426e">اطلب الآن</span></h1>
 
-            <form action="{{ route('ord.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <form action="{{ route('admin_ord.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                @csrf
                @method('POST')
 
