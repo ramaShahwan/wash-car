@@ -45,6 +45,12 @@
            <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto" style="direction: rtl; right: 0;">
 
+               @if(auth()->user()->role == "admin")
+                  <li class="nav-item">
+                     <a class="nav-link" href="{{ url('/admin') }}">لوحة التحكم</a>
+                  </li>
+               @endif
+
                  <li class="nav-item">
                     <a class="nav-link" href="{{ url('index') }}">الصفحة الرئيسية</a>
                  </li>
