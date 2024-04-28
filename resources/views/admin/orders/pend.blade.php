@@ -75,9 +75,9 @@
 											@foreach($orders as $order)
 											<tr>
 												<td>{{$i++}}</td>
-												<td>{{ App\Models\User::find($order->user_id)->name }}</td>
+												<td>{{ App\Models\User::findOrFail($order->user_id)->name }}</td>
 												<td>{{$order->location_id}}</td>
-												<td>{{ App\Models\PayWay::find($order->payWay_id)->way }}</td>
+												<td>{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}</td>
 
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
@@ -105,7 +105,7 @@
 																<div class="modal-content">
 			
 																	<div class="modal-header">
-																		<h6 class="modal-title">سبب رفض طلب : &nbsp; {{ App\Models\User::find($order->user_id)->name }} </h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		<h6 class="modal-title">سبب رفض طلب : &nbsp; {{ App\Models\User::findOrFail($order->user_id)->name }} </h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
 			
