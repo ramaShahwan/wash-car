@@ -65,9 +65,9 @@
               </div>
            </div>
            <br><br>
-           <div class="d-flex justify-content-center">
+           {{-- <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary" style="background-color: #0c426e;"> &nbsp; تأكيد الدفع &nbsp; <i class="fa fa-check"></i> &nbsp; </button>
-           </div>
+           </div> --}}
          <br><br><br>
 
         </form>

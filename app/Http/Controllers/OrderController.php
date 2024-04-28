@@ -85,8 +85,8 @@ class OrderController extends Controller
         $order->orderTime = $request->orderTime;
         $order->note = '';
         $order->location_id = $request->location_id;
-        $order->user_id = $request->typeOfCar;
-        $order->user_id = $request->payWay_id;
+        $order->user_id = $user->id;
+        $order->payWay_id = $request->payWay_id;
 
 
         if(auth()->user()->role == "admin")
@@ -105,13 +105,16 @@ class OrderController extends Controller
             'service_id'=> $request->service_id,
         ]);
 
-        foreach($request->service_ids as $service)
+        if($request->service_ids)
         {
-        $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
-            Order_Service::create([
-                'order_id'=> $order_ser,
-                'service_id'=> $service,
-            ]);
+            foreach($request->service_ids as $service)
+            {
+            $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
+                Order_Service::create([
+                    'order_id'=> $order_ser,
+                    'service_id'=> $service,
+                ]);
+            }
         }
         session()->flash('Add', 'تم تثبيت طلبك بنجاح');
         return redirect()->route('ord.summary');

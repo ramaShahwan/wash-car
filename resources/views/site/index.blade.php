@@ -43,7 +43,7 @@
    <body>
 
       <!-- banner section start -->
-      <div class="banner_section layout_padding">
+      {{-- <div class="banner_section layout_padding">
          <div class="container">
             <div id="main_slider" class="carousel slide" data-ride="carousel">
                <div class="carousel-inner">
@@ -52,7 +52,6 @@
                         <div class="col-md-6">
                            <div class="banner_taital">
                               <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                            </div>
                            <div class="btn_main">
                               <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
@@ -69,7 +68,6 @@
                         <div class="col-md-6">
                            <div class="banner_taital">
                               <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                            </div>
                            <div class="btn_main">
                               <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
@@ -86,7 +84,6 @@
                         <div class="col-md-6">
                            <div class="banner_taital">
                               <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                            </div>
                            <div class="btn_main">
                               <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
@@ -107,7 +104,7 @@
                </a>
             </div>
          </div>
-      </div>
+      </div> --}}
       <!-- banner section end -->
       
       <!-- choose section start -->
@@ -462,15 +459,16 @@
 	flatpickr("input[type=datetime]", config);
 </script>
 
-{{-- Date --}}
 <script>
-	config = {
-    	dateFormat: "Y-m-d",
-		altInput: true,
-		altFormat: "F j, Y"
-	}
-	flatpickr("input[type=datetime-local]", config);
-</script>
+   config = {
+       dateFormat: "Y-m-d",
+       altInput: true,
+       altFormat: "F j, Y",
+       minDate: "today" // تحديد الحد الأدنى للتاريخ كتاريخ اليوم
+   }
+   flatpickr("input[type=datetime-local]", config);
+ </script>
+ 
 
 
    </body>
