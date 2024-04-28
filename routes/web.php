@@ -37,14 +37,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/index', [OrderController::class, 'create']);
+
 
 // Admin Routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
+    // Route::get('/index', [OrderController::class, 'create']);
+
     Route::get('/admin', function () {
         return view('admin.index');
     });
-
 
 //payway
 Route:: prefix('pay')->group(function () {
@@ -124,7 +127,7 @@ Route:: prefix('beforAfter')->group(function () {
 // User Routes
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
-    Route::get('/index', [OrderController::class, 'create']);
+    // Route::get('/index', [OrderController::class, 'create']);
     
     Route::get('add_emp', [EmployeeController::class, 'create']);
     Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');

@@ -44,15 +44,17 @@
            </button>
            <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto" style="direction: rtl; right: 0;">
-
+         
+               @if (auth()->user())
                @if(auth()->user()->role == "admin")
                   <li class="nav-item">
                      <a class="nav-link" href="{{ url('/admin') }}">لوحة التحكم</a>
                   </li>
                @endif
+               @endif
 
                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url('index') }}">الصفحة الرئيسية</a>
+                    <a class="nav-link" href="{{ url('/') }}">الصفحة الرئيسية</a>
                  </li>
                  <li class="nav-item">
                     <a class="nav-link" href="{{ url('services') }}">خدماتنا</a>
