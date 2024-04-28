@@ -196,15 +196,26 @@ class OrderController extends Controller
     }
     
   //functions for admin
-    public function getDoneOrders()
-    { 
-        $ord = Order::where('orderDate', '<', now())->get();
-        $ord->status = 'منجز';
-        $ord->update();
+    // public function getDoneOrders()
+    // { 
+    //     $ord = Order::where('orderDate', '<', now())->get();
+    //     $ord->status = 'منجز';
+    //     $ord->update();
 
-        $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
-        return view('admin.orders.done',compact('orders'));
-    }
+    //     $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
+    //     return view('admin.orders.done',compact('orders'));
+    // }
+    public function getDoneOrders()
+{ 
+    $order = Order::where('orderDate', '<', now())->get();
+    $order->each(function ($ord) {
+        $ord->status = 'منجز';
+        $ord->save();
+    });
+
+    $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
+    return view('admin.orders.done',compact('orders'));
+}
 
     public function getWaitingOrders()
     { 
@@ -248,10 +259,10 @@ class OrderController extends Controller
 
     public function updateWaitingToDone()
     {
-
-        $orders = Order::where('orderDate', '<', now())->get();
+       $orders = Order::where('orderDate', '<', now())->get();
        $orders->status = 'منجز';
        $orders->update();
+
     }
 
 }
