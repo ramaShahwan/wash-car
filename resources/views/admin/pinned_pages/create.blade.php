@@ -119,10 +119,7 @@
 					</div>
 				</div>
 				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+
 @endsection
 @section('js')
 
