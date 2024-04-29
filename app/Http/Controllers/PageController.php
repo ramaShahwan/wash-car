@@ -16,14 +16,14 @@ class PageController extends Controller
 
    public function index()
    {
-       $getAllPinnedPage = Page::orderBy('created_at','Asc')->get();
-       return view('admin.pinned_page.AllpinnedPage' , compact('getAllPinnedPage'));
+       $pages = Page::orderBy('created_at','Asc')->get();
+       return view('admin.pinned_page.AllpinnedPage' , compact('pages'));
    }
 
 
    public function create(){
     
-       return view('admin.pinned_page.create',compact('countries','DataSittings'));
+       return view('admin.pinned_page.create');
    }
 
    public function store(Request $request)
@@ -44,7 +44,7 @@ class PageController extends Controller
 
 
        $mydata=Page::create([
-           'page_name'  => $request->input('page_name'),
+           'name'  => $request->input('page_name'),
            'href'       => $request->input('href'),
            'title'      => $request->input('title'),
            'keyword'    => $request->input('keyword'),
@@ -52,7 +52,7 @@ class PageController extends Controller
             'photo'      => $newImageName
        ]);
 
-       return redirect()->route('createPage')
+       return redirect()->route('page.show')
        ->with('success', 'added data');
    }
 
@@ -95,7 +95,7 @@ class PageController extends Controller
            $findId->photo     = $newImageName;
            $findId->update();
 
-       return redirect()->route('main.pages')
+       return redirect()->route('page.show')
            ->with('success' , 'Successfully updated Data');
    }
 
@@ -111,7 +111,7 @@ class PageController extends Controller
                ->with('success' , 'Successfully Deleted Data');
        }
        $findId->delete();
-       return  redirect()->route('main.pages')
+       return  redirect()->route('page.show')
            ->with('success' , 'Successfully Deleted Data');
    }
 }
