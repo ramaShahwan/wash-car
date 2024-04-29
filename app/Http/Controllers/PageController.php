@@ -44,7 +44,7 @@ class PageController extends Controller
 
 
        $mydata=Page::create([
-           'name'  => $request->input('page_name'),
+           'name'       => $request->input('name'),
            'href'       => $request->input('href'),
            'title'      => $request->input('title'),
            'keyword'    => $request->input('keyword'),
@@ -68,7 +68,7 @@ class PageController extends Controller
    {
        $page = Page::find($id);
        $request->validate([
-           'page_name'     => 'required',
+           'name'     => 'required',
            'href'          => 'required',
            'keyword'       => 'required',
            'content'       => 'required'
@@ -84,7 +84,7 @@ class PageController extends Controller
            $request->photo->move(public_path('site/img/pages/') , $newImageName);
        }
 
-           $page->name = $request->name;
+           $page->name      =  $request->name;
            $page->href      = $request->href;
            $page->title      = $request->title;
            $page->keyword   = $request->keyword;
