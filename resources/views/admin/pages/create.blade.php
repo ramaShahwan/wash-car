@@ -12,6 +12,8 @@
 <!--Internal  TelephoneInput css-->
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 
+<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -92,7 +94,7 @@
                                           <label for="inputName" class="control-label">محتوى الصفحة</label>
 
                                         <textarea class="ckeditor form-control @error('content') is-invalid @enderror"
-                                         name="content" placeholder="أدخل محتوى الصفحة" required></textarea>
+                                         name="content" id="content" placeholder="أدخل محتوى الصفحة" required></textarea>
 
                                           @error('content')
                                               <div class="alert alert-danger">{{ $message }}</div>
@@ -113,6 +115,9 @@
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									</div>
 		                           	<br><br>
+
+					
+
 								</form>
 							</div>
 						</div>
@@ -122,6 +127,27 @@
 
 @endsection
 @section('js')
+
+<script>
+	ClassicEditor
+	.create(document.querySelector('#content'))
+	.catch( error=> {
+		console.error(error);
+	});
+</script>
+
+
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
+{{-- <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> --}}
+{{-- <script src="{{url("../public/ckeditor/ckeditor.js")}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script> --}}
+{{-- <script type="text/javascript">
+	$(document).ready(function() {
+		$('.ckeditor').ckeditor();
+	});
+</script> --}}
+
+
 
 <!--Internal  Datepicker js -->
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
