@@ -44,16 +44,14 @@ class PageController extends Controller
            $mydata->photo =$newImageName;
        }
 
-
-     
             $mydata->name  = $request->input('name');
              $mydata->href      = $request->input('href');
              $mydata->title    = $request->input('title');
              $mydata->keyword   = $request->input('keyword');
              $mydata->content   = $request->input('content');
              $mydata->save();
-       return redirect()->route('page.show')
-       ->with('success', 'added data');
+             session()->flash('Add', 'تم إضافة الصفحة بنجاح');
+            return redirect()->route('page.show');
    }
 
 
@@ -93,8 +91,8 @@ class PageController extends Controller
            $page->content   = $request->content;
            $page->update();
 
-       return redirect()->route('page.show')
-           ->with('success' , 'Successfully updated Data');
+           session()->flash('Edit', 'تم تعديل الصفحة بنجاح');
+           return redirect()->route('page.show');
    }
 
 
@@ -105,11 +103,12 @@ class PageController extends Controller
        if(File::exists($destination)){
            File::delete($destination);
            $page->delete();
-           return  redirect()->route('page.show')
-               ->with('success' , 'Successfully Deleted Data');
+           session()->flash('delete', 'تم حذف الصفحة بنجاح');
+           return  redirect()->route('page.show');
+
        }
        $page->delete();
-       return  redirect()->route('page.show')
-           ->with('success' , 'Successfully Deleted Data');
+       session()->flash('delete', 'تم حذف الصفحة بنجاح');
+       return  redirect()->route('page.show');
    }
 }

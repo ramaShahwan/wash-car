@@ -12,6 +12,9 @@
 <!--Internal  TelephoneInput css-->
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 
+<script src="//cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
+
+
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -92,7 +95,8 @@
                                           <label for="inputName" class="control-label">محتوى الصفحة</label>
 
                                         <textarea class="ckeditor form-control @error('content') is-invalid @enderror"
-                                         name="content" placeholder="أدخل محتوى الصفحة" required></textarea>
+                                         name="content" placeholder="أدخل محتوى الصفحة" required></textarea> 
+										 {{-- <textarea class="ckeditor" name="content" placeholder="أدخل محتوى الصفحة" required></textarea> --}}
 
                                           @error('content')
                                               <div class="alert alert-danger">{{ $message }}</div>
@@ -125,6 +129,14 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+
+{{-- <script src="//cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
+
+<!-- تضمين ملفات الأساسية -->
+<script src="{{public_path('ckeditor/ckeditor.js')}}"></script>
+
+<!-- اختياري: تضمين ملفات النماذج المتقدمة (اختياري) -->
+<script src="{{public_path('ckeditor/build/ckeditor.js')}}"></script> --}}
 
 <!--Internal  Datepicker js -->
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
