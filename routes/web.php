@@ -57,7 +57,7 @@ Route:: prefix('pages')->group(function () {
     Route::post('save', [App\Http\Controllers\PageController::class, 'store'])->name('page.save');
     Route::get('edit/{id}', [App\Http\Controllers\PageController::class, 'edit'])->name('page.edit');
     Route::post('update/{id}', [App\Http\Controllers\PageController::class, 'update'])->name('page.update');
-    Route::get('delete/{id}', [App\Http\Controllers\PageController::class, 'destroy'])->name('page.delete');
+    Route::delete('delete/{id}', [App\Http\Controllers\PageController::class, 'destroy'])->name('page.delete');
 });
 
 //payway

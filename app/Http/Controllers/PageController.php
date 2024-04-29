@@ -17,13 +17,13 @@ class PageController extends Controller
    public function index()
    {
        $pages = Page::orderBy('created_at','Asc')->get();
-       return view('admin.pinned_pages.AllpinnedPage' , compact('pages'));
+       return view('admin.pages.AllpinnedPage' , compact('pages'));
    }
 
 
    public function create(){
     
-       return view('admin.pinned_pages.create');
+       return view('admin.pages.create');
    }
 
    public function store(Request $request)
@@ -31,27 +31,27 @@ class PageController extends Controller
 
        $request->validate([
            'name'     => 'required',
-           'href'          => 'required|unique:pinned_pages,href',
+           'href'          => 'required|unique:pages,href',
            'keyword'       => 'required',
            'content'       => 'required'
            // 'photo'         => 'required|image|mimes:png,jpg,jpeg,svg,gif|max:2048|dimensions:max_width=720,max_height=920'
        ]);
 
+       $mydata= new Page();
        if($request->hasFile('photo')){
            $newImageName = 'photo'.time(). '.' . $request->photo->extension();
            $request->photo->move(public_path('site/img/pages/'), $newImageName);
+           $mydata->photo =$newImageName;
        }
 
 
-       $mydata=Page::create([
-           'name'       => $request->input('name'),
-           'href'       => $request->input('href'),
-           'title'      => $request->input('title'),
-           'keyword'    => $request->input('keyword'),
-           'content'    => $request->input('content'),
-            'photo'      => $newImageName
-       ]);
-
+     
+            $mydata->name  = $request->input('name');
+             $mydata->href      = $request->input('href');
+             $mydata->title    = $request->input('title');
+             $mydata->keyword   = $request->input('keyword');
+             $mydata->content   = $request->input('content');
+             $mydata->save();
        return redirect()->route('page.show')
        ->with('success', 'added data');
    }
@@ -60,7 +60,7 @@ class PageController extends Controller
    public function edit($id)
    {
        $page = Page::find($id);
-       return view('admin.pinned_pages.editPage' , compact('page'));
+       return view('admin.pages.editPage' , compact('page'));
    }
 
 
@@ -82,6 +82,8 @@ class PageController extends Controller
            }
            $newImageName = 'photo'.time() .'.'. $request->photo->extension();
            $request->photo->move(public_path('site/img/pages/') , $newImageName);
+           $page->photo     = $newImageName;
+
        }
 
            $page->name      =  $request->name;
@@ -89,7 +91,6 @@ class PageController extends Controller
            $page->title      = $request->title;
            $page->keyword   = $request->keyword;
            $page->content   = $request->content;
-           $page->photo     = $newImageName;
            $page->update();
 
        return redirect()->route('page.show')
@@ -104,7 +105,7 @@ class PageController extends Controller
        if(File::exists($destination)){
            File::delete($destination);
            $page->delete();
-           return  redirect()->route('main.pages')
+           return  redirect()->route('page.show')
                ->with('success' , 'Successfully Deleted Data');
        }
        $page->delete();

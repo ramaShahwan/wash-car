@@ -19,7 +19,7 @@
 						</div>
 					</div>
                     <div class="d-flex my-xl-auto right-content">
-						<a href="" type="button" class="btn btn-primary" style="color: white">إنشاء صفحة</a>
+						<a href="{{ url('/pages/add') }}" type="button" class="btn btn-primary" style="color: white">إنشاء صفحة</a>
 					</div>
 				</div>
 				<!-- breadcrumb -->
