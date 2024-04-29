@@ -17,13 +17,13 @@ class PageController extends Controller
    public function index()
    {
        $pages = Page::orderBy('created_at','Asc')->get();
-       return view('admin.pinned_page.AllpinnedPage' , compact('pages'));
+       return view('admin.pinned_pages.AllpinnedPage' , compact('pages'));
    }
 
 
    public function create(){
     
-       return view('admin.pinned_page.create');
+       return view('admin.pinned_pages.create');
    }
 
    public function store(Request $request)
@@ -57,19 +57,16 @@ class PageController extends Controller
    }
 
 
-
-
-
    public function edit($id)
    {
-       $findId = Page::find($id);
-       return view('admin.pinned_page.editPage' , compact('findId'));
+       $page = Page::find($id);
+       return view('admin.pinned_pages.editPage' , compact('page'));
    }
 
 
    public function update(Request $request,$id)
    {
-       $findId = Page::find($id);
+       $page = Page::find($id);
        $request->validate([
            'page_name'     => 'required',
            'href'          => 'required',
@@ -78,7 +75,7 @@ class PageController extends Controller
            // 'photo'         => 'required|image|mimes:png,jpg,jpeg,svg,gif|max:2048|dimensions:max_width=720,max_height=920'
        ]);
        if($request->hasFile('photo')){
-           $pathImg = str_replace('\\' , '/' ,public_path('site/img/pages/')).$findId->photo;
+           $pathImg = str_replace('\\' , '/' ,public_path('site/img/pages/')).$page->photo;
 
            if(File::exists($pathImg)){
                File::delete($pathImg);
@@ -87,13 +84,13 @@ class PageController extends Controller
            $request->photo->move(public_path('site/img/pages/') , $newImageName);
        }
 
-           $findId->page_name = $request->page_name;
-           $findId->href      = $request->href;
-           $findId->title      = $request->title;
-           $findId->keyword   = $request->keyword;
-           $findId->content   = $request->content;
-           $findId->photo     = $newImageName;
-           $findId->update();
+           $page->name = $request->name;
+           $page->href      = $request->href;
+           $page->title      = $request->title;
+           $page->keyword   = $request->keyword;
+           $page->content   = $request->content;
+           $page->photo     = $newImageName;
+           $page->update();
 
        return redirect()->route('page.show')
            ->with('success' , 'Successfully updated Data');
@@ -102,15 +99,15 @@ class PageController extends Controller
 
    public function destroy($id)
    {
-       $findId = Page::find($id);
-       $destination =  str_replace('\\' , '/' ,public_path('site/img/pages/')).$findId->photo;
+       $page = Page::find($id);
+       $destination =  str_replace('\\' , '/' ,public_path('site/img/pages/')).$page->photo;
        if(File::exists($destination)){
            File::delete($destination);
-           $findId->delete();
+           $page->delete();
            return  redirect()->route('main.pages')
                ->with('success' , 'Successfully Deleted Data');
        }
-       $findId->delete();
+       $page->delete();
        return  redirect()->route('page.show')
            ->with('success' , 'Successfully Deleted Data');
    }
