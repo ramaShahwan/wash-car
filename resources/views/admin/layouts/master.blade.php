@@ -28,5 +28,19 @@
 				@include('admin.layouts.models')
             	@include('admin.layouts.footer')
 				@include('admin.layouts.footer-scripts')	
+
+
+				
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{{-- <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> --}}
+<script src="{{url("../public/ckeditor/ckeditor.js")}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.ckeditor').ckeditor();
+	});
+</script>
+
 	</body>
 </html>

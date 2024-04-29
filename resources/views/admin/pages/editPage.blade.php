@@ -114,13 +114,6 @@
 										</div>
 									</div><br>
 
-
-
-
-
-
-
-
 									<div class="row">
 										<div class="col">
 											<label for="exampleTextarea">صورة (اختياري) </label> <br>
