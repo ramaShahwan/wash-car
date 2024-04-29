@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model
 {
     use HasFactory;
+    protected $table = 'pages';
 
-    protected $fillable = ['name','href','content'];
+    protected $fillable = ['name' , 'href' , 'title' , 'keyword' , 'content' , 'photo'];
 
 }
