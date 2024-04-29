@@ -29,6 +29,5 @@
             	@include('admin.layouts.footer')
 				@include('admin.layouts.footer-scripts')	
 
-
 	</body>
 </html>
