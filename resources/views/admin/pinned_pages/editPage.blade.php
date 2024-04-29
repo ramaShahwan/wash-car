@@ -114,19 +114,12 @@
 										</div>
 									</div><br>
 
-
-
-
-
-
-
-
 									<div class="row">
 										<div class="col">
 											<label for="exampleTextarea">صورة (اختياري) </label> <br>
 											<br>
 											
-											@if ($pay->photo)
+											@if ($page->photo)
 												<img src="{{ URL::asset('/site/img/pages/' . $page->photo) }}" style="width: 100px;">
 											@else
 												{{-- <img src="{{ URL::asset('/site/img/pay/mobile-payment.png') }}" style="width: 100px;"> --}}
