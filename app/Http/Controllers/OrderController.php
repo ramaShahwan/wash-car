@@ -45,17 +45,19 @@ class OrderController extends Controller
     public function create()
     {
         $services = Service::all();
+        $areas = Location::all();
 
         if(auth()->user()->role == "admin") {
             
             return view('admin.site.index',
-            ['services' => $services]);
-        }
+            ['services' => $services,
+            'areas' => $areas ]);}
 
         elseif(auth()->user()->role == "user") {
 
             return view('site.index',
-            ['services' => $services]);
+            ['services' => $services,
+            'areas' => $areas ]);
         }
     }
 
