@@ -285,7 +285,25 @@
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
 
    <div class="row">
-      <div class="col-md-6">
+
+      <div class="col-md-4">
+         <div class="form-group">
+             <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
+             {{-- <div class="cal-icon" style="display: flex; align-items: center;">
+                 <input name="numOfCar" type="text" class="form-control">
+             </div> --}}
+               <div class="the-dropdown-select">
+                  <input type="text" name="search_area" class="form-control the-dropdown-input" id="realtime" onkeyup="filter(this)">
+               </div>
+
+               <ul class="the-dropdown-list" id="therealitems">
+                  <li></li>
+               </ul>
+
+         </div>
+     </div>
+
+      <div class="col-md-4">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
@@ -294,7 +312,7 @@
           </div>
       </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
               <div class="time-icon" style="display: flex; align-items: center;">
@@ -341,52 +359,63 @@
 
 
 
-      <script type="text/javascript">
+      {{-- <script type="text/javascript">
 
          // function that search the dropdown li
 
-            function filter(element){
-               var value = $(element).val().toLowerCase();
-               var text;
-               var searchValue;
-               var liValue;
+            // function filter(element){
+            //    var value = $(element).val().toLowerCase();
+            //    var text;
+            //    var searchValue;
+            //    var liValue;
 
-               $("#therealitems > li").each(function(){
-                  if($(this).text().toLowerCase().search(value) > -1){
-                     $(this).show();
-                     var text = $(this).show();
-                     if(text.length === 1){
-                        searchValue = text[0];
-                     }
-                  }
-                  else {
-                        $(this).hide();
-                     }
-               });
+            //    $("#therealitems > li").each(function(){
+            //       if($(this).text().toLowerCase().search(value) > -1){
+            //          $(this).show();
+            //          var text = $(this).show();
+            //          if(text.length === 1){
+            //             searchValue = text[0];
+            //          }
+            //       }
+            //       else {
+            //             $(this).hide();
+            //          }
+            //    });
 
 
-               $('.the-dropdown-input').on('keypress', function(e){
-                  if(e.key === 'Enter' || e.keyCode === 13){
-                     $('.the-dropdown-input').val(searchValue.innerText);
-                     e.preventDefault();
-                     $('.the-dropdown-list').slideUp('fast');
-                  }
-               });
+            //    $('.the-dropdown-input').on('keypress', function(e){
+            //       if(e.key === 'Enter' || e.keyCode === 13){
+            //          $('.the-dropdown-input').val(searchValue.innerText);
+            //          e.preventDefault();
+            //          $('.the-dropdown-list').slideUp('fast');
+            //       }
+            //    });
 
-            }
+            // }
 
 
          // select li from the dropdown
 
-            $(document).ready(function(){
+            // $(document).ready(function(){
 
-               $('.the-dropdown-input').on('click', function(){
-                  $(this).parent().next 
-               })
+            //    $('.the-dropdown-input').on('click', function(){
+            //       $(this).parent().next().slideDown('fast');
+            //    });
 
-            });
+            //    $('.the-select-btn').on('click', function(){
+            //       $('.the-dropdown-list').slideUp('fast');
+            //    });
 
-      </script>
+            //    $(document).on('click', function(event){
+            //       if($(event.target).closest(".the-dropdown-input, .the-select-btn").length)
+            //          return ;
+            //       $('.the-dropdown-list').slideUp('fast');
+            //       event.stopPropagation();
+            //    });
+
+            // });
+
+       </script> --}}
 
 
 
