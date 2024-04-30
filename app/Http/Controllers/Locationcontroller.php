@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
+    public function show()
+    { 
+         $areas = Location::orderBy('created_at','Asc')->get();
+         return view('site.index',compact('areas'));
+    }
+    
     public function index()
     { 
          $areas = Location::orderBy('created_at','Asc')->get();

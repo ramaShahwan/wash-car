@@ -183,6 +183,7 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::get('add', [OrderController::class, 'create']);
     Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
     Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
+    Route::get('getArea', [LocationController::class, 'show'])->name('getArea.show');
 
     Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
     Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
