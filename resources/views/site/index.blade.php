@@ -5,6 +5,10 @@
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+
 <style>
 .selected {
     background-color: blue;
@@ -30,82 +34,7 @@
 
 @section('content')
 
-{{-- @if(session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Add') }}</strong>
-	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
-		<span aria_hidden="true">&times;</span>
-	</button>
-</div>
-@endif --}}
-
-
    <body>
-
-      <!-- banner section start -->
-      {{-- <div class="banner_section layout_padding">
-         <div class="container">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-1.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-2.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-arrow-left" aria-hidden="true"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-arrow-right" aria-hidden="true"></i>
-               </a>
-            </div>
-         </div>
-      </div> --}}
-      <!-- banner section end -->
       
       <!-- choose section start -->
 
@@ -289,20 +218,20 @@
       <div class="col-md-4">
          <div class="form-group">
              <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
-             {{-- <div class="cal-icon" style="display: flex; align-items: center;">
-                 <input name="numOfCar" type="text" class="form-control">
-             </div> --}}
-               <div class="the-dropdown-select">
-                  <input type="text" name="search_area" class="form-control the-dropdown-input" id="realtime" onkeyup="filter(this)">
-               </div>
+        
+               <select name="area" class="form-control select @error('area') is-invalid @enderror">
+                  {{-- <option>اختر المحافظة</option> --}}
+                  
+                  @foreach($areas as $area)
+                     <option value="{{$area->id}}">{{$area->area}}</option>
+                  @endforeach 
+               </select>
 
-               <ul class="the-dropdown-list" id="therealitems">
-                  @foreach ($areas as $area)
-                     <li>{{ $area->area }}</li>
-                  @endforeach
-               </ul>
-
-         </div>
+               @error('area')
+                     <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+            </div><br>
+              
      </div>
 
       <div class="col-md-4">
@@ -358,70 +287,6 @@
       <!-- javascript --> 
       <script src="{{URL::asset('site/js/owl.carousel.js')}}"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-
-
-
-      {{-- <script type="text/javascript">
-
-         // function that search the dropdown li
-
-            // function filter(element){
-            //    var value = $(element).val().toLowerCase();
-            //    var text;
-            //    var searchValue;
-            //    var liValue;
-
-            //    $("#therealitems > li").each(function(){
-            //       if($(this).text().toLowerCase().search(value) > -1){
-            //          $(this).show();
-            //          var text = $(this).show();
-            //          if(text.length === 1){
-            //             searchValue = text[0];
-            //          }
-            //       }
-            //       else {
-            //             $(this).hide();
-            //          }
-            //    });
-
-
-            //    $('.the-dropdown-input').on('keypress', function(e){
-            //       if(e.key === 'Enter' || e.keyCode === 13){
-            //          $('.the-dropdown-input').val(searchValue.innerText);
-            //          e.preventDefault();
-            //          $('.the-dropdown-list').slideUp('fast');
-            //       }
-            //    });
-
-            // }
-
-
-         // select li from the dropdown
-
-            // $(document).ready(function(){
-
-            //    $('.the-dropdown-input').on('click', function(){
-            //       $(this).parent().next().slideDown('fast');
-            //    });
-
-            //    $('.the-select-btn').on('click', function(){
-            //       $('.the-dropdown-list').slideUp('fast');
-            //    });
-
-            //    $(document).on('click', function(event){
-            //       if($(event.target).closest(".the-dropdown-input, .the-select-btn").length)
-            //          return ;
-            //       $('.the-dropdown-list').slideUp('fast');
-            //       event.stopPropagation();
-            //    });
-
-            // });
-
-       </script> --}}
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -480,6 +345,13 @@
    flatpickr("input[type=datetime-local]", config);
  </script>
  
+
+
+{{-- -------------------------------------------------------------------------------- --}}
+
+
+
+
 
 
    </body>
