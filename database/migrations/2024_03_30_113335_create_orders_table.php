@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('totalPrice')->nullable();
             $table->date('orderDate')->nullable();
             $table->string('orderTime')->nullable();
+
+            $table->string('note')->nullable();
+            $table->string('status')->default('معلق')->nullable();
+
             $table->timestamps();
             
               //locations_table

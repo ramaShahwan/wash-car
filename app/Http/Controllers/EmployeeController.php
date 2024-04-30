@@ -11,42 +11,43 @@ class EmployeeController extends Controller
 
     public function getAcceptedEmp()
     { 
-         $employees = Employee::where('status','accepted')->orderBy('created_at','Asc')->get();
-         return view('admin.employees.accept',compact('employees'));
+      $employees = Employee::where('status','accepted')->orderBy('created_at','Asc')->get();
+      return view('admin.employees.accept',compact('employees'));
     }
 
     public function getCanceledEmp()
     { 
-         $employees = Employee::where('status','canceled')->orderBy('created_at','Asc')->get();
-         return view('admin.employees.cancel',compact('employees'));
+      $employees = Employee::where('status','canceled')->orderBy('created_at','Asc')->get();
+      return view('admin.employees.cancel',compact('employees'));
     }
+
     public function getPendingEmp()
     { 
-         $employees = Employee::where('status','Pending')->orderBy('created_at','Asc')->get();
-         return view('admin.employees.pend',compact('employees'));
+      $employees = Employee::where('status','Pending')->orderBy('created_at','Asc')->get();
+      return view('admin.employees.pend',compact('employees'));
     }
 
     public function create()
     {
-        return view('site.join');
+      return view('site.join');
     }
     
     public function createForAdmin()
     {
-        return view('admin.employees.add');
+      return view('admin.employees.add');
     }
 
     public function storeForAdmin(  Request $request)
     {
-        $validated = $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'birthDate'=>'required',
-            'Gender'=>'required',
-            'phone'=>'required',
-          //  'aboutYou'=>'required',
-           // 'image'=>'required'
-        ]);
+      $validated = $request->validate([
+        'firstName' => 'required',
+        'lastName' => 'required',
+        'birthDate'=>'required',
+        'Gender'=>'required',
+        'phone'=>'required',
+        //  'aboutYou'=>'required',
+        // 'image'=>'required'
+      ]);
 
         $emp = new Employee(); 
         $emp->firstName = $request->firstName;
@@ -68,7 +69,6 @@ class EmployeeController extends Controller
 
        $emp->image = $newImageName;
        $emp->update();
-       
      }
         session()->flash('Add', 'تم إضافة الموظف بنجاح');
         return redirect()->route('employee.accepted');
@@ -76,15 +76,15 @@ class EmployeeController extends Controller
 
     public function store(  Request $request)
     {
-        $validated = $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'birthDate'=>'required',
-            'Gender'=>'required',
-            'phone'=>'required',
-          //  'aboutYou'=>'required',
-           // 'image'=>'required'
-        ]);
+      $validated = $request->validate([
+        'firstName' => 'required',
+        'lastName' => 'required',
+        'birthDate'=>'required',
+        'Gender'=>'required',
+        'phone'=>'required',
+        //  'aboutYou'=>'required',
+        // 'image'=>'required'
+      ]);
 
         $emp = new Employee(); 
         $emp->firstName = $request->firstName;
@@ -106,10 +106,21 @@ class EmployeeController extends Controller
 
        $emp->image = $newImageName;
        $emp->update();
-       
      }
+
+
+     if (auth()->user()->role == 'admin')
+     {
         session()->flash('Add', 'تم إرسال طلب توظيفك بنجاح');
+        return back(); 
+     }
+
+     else if (auth()->user()->role == 'user')
+     {
+        session()->flash('Add', 'تم إرسال طلب توظيفك سيتم التواصل معك في أقرب وقت');
         return back();
+     }
+
     }
 
     public function edit( $id)
@@ -127,7 +138,7 @@ class EmployeeController extends Controller
             'birthDate'=>'required',
             'Gender'=>'required',
             'phone'=>'required',
-          //  'aboutYou'=>'required',
+           // 'aboutYou'=>'required',
            // 'image'=>'required'
         ]);
   
@@ -154,42 +165,38 @@ class EmployeeController extends Controller
       $newImage->move('site/img/emp/', $newImageName);
   
       // Update the image record with the new image name
-         $emp->image = $newImageName;
-         }
+      $emp->image = $newImageName;
+      }
 
-         $emp->update();
+      $emp->update();
   
-         session()->flash('Edit', 'تم تعديل الموظف بنجاح');
-        //   return back();
-        return redirect()->route('employee.accepted');
-
-  
+      session()->flash('Edit', 'تم تعديل الموظف بنجاح');
+      //   return back();
+      return redirect()->route('employee.accepted');
     }
 
     public function updatePenddingToAccepted($id)
     {
+      $emp = Employee::findOrFail($id);
+      $emp->status = 'accepted';
+      $emp->update();
 
-       $emp = Employee::findOrFail($id);
-       $emp->status = 'accepted';
-       $emp->update();
-
-         session()->flash('Edit', 'تم  قبول الموظف بنجاح');
-          return back();
+      session()->flash('Edit', 'تم  قبول الموظف بنجاح');
+      return back();
     }
 
     public function updatePenddingToCanceled(Request $request,$id)
     {
+      $emp = Employee::findOrFail($id);
+      $emp->status = 'canceled';
+      $emp->note = $request->note;
+      $emp->update();
 
-       $emp = Employee::findOrFail($id);
-       $emp->status = 'canceled';
-       $emp->note = $request->note;
-        $emp->update();
-
-         session()->flash('delete', 'تم  رفض الموظف بنجاح');
-          return back();
+      session()->flash('delete', 'تم  رفض الموظف بنجاح');
+      return back();
     }
 
-    public function destroy( $id)
+    public function destroy($id)
     {
       Employee::findOrFail($id)->delete();
       session()->flash('delete', 'تم حذف الموظف بنجاح');
