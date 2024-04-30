@@ -92,7 +92,7 @@
                                           <label for="inputName" class="control-label">محتوى الصفحة</label>
 
                                         <textarea class="ckeditor form-control @error('content') is-invalid @enderror"
-                                         name="content" id="content" placeholder="أدخل محتوى الصفحة" required></textarea>
+                                         name="content" id="con" placeholder="أدخل محتوى الصفحة" required></textarea>
 
                                           @error('content')
                                               <div class="alert alert-danger">{{ $message }}</div>
@@ -100,7 +100,7 @@
                                         </div>
                                       </div><br>
 
-								  <div class="row">
+							    	<div class="row">
 									<div class="col">
 									  <label for="exampleTextarea">صورة (اختياري)</label>
 									  <input type="file" name="photo" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
@@ -108,7 +108,7 @@
 									</div>
 								  </div><br> 
 
-									</div><br>
+								
 									<div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									</div>
@@ -129,7 +129,7 @@
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script>
 	ClassicEditor
-	.create(document.querySelector('#content'))
+	.create(document.querySelector('#con'))
 	.catch( error=> {
 		console.error(error);
 	});
