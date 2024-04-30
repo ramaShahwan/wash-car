@@ -298,7 +298,7 @@ class OrderController extends Controller
     $searchTerm = $request->input('search_area');
     $request->session()->put('search_area', $searchTerm);
     $areas =  Location::where('area', 'like', '%'.$searchTerm.'%')->orderBy('area', 'Asc');
-    return view('site.order.show', compact('areas'));
+    return view('site.index', compact('areas'));
     }
 
 }

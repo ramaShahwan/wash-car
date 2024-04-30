@@ -5,6 +5,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BeforAfterController;
 use App\Http\Controllers\PayWayController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -112,6 +113,17 @@ Route:: prefix('service')->group(function () {
     Route::get('edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
     Route::post('update/{id}', [ServiceController::class, 'update'])->name('service.update');
     Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
+  });
+
+   //location
+Route:: prefix('location')->group(function () {
+
+    Route::get('show', [LocationController::class, 'index'])->name('location.show');
+    Route::get('add', [LocationController::class, 'create']);
+    Route::post('save', [LocationController::class, 'store'])->name('location.save');
+    Route::get('edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
+    Route::post('update/{id}', [LocationController::class, 'update'])->name('location.update');
+    Route::delete('delete/{id}', [LocationController::class, 'destroy'])->name('location.delete');
   });
 
     //user

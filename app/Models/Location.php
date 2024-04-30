@@ -10,7 +10,7 @@ class Location extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['longitudes', 'Latitudes'];
+    protected $fillable = ['area', 'parentId','street'];
 
     public function order(): BelongsTo
     {
