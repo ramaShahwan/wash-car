@@ -1,5 +1,8 @@
 @extends('site.layouts.master')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 @section('css')
 
 {{-- flatpicker --}}
@@ -51,15 +54,23 @@
 
 @section('content')
 
-@if(session()->has('Add'))
+{{-- @if(session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
 	<strong>{{ session()->get('Add') }}</strong>
 	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
 		<span aria_hidden="true">&times;</span>
 	</button>
 </div>
-@endif
+@endif --}}
 
+@if(session()->has('Add'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{ session()->get('Add') }}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
 
 <body>
 
@@ -206,6 +217,29 @@
     }
     flatpickr("input[type=datetime]", config);
 </script>
+
+
+
+
+    
+<script>
+    document.querySelector('.close').addEventListener('click', function() {
+      fetch('/clear-session', {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }).then(function(response) {
+        if (response.ok) {
+          console.log('Session Cleared Successfully');
+        } else {
+          console.log('Failed to Clear Session');
+        }
+      });
+    });
+    </script>
+    
+
 
 
 </body>

@@ -22,6 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::post('/clear-session', function () {
+    session()->forget('Add');
+    return response()->json(['message' => 'Session Cleared']);
+});
+
+
 Route::get('/', function () {
     return view('site.home');
 });
@@ -49,7 +56,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         return view('admin.index');
     });
 
-    
+
 // Pinned Pages
 Route:: prefix('pages')->group(function () {
 
