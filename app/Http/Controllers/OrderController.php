@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Order_Service;
@@ -290,6 +291,14 @@ class OrderController extends Controller
        $orders->status = 'منجز';
        $orders->update();
 
+    }
+
+    public function searchByArea(Request $request)
+    {
+    $searchTerm = $request->input('search_area');
+    $request->session()->put('search_area', $searchTerm);
+    $areas =  Location::where('area', 'like', '%'.$searchTerm.'%')->orderBy('area', 'Asc');
+    return view('site.order.show', compact('areas'));
     }
 
 }
