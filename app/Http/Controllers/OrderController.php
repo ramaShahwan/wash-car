@@ -24,17 +24,20 @@ class OrderController extends Controller
         else if(auth()->user()->role == "admin") {
 
          $services = Service::all();
-
+         $areas = Location::all();
         return view('admin.site.index',
-        ['services' => $services]);
+        ['services' => $services,
+        'areas' => $areas ]);
 
         }
         else if(auth()->user()->role == "user") {
           
           $services = Service::all();
+         $areas = Location::all();
           
         return view('site.index',
-        ['services' => $services]);
+        ['services' => $services,
+        'areas' => $areas ]);
         }
       
     }
