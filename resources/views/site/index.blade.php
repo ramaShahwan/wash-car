@@ -297,7 +297,9 @@
                </div>
 
                <ul class="the-dropdown-list" id="therealitems">
-                  <li></li>
+                  @foreach ($areas as $area)
+                     <li>{{ $area->area }}</li>
+                  @endforeach
                </ul>
 
          </div>
