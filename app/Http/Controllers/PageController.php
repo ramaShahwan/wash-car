@@ -45,12 +45,13 @@ class PageController extends Controller
        }
 
             $mydata->name  = $request->input('name');
-             $mydata->href      = $request->input('href');
-             $mydata->title    = $request->input('title');
-             $mydata->keyword   = $request->input('keyword');
-             $mydata->content   = $request->input('content');
-             $mydata->save();
-             session()->flash('Add', 'تم إضافة الصفحة بنجاح');
+            $mydata->href      = $request->input('href');
+            $mydata->title    = $request->input('title');
+            $mydata->keyword   = $request->input('keyword');
+            $mydata->content   = $request->input('content');
+            $mydata->save();
+
+            session()->flash('Add', 'تم إضافة الصفحة بنجاح');
             return redirect()->route('page.show');
    }
 

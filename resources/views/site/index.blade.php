@@ -311,7 +311,6 @@
 
 <br><br><br>
 <br><br><br>
-<br><br><br>
 
    <div class="d-flex justify-content-center">
       <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">تثبيت الطلب</button>
@@ -339,6 +338,58 @@
       <!-- javascript --> 
       <script src="{{URL::asset('site/js/owl.carousel.js')}}"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+      <script type="text/javascript">
+
+         // function that search the dropdown li
+
+            function filter(element){
+               var value = $(element).val().toLowerCase();
+               var text;
+               var searchValue;
+               var liValue;
+
+               $("#therealitems > li").each(function(){
+                  if($(this).text().toLowerCase().search(value) > -1){
+                     $(this).show();
+                     var text = $(this).show();
+                     if(text.length === 1){
+                        searchValue = text[0];
+                     }
+                  }
+                  else {
+                        $(this).hide();
+                     }
+               });
+
+
+               $('.the-dropdown-input').on('keypress', function(e){
+                  if(e.key === 'Enter' || e.keyCode === 13){
+                     $('.the-dropdown-input').val(searchValue.innerText);
+                     e.preventDefault();
+                     $('.the-dropdown-list').slideUp('fast');
+                  }
+               });
+
+            }
+
+
+         // select li from the dropdown
+
+            $(document).ready(function(){
+
+               $('.the-dropdown-input').on('click', function(){
+                  $(this).parent().next 
+               })
+
+            });
+
+      </script>
+
+
+
 
 
 

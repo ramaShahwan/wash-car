@@ -41,14 +41,18 @@ class OrderController extends Controller
     public function create()
     {
         $services = Service::all();
+
         if(auth()->user()->role == "admin") {
-       return view('admin.site.index',
-       ['services' => $services]);
+            
+            return view('admin.site.index',
+            ['services' => $services]);
         }
+
         elseif(auth()->user()->role == "user") {
+
             return view('site.index',
             ['services' => $services]);
-             }
+        }
     }
 
 
@@ -114,21 +118,27 @@ class OrderController extends Controller
         {
             foreach($request->service_ids as $service)
             {
-            $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
+                $order_ser = Order::where('user_id',$user->id)->latest()->first()->id;
+
                 Order_Service::create([
                     'order_id'=> $order_ser,
                     'service_id'=> $service,
                 ]);
             }
         }
-        session()->flash('Add', 'تم تثبيت طلبك بنجاح');
+
+        // session()->flash('Add', 'تم تثبيت طلبك بنجاح');
+
         if(auth()->user()->role == "admin")
         {
-        return redirect()->route('admin_ord.summary');
+            // session()->flash('Add', 'تم تثبيت طلبك بنجاح');
+            return redirect()->route('admin_ord.summary');
         }
+
         elseif(auth()->user()->role == "user")
         {
-        return redirect()->route('ord.summary');
+            // session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
+            return redirect()->route('ord.summary');
         }
     }
 
@@ -144,8 +154,10 @@ class OrderController extends Controller
     
     // حساب القيمة الإجمالية لجميع الخدمات في الطلب
     $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
+
     foreach ($allServices as $serviceId) {
         $service = Service::find($serviceId);
+        
         if ($service) {
             $totalPrice += $service->price;
         }
@@ -157,20 +169,22 @@ class OrderController extends Controller
     ]);
 
     if(auth()->user()->role == "admin") {
-    return view('admin.site.summary', [
-        'totalPrice' => $totalPrice,
-        'orderDate' => $date,
-        'orderTime' => $time,
-    ]);
+
+        return view('admin.site.summary', [
+            'totalPrice' => $totalPrice,
+            'orderDate' => $date,
+            'orderTime' => $time,
+        ]);
     }
 
     elseif(auth()->user()->role == "user") {
+
         return view('site.summary', [
             'totalPrice' => $totalPrice,
             'orderDate' => $date,
             'orderTime' => $time,
         ]);
-        }
+    }
   }
 
 
@@ -194,12 +208,18 @@ class OrderController extends Controller
         $order->update([
             'payWay_id' => $pay->id,
         ]);
+
         if(auth()->user()->role == "admin") {
+
+            session()->flash('Add', 'تم تثبيت طلبك بنجاح');
             return view('admin.site.home'); 
-            }
+        }
+
         elseif(auth()->user()->role == "user") {
+            
+            session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
             return view('site.home'); 
-            }
+        }
     }
     
   //functions for admin

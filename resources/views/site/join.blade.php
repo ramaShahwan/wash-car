@@ -5,6 +5,7 @@
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+
     <style>
         .form-group {
 	        margin-bottom: 20px;
@@ -23,23 +24,23 @@
 	        outline: 0 none;
         }
 
-        
-.profile-upload {
-	display: flex;
-}
-.upload-img {
-	margin-right: 10px;
-}
-.upload-img img {
-	border-radius: 4px;
-	height: 40px;
-	width: 40px;
-}
-.upload-input {
-	width: 100%;
-}
 
-.input-container {
+        .profile-upload {
+	        display: flex;
+        }
+        .upload-img {
+	        margin-right: 10px;
+        }
+        .upload-img img {
+	        border-radius: 4px;
+	        height: 40px;
+	        width: 40px;
+        }
+        .upload-input {
+	        width: 100%;
+        }
+
+        .input-container {
             text-align: right;
         }
 
@@ -50,14 +51,15 @@
 
 @section('content')
 
-{{-- @if(session()->has('Add'))
+@if(session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
 	<strong>{{ session()->get('Add') }}</strong>
 	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
 		<span aria_hidden="true">&times;</span>
 	</button>
 </div>
-@endif --}}
+@endif
+
 
 <body>
 

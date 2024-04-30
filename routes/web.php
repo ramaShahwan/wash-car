@@ -49,6 +49,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         return view('admin.index');
     });
 
+    
 // Pinned Pages
 Route:: prefix('pages')->group(function () {
 
@@ -60,6 +61,7 @@ Route:: prefix('pages')->group(function () {
     Route::delete('delete/{id}', [App\Http\Controllers\PageController::class, 'destroy'])->name('page.delete');
 });
 
+
 //payway
 Route:: prefix('pay')->group(function () {
 
@@ -70,6 +72,7 @@ Route:: prefix('pay')->group(function () {
     Route::post('update/{id}', [PayWayController::class, 'update'])->name('pay.update');
     Route::delete('delete/{id}', [PayWayController::class, 'destroy'])->name('pay.delete');
   });
+
 
 //order
 Route:: prefix('order')->group(function () {
@@ -83,6 +86,7 @@ Route:: prefix('order')->group(function () {
     Route::post('updatePenddingToCanceled/{id}', [OrderController::class, 'updatePenddingToCanceled'])->name('ord.updatePenddingToCanceled');
 
   });
+
 
   Route::get('admin_add', [OrderController::class, 'create']);
   Route::post('admin_save_order', [OrderController::class, 'store'])->name('admin_ord.save');
@@ -124,13 +128,11 @@ Route:: prefix('employee')->group(function () {
     Route::post('updatePenddingToAccepted/{id}', [EmployeeController::class, 'updatePenddingToAccepted'])->name('employee.updateAccepted');
     Route::post('updatePenddingToCanceled/{id}', [EmployeeController::class, 'updatePenddingToCanceled'])->name('employee.updateCanceled');
 
-
     Route::get('addForAdmin', [EmployeeController::class, 'createForAdmin']);
     Route::post('saveForAdmin', [EmployeeController::class, 'storeForAdmin'])->name('employee.save');
     Route::get('edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
     Route::post('update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::delete('delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
-
   
   });
 
@@ -169,6 +171,7 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 });
 
 
+
 Route::get('get_img', [BeforAfterController::class, 'show']);
 
 Route::get('/services', function () {
@@ -181,5 +184,8 @@ Route::get('/about_us', function () {
 
 Route::get('add_emp', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
+
+
+
 
 require __DIR__.'/auth.php';

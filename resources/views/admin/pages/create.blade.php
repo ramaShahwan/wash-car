@@ -12,8 +12,6 @@
 <!--Internal  TelephoneInput css-->
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 
-<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
-
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -76,7 +74,7 @@
                                               <div class="alert alert-danger">{{ $message }}</div>
                                           @enderror
                                           </div>
-                                      </div><br>
+                                    </div><br>
 
                                       <div class="row">
                                         <div class="col">
@@ -110,13 +108,11 @@
 									</div>
 								  </div><br> 
 
-								   </div><br>
+								
 									<div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									</div>
 		                           	<br><br>
-
-					
 
 								</form>
 							</div>
@@ -128,6 +124,9 @@
 @endsection
 @section('js')
 
+
+{{-- ckeditor --}}
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script>
 	ClassicEditor
 	.create(document.querySelector('#con'))
@@ -135,17 +134,6 @@
 		console.error(error);
 	});
 </script>
-
-
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
-{{-- <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> --}}
-{{-- <script src="{{url("../public/ckeditor/ckeditor.js")}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script> --}}
-{{-- <script type="text/javascript">
-	$(document).ready(function() {
-		$('.ckeditor').ckeditor();
-	});
-</script> --}}
 
 
 
