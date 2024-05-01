@@ -65,6 +65,16 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        $areaId = $request->location_id;
+
+        if (is_numeric($areaId)) {
+            // إذا كانت القيمة هي id
+            $locationId = $areaId;
+        } else {
+            // إذا كانت القيمة هي اسم
+            $locationId = Location::where('id', $areaId)->value('id');
+
+        }
         $user = auth()->user();
         // $validated = $request->validate([
         //     'typeOfCar' => 'required',
@@ -78,20 +88,6 @@ class OrderController extends Controller
         //     'orderTime'=>'required'
         // ]);
         $order = new Order(); 
-
-        // $order= Order::create([
-        //     'typeOfCar'=>$request->typeOfCar,
-        //     'sizeOfCar'=>$request->sizeOfCar,
-        //     'numOfCar'=>$request->numOfCar,
-        //     'totalPrice'=>$request->totalPrice,
-        //     'orderDate'=>$request->orderDate,
-        //     'orderTime'=>$request->orderTime,
-        //     'status'=>'معلق',
-        //     'note'=>'',
-        //     'location_id'=>$request->location_id,
-        //     'user_id'=>$user->id,
-        //     'payWay_id'=>$request->payWay_id,
-        // ]);
         $order->typeOfCar = $request->typeOfCar;
         $order->sizeOfCar = $request->sizeOfCar;
         $order->numOfCar = $request->numOfCar;
@@ -99,7 +95,7 @@ class OrderController extends Controller
         $order->orderDate = $request->orderDate;
         $order->orderTime = $request->orderTime;
         $order->note = '';
-        $order->location_id = $request->location_id;
+        $order->location_id = $locationId;
         $order->user_id = $user->id;
         $order->payWay_id = $request->payWay_id;
 
