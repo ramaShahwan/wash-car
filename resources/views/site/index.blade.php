@@ -215,24 +215,34 @@
 
    <div class="row">
 
+
+
+
       <div class="col-md-4">
+
+      {{-- <a href=""> --}}
+
          <div class="form-group">
              <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
         
                <select name="area" class="form-control select @error('area') is-invalid @enderror">
-                  {{-- <option>اختر المحافظة</option> --}}
+                  <option>اختر المنطقة</option> 
                   
-                  @foreach($areas as $area)
+                  {{-- <input id="search" name="q" type="text" placeholder="ما الذي تبحث عنه؟" style="padding:7px; border-radius:9px; border: 1px solid #abab;"> --}}
+
+                  @foreach($areas as $area) 
                      <option value="{{$area->id}}">{{$area->area}}</option>
-                  @endforeach 
+                   @endforeach 
                </select>
 
-               @error('area')
+                @error('area')
                      <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
             </div><br>
+      {{-- </a> --}}
               
      </div>
+
 
       <div class="col-md-4">
           <div class="form-group">

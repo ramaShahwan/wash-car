@@ -57,6 +57,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         return view('admin.index');
     });
 
+    Route::get('searchSites/', [Searchajax::class, 'liveAjaxSearch'])->name('live_search.action');
+
 
 // Pinned Pages
 Route:: prefix('pages')->group(function () {
@@ -206,6 +208,15 @@ Route::get('add_emp', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 
+
+
+
+
+
+
+Route::get('/{any}', function() {
+    return redirect('/');
+  })->where('any', '.*');
 
 
 require __DIR__.'/auth.php';
