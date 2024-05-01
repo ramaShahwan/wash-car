@@ -5,27 +5,122 @@
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+     
+<link rel="stylesheet" href="http://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
 
 <style>
-.selected {
+.selected1 {
     background-color: blue;
     color: white;
 }
 
-.selected p {
-    color: white; /* يمكنك تغيير لون الخط هنا */
+.selected1 p {
+    color: white; /*يمكنك تغيير لون الخط هنا*/
 }
 
-.selected h2 {
+.selected1 h2 {
     color: white; /* يمكنك تغيير لون الخط هنا */
 }
 
 .choose_box1:hover h2 {
     color: white;
 }
+
+/* ---------------------------------------------------------------- */
+
+::selection{
+   color: #fff;
+   background: #4285f4;
+}
+.wrapper{
+   width: 370px;
+   margin: 85px auto 0;
+}
+.select-btn{
+   height: 65px;
+   font-size: 22px;
+   justify-content: space-between;
+   padding: 0 20px;
+   border-radius: 7px;
+   background: #fff;
+}
+.select-btn i{
+   font-size: 31px;
+   transition: transform 0.3s linear;
+}
+.content{
+   background: #fff;
+   margin-top: 15px;
+   padding: 20px;
+   border-radius: 7px;
+   display: none;
+}
+.wrapper.active .content{
+   display: block;
+}
+.wrapper.active .select-btn i{
+   transform: rotate(-180deg);
+}
+.content .search{
+   position: relative;
+
+}
+.search input{
+   height: 53px;
+   width: 100%;
+   font-size: 17px;
+   padding: 0 15px 0 43px;
+   outline: none;
+   border: 1px solid #b3b3b3;
+   border-radius: 5px;
+}
+.search i{
+   position: absolute;
+   left: 15px;
+   line-height: 53px;
+   color: #999;
+   font-size: 20px;
+}
+.content .options{
+   margin-top: 10px;
+   max-height: 250px;
+   overflow-y: auto;
+   padding-right: 7px;
+}
+.options li{
+   height: 50px;
+   background: #f2f2f2;
+   border-radius: 5px;
+   padding: 0 13px;
+   font-size: 21px;
+}
+.options li:hover, li.selected{
+   background: #f2f2f2;
+}
+
+.select-btn, .options li{
+   display: flex;
+   cursor: pointer;
+   align-items: center;
+}
+.options::-webkit-scrollbar{
+   width: 7px;
+}
+.options::-webkit-scrollbar-track{
+   background: #f1f1f1;
+   border-radius: 25px;
+}
+.options::-webkit-scrollbar-thumb{
+   background: #ccc;
+   border-radius: 25px;
+}
+
+
+
+
+
 
 </style>
 
@@ -216,32 +311,35 @@
    <div class="row">
 
 
-
-
-      <div class="col-md-4">
-
-      {{-- <a href=""> --}}
-
-         <div class="form-group">
-             <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
-        
-               <select name="area" class="form-control select @error('area') is-invalid @enderror">
-                  <option>اختر المنطقة</option> 
-                  
-                  {{-- <input id="search" name="q" type="text" placeholder="ما الذي تبحث عنه؟" style="padding:7px; border-radius:9px; border: 1px solid #abab;"> --}}
-
-                  @foreach($areas as $area) 
-                     <option value="{{$area->id}}">{{$area->area}}</option>
-                   @endforeach 
-               </select>
-
-                @error('area')
-                     <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-            </div><br>
-      {{-- </a> --}}
-              
+     <div class="wrapper">
+      <div class="select-btn">
+         <span>اختر المنطقة</span>
+         <i class="uil uil-angle-down"></i>
+      </div>
+      <div class="content">
+         <div class="search">
+            <i class="uil uil-search"></i>
+            <input spellcheck="false" type="text" placeholder="search">
+         </div>
+         <ul class="options">
+            {{-- @foreach($areas as $area)
+               <li value="{{$area->id}}" onclick="updateName(this)">{{$area->area}}</li>
+            @endforeach --}}
+         </ul>
+      </div>
      </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       <div class="col-md-4">
@@ -299,12 +397,78 @@
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 
+
+   {{-- search and select from dropdown --}}  
+   <script>
+      const wrapper = document.querySelector(".wrapper"),
+      searchInp = wrapper.querySelector("input"),
+      selectBtn = wrapper.querySelector(".select-btn"),
+      options = wrapper.querySelector(".options");
+
+    //  let areas = ['الجميلية', 'سيف الدولة'];
+
+      let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
+
+      // var areas = @json($areas);
+      
+      function addAreas(selectedArea){
+         options.innerHTML = "";
+         areas.forEach(area => {
+            let isSelected = area == selectedArea ? "selected" : "";
+            let li = `<li value="${area}" name="location_id" onclick="updateName(this)" class="${isSelected}">${area}</li>`;
+            options.insertAdjacentHTML("beforeend", li);
+         });
+      }
+      addAreas();
+
+
+      function updateName(selectedLi){
+         searchInp.value = "";
+         addAreas(selectedLi.innerText);
+         wrapper.classList.remove("active");
+         selectBtn.firstElementChild.innerText = selectedLi.innerText;
+      }
+
+      searchInp.addEventListener("keyup", () => {
+
+         let arr = [];
+         let searchedVal = searchInp.value.toLowerCase();
+         
+         arr = areas.filter(data => {
+            return data.toLowerCase().startsWith(searchedVal);
+         }).map(data => {
+            let isSelected = data == selectBtn.firstElementChild.innerText ? "selected" : "";
+            return `<li onclick="updateName(this)" class="${isSelected}">${data}</li>`;
+
+         }).join("");
+
+         options.innerHTML = arr ? arr : `<p>لايوجد نتيجة مطابقة</p>`;
+         
+      });
+
+      selectBtn.addEventListener("click", () =>
+         wrapper.classList.toggle("active"));
+   </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
          $(document).ready(function() {
          $('.choose_box').click(function() {
-             $('.choose_box').removeClass('selected'); // إزالة الفئة من جميع الديفات
-             $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
+             $('.choose_box').removeClass('selected1'); // إزالة الفئة من جميع الديفات
+             $(this).addClass('selected1'); // إضافة الفئة إلى الديف المختار
      
              var selectedValue = $(this).find('p').text(); // الحصول على القيمة من الديف المختار
      
@@ -318,8 +482,8 @@
 <script>
  $(document).ready(function() {
    $('.choose_box1').click(function() {
-       $('.choose_box1').removeClass('selected'); // إزالة الفئة من جميع الديفات
-       $(this).addClass('selected'); // إضافة الفئة إلى الديف المختار
+       $('.choose_box1').removeClass('selected1'); // إزالة الفئة من جميع الديفات
+       $(this).addClass('selected1'); // إضافة الفئة إلى الديف المختار
 
        var selectedValue = $(this).find('input').val(); // الحصول على القيمة من الديف المختار
 
