@@ -28,11 +28,11 @@ class OrderController extends Controller
         return view('admin.site.index',
         ['services' => $services,
         'areas' => $areas ]);
-
         }
+
         else if(auth()->user()->role == "user") {
           
-          $services = Service::all();
+        $services = Service::all();
          $areas = Location::all();
           
         return view('site.index',
@@ -72,11 +72,13 @@ class OrderController extends Controller
         } else {
             // إذا كانت القيمة هي اسم
             $locationId = Location::where('area', $areaId)->value('id');
-
         }
 
         // dd($request->all());
 
+        }
+        // return dd($locationId);
+        
         $user = auth()->user();
         // $validated = $request->validate([
         //     'typeOfCar' => 'required',
@@ -89,6 +91,7 @@ class OrderController extends Controller
         //     'payWay_id' => 'required',
         //     'orderTime'=>'required'
         // ]);
+        
         $order = new Order(); 
         $order->typeOfCar = $request->typeOfCar;
         $order->sizeOfCar = $request->sizeOfCar;
