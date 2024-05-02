@@ -84,7 +84,7 @@
                                 id="inputName" name="firstName" required>
 
                                 @error('firstName')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">يجب إدخال الإسم</div>
                                 @enderror
                             </div>
                         </div><br>
@@ -96,7 +96,7 @@
                                 id="inputName" name="lastName" required>
 
                                 @error('lastName')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">يجب إدخال النسبة</div>
                                 @enderror
                             </div>
                         </div><br>
@@ -108,7 +108,7 @@
                               id="inputName" name="phone">
 
                             @error('phone')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="alert alert-danger">يجب إدخال رقم الموبايل ويجب أن يكون 10 أرقام</div>
                             @enderror
                             </div>
                         </div><br>
@@ -121,7 +121,7 @@
                                         name="birthDate">
 
                                         @error('birthDate')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger">يجب إدخال تاريخ الولادة</div>
                                         @enderror
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
 								id="inputName" name="aboutYou" rows="3" cols="30"></textarea>
 
 								@error('aboutYou')
-									<div class="alert alert-danger">{{ $message }}</div>
+									<div class="alert alert-danger">يجب إدخال نبذة عنك</div>
 								@enderror
 							</div>
 						</div><br>

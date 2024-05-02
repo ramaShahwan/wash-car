@@ -42,70 +42,6 @@
 
    <body>
 
-      <!-- banner section start -->
-      {{-- <div class="banner_section layout_padding">
-         <div class="container">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-1.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-2.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-arrow-left" aria-hidden="true"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-arrow-right" aria-hidden="true"></i>
-               </a>
-            </div>
-         </div>
-      </div> --}}
-      <!-- banner section end -->
       
       <!-- choose section start -->
 
@@ -149,6 +85,10 @@
                    </div>
                </div>
    <br><br>
+
+   @error('sizeOfCar')
+   <div class="alert alert-danger"> يجب تحديد حجم السيارة</div>
+   @enderror
            </div>
 
 {{-- -------------2------------- --}}
@@ -191,6 +131,8 @@
    </div>
    <br><br>
 
+
+
 </div>
 
 
@@ -214,7 +156,7 @@
    @if($ser->type == 'إضافية')
 
    <div class="col-md-12">
-      <input type="checkbox" name="service_ids[]" value="{{ $ser->id }}"> &nbsp;
+      <input type="checkbox" name="service_ids[]" value="{{ $ser->id }}" > &nbsp;
       <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} : {{ $ser->description }} </p>
       <hr>
    </div>
@@ -248,9 +190,12 @@
               <label style="font-size: 16px; font-weight: bolder; color: black;">التاريخ</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
                   <img src="site/images/calander.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input name="orderDate" type="datetime-local" class="form-control">
+                  <input name="orderDate" type="datetime-local" class="form-control" @error('orderDate') is-invalid @enderror>
               </div>
           </div>
+          @error('orderDate')
+          <div class="alert alert-danger">يجب تحديد تاريخ تقديم الخدمة</div>
+       @enderror
       </div>
 
         <div class="col-md-6">
@@ -258,9 +203,12 @@
               <label style="font-size: 16px; font-weight: bolder; color: black;">الوقت</label>
               <div class="time-icon" style="display: flex; align-items: center;">
                   <img src="site/images/clock.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input name="orderTime" type="datetime" class="form-control">
+                  <input name="orderTime" type="datetime" class="form-control"  @error('orderTime') is-invalid @enderror>
               </div>
           </div>
+          @error('orderTime')
+          <div class="alert alert-danger">يجب تحديد وقت تقديم الخدمة</div>
+       @enderror
       </div>
 
   </div>
@@ -286,21 +234,28 @@
 
    <div class="row">
       <div class="col-md-6">
-          <div class="form-group">
-              <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
-              <div class="cal-icon" style="display: flex; align-items: center;">
-                  <input name="numOfCar" type="text" class="form-control">
-              </div>
-          </div>
-      </div>
+         <div class="form-group">
+             <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
+             <div class="cal-icon" style="display: flex; align-items: center;">
+                 <input name="numOfCar" type="text" class="form-control" @error('numOfCar') is-invalid @enderror>
+             </div>
+             @error('numOfCar')
+                 <div class="alert alert-danger" style="font-size: 14px;">  يجب إدخال رقم السيارة ويجب أن يكون 6 أرقام </div>
+             @enderror
+         </div>
+     </div>
+     
 
         <div class="col-md-6">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
               <div class="time-icon" style="display: flex; align-items: center;">
-                  <input name="typeOfCar" type="text" class="form-control">
+                  <input name="typeOfCar" type="text" class="form-control"  @error('typeOfCar') is-invalid @enderror>
               </div>
           </div>
+          @error('typeOfCar')
+          <div class="alert alert-danger">يجب إدخال نوع السيارة</div>
+       @enderror
       </div>
 
   </div>
