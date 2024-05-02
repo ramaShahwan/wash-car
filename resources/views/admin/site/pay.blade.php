@@ -14,7 +14,7 @@
     }
 
     .choose_section_2 .col-md-4 {
-        margin-bottom: 20px; 
+        margin-bottom: 20px;  /* لترك مسافة بين الأسطر */
     }
 
 </style>    

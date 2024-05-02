@@ -332,8 +332,10 @@
          </ul>
       </div>
      </div>
+
    </div>
 </div>
+
 
 
 
@@ -400,6 +402,8 @@
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 
+{{-- -------------------------------------------------------------------------------- --}}
+
 
    {{-- search and select from dropdown --}}  
    {{-- <script>
@@ -407,6 +411,8 @@
       searchInp = wrapper.querySelector("input"),
       selectBtn = wrapper.querySelector(".select-btn"),
       options = wrapper.querySelector(".options");
+
+     //  let areas = ['الجميلية', 'سيف الدولة'];
 
       let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
       // var areas = @json($areas);
@@ -416,10 +422,15 @@
          areas.forEach(area => {
             let isSelected = area == selectedArea ? "selected" : "";
             let li = `<li value="${area}" name="location_id" onclick="updateName(this)" class="${isSelected}">${area}</li>`;
-            options.insertAdjacentHTML("beforeend", li);
+
+            // let li = `<li value="${area.id}" name="location_id" onclick="updateName(this)" class="${isSelected}">${area.area}</li>`;
+
+          options.insertAdjacentHTML("beforeend", li);
          });
       }
       addAreas();
+
+
 
       function updateName(selectedLi){
          searchInp.value = "";
@@ -427,6 +438,14 @@
          wrapper.classList.remove("active");
          selectBtn.firstElementChild.innerText = selectedLi.innerText;
       }
+
+      // function updateName(selectedLi){
+      //    searchInp.value = selectedLi.value;
+      //    addAreas(selectedLi.innerText);
+      //    wrapper.classList.remove("active");
+      //    selectBtn.firstElementChild.innerText = selectedLi.innerText;
+      // }
+
 
       searchInp.addEventListener("keyup", () => {
 
@@ -449,6 +468,8 @@
          wrapper.classList.toggle("active"));
    </script> --}}
 
+
+   
 {{-- search and select from dropdown --}}
 <script>
   // document.addEventListener("DOMContentLoaded", function() {
@@ -503,12 +524,7 @@
   // });
 </script>
 
-
-
-
- 
-
-
+{{-- -------------------------------------------------------------------------------- --}}
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -543,6 +559,8 @@
 </script>
 
 
+{{-- -------------------------------------------------------------------------------- --}}
+
       
 {{-- flatpicker --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -567,13 +585,6 @@
    flatpickr("input[type=datetime-local]", config);
  </script>
  
-
-
-{{-- -------------------------------------------------------------------------------- --}}
-
-
-
-
 
 
    </body>

@@ -73,7 +73,12 @@ class OrderController extends Controller
             // إذا كانت القيمة هي اسم
             $locationId = Location::where('area', $areaId)->value('id');
         }
+
+        // dd($request->all());
+
+        
         // return dd($locationId);
+
         $user = auth()->user();
         $validated = $request->validate([
             'typeOfCar' => 'required',

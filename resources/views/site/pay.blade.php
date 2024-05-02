@@ -10,13 +10,12 @@
     }
     
     .selected p {
-        color: white; /* يمكنك تغيير لون الخط هنا */
+        color: white;  /* يمكنك تغيير لون الخط هنا */
     }
 
-    /* .selected .btn{
-        background-color: blue;
-        color: white;
-    } */
+    .choose_section_2 .col-md-4 {
+        margin-bottom: 20px;  /* لترك مسافة بين الأسطر */
+    }
 </style>    
 
 @endsection
