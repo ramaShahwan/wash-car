@@ -393,12 +393,39 @@
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
 
    <div class="row">
-      <div class="col-md-6">
+
+      
+<div class="col-md-4">
+   <div class="form-group">
+      <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
+         <div class="wrapper">
+            <div class="select-btn">
+               <span>اختر المنطقة</span>
+               <i class="uil uil-angle-down"></i>
+            </div>
+            <div class="content">
+               <div class="search">
+                  <i class="uil uil-search"></i>
+                  <input spellcheck="false" type="text" placeholder="search">
+               </div>
+               <ul class="options">
+               </ul>
+            </div>
+         </div>
+   </div>
+</div>
+
+
+
+      <div class="col-md-4">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
-                  <input name="numOfCar" type="text" class="form-control">
+                  <input name="numOfCar" type="text" class="form-control @error('numOfCar') is-invalid @enderror">
               </div>
+              @error('numOfCar')
+              <div class="alert alert-danger">يجب إدخال رقم السيارة ويجب أن يكون 6 أرقام</div>
+           @enderror
           </div>
       </div>
 
@@ -406,7 +433,7 @@
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
               <div class="time-icon" style="display: flex; align-items: center;">
-                  <input name="typeOfCar" type="text" class="form-control"  @error('typeOfCar') is-invalid @enderror>
+                  <input name="typeOfCar" type="text" class="form-control @error('typeOfCar') is-invalid @enderror">
               </div>
           </div>
           @error('typeOfCar')
