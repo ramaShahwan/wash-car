@@ -75,9 +75,22 @@
 											@foreach($orders as $order)
 											<tr>
 												<td>{{$i++}}</td>
+												@if($order->user_id)
 												<td>{{ App\Models\User::findOrFail($order->user_id)->name }}</td>
-												<td>{{$order->location_id}}</td>
+												@else
+												<td> </td>
+												@endif
+												@if($order->location_id)
+												<td>{{ App\Models\Location::findOrFail($order->location_id)->area }}</td>
+												@else
+												<td> </td>
+												@endif
+											
+												@if($order->payWay_id)
 												<td>{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}</td>
+												@else
+												<td> </td>
+												@endif
 
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>

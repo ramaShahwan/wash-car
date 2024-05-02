@@ -94,10 +94,9 @@
                             <div class="col">
                                 <label for="inputName" class="control-label" style="font-weight: bold; color: black;">الاسم</label>
                                 <input style="direction: rtl;" type="text" class="form-control @error('firstName') is-invalid @enderror" 
-                                id="inputName" name="firstName" required>
-
+                                id="inputName" name="firstName">
                                 @error('firstName')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">يجب إدخال الإسم</div>
                                 @enderror
                             </div>
                         </div><br>
@@ -106,10 +105,10 @@
                             <div class="col">
                                 <label for="inputName" class="control-label" style="font-weight: bold; color: black;">النسبة</label>
                                 <input style="direction: rtl;" type="text" class="form-control @error('lastName') is-invalid @enderror" 
-                                id="inputName" name="lastName" required>
+                                id="inputName" name="lastName">
 
                                 @error('lastName')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">يجب إدخال النسبة</div>
                                 @enderror
                             </div>
                         </div><br>
@@ -121,7 +120,7 @@
                               id="inputName" name="phone">
 
                             @error('phone')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="alert alert-danger">يجب إدخال رقم الموبايل ويجب أن يكون 10 أرقام</div>
                             @enderror
                             </div>
                         </div><br>
@@ -134,7 +133,7 @@
                                         name="birthDate">
 
                                         @error('birthDate')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger">يجب إدخال تاريخ الولادة</div>
                                         @enderror
                                 </div>
                             </div>
@@ -163,7 +162,7 @@
 								id="inputName" name="aboutYou" rows="3" cols="30"></textarea>
 
 								@error('aboutYou')
-									<div class="alert alert-danger">{{ $message }}</div>
+									<div class="alert alert-danger">يجب إدخال نبذة عنك</div>
 								@enderror
 							</div>
 						</div><br>

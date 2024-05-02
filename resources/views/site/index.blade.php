@@ -278,9 +278,12 @@
               <label style="font-size: 16px; font-weight: bolder; color: black;">التاريخ</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
                   <img src="site/images/calander.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input name="orderDate" type="datetime-local" class="form-control">
+                  <input name="orderDate" type="datetime-local" class="form-control" @error('orderDate') is-invalid @enderror>
               </div>
           </div>
+          @error('orderDate')
+          <div class="alert alert-danger">يجب تحديد تاريخ تقديم الخدمة</div>
+       @enderror
       </div>
 
         <div class="col-md-6">
@@ -288,9 +291,12 @@
               <label style="font-size: 16px; font-weight: bolder; color: black;">الوقت</label>
               <div class="time-icon" style="display: flex; align-items: center;">
                   <img src="site/images/clock.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input name="orderTime" type="datetime" class="form-control">
+                  <input name="orderTime" type="datetime" class="form-control" @error('orderTime') is-invalid @enderror>
               </div>
           </div>
+          @error('orderTime')
+          <div class="alert alert-danger">يجب تحديد وقت تقديم الخدمة</div>
+       @enderror
       </div>
 
   </div>
@@ -340,18 +346,24 @@
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
-                  <input name="numOfCar" type="text" class="form-control">
+                  <input name="numOfCar" type="text" class="form-control" @error('numOfCar') is-invalid @enderror>
               </div>
           </div>
+          @error('numOfCar')
+          <div class="alert alert-danger" style="font-size: 14px;">  يجب إدخال رقم السيارة ويجب أن يكون 6 أرقام </div>
+      @enderror
       </div>
 
         <div class="col-md-4">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
               <div class="time-icon" style="display: flex; align-items: center;">
-                  <input name="typeOfCar" type="text" class="form-control">
+                  <input name="typeOfCar" type="text" class="form-control" @error('typeOfCar') is-invalid @enderror>
               </div>
           </div>
+          @error('typeOfCar')
+          <div class="alert alert-danger">يجب إدخال نوع السيارة</div>
+       @enderror
       </div>
 
 
@@ -470,7 +482,7 @@
          areas.forEach(area => {
             let isSelected = area === selectedArea ? "selected" : "";
             let li =` <li value="${area}" onclick="updateName('${area}')" class="${isSelected}">
-              <input type="hidden" name="location_id" value="${area}" />
+              <input type="hidden" name="location_id" value="${area}">
               ${area}
           </li>`;
 

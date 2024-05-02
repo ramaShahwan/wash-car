@@ -80,18 +80,18 @@ class OrderController extends Controller
         // return dd($locationId);
 
         $user = auth()->user();
-        // $validated = $request->validate([
-        //     'typeOfCar' => 'required',
-        //     'sizeOfCar' => 'required',
-        //     'numOfCar' => 'required',
-        //     'totalPrice' => 'required',
-        //     'orderDate' => 'required',
-        //     'location_id' => 'required',
-        //     'user_id' => 'required',
-        //     'payWay_id' => 'required',
-        //     'orderTime'=>'required'
-        // ]);
-        
+        $validated = $request->validate([
+            'typeOfCar' => 'required',
+            'sizeOfCar' => 'required',
+            'numOfCar' => 'required|max:6|min:6',
+          //  'totalPrice' => 'required',
+            'orderDate' => 'required',
+          //  'location_id' => 'required',
+           // 'user_id' => 'required',
+           // 'payWay_id' => 'required',
+            'orderTime'=>'required'
+        ]);
+
         $order = new Order(); 
         $order->typeOfCar = $request->typeOfCar;
         $order->sizeOfCar = $request->sizeOfCar;
