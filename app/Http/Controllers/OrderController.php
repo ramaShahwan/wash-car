@@ -62,7 +62,6 @@ class OrderController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
         $areaId = $request->location_id;
@@ -72,9 +71,12 @@ class OrderController extends Controller
             $locationId = $areaId;
         } else {
             // إذا كانت القيمة هي اسم
-            $locationId = Location::where('id', $areaId)->value('id');
+            $locationId = Location::where('area', $areaId)->value('id');
 
         }
+
+        // dd($request->all());
+
         $user = auth()->user();
         // $validated = $request->validate([
         //     'typeOfCar' => 'required',
