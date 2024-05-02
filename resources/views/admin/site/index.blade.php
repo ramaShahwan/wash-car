@@ -5,6 +5,9 @@
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+<link rel="stylesheet" href="http://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+
 <style>
 .selected {
     background-color: blue;
@@ -22,6 +25,99 @@
 .choose_box1:hover h2 {
     color: white;
 }
+
+/* ---------------------------------------------------------------- */
+
+.wrapper{
+   padding-top: 0;
+   margin-top: 0;
+   border: none;
+   box-shadow: none;
+}
+
+.select-btn{
+   height: 38px;
+   font-size: 16px;
+   justify-content: space-between;
+   padding: 6px 12px;
+   border-radius: 4px;
+   background-color: #fff;
+   border: 1px solid #ccc;
+   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.select-btn i{
+   font-size: 31px;
+   transition: transform 0.3s linear;
+}
+.content{
+   background: #fff;
+   margin-top: 15px;
+   padding: 20px;
+   border-radius: 7px;
+   display: none;
+}
+.wrapper.active .content{
+   display: block;
+}
+.wrapper.active .select-btn i{
+   transform: rotate(-180deg);
+}
+.content .search{
+   position: relative;
+}
+.search input{
+   height: 30px;
+   width: 100%;
+   font-size: 16px;
+   padding: 0 15px 0 43px;
+   outline: none;
+   border: 1px solid black;
+   border-radius: 5px;
+}
+.search i{
+   position: absolute;
+   left: 15px;
+   line-height: 30px;
+   color: black;
+   font-size: 16px;
+}
+.content .options{
+   margin-top: 10px;
+   max-height: 200px;
+   overflow-y: auto;
+   padding-right: 7px;
+}
+.options li{
+   height: 50px;
+   background: #f2f2f2;
+   border-radius: 5px;
+   padding: 0 13px;
+   font-size: 16px;
+   color: black;
+}
+.options li:hover, li.selected{
+   background: #f2f2f2;
+}
+
+.select-btn, .options li{
+   display: flex;
+   cursor: pointer;
+   align-items: center;
+}
+.options::-webkit-scrollbar{
+   width: 7px;
+}
+.options::-webkit-scrollbar-track{
+   background: #f1f1f1;
+   border-radius: 25px;
+}
+.options::-webkit-scrollbar-thumb{
+   background: #ccc;
+   border-radius: 25px;
+}
+
 
 </style>
 
@@ -41,71 +137,6 @@
 
 
    <body>
-
-      <!-- banner section start -->
-      {{-- <div class="banner_section layout_padding">
-         <div class="container">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-1.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-2.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-arrow-left" aria-hidden="true"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-arrow-right" aria-hidden="true"></i>
-               </a>
-            </div>
-         </div>
-      </div> --}}
-      <!-- banner section end -->
       
       <!-- choose section start -->
 
@@ -285,7 +316,28 @@
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
 
    <div class="row">
-      <div class="col-md-6">
+
+      <div class="col-md-4">
+         <div class="form-group">
+            <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
+               <div class="wrapper">
+                  <div class="select-btn">
+                     <span>اختر المنطقة</span>
+                     <i class="uil uil-angle-down"></i>
+                  </div>
+                  <div class="content">
+                     <div class="search">
+                        <i class="uil uil-search"></i>
+                        <input spellcheck="false" type="text" placeholder="search">
+                     </div>
+                     <ul class="options">
+                     </ul>
+                  </div>
+               </div>
+         </div>
+      </div>
+
+      <div class="col-md-4">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">رقم السيارة</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
@@ -294,7 +346,7 @@
           </div>
       </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
               <div class="time-icon" style="display: flex; align-items: center;">
@@ -303,19 +355,12 @@
           </div>
       </div>
 
+      <button type="submit" class="btn btn-primary" style="background-color: #0c426e; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>
+
   </div>
 
    <br><br>
 </div>
-
-
-<br><br><br>
-<br><br><br>
-<br><br><br>
-
-   <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">تثبيت الطلب</button>
-   </div>
 
    <br><br><br>
 
@@ -340,6 +385,66 @@
       <script src="{{URL::asset('site/js/owl.carousel.js')}}"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
+
+{{-- -------------------------------------------------------------------------------- --}}
+
+
+{{-- search and select from dropdown --}}
+<script>
+   // document.addEventListener("DOMContentLoaded", function() {
+       const wrapper = document.querySelector(".wrapper");
+       const searchInp = wrapper.querySelector("input");
+       const selectBtn = wrapper.querySelector(".select-btn");
+       const options = wrapper.querySelector(".options");
+ 
+       let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
+ 
+       function addAreas(selectedArea = null) {
+          options.innerHTML = "";
+          areas.forEach(area => {
+             let isSelected = area === selectedArea ? "selected" : "";
+             let li =` <li value="${area}" onclick="updateName('${area}')" class="${isSelected}">
+               <input type="hidden" name="location_id" value="${area}" />
+               ${area}
+           </li>`;
+ 
+             // let li = `<li value="${area}"  onclick="updateName('${area}')" class="${isSelected}"><input type="hidden" name="location_id"></input>${area}</li>`;
+             options.insertAdjacentHTML("beforeend", li);
+          });
+       }
+       addAreas();
+ 
+       function updateName(selectedArea) {
+          searchInp.value = "";
+          selectBtn.firstElementChild.innerText = selectedArea;
+          // إضافة التأشير على العنصر المحدد
+          options.querySelectorAll('li').forEach(li => {
+             li.classList.remove('selected');
+          });
+          event.target.classList.add('selected');
+          wrapper.classList.remove("active");
+       }
+ 
+       searchInp.addEventListener("keyup", () => {
+          let arr = [];
+          let searchedVal = searchInp.value.trim().toLowerCase();
+ 
+          arr = areas.filter(data => {
+             return data.toLowerCase().startsWith(searchedVal);
+          }).map(data => {
+             let isSelected = data === selectBtn.firstElementChild.innerText ? "selected" : "";
+             return `<li value="${data}"  onclick="updateName('${data}')" class="${isSelected}"><input type="hidden" name="location_id">${data}</li>`;
+          }).join("");
+ 
+          options.innerHTML = arr ? arr : `<p>لايوجد نتيجة مطابقة</p>`;
+       });
+ 
+       selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
+   // });
+ </script>
+
+
+{{-- -------------------------------------------------------------------------------- --}}
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -373,6 +478,8 @@
 });
 </script>
 
+
+{{-- -------------------------------------------------------------------------------- --}}
 
       
 {{-- flatpicker --}}

@@ -5,8 +5,6 @@
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-
-     
 <link rel="stylesheet" href="http://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
 
@@ -30,23 +28,25 @@
 
 /* ---------------------------------------------------------------- */
 
-/* ::selection{
-   color: #fff;
-   background: #4285f4;
-} */
-/* .wrapper{ */
-   /* width: 330px; */
-   /* margin: 85px auto 0; */
-/* } */
+.wrapper{
+   padding-top: 0;
+   margin-top: 0;
+   border: none;
+   box-shadow: none;
+}
 
 .select-btn{
-   height: 65px;
+   height: 38px;
    font-size: 16px;
    justify-content: space-between;
-   padding: 0 20px;
-   border-radius: 7px;
-   background: #fff;
+   padding: 6px 12px;
+   border-radius: 4px;
+   background-color: #fff;
+   border: 1px solid #ccc;
+   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
+
 .select-btn i{
    font-size: 31px;
    transition: transform 0.3s linear;
@@ -66,27 +66,26 @@
 }
 .content .search{
    position: relative;
-
 }
 .search input{
-   height: 53px;
+   height: 30px;
    width: 100%;
    font-size: 16px;
    padding: 0 15px 0 43px;
    outline: none;
-   /* border: 1px solid #b3b3b3; */
+   border: 1px solid black;
    border-radius: 5px;
 }
 .search i{
    position: absolute;
    left: 15px;
-   line-height: 53px;
+   line-height: 30px;
    color: black;
-   font-size: 20px;
+   font-size: 16px;
 }
 .content .options{
    margin-top: 10px;
-   max-height: 250px;
+   max-height: 200px;
    overflow-y: auto;
    padding-right: 7px;
 }
@@ -119,17 +118,22 @@
    border-radius: 25px;
 }
 
-
-
-
-
-
 </style>
 
 @endsection
 
 
 @section('content')
+
+@if(session()->has('Add'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+	<strong>{{ session()->get('Add') }}</strong>
+	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
+		<span aria_hidden="true">&times;</span>
+	</button>
+</div>
+@endif
+
 
    <body>
       
@@ -309,31 +313,28 @@
 
 
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
+   
    <div class="row">
-      <div class="col-md-4">
-         <div class="form-group">
-     <div class="wrapper">
-      <div class="select-btn">
-         <span>اختر المنطقة</span>
-         <i class="uil uil-angle-down"></i>
-      </div>
-      <div class="content">
-         <div class="search">
-            <i class="uil uil-search"></i>
-            <input spellcheck="false" type="text" placeholder="search">
-         </div>
-         <ul class="options">
-         </ul>
-      </div>
-     </div>
 
+<div class="col-md-4">
+   <div class="form-group">
+      <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
+         <div class="wrapper">
+            <div class="select-btn">
+               <span>اختر المنطقة</span>
+               <i class="uil uil-angle-down"></i>
+            </div>
+            <div class="content">
+               <div class="search">
+                  <i class="uil uil-search"></i>
+                  <input spellcheck="false" type="text" placeholder="search">
+               </div>
+               <ul class="options">
+               </ul>
+            </div>
+         </div>
    </div>
 </div>
-
-
-
-
-
 
       <div class="col-md-4">
           <div class="form-group">
@@ -352,19 +353,15 @@
               </div>
           </div>
       </div>
-<li>
+
+
+      <button type="submit" class="btn btn-primary" style="background-color: #0c426e; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>
+
+
   </div>
 
    <br><br>
 </div>
-
-
-<br><br><br>
-<br><br><br>
-
-   <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">تثبيت الطلب</button>
-   </div>
 
    <br><br><br>
 
