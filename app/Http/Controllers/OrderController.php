@@ -76,9 +76,9 @@ class OrderController extends Controller
 
         // dd($request->all());
 
-        }
-        // return dd($locationId);
         
+        // return dd($locationId);
+
         $user = auth()->user();
         // $validated = $request->validate([
         //     'typeOfCar' => 'required',
