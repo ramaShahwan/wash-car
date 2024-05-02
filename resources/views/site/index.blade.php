@@ -30,17 +30,18 @@
 
 /* ---------------------------------------------------------------- */
 
-::selection{
+/* ::selection{
    color: #fff;
    background: #4285f4;
-}
-.wrapper{
-   width: 370px;
-   margin: 85px auto 0;
-}
+} */
+/* .wrapper{ */
+   /* width: 330px; */
+   /* margin: 85px auto 0; */
+/* } */
+
 .select-btn{
    height: 65px;
-   font-size: 22px;
+   font-size: 16px;
    justify-content: space-between;
    padding: 0 20px;
    border-radius: 7px;
@@ -70,17 +71,17 @@
 .search input{
    height: 53px;
    width: 100%;
-   font-size: 17px;
+   font-size: 16px;
    padding: 0 15px 0 43px;
    outline: none;
-   border: 1px solid #b3b3b3;
+   /* border: 1px solid #b3b3b3; */
    border-radius: 5px;
 }
 .search i{
    position: absolute;
    left: 15px;
    line-height: 53px;
-   color: #999;
+   color: black;
    font-size: 20px;
 }
 .content .options{
@@ -94,7 +95,8 @@
    background: #f2f2f2;
    border-radius: 5px;
    padding: 0 13px;
-   font-size: 21px;
+   font-size: 16px;
+   color: black;
 }
 .options li:hover, li.selected{
    background: #f2f2f2;
@@ -310,6 +312,8 @@
 
    <div class="row">
 
+      <div class="col-md-4">
+         <div class="form-group">
 
      <div class="wrapper">
       <div class="select-btn">
@@ -328,6 +332,8 @@
          </ul>
       </div>
      </div>
+   </div>
+</div>
 
 
 
@@ -438,7 +444,7 @@
             return data.toLowerCase().startsWith(searchedVal);
          }).map(data => {
             let isSelected = data == selectBtn.firstElementChild.innerText ? "selected" : "";
-            return `<li onclick="updateName(this)" class="${isSelected}">${data}</li>`;
+            return `<li value="${area}" name="location_id" onclick="updateName(this)" class="${isSelected}">${data}</li>`;
 
          }).join("");
 
@@ -449,11 +455,6 @@
       selectBtn.addEventListener("click", () =>
          wrapper.classList.toggle("active"));
    </script>
-
-
-
-
-
 
 
 

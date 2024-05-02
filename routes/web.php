@@ -215,9 +215,9 @@ Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 
 
-Route::get('/{any}', function() {
-    return redirect('/');
-  })->where('any', '.*');
+// Route::get('/{any}', function() {
+//     return redirect('/');
+//   })->where('any', '.*');
 
 
 require __DIR__.'/auth.php';
