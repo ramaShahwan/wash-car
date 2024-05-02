@@ -309,12 +309,9 @@
 
 
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
-
    <div class="row">
-
       <div class="col-md-4">
          <div class="form-group">
-
      <div class="wrapper">
       <div class="select-btn">
          <span>اختر المنطقة</span>
@@ -326,23 +323,11 @@
             <input spellcheck="false" type="text" placeholder="search">
          </div>
          <ul class="options">
-            {{-- @foreach($areas as $area)
-               <li value="{{$area->id}}" onclick="updateName(this)">{{$area->area}}</li>
-            @endforeach --}}
          </ul>
       </div>
      </div>
    </div>
 </div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -365,7 +350,7 @@
               </div>
           </div>
       </div>
-
+<li>
   </div>
 
    <br><br>
@@ -405,16 +390,13 @@
 
 
    {{-- search and select from dropdown --}}  
-   <script>
+   {{-- <script>
       const wrapper = document.querySelector(".wrapper"),
       searchInp = wrapper.querySelector("input"),
       selectBtn = wrapper.querySelector(".select-btn"),
       options = wrapper.querySelector(".options");
 
-    //  let areas = ['الجميلية', 'سيف الدولة'];
-
       let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
-
       // var areas = @json($areas);
       
       function addAreas(selectedArea){
@@ -426,7 +408,6 @@
          });
       }
       addAreas();
-
 
       function updateName(selectedLi){
          searchInp.value = "";
@@ -454,12 +435,66 @@
 
       selectBtn.addEventListener("click", () =>
          wrapper.classList.toggle("active"));
-   </script>
+   </script> --}}
+
+{{-- search and select from dropdown --}}
+<script>
+  // document.addEventListener("DOMContentLoaded", function() {
+      const wrapper = document.querySelector(".wrapper");
+      const searchInp = wrapper.querySelector("input");
+      const selectBtn = wrapper.querySelector(".select-btn");
+      const options = wrapper.querySelector(".options");
+
+      let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
+
+      function addAreas(selectedArea = null) {
+         options.innerHTML = "";
+         areas.forEach(area => {
+            let isSelected = area === selectedArea ? "selected" : "";
+            let li =` <li value="${area}" onclick="updateName('${area}')" class="${isSelected}">
+              <input type="hidden" name="location_id" value="${area}" />
+              ${area}
+          </li>`;
+
+            // let li = `<li value="${area}"  onclick="updateName('${area}')" class="${isSelected}"><input type="hidden" name="location_id"></input>${area}</li>`;
+            options.insertAdjacentHTML("beforeend", li);
+         });
+      }
+      addAreas();
+
+      function updateName(selectedArea) {
+         searchInp.value = "";
+         selectBtn.firstElementChild.innerText = selectedArea;
+         // إضافة التأشير على العنصر المحدد
+         options.querySelectorAll('li').forEach(li => {
+            li.classList.remove('selected');
+         });
+         event.target.classList.add('selected');
+         wrapper.classList.remove("active");
+      }
+
+      searchInp.addEventListener("keyup", () => {
+         let arr = [];
+         let searchedVal = searchInp.value.trim().toLowerCase();
+
+         arr = areas.filter(data => {
+            return data.toLowerCase().startsWith(searchedVal);
+         }).map(data => {
+            let isSelected = data === selectBtn.firstElementChild.innerText ? "selected" : "";
+            return `<li value="${data}"  onclick="updateName('${data}')" class="${isSelected}"><input type="hidden" name="location_id">${data}</li>`;
+         }).join("");
+
+         options.innerHTML = arr ? arr : `<p>لايوجد نتيجة مطابقة</p>`;
+      });
+
+      selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
+  // });
+</script>
 
 
 
 
-
+ 
 
 
 
