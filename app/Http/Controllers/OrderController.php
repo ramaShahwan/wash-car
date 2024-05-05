@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Service;
 use App\Models\Order_Service;
 use App\Models\PayWay;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -25,19 +26,26 @@ class OrderController extends Controller
 
          $services = Service::all();
          $areas = Location::all();
+         $types = Type::all();
+
         return view('admin.site.index',
         ['services' => $services,
-        'areas' => $areas ]);
+        'areas' => $areas,
+        'types' => $types
+       ]);
         }
 
         else if(auth()->user()->role == "user") {
           
         $services = Service::all();
          $areas = Location::all();
+         $types = Type::all();
           
         return view('site.index',
         ['services' => $services,
-        'areas' => $areas ]);
+        'areas' => $areas,
+        'types' => $types
+      ]);
         }
       
     }
@@ -46,18 +54,21 @@ class OrderController extends Controller
     {
         $services = Service::all();
         $areas = Location::all();
+        $types = Type::all();
 
         if(auth()->user()->role == "admin") {
             
             return view('admin.site.index',
             ['services' => $services,
-            'areas' => $areas ]);}
+            'areas' => $areas,
+            'types' => $types ]);}
 
         elseif(auth()->user()->role == "user") {
 
             return view('site.index',
             ['services' => $services,
-            'areas' => $areas ]);
+            'areas' => $areas,
+            'types' => $types ]);
         }
     }
 
@@ -219,14 +230,14 @@ class OrderController extends Controller
         if(auth()->user()->role == "admin") {
 
             session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-            return redirect()->route('home'); 
+            return redirect('/'); 
         }
 
         elseif(auth()->user()->role == "user") {
             
             session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
             // return view('site.home'); 
-            return redirect()->route('home'); 
+            return redirect('/'); 
         }
     }
     

@@ -26,8 +26,6 @@ class UserController extends Controller
             'phone' => 'required|unique:users|max:10' ,
             'password' => 'required',
             'role' => 'required',
-
-
         ]);
 
         $user= User::create([
@@ -43,6 +41,32 @@ class UserController extends Controller
 
     }
 
+    public function edit( $id)
+    {
+      $user = User::findOrFail($id);
+      return view('admin.user.edit',compact('user'));
+    }
+   
+     
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'phone' => 'required|unique:users|max:10' ,
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+      $user = User::findOrFail($id);
+  
+      $user->update([
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'password'=>$request->password,
+            'role'=>$request->role,
+      ]);
+      session()->flash('Edit', 'تم تعديل المستخدم بنجاح');
+       return redirect()->route('user.show');
+    }
 
     public function destroy( $id)
     {

@@ -148,6 +148,8 @@ Route:: prefix('user')->group(function () {
     Route::get('show', [UserController::class, 'index'])->name('user.show');
     Route::get('add', [UserController::class, 'create']);
     Route::post('save', [UserController::class, 'store'])->name('user.save');
+    Route::get('edit/{id}', [PayWayController::class, 'edit'])->name('user.edit');
+    Route::post('update/{id}', [PayWayController::class, 'update'])->name('user.update');
     Route::delete('delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
   });
 
@@ -206,6 +208,13 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     
 });
 
+// employee Routes
+Route::middleware(['auth', 'verified', 'employee'])->group(function () {
+
+
+
+
+});
 
 
 Route::get('get_img', [BeforAfterController::class, 'show']);
