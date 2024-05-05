@@ -59,7 +59,7 @@
 										</div>
 									</div><br>
 								
-									<div class="row">
+									{{-- <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">البريد الإلكتروني</label>
 											<input type="hidden" name="email" value="{{ $user->email }}">
@@ -70,7 +70,7 @@
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
-									</div><br>
+									</div><br> --}}
 
 									<div class="row">
 										<div class="col">
@@ -96,7 +96,7 @@
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
-									</div><br>
+									</div>
 									
                                     <div class="form-group">
 										<label>نوع المستخدم</label>

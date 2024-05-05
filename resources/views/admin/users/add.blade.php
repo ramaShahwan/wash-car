@@ -55,7 +55,7 @@
 										</div>
 									</div><br>
 
-									<div class="row">
+									{{-- <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">البريد الإلكتروني</label>
 											<input type="email" class="form-control @error('email') is-invalid @enderror" 
@@ -65,7 +65,7 @@
 												<div class="alert alert-danger">{{ $message }}</div>
 											@enderror
 										</div>
-									</div><br>
+									</div><br> --}}
 		
                                     <div class="row">
 										<div class="col">
