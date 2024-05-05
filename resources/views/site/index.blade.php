@@ -354,7 +354,7 @@
       @enderror
       </div>
 
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
               <div class="time-icon" style="display: flex; align-items: center;">
@@ -364,7 +364,23 @@
           @error('typeOfCar')
           <div class="alert alert-danger">يجب إدخال نوع السيارة</div>
        @enderror
-      </div>
+      </div> --}}
+
+      
+      <div class="col-md-4">
+         <div class="form-group">
+          <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
+            <select name="typeOfCar" class="form-control select @error('typeOfCar') is-invalid @enderror" id="typeOfCar"> 
+             <option value="لايوجد">اختر نوع السيارة</option>
+             @foreach($types as $type)
+             <option value="{{$type->name}}">{{$type->name}}</option>
+             @endforeach 
+          </select>
+          @error('typeOfCar')
+          <div class="alert alert-danger">يجب إدخال نوع السيارة</div>
+       @enderror
+       </div>
+    </div><br>
 
 
       <button type="submit" class="btn btn-primary" style="background-color: #0c426e; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>

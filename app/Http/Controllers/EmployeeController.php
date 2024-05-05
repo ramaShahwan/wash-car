@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 
@@ -29,12 +30,14 @@ class EmployeeController extends Controller
 
     public function create()
     {
-      return view('site.join');
+      $areas = Location::all();
+      return view('site.join',compact('areas'));
     }
     
     public function createForAdmin()
     {
-      return view('admin.employees.add');
+      $areas = Location::all();
+      return view('admin.employees.add',compact('areas'));
     }
 
     public function storeForAdmin(  Request $request)
@@ -45,6 +48,8 @@ class EmployeeController extends Controller
         'birthDate'=>'required',
         'Gender'=>'required',
         'phone'=>'required',
+        'area'=>'required',
+
         //  'aboutYou'=>'required',
         // 'image'=>'required'
       ]);
@@ -56,7 +61,9 @@ class EmployeeController extends Controller
         $emp->Gender  = $request->Gender;
         $emp->phone = $request->phone;
         $emp->aboutYou  = $request->aboutYou;
+        $emp->area  = $request->area;
         $emp->status = 'accepted';
+        $emp->role = 'employee';
         $emp->note  = $request->note;
         $emp->save();
 
@@ -82,6 +89,7 @@ class EmployeeController extends Controller
         'birthDate'=>'required',
         'Gender'=>'required',
         'phone'=>'required',
+        'area'=>'required',
         //  'aboutYou'=>'required',
         // 'image'=>'required'
       ]);
@@ -93,7 +101,9 @@ class EmployeeController extends Controller
         $emp->Gender  = $request->Gender;
         $emp->phone = $request->phone;
         $emp->aboutYou  = $request->aboutYou;
+        $emp->area  = $request->area;
         $emp->status = 'Pending';
+        $emp->role = 'employee';
         $emp->note  = $request->note;
         $emp->save();
 
@@ -126,7 +136,8 @@ class EmployeeController extends Controller
     public function edit( $id)
     {
      $emp = Employee::findOrFail($id);
-     return view('admin.employees.edit',compact('emp'));
+     $areas = Location::all();
+     return view('admin.employees.edit',compact('emp','areas'));
     }
 
 
@@ -138,6 +149,7 @@ class EmployeeController extends Controller
             'birthDate'=>'required',
             'Gender'=>'required',
             'phone'=>'required',
+            'area'=>'required',
            // 'aboutYou'=>'required',
            // 'image'=>'required'
         ]);
@@ -150,7 +162,9 @@ class EmployeeController extends Controller
        $emp->Gender  = $request->Gender;
        $emp->phone = $request->phone;
        $emp->aboutYou  = $request->aboutYou;
+       $emp->area  = $request->area;
        $emp->status = 'accepted';
+       $emp->role = 'employee';
        $emp->note  = $request->note;
   
      // update newImage
