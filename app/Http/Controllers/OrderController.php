@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Order;
 use App\Models\Service;
@@ -319,6 +320,27 @@ class OrderController extends Controller
     return view('site.index', compact('areas'));
     }
 
+    public function chooseEmp($orderId)
+    {
+        $order = Order::where('id',$orderId)->get();
+        $orderArea = $order->area;
+        $employees = Employee::where('area',$orderArea)->get();
+      return view('admin.orders.emp_area',compact('employees,orderId'));
+    }
+
+
+    
+    public function seedOrderToEmp(Request $request,$orderId)
+    {
+        $empId = $request->id;
+        $order = Order::findOrFail($orderId);
+       $order->employee_id = $empId;
+       $order->status = 'قيد الإنجاز';
+       $order->update();
+
+        session()->flash('Edit', 'تم  قبول الطلب بنجاح');
+        return redirect()->route('ord.pend');
+    }
 }
 
 

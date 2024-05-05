@@ -31,6 +31,8 @@ return new class extends Migration
              $table->foreignId('user_id')->nullable();
              //payWays_table
               $table->foreignId('payWay_id')->nullable();
+              //Employees_table
+             $table->foreignId('employee_id')->nullable();
         
         });
 
