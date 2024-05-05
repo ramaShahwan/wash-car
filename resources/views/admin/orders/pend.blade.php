@@ -66,7 +66,9 @@
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
 
-												<th class="wd-15p border-bottom-0">قبول</th>
+												{{-- <th class="wd-15p border-bottom-0">قبول</th> --}}
+
+												<th class="wd-15p border-bottom-0">اختر الموظف</th>
 												<th class="wd-15p border-bottom-0">رفض</th>
 											</tr>
 										</thead>
@@ -99,13 +101,15 @@
 												<td>{{$order->orderDate}}</td>
 												<td>{{$order->orderTime}}</td>
 												
-												<td>
+												{{-- <td>
 													<form action="{{ route('ord.updatePenddingToWaiting', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 														@csrf
 														@method('POST')
 														<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
 													</form>
-												</td>
+												</td> --}}
+
+												<td><a href="{{ route('ord.chooseEmp', $order->id ) }}" class="btn btn-sm btn-success" title="اختر الموظف"><i class="fas fa-user"></i></a></td>
 
 												<td>
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"
