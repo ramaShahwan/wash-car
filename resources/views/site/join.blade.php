@@ -156,7 +156,7 @@
                         </div><br>
                         
                         <div class="form-group">
-                            <label>المنطقة</label>
+                            <label>المنطقة التي ترغب في العمل ضمنها</label>
                             <select name="area" class="form-control select @error('area') is-invalid @enderror"> 
                                 <option value="لايوجد">اختر المنطقة</option>
                                 
@@ -167,7 +167,7 @@
                             </select>
 
                             @error('area')
-                                <div class="alert alert-danger">يجب إدخال المنطقة</div>
+                                <div class="alert alert-danger">يجب اختيار المنطقة</div>
                             @enderror
                         </div><br>
 

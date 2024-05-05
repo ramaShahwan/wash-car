@@ -16,6 +16,9 @@
 							<h4 class="content-title mb-0 my-auto">صور أعمالنا</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قبل وبعد التنظيف</span>
 						</div>
 					</div>
+					<div class="d-flex my-xl-auto right-content">
+						<a href="{{ url('/beforAfter/add') }}" type="button" class="btn btn-primary" style="color: white">إضافة صورة</a>
+					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection

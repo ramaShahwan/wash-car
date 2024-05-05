@@ -16,6 +16,9 @@
 							<h4 class="content-title mb-0 my-auto">الأحياء</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ جميع الأحياء</span>
 						</div>
 					</div>
+					<div class="d-flex my-xl-auto right-content">
+						<a href="{{ url('/location/add') }}" type="button" class="btn btn-primary" style="color: white">إضافة حي</a>
+					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection

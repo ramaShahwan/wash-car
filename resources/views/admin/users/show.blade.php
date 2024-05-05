@@ -16,6 +16,9 @@
 							<h4 class="content-title mb-0 my-auto">المستخدمون</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ جميع المستخدمون</span>
 						</div>
 					</div>
+					<div class="d-flex my-xl-auto right-content">
+						<a href="{{ url('/user/add') }}" type="button" class="btn btn-primary" style="color: white">إضافة مستخدم</a>
+					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection

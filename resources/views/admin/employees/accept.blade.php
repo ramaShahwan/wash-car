@@ -16,6 +16,9 @@
 							<h4 class="content-title mb-0 my-auto">الموظفون</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الموظفون المقبولون</span>
 						</div>
 					</div>
+					<div class="d-flex my-xl-auto right-content">
+						<a href="{{ url('/employee/addForAdmin') }}" type="button" class="btn btn-primary" style="color: white">إضافة موظف</a>
+					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection

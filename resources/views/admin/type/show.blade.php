@@ -16,6 +16,9 @@
 							<h4 class="content-title mb-0 my-auto">أنواع السيارات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ جميع أنواع السيارات</span>
 						</div>
 					</div>
+					<div class="d-flex my-xl-auto right-content">
+						<a href="{{ url('/type/add') }}" type="button" class="btn btn-primary" style="color: white">إضافة نوع سيارة</a>
+					</div>
 				</div>
 				<!-- breadcrumb -->
 @endsection
