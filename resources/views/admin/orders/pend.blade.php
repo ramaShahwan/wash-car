@@ -109,7 +109,13 @@
 													</form>
 												</td> --}}
 
-												<td><a href="{{ route('ord.chooseEmp', $order->id ) }}" class="btn btn-sm btn-success" title="اختر الموظف"><i class="fas fa-user"></i></a></td>
+												<td>
+													<form action="{{ route('ord.chooseEmp', $order->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('POST')
+														<button class="btn btn-sm btn-success" title="اختر الموظف"><i class="fas fa-user"></i></button>
+													</form>
+												</td>
 
 												<td>
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"

@@ -322,10 +322,10 @@ class OrderController extends Controller
 
     public function chooseEmp($orderId)
     {
-        $order = Order::where('id',$orderId)->get();
-        $orderArea = $order->area;
-        $employees = Employee::where('area',$orderArea)->get();
-      return view('admin.orders.emp_area',compact('employees,orderId'));
+        $order = Order::where('id',$orderId)->get('area');
+        // $orderArea = $order->area;
+        $employees = Employee::where('area',$order)->get();
+      return view('admin.orders.emp_area',compact('employees', 'orderId'));
     }
 
 

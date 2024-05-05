@@ -79,7 +79,7 @@
 								                @endif
 
 												<td>
-													<a class="btn btn-sm btn-success" href="" title="اختر"> اختر </a>
+													<a class="btn btn-sm btn-success" href="{{ route('ord.seedOrderToEmp', $order->id ) }}" title="اختر"> اختر </a>
 												</td>
 											</tr>
 											@endforeach
