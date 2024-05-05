@@ -328,8 +328,6 @@ class OrderController extends Controller
       return view('admin.orders.emp_area',compact('employees,orderId'));
     }
 
-
-    
     public function seedOrderToEmp(Request $request,$orderId)
     {
         $empId = $request->id;

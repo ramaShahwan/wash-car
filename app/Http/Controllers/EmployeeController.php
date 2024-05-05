@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Location;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 
@@ -216,4 +217,15 @@ class EmployeeController extends Controller
       session()->flash('delete', 'تم حذف الموظف بنجاح');
       return back();
     }
+
+    public function GetMyOrders()
+    {
+      
+     if (auth()->user()->role == 'admin')
+     {
+      $id = auth()->user()->id;
+      $orders = Order::where('employee_id',$id);
+      return view('');
+    }
+  }
 }
