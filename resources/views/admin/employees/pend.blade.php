@@ -60,6 +60,7 @@
 												<th class="wd-15p border-bottom-0">تاريخ الولادة</th>
 												<th class="wd-15p border-bottom-0">الجنس</th>
 												<th class="wd-15p border-bottom-0">رقم الموبايل</th>
+												<th class="wd-15p border-bottom-0">المنطقة</th>
 												<th class="wd-15p border-bottom-0">نبذة حول الموظف</th>
 												<th class="wd-15p border-bottom-0">صورة</th>
 
@@ -77,6 +78,7 @@
 												<td>{{$emp->birthDate}}</td>
 												<td>{{$emp->Gender}}</td>
 												<td>{{$emp->phone}}</td>
+												<td>{{$emp->area}}</td>
 												<td>{{$emp->aboutYou}}</td>
 												
 												@if ($emp->image)
