@@ -155,6 +155,22 @@
                             </div> 
                         </div><br>
                         
+                        <div class="form-group">
+                            <label>المنطقة</label>
+                            <select name="area" class="form-control select @error('area') is-invalid @enderror"> 
+                                <option value="لايوجد">اختر المنطقة</option>
+                                
+                                @foreach($areas as $area)
+                                <option value="{{$area->area}}">{{$area->area}}</option>
+                                @endforeach 
+
+                            </select>
+
+                            @error('area')
+                                <div class="alert alert-danger">يجب إدخال المنطقة</div>
+                            @enderror
+                        </div><br>
+
 						<div class="row" style="text-align: right;">
 							<div class="col">
 								<label for="inputName" class="control-label" style="font-weight: bold; color: black;">نبذة حولك</label>
@@ -172,17 +188,13 @@
                             <input type="file" style="direction: rtl;" class="form-control" id="image" name="image">
                         </div><br><br>
 
-                        
-
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">إرسال البيانات</button>
                         </div>
             </form>
 
-
                 </div>
             </div>
-
 
               </div>
            </div>
@@ -191,6 +203,7 @@
     </div>
 
 
+    
     {{-- flatpicker --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 

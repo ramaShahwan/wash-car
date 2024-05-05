@@ -101,7 +101,8 @@
                                     <div class="form-group">
 										<label>نوع المستخدم</label>
 											<select name="role" class="form-control select @error('role') is-invalid @enderror">
-												<option value="admin">مدير للموقع</option>
+												<option value="{{ $user->role }}">اختر نوع المستخدم</option>
+                                                <option value="admin">مدير للموقع</option>
 												<option value="employee">موظف في الموقع</option>
 												<option value="user">مستخدم للموقع</option>
 											</select>

@@ -131,6 +131,22 @@
 										</div>
 									  </div><br>
 
+									  <div class="form-group">
+										<label>المنطقة</label>
+										<select name="area" class="form-control select @error('area') is-invalid @enderror"> 
+											<option value="لايوجد">اختر المنطقة</option>
+											
+											@foreach($areas as $area)
+											<option value="{{$area->area}}">{{$area->area}}</option>
+											@endforeach 
+
+										</select>
+
+										@error('area')
+											<div class="alert alert-danger">{{ $message }}</div>
+										@enderror
+									</div><br>
+
 									  <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">نبذة حول الموظف</label>
