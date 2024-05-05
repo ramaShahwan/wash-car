@@ -98,6 +98,9 @@ Route:: prefix('order')->group(function () {
     Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
     Route::post('updatePenddingToCanceled/{id}', [OrderController::class, 'updatePenddingToCanceled'])->name('ord.updatePenddingToCanceled');
 
+
+    Route::post('chooseEmp/{id}', [OrderController::class, 'chooseEmp'])->name('ord.chooseEmp');
+    Route::post('seedOrderToEmp/{id}', [OrderController::class, 'seedOrderToEmp'])->name('ord.seedOrderToEmp');
 });
 
 
