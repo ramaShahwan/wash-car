@@ -15,6 +15,6 @@ class Service extends Model
 
     public function order_service(): BelongsTo
     {
-        return $this->belongsTo(OrderService::class);
+        return $this->belongsTo(Order_Service::class);
     }
 }

@@ -483,8 +483,7 @@
        const selectBtn = wrapper.querySelector(".select-btn");
        const options = wrapper.querySelector(".options");
  
-       let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
- 
+      let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
        function addAreas(selectedArea = null) {
           options.innerHTML = "";
           areas.forEach(area => {
@@ -500,16 +499,33 @@
        }
        addAreas();
  
-       function updateName(selectedArea) {
-          searchInp.value = "";
-          selectBtn.firstElementChild.innerText = selectedArea;
-          // إضافة التأشير على العنصر المحدد
-          options.querySelectorAll('li').forEach(li => {
-             li.classList.remove('selected');
-          });
-          event.target.classList.add('selected');
-          wrapper.classList.remove("active");
-       }
+      //  function updateName(selectedArea) {
+      //     searchInp.value = "";
+      //     selectBtn.firstElementChild.innerText = selectedArea;
+      //     // إضافة التأشير على العنصر المحدد
+      //     options.querySelectorAll('li').forEach(li => {
+      //        li.classList.remove('selected');
+      //     });
+      //     event.target.classList.add('selected');
+      //     wrapper.classList.remove("active");
+      //  }
+
+      function updateName(selectedArea) {
+    searchInp.value = "";
+    selectBtn.firstElementChild.innerText = selectedArea;
+    // إضافة التأشير على العنصر المحدد
+    options.querySelectorAll('li').forEach(li => {
+        li.classList.remove('selected');
+    });
+    event.currentTarget.classList.add('selected');
+    wrapper.classList.remove("active");
+
+    // تحديث قيمة المتغير location_id
+    document.querySelector('input[name="location_id"]').value = selectedArea;
+ }
+
+
+
  
        searchInp.addEventListener("keyup", () => {
           let arr = [];
@@ -527,7 +543,7 @@
  
        selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
    // });
- </script>
+</script>
 
 
 {{-- -------------------------------------------------------------------------------- --}}

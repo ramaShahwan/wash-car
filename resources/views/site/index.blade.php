@@ -492,16 +492,24 @@
       }
       addAreas();
 
-      function updateName(selectedArea) {
-         searchInp.value = "";
-         selectBtn.firstElementChild.innerText = selectedArea;
-         // إضافة التأشير على العنصر المحدد
-         options.querySelectorAll('li').forEach(li => {
-            li.classList.remove('selected');
-         });
-         event.target.classList.add('selected');
-         wrapper.classList.remove("active");
-      }
+
+
+ function updateName(selectedArea) {
+   searchInp.value = "";
+   selectBtn.firstElementChild.innerText = selectedArea;
+   // تحديث قيمة الحقل الخفي
+   wrapper.querySelector("[name='location_id']").value = selectedArea;
+   // إضافة التأشير على العنصر المحدد
+   options.querySelectorAll('li').forEach(li => {
+      li.classList.remove('selected');
+   });
+   // تحديد العنصر المختار
+   const selectedLi = options.querySelector(`li[value="${selectedArea}"]`);
+   if (selectedLi) {
+      selectedLi.classList.add('selected');
+   }
+   wrapper.classList.remove("active");
+  }
 
       searchInp.addEventListener("keyup", () => {
          let arr = [];
@@ -520,6 +528,64 @@
       selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
   // });
 </script>
+
+{{-- <script>
+  // document.addEventListener("DOMContentLoaded", function() {
+      const wrapper = document.querySelector(".wrapper");
+      const searchInp = wrapper.querySelector("input");
+      const selectBtn = wrapper.querySelector(".select-btn");
+      const options = wrapper.querySelector(".options");
+
+      let areas = {!! json_encode($areas->pluck('area')->toArray()) !!};
+
+      function addAreas(selectedArea = null) {
+         options.innerHTML = "";
+         areas.forEach(area => {
+            let isSelected = area === selectedArea ? "selected" : "";
+            // let li = `<li class="${isSelected}" onclick="updateName('${area}')">${area}</li>`;
+            let li =` <li value="${area}" onclick="updateName('${area}')" class="${isSelected}">
+              <input type="hidden" name="location_id" value="${area}">
+              ${area}
+          </li>`;
+            options.insertAdjacentHTML("beforeend", li);
+         });
+      }
+      addAreas();
+
+      function updateName(selectedArea) {
+         searchInp.value = selectedArea; // تحديث قيمة حقل البحث
+         selectBtn.firstElementChild.innerText = selectedArea;
+         wrapper.querySelector("input[type='hidden']").value = selectedArea; // تحديث قيمة الحقل الخفي
+
+         options.querySelectorAll('li').forEach(li => {
+            li.classList.remove('selected'); // إزالة الحالة 'selected' من كل العناصر
+         });
+         
+         options.querySelectorAll(`li`).forEach(li => {
+           if(li.innerText === selectedArea){
+               li.classList.add('selected'); // إضافة الحالة 'selected' إلى العنصر المختار
+           }
+         });
+
+         wrapper.classList.remove("active"); // إغلاق القائمة
+      }
+
+      searchInp.addEventListener("keyup", () => {
+         let searchedVal = searchInp.value.trim().toLowerCase();
+         let filteredAreas = areas.filter(data => data.toLowerCase().startsWith(searchedVal));
+
+         if(filteredAreas.length) {
+           options.innerHTML = filteredAreas.map(data =>
+             `<li onclick="updateName('${data}')" class="${data === selectBtn.firstElementChild.innerText ? 'selected' : ''}">${data}</li>`
+           ).join("");
+         } else {
+           options.innerHTML = `<p>لايوجد نتيجة مطابقة</p>`;
+         }
+      });
+
+      selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
+  // });
+</script> --}}
 
 {{-- -------------------------------------------------------------------------------- --}}
 

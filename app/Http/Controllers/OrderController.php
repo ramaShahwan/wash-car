@@ -65,7 +65,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $areaId = $request->location_id;
-
+    // return dd($areaId);
         if (is_numeric($areaId)) {
             // إذا كانت القيمة هي id
             $locationId = $areaId;
@@ -219,13 +219,14 @@ class OrderController extends Controller
         if(auth()->user()->role == "admin") {
 
             session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-            return view('admin.site.home'); 
+            return redirect()->route('home'); 
         }
 
         elseif(auth()->user()->role == "user") {
             
             session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
-            return view('site.home'); 
+            // return view('site.home'); 
+            return redirect()->route('home'); 
         }
     }
     
