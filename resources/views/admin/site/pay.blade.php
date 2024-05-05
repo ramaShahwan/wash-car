@@ -103,6 +103,21 @@ $(document).ready(function() {
 </script>
 
 
+{{-- <script>
+    function showMessage() {
+      alert("تم تثبيت طلبك بنجاح");
+    }
+    </script> --}}
+
+    {{-- <script>
+        function showMessage(event) {
+          event.preventDefault();
+          alert("تم تثبيت طلبك بنجاح");
+        }
+        </script> --}}
+
+
+
 
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

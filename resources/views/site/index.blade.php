@@ -493,23 +493,18 @@
       addAreas();
 
 
+      function updateName(selectedArea) {
+         searchInp.value = "";
+         selectBtn.firstElementChild.innerText = selectedArea;
+         // إضافة التأشير على العنصر المحدد
+         options.querySelectorAll('li').forEach(li => {
+            li.classList.remove('selected');
+         });
+         event.target.classList.add('selected');
+         wrapper.classList.remove("active");
+      }
 
- function updateName(selectedArea) {
-   searchInp.value = "";
-   selectBtn.firstElementChild.innerText = selectedArea;
-   // تحديث قيمة الحقل الخفي
-   wrapper.querySelector("[name='location_id']").value = selectedArea;
-   // إضافة التأشير على العنصر المحدد
-   options.querySelectorAll('li').forEach(li => {
-      li.classList.remove('selected');
-   });
-   // تحديد العنصر المختار
-   const selectedLi = options.querySelector(`li[value="${selectedArea}"]`);
-   if (selectedLi) {
-      selectedLi.classList.add('selected');
-   }
-   wrapper.classList.remove("active");
-  }
+
 
       searchInp.addEventListener("keyup", () => {
          let arr = [];

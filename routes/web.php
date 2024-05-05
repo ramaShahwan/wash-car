@@ -8,6 +8,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\Searchajax;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,7 @@ Route::post('/clear-session', function () {
 
 Route::get('/', function () {
     return view('site.home');
-});
+})->name('home');
 
 
 Route::get('/dashboard', function () {
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 Route::get('/index', [OrderController::class, 'create']);
 
@@ -127,6 +129,17 @@ Route:: prefix('location')->group(function () {
     Route::get('edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
     Route::post('update/{id}', [LocationController::class, 'update'])->name('location.update');
     Route::delete('delete/{id}', [LocationController::class, 'destroy'])->name('location.delete');
+  });
+
+   //type
+   Route:: prefix('type')->group(function () {
+
+    Route::get('show', [TypeController::class, 'index'])->name('type.show');
+    Route::get('add', [TypeController::class, 'create']);
+    Route::post('save', [TypeController::class, 'store'])->name('type.save');
+    Route::get('edit/{id}', [TypeController::class, 'edit'])->name('type.edit');
+    Route::post('update/{id}', [TypeController::class, 'update'])->name('type.update');
+    Route::delete('delete/{id}', [TypeController::class, 'destroy'])->name('type.delete');
   });
 
     //user
