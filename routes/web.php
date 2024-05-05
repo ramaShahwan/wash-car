@@ -84,7 +84,7 @@ Route:: prefix('pay')->group(function () {
     Route::get('edit/{id}', [PayWayController::class, 'edit'])->name('pay.edit');
     Route::post('update/{id}', [PayWayController::class, 'update'])->name('pay.update');
     Route::delete('delete/{id}', [PayWayController::class, 'destroy'])->name('pay.delete');
-  });
+});
 
 
 //order
@@ -98,7 +98,7 @@ Route:: prefix('order')->group(function () {
     Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
     Route::post('updatePenddingToCanceled/{id}', [OrderController::class, 'updatePenddingToCanceled'])->name('ord.updatePenddingToCanceled');
 
-  });
+});
 
 
   Route::get('admin_add', [OrderController::class, 'create']);
@@ -118,7 +118,7 @@ Route:: prefix('service')->group(function () {
     Route::get('edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
     Route::post('update/{id}', [ServiceController::class, 'update'])->name('service.update');
     Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
-  });
+});
 
    //location
 Route:: prefix('location')->group(function () {
@@ -129,10 +129,10 @@ Route:: prefix('location')->group(function () {
     Route::get('edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
     Route::post('update/{id}', [LocationController::class, 'update'])->name('location.update');
     Route::delete('delete/{id}', [LocationController::class, 'destroy'])->name('location.delete');
-  });
+});
 
    //type
-   Route:: prefix('type')->group(function () {
+Route:: prefix('type')->group(function () {
 
     Route::get('show', [TypeController::class, 'index'])->name('type.show');
     Route::get('add', [TypeController::class, 'create']);
@@ -140,7 +140,7 @@ Route:: prefix('location')->group(function () {
     Route::get('edit/{id}', [TypeController::class, 'edit'])->name('type.edit');
     Route::post('update/{id}', [TypeController::class, 'update'])->name('type.update');
     Route::delete('delete/{id}', [TypeController::class, 'destroy'])->name('type.delete');
-  });
+});
 
     //user
 Route:: prefix('user')->group(function () {
