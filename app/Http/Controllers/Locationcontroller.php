@@ -70,4 +70,6 @@ class LocationController extends Controller
       session()->flash('delete', 'تم حذف الحي بنجاح');
       return back();
     }
+
+
 }

@@ -492,6 +492,7 @@
       }
       addAreas();
 
+
       function updateName(selectedArea) {
          searchInp.value = "";
          selectBtn.firstElementChild.innerText = selectedArea;
@@ -502,6 +503,7 @@
          event.target.classList.add('selected');
          wrapper.classList.remove("active");
       }
+
 
       searchInp.addEventListener("keyup", () => {
          let arr = [];
