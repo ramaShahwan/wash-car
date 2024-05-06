@@ -150,7 +150,7 @@
 											<option value="{{ $emp->area }}">اختر المنطقة</option>
 											
 											@foreach($areas as $area)
-											<option value="{{ $area->id }}" {{ old('area') == $area->id ? 'selected' : '' }}>{{ $area->area }}</option>
+											<option value="{{ $area->area }}" {{ old('area') == $area->area ? 'selected' : '' }}>{{ $area->area }}</option>
 											@endforeach 
 										</select>
 

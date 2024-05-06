@@ -322,9 +322,9 @@ class OrderController extends Controller
 
     public function chooseEmp($orderId)
     {
-        $order = Order::where('id',$orderId)->get('area');
-        // $orderArea = $order->area;
-        $employees = Employee::where('area',$order)->get();
+        $LocationId = Order::where('id',$orderId)->get('location_id');
+        $LocationArea = Location::where('id',$LocationId)->value('area');
+        $employees = Employee::where('area',$LocationArea)->where('status','accepted')->get();
       return view('admin.orders.emp_area',compact('employees', 'orderId'));
     }
 
@@ -332,9 +332,9 @@ class OrderController extends Controller
     {
         $empId = $request->id;
         $order = Order::findOrFail($orderId);
-       $order->employee_id = $empId;
-       $order->status = 'قيد الإنجاز';
-       $order->update();
+        $order->employee_id = $empId;
+        $order->status = 'قيد الإنجاز';
+        $order->update();
 
         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
         return redirect()->route('ord.pend');
