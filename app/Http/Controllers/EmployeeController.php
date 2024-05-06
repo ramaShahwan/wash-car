@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -220,12 +221,19 @@ class EmployeeController extends Controller
 
     public function GetMyOrders()
     {
-      
-     if (auth()->user()->role == 'admin')
+      $results = DB::table('order_service')
+        ->join('orders', 'orders.id', 'order_service.order_id')
+        ->join('services', 'services.id', 'order_service.service_id')
+        ->select('services.name','services.type')
+        ->get();
+
+     if (auth()->user()->role == 'employee')
      {
       $id = auth()->user()->id;
-      $orders = Order::where('employee_id',$id);
-      return view('');
+      $orders = Order::where('employee_id',$id)->where('status','قيد الإنجاز')->all();
+      return view('employee.orders.order_to_work',compact('orders','results'));
     }
+  
   }
+
 }
