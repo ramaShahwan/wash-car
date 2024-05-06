@@ -79,7 +79,11 @@
 								                @endif
 
 												<td>
-													<a class="btn btn-sm btn-success" href="{{ route('ord.seedOrderToEmp', $orderId ) }}" title="اختر"> اختر </a>
+													<form action="{{ route('ord.seedOrderToEmp', $orderId ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('POST')
+														<button class="btn btn-sm btn-success" title="اختر الموظف"><i class="fa fa-check"></i></button>
+													</form>
 												</td>
 											</tr>
 											@endforeach
