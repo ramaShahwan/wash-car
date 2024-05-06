@@ -59,12 +59,12 @@
 
                                 <div class="row">
                                     
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-center">
                                         <div>
                                             <h4>قبل</h4>
                                             <img src="{{ URL::asset('/site/img/gallery/'.$dt->beforeImage) }}" style="height: 300px; width: 300px;">
                                             <br><br>
-                                            <div class="d-flex justify-content-right">
+                                            <div class="text-center">
                                                 <a class="btn btn-info" href="{{ route('before.edit', $dt->id) }}" style="color: white"> <i class="las la-pen"></i> تعديل </a> &nbsp;&nbsp;&nbsp;
           
                                             	<a class="modal-effect btn btn-danger" data-toggle="modal" title="حذف" style="cursor: pointer;"
@@ -76,7 +76,7 @@
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 			
-																	<div class="modal-header">
+																	<div class="modal-header ">
 																		<h6 class="modal-title">حذف صورة قبل التنظيف</h6><button aria-label="Close" class="close" data-dismiss="modal"
 																			type="button"><span aria-hidden="true">&times;</span></button>
 																	</div>
@@ -101,12 +101,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-center">
                                         <div>
                                             <h4>بعد</h4>
                                             <img src="{{ URL::asset('/site/img/gallery/'.$dt->afterImage) }}" style="height: 300px; width: 300px;">
                                             <br><br>
-                                            <div class="d-flex justify-content-right">
+                                            <div class="text-center">
 												{{-- <form action="{{route('after.edit', $dt->id)}}" method="POST" enctype="multipart/form-data">
 													@csrf
 													@method('POST')

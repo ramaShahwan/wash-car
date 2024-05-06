@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BeforAfter;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Order;
@@ -226,10 +227,8 @@ class OrderController extends Controller
             session()->flash('Add', 'تم تثبيت طلبك بنجاح');
             return redirect('/'); 
         }
-
         elseif(auth()->user()->role == "user") {
             
-            session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
             // return view('site.home'); 
             return redirect('/'); 
         }
@@ -332,22 +331,26 @@ class OrderController extends Controller
         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
         return redirect()->route('ord.pend');
     }
-
     public function getOrderDetails($id)
     {
-        $order = Order::findOrFail($id)->all();
-        $serviceOrder = Order_Service::where('order_id',$id)->get('service_id');
-
-        if($serviceOrder)
-        {
-            foreach($serviceOrder as $service)
-            {
-                $primary = Service::where('id',$serviceOrder)->where('type','أساسية')->value('name');
-                $sec = Service::where('id',$serviceOrder)->where('type','إضافية')->value('name');
-            }
+        $order = Order::findOrFail($id);
+        $serviceOrder = Order_Service::where('order_id', $id)->pluck('service_id')->toArray();
+        
+        $primary=[] ;
+        $sec = [];
+        foreach ($serviceOrder as $service) {
+            $primary[] = Service::where('id', $service)->where('type', 'أساسية')->value('name');
+            $sec[] = Service::where('id', $service)->where('type', 'إضافية')->value('name');
         }
-        return view('admin.orders.details',compact('order','primary','sec'));
+    
+        //  $empOrd = Order::where('id', $id)->value('employee_id');
+        //  $employee = Employee::where('id', $empOrd)->get();
+        $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
+        $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
+    
+        return view('admin.orders.details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
     }
+    
 
 }
 
