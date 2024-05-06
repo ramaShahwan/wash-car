@@ -115,15 +115,8 @@ class OrderController extends Controller
         $order->location_id = $locationId;
         $order->user_id = $user->id;
         $order->payWay_id = $request->payWay_id;
-
-        if(auth()->user()->role == "admin")
-        {
-            $order->status = 'قيد الإنجاز';
-        }
-        elseif(auth()->user()->role == "user")
-        {
-            $order->status = 'معلق';
-        }
+        $order->status = 'معلق';
+        
 
         $order->save();
 
@@ -339,6 +332,23 @@ class OrderController extends Controller
         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
         return redirect()->route('ord.pend');
     }
+
+    public function getOrderDetails($id)
+    {
+        $order = Order::findOrFail($id)->all();
+        $serviceOrder = Order_Service::where('order_id',$id)->get('service_id');
+
+        if($serviceOrder)
+        {
+            foreach($serviceOrder as $service)
+            {
+          $primary = Service::where('id',$serviceOrder)->where('type','أساسية')->value('name');
+            $sec = Service::where('id',$serviceOrder)->where('type','إضافية')->value('name');
+            }
+        }
+        return view('admin.orders.details',compact('order','primary','sec'));
+    }
+
 }
 
 

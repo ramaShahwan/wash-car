@@ -91,6 +91,8 @@ Route:: prefix('pay')->group(function () {
 Route:: prefix('order')->group(function () {
 
     Route::get('show_done', [OrderController::class, 'getDoneOrders'])->name('ord.done');
+    
+    Route::get('show_details/{id}', [OrderController::class, 'getOrderDetails'])->name('ord.details');
     Route::get('show_wait', [OrderController::class, 'getWaitingOrders'])->name('ord.wait');
     Route::get('show_pend', [OrderController::class, 'getPendingOrders'])->name('ord.pend');
     Route::get('show_cancel', [OrderController::class, 'getCanceledOrders'])->name('ord.cancel');
