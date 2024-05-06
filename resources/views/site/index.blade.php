@@ -125,16 +125,6 @@
 
 @section('content')
 
-@if(session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Add') }}</strong>
-	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
-		<span aria_hidden="true">&times;</span>
-	</button>
-</div>
-@endif
-
-
    <body>
       
       <!-- choose section start -->
@@ -274,29 +264,31 @@
 
    <div class="row">
       <div class="col-md-6">
-          <div class="form-group">
-              <label style="font-size: 16px; font-weight: bolder; color: black;">التاريخ</label>
-              <div class="cal-icon" style="display: flex; align-items: center;">
+            <div class="form-group">
+               <label style="font-size: 16px; font-weight: bolder; color: black;">التاريخ</label>
+               <div class="cal-icon" style="display: flex; align-items: center;">
                   <img src="site/images/calander.png" alt="" style="width:20px; height: 20px;"> &nbsp;
                   <input name="orderDate" type="datetime-local" class="form-control" @error('orderDate') is-invalid @enderror>
-              </div>
-          </div>
-          @error('orderDate')
-          <div class="alert alert-danger">يجب تحديد تاريخ تقديم الخدمة</div>
-       @enderror
+               </div>
+            </div>
+
+            @error('orderDate')
+               <div class="alert alert-danger">يجب تحديد تاريخ تقديم الخدمة</div>
+            @enderror
       </div>
 
-        <div class="col-md-6">
-          <div class="form-group">
-              <label style="font-size: 16px; font-weight: bolder; color: black;">الوقت</label>
-              <div class="time-icon" style="display: flex; align-items: center;">
+      <div class="col-md-6">
+         <div class="form-group">
+               <label style="font-size: 16px; font-weight: bolder; color: black;">الوقت</label>
+               <div class="time-icon" style="display: flex; align-items: center;">
                   <img src="site/images/clock.png" alt="" style="width:20px; height: 20px;"> &nbsp;
                   <input name="orderTime" type="datetime" class="form-control" @error('orderTime') is-invalid @enderror>
-              </div>
-          </div>
-          @error('orderTime')
-          <div class="alert alert-danger">يجب تحديد وقت تقديم الخدمة</div>
-       @enderror
+               </div>
+         </div>
+
+            @error('orderTime')
+               <div class="alert alert-danger">يجب تحديد وقت تقديم الخدمة</div>
+            @enderror
       </div>
 
   </div>
@@ -322,7 +314,7 @@
    
    <div class="row">
 
-<div class="col-md-4">
+{{-- <div class="col-md-4">
    <div class="form-group">
       <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
          <div class="wrapper">
@@ -340,7 +332,24 @@
             </div>
          </div>
    </div>
-</div>
+</div> --}}
+
+<div class="col-md-4">
+   <div class="form-group">
+      <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
+      <select name="location_id" class="form-control select @error('location_id') is-invalid @enderror"> 
+         <option value="لايوجد">اختر المنطقة</option>
+
+         @foreach($areas as $area)
+            <option value="{{$area->area}}">{{$area->area}}</option>
+         @endforeach  
+      </select>
+
+      @error('location_id')
+         <div class="alert alert-danger">يجب إدخال موقع السيارة</div>
+      @enderror
+   </div>
+</div><br>
 
       <div class="col-md-4">
           <div class="form-group">
@@ -382,15 +391,12 @@
        </div>
     </div><br>
 
-
       <button type="submit" class="btn btn-primary" style="background-color: #0c426e; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>
-
 
   </div>
 
    <br><br>
 </div>
-
    <br><br><br>
 
    </form>
@@ -484,7 +490,7 @@
 
    
 {{-- search and select from dropdown --}}
-<script>
+{{-- <script>
   // document.addEventListener("DOMContentLoaded", function() {
       const wrapper = document.querySelector(".wrapper");
       const searchInp = wrapper.querySelector("input");
@@ -538,7 +544,7 @@
 
       selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
   // });
-</script>
+</script> --}}
 
 {{-- <script>
   // document.addEventListener("DOMContentLoaded", function() {

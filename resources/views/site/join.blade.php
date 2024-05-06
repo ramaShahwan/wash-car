@@ -54,24 +54,6 @@
 
 @section('content')
 
-{{-- @if(session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Add') }}</strong>
-	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
-		<span aria_hidden="true">&times;</span>
-	</button>
-</div>
-@endif --}}
-
-@if(session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>{{ session()->get('Add') }}</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeAlert()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-@endif
-
 <body>
 
     <div class="services_section layout_padding">
@@ -80,8 +62,6 @@
            {{-- <p class="services_text">t is a long established fact that a reader will be distracted by the readable content of a page when looking </p> --}}
            <div class="services_section_2 layout_padding">
               <div class="row">
-
-
 
 			    <div class="col-lg-12 col-md-12">
 

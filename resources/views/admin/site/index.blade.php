@@ -126,83 +126,8 @@
 
 @section('content')
 
-{{-- @if(session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Add') }}</strong>
-	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
-		<span aria_hidden="true">&times;</span>
-	</button>
-</div>
-@endif --}}
-
-
    <body>
 
-      <!-- banner section start -->
-      {{-- <div class="banner_section layout_padding">
-         <div class="container">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-1.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="banner_taital">
-                              <h1 class="banner_taital"> حافظ على نظافة سيارتك دائماً </h1>
-                           </div>
-                           <div class="btn_main">
-                              <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                              <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div><img src="{{URL::asset('site/images/banner-img-2.png')}}" class="banner_img"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-arrow-left" aria-hidden="true"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-arrow-right" aria-hidden="true"></i>
-               </a>
-            </div>
-         </div>
-      </div> --}}
-      <!-- banner section end -->
-      
       <!-- choose section start -->
 
       <div class="choose_section layout_padding">
@@ -290,8 +215,6 @@
 
    </div>
    <br><br>
-
-
 
 </div>
 
@@ -393,9 +316,8 @@
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
 
    <div class="row">
-
       
-<div class="col-md-4">
+{{-- <div class="col-md-4">
    <div class="form-group">
       <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
          <div class="wrapper">
@@ -413,9 +335,24 @@
             </div>
          </div>
    </div>
-</div>
+</div> --}}
 
+<div class="col-md-4">
+   <div class="form-group">
+      <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
+      <select name="location_id" class="form-control select @error('location_id') is-invalid @enderror"> 
+         <option value="لايوجد">اختر المنطقة</option>
 
+         @foreach($areas as $area)
+            <option value="{{$area->area}}">{{$area->area}}</option>
+         @endforeach  
+      </select>
+
+      @error('location_id')
+         <div class="alert alert-danger">يجب إدخال موقع السيارة</div>
+      @enderror
+   </div>
+</div><br>
 
       <div class="col-md-4">
           <div class="form-group">
@@ -458,6 +395,7 @@
 
       <button type="submit" class="btn btn-primary" style="background-color: #0c426e; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>
 
+      
   </div>
 
    <br><br>
@@ -491,6 +429,8 @@
 
 
 {{-- search and select from dropdown --}}
+
+{{-- 
 <script>
    // document.addEventListener("DOMContentLoaded", function() {
        const wrapper = document.querySelector(".wrapper");
@@ -540,7 +480,6 @@
  }
 
 
-
  
        searchInp.addEventListener("keyup", () => {
           let arr = [];
@@ -558,7 +497,7 @@
  
        selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
    // });
-</script>
+</script> --}}
 
 
 {{-- -------------------------------------------------------------------------------- --}}

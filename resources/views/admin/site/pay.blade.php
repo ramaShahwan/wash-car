@@ -24,15 +24,6 @@
 
 @section('content')
 
-@if(session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Add') }}</strong>
-	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
-		<span aria_hidden="true">&times;</span>
-	</button>
-</div>
-@endif
-
 <body>
 
     <div class="services_section layout_padding">
@@ -65,6 +56,7 @@
                                 <hr>
 
                                 <button type="submit" name="pay_id" value="{{ $item->id }}" class="btn" style="background-color: goldenrod; color:black"> اختر </button>
+                            
                             </div>
                         </div>
                     @endforeach
@@ -74,10 +66,6 @@
         
         </div>
            
-           <br><br>
-           {{-- <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary" style="background-color: #0c426e;"> &nbsp; تأكيد الدفع &nbsp; <i class="fa fa-check"></i> &nbsp; </button>
-           </div> --}}
          <br><br><br>
 
         </form>
@@ -101,21 +89,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
-
-{{-- <script>
-    function showMessage() {
-      alert("تم تثبيت طلبك بنجاح");
-    }
-    </script> --}}
-
-    {{-- <script>
-        function showMessage(event) {
-          event.preventDefault();
-          alert("تم تثبيت طلبك بنجاح");
-        }
-        </script> --}}
-
 
 
 

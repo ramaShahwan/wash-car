@@ -318,7 +318,7 @@ class OrderController extends Controller
         $LocationId = Order::where('id',$orderId)->value('location_id');
         $LocationArea = Location::where('id',$LocationId)->value('area');
         $employees = Employee::where('area',$LocationArea)->where('status','accepted')->get();
-      return view('admin.orders.emp_area',compact('employees', 'orderId'));
+        return view('admin.orders.emp_area',compact('employees', 'orderId'));
     }
 
     public function seedOrderToEmp(Request $request,$orderId)
@@ -342,8 +342,8 @@ class OrderController extends Controller
         {
             foreach($serviceOrder as $service)
             {
-          $primary = Service::where('id',$serviceOrder)->where('type','أساسية')->value('name');
-            $sec = Service::where('id',$serviceOrder)->where('type','إضافية')->value('name');
+                $primary = Service::where('id',$serviceOrder)->where('type','أساسية')->value('name');
+                $sec = Service::where('id',$serviceOrder)->where('type','إضافية')->value('name');
             }
         }
         return view('admin.orders.details',compact('order','primary','sec'));
