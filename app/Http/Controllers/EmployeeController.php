@@ -240,9 +240,10 @@ class EmployeeController extends Controller
       'afterImage' => 'required',
   ]);
 
-  $id = auth()->user()->id;
-  $emp_num = User::where('id',$id)->value('phone');
-  $emp_id = Employee::where('phone',$emp_num)->value('id');
+    $id = auth()->user()->id;
+    $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
+
 
    $images = new BeforAfter(); 
    $images->employee_id =$emp_id;
@@ -265,6 +266,12 @@ class EmployeeController extends Controller
     $images->update();
     session()->flash('Add', 'تم إضافة الصور بنجاح');
    // return back();
+
+   
+   $order = Order::where('id',$orderId)->get();
+   $order->status = 'منجز';
+   $order->update();
+
    return redirect()->route('ord.get');
   }
     

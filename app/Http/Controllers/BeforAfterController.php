@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeforAfter;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 
@@ -53,6 +54,8 @@ class BeforAfterController extends Controller
     $images->update();
     session()->flash('Add', 'تم إضافة الصور بنجاح');
     // return back();
+
+
     return redirect()->route('beforAfter.show');
     }
      
