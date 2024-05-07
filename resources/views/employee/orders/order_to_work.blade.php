@@ -117,14 +117,6 @@
 												@endforeach
 											@endif
 											
-											
-
-											
-
-											
-											
-
-
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
 												<td>{{$order->numOfCar}}</td>
@@ -133,7 +125,7 @@
 												<td>{{$order->orderTime}}</td>
 												
 												<td>
-													<form action="{{ route('ord.updatePenddingToWaiting', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+													<form action="{{ route('ord.upload', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 														@csrf
 														@method('POST')
 														<button class="btn btn-sm btn-success" title="تم الإنجاز"><i class="fa fa-check"></i></button>

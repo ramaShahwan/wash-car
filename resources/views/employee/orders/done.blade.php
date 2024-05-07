@@ -47,7 +47,7 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								<form action="{{ route('beforAfter.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+								<form action="{{ route('ord.image', $order->id) }}" method="post" enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
 		
 									<div class="row">
