@@ -340,15 +340,14 @@ class OrderController extends Controller
         return view('admin.orders.emp_area',compact('employees', 'orderId'));
     }
 
-    public function seedOrderToEmp(Request $request,$orderId)
-    {
-        $empId = $request->id;
+    public function seedOrderToEmp(Request $request, $orderId) {
+        $employeeId = $request->input('employee_id');
         $order = Order::findOrFail($orderId);
-        $order->employee_id = $empId;
+        $order->employee_id = $employeeId;
         $order->status = 'قيد الإنجاز';
         $order->update();
 
-        session()->flash('Edit', 'تم  قبول الطلب بنجاح');
+        session()->flash('Edit', 'تم اختيار الموظف بنجاح');
         return redirect()->route('ord.pend');
     }
 

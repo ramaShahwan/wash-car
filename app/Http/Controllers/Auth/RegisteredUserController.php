@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Employee;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -45,6 +46,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+      $num =  $user->phone;
+      $value = Employee::where('phone',$num)->get();
+      if($value )
+      {
+      User::where('phone', $num)->update(['role' => 'employee']);
+      }
         event(new Registered($user));
 
         Auth::login($user);
