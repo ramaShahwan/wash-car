@@ -213,14 +213,10 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     
 });
 
-
-
 // employee Routes
 Route::middleware(['auth', 'verified', 'employee'])->group(function () {
-
-
-
-
+    
+    Route::get('get_orders', [EmployeeController::class, 'GetMyOrders'])->name('ord.get');
 });
 
 
