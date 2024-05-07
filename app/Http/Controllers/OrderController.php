@@ -337,6 +337,8 @@ class OrderController extends Controller
         $LocationId = Order::where('id',$orderId)->value('location_id');
         $LocationArea = Location::where('id',$LocationId)->value('area');
         $employees = Employee::where('area',$LocationArea)->where('status','accepted')->get();
+
+        // return dd($employees);
         return view('admin.orders.emp_area',compact('employees', 'orderId'));
     }
 
