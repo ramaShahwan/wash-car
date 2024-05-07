@@ -265,9 +265,18 @@ class EmployeeController extends Controller
     $images->update();
     session()->flash('Add', 'تم إضافة الصور بنجاح');
    // return back();
-   return redirect()->route('beforAfter.show');
+   return redirect()->route('ord.get');
   }
     
+  public function myGallery()
+   {
+    $id = auth()->user()->id;
+    $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
+
+   $gallery = BeforAfter::where('employee_id',$emp_id)->get();
+   return view('employee.before_after.show',compact('gallery'));
+   }
   }
 
 
