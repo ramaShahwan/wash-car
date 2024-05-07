@@ -235,7 +235,8 @@ class EmployeeController extends Controller
 
   public function openToUpload($orderId)
   {
-    return view('employee.orders.done');
+    $order = Order::findOrFail($orderId);
+    return view('employee.orders.done',compact('order'));
   }
 
   public function uploadOrderImage(Request $request,$orderId)

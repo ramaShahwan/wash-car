@@ -226,6 +226,8 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
 
     
     Route::post('image_orders/{id}', [EmployeeController::class, 'uploadOrderImage'])->name('ord.image');
+    
+    Route::get('myGallery', [EmployeeController::class, 'myGallery'])->name('ord.gallery');
 
     Route::get('emp_add', [OrderController::class, 'create']);
     Route::post('emp_save_order', [OrderController::class, 'store'])->name('emp_ord.save');
