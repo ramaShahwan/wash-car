@@ -1,9 +1,13 @@
 @extends('site.layouts.master')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 @section('css')
 
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
     <style>
         .form-group {
@@ -23,23 +27,23 @@
 	        outline: 0 none;
         }
 
-        
-.profile-upload {
-	display: flex;
-}
-.upload-img {
-	margin-right: 10px;
-}
-.upload-img img {
-	border-radius: 4px;
-	height: 40px;
-	width: 40px;
-}
-.upload-input {
-	width: 100%;
-}
 
-.input-container {
+        .profile-upload {
+	        display: flex;
+        }
+        .upload-img {
+	        margin-right: 10px;
+        }
+        .upload-img img {
+	        border-radius: 4px;
+	        height: 40px;
+	        width: 40px;
+        }
+        .upload-input {
+	        width: 100%;
+        }
+
+        .input-container {
             text-align: right;
         }
 
@@ -59,8 +63,6 @@
            <div class="services_section_2 layout_padding">
               <div class="row">
 
-
-
 			    <div class="col-lg-12 col-md-12">
 
 				<div class="card-body">
@@ -72,10 +74,9 @@
                             <div class="col">
                                 <label for="inputName" class="control-label" style="font-weight: bold; color: black;">الاسم</label>
                                 <input style="direction: rtl;" type="text" class="form-control @error('firstName') is-invalid @enderror" 
-                                id="inputName" name="firstName" required>
-
+                                id="inputName" name="firstName">
                                 @error('firstName')
-                                    <div class="alert alert-danger">يجب إدخال الاسم</div>
+                                    <div class="alert alert-danger">يجب إدخال الإسم</div>
                                 @enderror
                             </div>
                         </div><br>
@@ -84,7 +85,7 @@
                             <div class="col">
                                 <label for="inputName" class="control-label" style="font-weight: bold; color: black;">النسبة</label>
                                 <input style="direction: rtl;" type="text" class="form-control @error('lastName') is-invalid @enderror" 
-                                id="inputName" name="lastName" required>
+                                id="inputName" name="lastName">
 
                                 @error('lastName')
                                     <div class="alert alert-danger">يجب إدخال النسبة</div>
@@ -134,9 +135,9 @@
                             </div> 
                         </div><br>
                         
-                        <div class="form-group">
-                            <label>المنطقة التي ترغب في العمل ضمنها</label>
-                            <select name="area" class="form-control select @error('area') is-invalid @enderror"> 
+                        <div class="form-group" style="text-align: right;">
+                            <label style="font-weight: bold; color: black;">المنطقة التي ترغب في العمل ضمنها</label>
+                            <select style="direction: rtl;" name="area" class="form-control select @error('area') is-invalid @enderror"> 
                                 <option value="لايوجد">اختر المنطقة</option>
                                 
                                 @foreach($areas as $area)
@@ -181,12 +182,12 @@
      <br><br>
     </div>
 
-    
 
+    
     {{-- flatpicker --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-<script>
+{{-- <script>
 	config = {
     	dateFormat: "Y-m-d",
 		altInput: true,
@@ -198,7 +199,39 @@
         // rtl: true
 	}
 	flatpickr("input[type=datetime]", config);
+</script> --}}
+<script>
+    config = {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "F j, Y",
+        maxDate: new Date().getFullYear() - 10 + "-01-01" // تحديد الحد الأعلى للتاريخ كتاريخ قبل 10 سنوات
+    }
+    flatpickr("input[type=datetime]", config);
 </script>
+
+
+
+
+    
+<script>
+    document.querySelector('.close').addEventListener('click', function() {
+      fetch('/clear-session', {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }).then(function(response) {
+        if (response.ok) {
+          console.log('Session Cleared Successfully');
+        } else {
+          console.log('Failed to Clear Session');
+        }
+      });
+    });
+    </script>
+    
+
 
 
 </body>
