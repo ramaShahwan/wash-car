@@ -79,12 +79,19 @@
 								                @endif
 
 												<td>
-													<form action="{{ route('ord.seedOrderToEmp', $orderId ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+													{{-- <form action="{{ route('ord.seedOrderToEmp', $orderId ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 														@csrf
 														@method('POST')
 														<button class="btn btn-sm btn-success" title="اختر الموظف"><i class="fa fa-check"></i></button>
+													</form> --}}
+
+													<form action="{{ route('ord.seedOrderToEmp', $orderId ) }}" method="POST">
+														@csrf
+														<button type="submit" class="btn btn-sm btn-success" title="اختر الموظف"><i class="fa fa-check"></i></button>
 													</form>
-												</td>
+													
+												</td>												
+
 											</tr>
 											@endforeach
 										</tbody>
