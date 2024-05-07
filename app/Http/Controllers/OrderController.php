@@ -268,11 +268,11 @@ class OrderController extends Controller
 
     public function getDoneOrders()
     { 
-        $order = Order::where('orderDate', '<', now())->get();
-        $order->each(function ($ord) {
-            $ord->status = 'منجز';
-            $ord->save();
-        });
+        // $order = Order::where('orderDate', '<', now())->get();
+        // $order->each(function ($ord) {
+        //     $ord->status = 'منجز';
+        //     $ord->save();
+        // });
 
         $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
         return view('admin.orders.done',compact('orders'));
