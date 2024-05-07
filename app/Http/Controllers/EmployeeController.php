@@ -34,7 +34,7 @@ class EmployeeController extends Controller
     public function create()
     {
       $areas = Location::all();
-      return view('site.join',compact('areas'));
+      return view('join',compact('areas'));
     }
     
     public function createForAdmin()
@@ -121,18 +121,8 @@ class EmployeeController extends Controller
        $emp->update();
      }
 
-
-     if (auth()->user()->role == 'admin')
-     {
-        session()->flash('Add', 'تم إرسال طلب توظيفك بنجاح');
-        return back(); 
-     }
-
-     else if (auth()->user()->role == 'user')
-     {
-        session()->flash('Add', 'تم إرسال طلب توظيفك سيتم التواصل معك في أقرب وقت');
+      session()->flash('Add', 'تم إرسال طلب توظيفك سيتم التواصل معك في أقرب وقت');
         return back();
-     }
 
     }
 
