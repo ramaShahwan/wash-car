@@ -340,16 +340,39 @@ class OrderController extends Controller
         return view('admin.orders.emp_area',compact('employees', 'orderId'));
     }
 
+    // public function seedOrderToEmp(Request $request, $orderId) {
+
+    //     $employeeId = $request->input('employee_id');
+    //     $order = Order::findOrFail($orderId);
+    //     $order->employee_id = $employeeId;
+    //     $order->status = 'قيد الإنجاز';
+    //     $order->update();
+
+    //     session()->flash('Edit', 'تم اختيار الموظف بنجاح');
+    //     return redirect()->route('ord.pend');
+    // }
+
+
+
     public function seedOrderToEmp(Request $request, $orderId) {
         $employeeId = $request->input('employee_id');
-        $order = Order::findOrFail($orderId);
-        $order->employee_id = $employeeId;
-        $order->status = 'قيد الإنجاز';
-        $order->update();
-
-        session()->flash('Edit', 'تم اختيار الموظف بنجاح');
-        return redirect()->route('ord.pend');
+    
+        if ($employeeId) {
+            $order = Order::findOrFail($orderId);
+            $order->employee_id = $employeeId;
+            $order->status = 'قيد الإنجاز';
+            $order->update();
+    
+            session()->flash('Edit', 'تم اختيار الموظف بنجاح');
+            return redirect()->route('ord.pend');
+        } else {
+            return redirect()->back()->with('error', 'يرجى اختيار موظف أولاً');
+        }
     }
+
+
+
+
 
     public function getOrderDetails($id)
     {

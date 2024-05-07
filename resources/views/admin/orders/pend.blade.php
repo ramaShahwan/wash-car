@@ -117,14 +117,16 @@
 													</form>
 												</td> --}}
 
-												<form action="{{ route('ord.chooseEmp', $order->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
-													@csrf
-													@method('POST')
-													<input type="hidden" name="employee_id" value="{{ $employeeId }}">
-													<button class="btn btn-sm btn-success" title="اختر الموظف"><i class="fas fa-user"></i></button>
-												</form>
+												<td>
+													<form action="{{ route('ord.chooseEmp', $order->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('POST')
+														<input type="hidden" name="employee_id" value="">
+														<button class="btn btn-sm btn-success" title="اختر الموظف"><i class="fas fa-user"></i></button>
+													</form>		
+												</td>											
 												
-
+												
 												<td>
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"
 													data-target="#delete"><i class="fas fa-times"></i></a>
