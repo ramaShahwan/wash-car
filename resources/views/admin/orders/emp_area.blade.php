@@ -87,9 +87,9 @@
 
 													<form action="{{ route('ord.seedOrderToEmp', $orderId ) }}" method="POST">
 														@csrf
+														<input type="hidden" name="employee_id" value="{{ $emp->id }}">
 														<button type="submit" class="btn btn-sm btn-success" title="اختر الموظف"><i class="fa fa-check"></i></button>
 													</form>
-													
 												</td>												
 
 											</tr>
