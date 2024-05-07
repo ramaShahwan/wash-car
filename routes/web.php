@@ -216,7 +216,20 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 // employee Routes
 Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     
+    Route::get('/employee', function () {
+        return view('employee.index');
+    });
+
     Route::get('get_orders', [EmployeeController::class, 'GetMyOrders'])->name('ord.get');
+
+
+    Route::get('emp_add', [OrderController::class, 'create']);
+    Route::post('emp_save_order', [OrderController::class, 'store'])->name('emp_ord.save');
+    Route::get('emp_summary', [OrderController::class, 'summary'])->name('emp_ord.summary');
+
+    Route::get('emp_pay', [OrderController::class, 'getPayway'])->name('emp_ord.pay');
+    Route::post('emp_set_pay', [OrderController::class, 'setPayway'])->name('emp_ord.setPay');
+
 });
 
 

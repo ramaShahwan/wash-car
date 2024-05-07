@@ -230,7 +230,7 @@ class EmployeeController extends Controller
      if (auth()->user()->role == 'employee')
      {
       $id = auth()->user()->id;
-      $orders = Order::where('employee_id',$id)->where('status','قيد الإنجاز')->all();
+      $orders = Order::where('employee_id',$id)->where('status','قيد الإنجاز')->get();
       return view('employee.orders.order_to_work',compact('orders','results'));
     }
   

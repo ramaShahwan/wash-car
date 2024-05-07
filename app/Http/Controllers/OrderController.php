@@ -20,15 +20,16 @@ class OrderController extends Controller
 
     public function index()
     {
+        $services = Service::all();
+        $areas = Location::all();
+        $types = Type::all();
+
         if(!auth()->check())
         {
             return view('auth.login');
         }
-        else if(auth()->user()->role == "admin") {
 
-         $services = Service::all();
-         $areas = Location::all();
-         $types = Type::all();
+        else if(auth()->user()->role == "admin") {
 
         return view('admin.site.index',
         ['services' => $services,
@@ -38,11 +39,7 @@ class OrderController extends Controller
         }
 
         else if(auth()->user()->role == "user") {
-          
-        $services = Service::all();
-         $areas = Location::all();
-         $types = Type::all();
-          
+
         return view('site.index',
         ['services' => $services,
         'areas' => $areas,
@@ -50,6 +47,15 @@ class OrderController extends Controller
       ]);
         }
       
+        else if(auth()->user()->role == "employee") {
+          
+            return view('employee.site.index',
+            ['services' => $services,
+            'areas' => $areas,
+            'types' => $types
+          ]);
+            }
+
     }
     
     public function create()
@@ -68,6 +74,14 @@ class OrderController extends Controller
         elseif(auth()->user()->role == "user") {
 
             return view('site.index',
+            ['services' => $services,
+            'areas' => $areas,
+            'types' => $types ]);
+        }
+
+        elseif(auth()->user()->role == "employee") {
+
+            return view('employee.site.index',
             ['services' => $services,
             'areas' => $areas,
             'types' => $types ]);
@@ -152,6 +166,12 @@ class OrderController extends Controller
         {
             // session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
             return redirect()->route('ord.summary');
+        }
+
+        elseif(auth()->user()->role == "employee")
+        {
+            // session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
+            return redirect()->route('emp_ord.summary');
         }
     }
 

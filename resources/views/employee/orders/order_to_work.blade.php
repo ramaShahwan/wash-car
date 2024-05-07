@@ -139,13 +139,13 @@
 													</form>
 												</td> --}}
 
-												<td>
+												{{-- <td>
 													<form action="{{ route('ord.chooseEmp', $order->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 														@csrf
 														@method('POST')
 														<button class="btn btn-sm btn-success" title="إنهاء الطلب"><i class="fas fa-user"></i></button>
 													</form>
-												</td>
+												</td> --}}
 
 											</tr>
 											@endforeach
