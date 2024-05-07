@@ -19,6 +19,7 @@
 				</div>
 				<!-- breadcrumb -->
 @endsection
+
 @section('content')
 
 @if(session()->has('delete'))
@@ -77,11 +78,13 @@
 											@foreach($orders as $order)
 											<tr>
 												<td>{{$i++}}</td>
+
 												@if($order->user_id)
 												<td>{{ App\Models\User::findOrFail($order->user_id)->name }}</td>
 												@else
 												<td> </td>
 												@endif
+
 												@if($order->location_id)
 												<td>{{ App\Models\Location::findOrFail($order->location_id)->area }}</td>
 												@else
@@ -121,8 +124,8 @@
 													<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"
 													data-target="#delete"><i class="fas fa-times"></i></a>
 													<form action="{{route('ord.updatePenddingToCanceled', $order->id)}}" method="POST" enctype="multipart/form-data">
-															@csrf
-															@method('POST')
+														@csrf
+														@method('POST')
 														<div id="delete" class="modal fade delete-modal" role="dialog">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
@@ -161,13 +164,9 @@
 					<!--/div-->
 				</div>
 				<!-- /row -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
 
-		
 @endsection
+
 @section('js')
 <!-- Internal Data tables -->
 <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
