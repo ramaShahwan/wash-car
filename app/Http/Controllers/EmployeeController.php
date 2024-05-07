@@ -155,7 +155,7 @@ class EmployeeController extends Controller
            // 'aboutYou'=>'required',
            // 'image'=>'required'
         ]);
-  
+
        $emp = Employee::findOrFail($id);
        $oldImageName=$emp->image;
        $emp->firstName = $request->firstName;
@@ -221,7 +221,7 @@ class EmployeeController extends Controller
 
     public function GetMyOrders()
     {
-      $results = DB::table('order_service')
+      $results[] = DB::table('order_service')
         ->join('orders', 'orders.id', 'order_service.order_id')
         ->join('services', 'services.id', 'order_service.service_id')
         ->select('services.name','services.type')
