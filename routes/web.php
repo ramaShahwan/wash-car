@@ -166,7 +166,6 @@ Route:: prefix('employee')->group(function () {
     Route::get('showCanceled', [EmployeeController::class, 'getCanceledEmp'])->name('employee.canceled');
     Route::get('showPending', [EmployeeController::class, 'getPendingEmp'])->name('employee.pending');
 
-    
     Route::post('updatePenddingToAccepted/{id}', [EmployeeController::class, 'updatePenddingToAccepted'])->name('employee.updateAccepted');
     Route::post('updatePenddingToCanceled/{id}', [EmployeeController::class, 'updatePenddingToCanceled'])->name('employee.updateCanceled');
 
@@ -197,8 +196,6 @@ Route:: prefix('beforAfter')->group(function () {
 });
 
 });
-
-
 
 // User Routes
 Route::middleware(['auth', 'verified', 'user'])->group(function () {

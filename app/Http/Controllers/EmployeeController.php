@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\DB;
@@ -197,6 +198,8 @@ class EmployeeController extends Controller
       $emp->status = 'accepted';
       $emp->update();
 
+      $phoneNumber=$emp->phone;
+      User::where('phone', $phoneNumber)->update(['role' => 'employee']);
       session()->flash('Edit', 'تم  قبول الموظف بنجاح');
       return back();
     }
