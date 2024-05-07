@@ -198,18 +198,19 @@ class OrderController extends Controller
             'orderTime' => $time,
         ]);
     }
-  }
+}
 
 
     public function getPayway()
     {
         $pay = PayWay::all();
-      if(auth()->user()->role == "admin") {
+
+        if(auth()->user()->role == "admin") {
             return view('admin.site.pay',compact('pay'));
-            }
-     elseif(auth()->user()->role == "user") {
-        return view('site.pay',compact('pay'));
-            }
+        }
+        elseif(auth()->user()->role == "user") {
+            return view('site.pay',compact('pay'));
+        }
     }
     
     public function setPayway(Request $request)
@@ -244,17 +245,18 @@ class OrderController extends Controller
     //     $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
     //     return view('admin.orders.done',compact('orders'));
     // }
-    public function getDoneOrders()
-   { 
-    $order = Order::where('orderDate', '<', now())->get();
-    $order->each(function ($ord) {
-        $ord->status = 'منجز';
-        $ord->save();
-    });
 
-    $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
-    return view('admin.orders.done',compact('orders'));
-}
+    public function getDoneOrders()
+    { 
+        $order = Order::where('orderDate', '<', now())->get();
+        $order->each(function ($ord) {
+            $ord->status = 'منجز';
+            $ord->save();
+        });
+
+        $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
+        return view('admin.orders.done',compact('orders'));
+    }
 
     public function getWaitingOrders()
     { 
@@ -270,8 +272,8 @@ class OrderController extends Controller
 
     public function getCanceledOrders()
     { 
-         $orders = Order::where('status','مرفوض')->orderBy('created_at','Asc')->get();
-         return view('admin.orders.cancel',compact('orders'));
+        $orders = Order::where('status','مرفوض')->orderBy('created_at','Asc')->get();
+        return view('admin.orders.cancel',compact('orders'));
     }
 
     public function updatePenddingToWaiting($id)
@@ -286,14 +288,13 @@ class OrderController extends Controller
 
     public function updatePenddingToCanceled(Request $request,$id)
     {
-
        $orders = Order::findOrFail($id);
        $orders->status = 'مرفوض';
        $orders->note = $request->note;
-        $orders->update();
+       $orders->update();
 
-        session()->flash('delete', 'تم  رفض الطلب بنجاح');
-        return back();
+       session()->flash('delete', 'تم  رفض الطلب بنجاح');
+       return back();
     }
 
     public function updateWaitingToDone()
@@ -301,15 +302,14 @@ class OrderController extends Controller
        $orders = Order::where('orderDate', '<', now())->get();
        $orders->status = 'منجز';
        $orders->update();
-
     }
 
     public function searchByArea(Request $request)
     {
-    $searchTerm = $request->input('search_area');
-    $request->session()->put('search_area', $searchTerm);
-    $areas =  Location::where('area', 'like', '%'.$searchTerm.'%')->orderBy('area', 'Asc');
-    return view('site.index', compact('areas'));
+        $searchTerm = $request->input('search_area');
+        $request->session()->put('search_area', $searchTerm);
+        $areas =  Location::where('area', 'like', '%'.$searchTerm.'%')->orderBy('area', 'Asc');
+        return view('site.index', compact('areas'));
     }
 
     public function chooseEmp($orderId)
@@ -331,6 +331,7 @@ class OrderController extends Controller
         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
         return redirect()->route('ord.pend');
     }
+
     public function getOrderDetails($id)
     {
         $order = Order::findOrFail($id);

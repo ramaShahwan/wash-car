@@ -156,7 +156,7 @@ Route:: prefix('user')->group(function () {
     Route::get('edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
-  });
+});
 
     //employee
 Route:: prefix('employee')->group(function () {
@@ -176,7 +176,7 @@ Route:: prefix('employee')->group(function () {
     Route::post('update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::delete('delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
   
-  });
+});
 
 
     //beforAfter
@@ -194,7 +194,7 @@ Route:: prefix('beforAfter')->group(function () {
     Route::delete('deleteBefore/{id}', [BeforAfterController::class, 'destroyBefore'])->name('before.delete');
     Route::delete('deleteAfter/{id}', [BeforAfterController::class, 'destroyAfter'])->name('after.delete');
 
-  });
+});
 
 });
 
@@ -213,11 +213,14 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     
 });
 
+
+
 // employee Routes
 Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     
     Route::get('get_orders', [EmployeeController::class, 'GetMyOrders'])->name('ord.get');
 });
+
 
 
 Route::get('get_img', [BeforAfterController::class, 'show']);

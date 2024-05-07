@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="{{URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css')}}">
 
 @endsection
+
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
@@ -29,8 +30,8 @@
 					</div>
 				</div>
 				<!-- breadcrumb -->
-
 @endsection
+
 @section('content')
 
 @if(session()->has('Add'))
@@ -41,17 +42,6 @@
 	</button>
 </div>
 @endif
-
-
-{{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
 
 				<!-- row -->
 				<div class="row">
@@ -89,7 +79,9 @@
 					</div>
 				</div>
 				<!-- row closed -->
+
 @endsection
+
 @section('js')
 
 <!--Internal  Datepicker js -->
