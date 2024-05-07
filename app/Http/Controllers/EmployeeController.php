@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Location;
+use App\Models\BeforAfter;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -219,14 +220,54 @@ class EmployeeController extends Controller
         ->join('services', 'services.id', 'order_service.service_id')
         ->select('services.name','services.type')
         ->get();
-
+    // return dd($results);
      if (auth()->user()->role == 'employee')
      {
       $id = auth()->user()->id;
-      $orders = Order::where('employee_id',$id)->where('status','قيد الإنجاز')->get();
+     $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
+    // return dd($emp_id);
+      $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
       return view('employee.orders.order_to_work',compact('orders','results'));
     }
-  
+
   }
 
-}
+  public function uploadOrderImage(Request $request,$orderId)
+  {
+    $validated = $request->validate([
+      'beforeImage' => 'required',
+      'afterImage' => 'required',
+  ]);
+
+  $id = auth()->user()->id;
+  $emp_num = User::where('id',$id)->value('phone');
+  $emp_id = Employee::where('phone',$emp_num)->value('id');
+
+   $images = new BeforAfter(); 
+   $images->employee_id =$emp_id;
+   $images->order_id =$orderId;
+   $images->save();
+
+    //store before image
+    $newBeforeImage = $request->file('beforeImage');
+    //for change image name
+     $newBeforeImageName = 'beforeImage_' .$images->id. '.' . $newBeforeImage->getClientOriginalExtension();
+     $newBeforeImage->move(public_path('site/img/gallery/'), $newBeforeImageName);
+     $images->beforeImage = $newBeforeImageName;     
+
+    //store after image
+     $newAfterImage = $request->file('afterImage');
+    //for change image name
+    $newAfterImageName = 'afterImage_' .$images->id. '.' . $newAfterImage->getClientOriginalExtension();
+    $newAfterImage->move(public_path('site/img/gallery/'), $newAfterImageName);
+    $images->afterImage = $newAfterImageName;     
+    $images->update();
+    session()->flash('Add', 'تم إضافة الصور بنجاح');
+   // return back();
+   return redirect()->route('beforAfter.show');
+  }
+    
+  }
+
+

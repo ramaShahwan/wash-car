@@ -218,7 +218,7 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     });
 
     Route::get('get_orders', [EmployeeController::class, 'GetMyOrders'])->name('ord.get');
-
+    Route::get('image_orders/{id}', [EmployeeController::class, 'uploadOrderImage'])->name('ord.image');
 
     Route::get('emp_add', [OrderController::class, 'create']);
     Route::post('emp_save_order', [OrderController::class, 'store'])->name('emp_ord.save');
