@@ -97,26 +97,33 @@
 												<td> </td>
 												@endif
 
-												@if(isset($results) && !empty($results))
-												@foreach($results as $result)
-													@foreach($result as $service)
-														@if($service->type == 'أساسية')
-															<td>{{ $service->name }}</td>
-														@endif
-													@endforeach
-												@endforeach
-											@endif
-											
 											@if(isset($results) && !empty($results))
-												@foreach($results as $result)
-													@foreach($result as $service)
-														@if($service->type == 'إضافية')
-															<td>{{ $service->name }}</td>
-														@endif
-													@endforeach
+											@foreach($results as $result)
+												@foreach($result as $service)
+													@if(isset($service->type) && $service->type == 'أساسية')
+														<td>{{ $service->name }}</td>
+													@endif
 												@endforeach
+											@endforeach
+											@else
+											<td> </td>
+										@endif
+								
+											@if(isset($results) && !empty($results))
+											@foreach($results as $result)
+												@foreach($result as $service)
+													@if(isset($service->type) && $service->type == 'إضافية')
+														<td>{{ $service->name }}</td>
+													@endif
+												@endforeach
+											@endforeach
+											@else
+												<td> </td>
 											@endif
-											
+										
+										
+										
+
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
 												<td>{{$order->numOfCar}}</td>
