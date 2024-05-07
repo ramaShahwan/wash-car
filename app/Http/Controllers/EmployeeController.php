@@ -233,6 +233,11 @@ class EmployeeController extends Controller
 
   }
 
+  public function openToUpload($orderId)
+  {
+    return view('employee.orders.done');
+  }
+
   public function uploadOrderImage(Request $request,$orderId)
   {
     $validated = $request->validate([
