@@ -213,8 +213,6 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     
 });
 
-
-
 // employee Routes
 Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     
