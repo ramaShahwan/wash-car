@@ -293,22 +293,40 @@ class EmployeeController extends Controller
 
    public function acceptedFromEmp()
    {
-    $id = auth()->user()->id;
-    $emp_num = User::where('id',$id)->value('phone');
-    $emp_id = Employee::where('phone',$emp_num)->value('id');
+    $results[] = DB::table('order_service')
+    ->join('orders', 'orders.id', 'order_service.order_id')
+    ->join('services', 'services.id', 'order_service.service_id')
+    ->select('services.name','services.type')
+    ->get();
 
-   $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
-   return view('employee.orders.accept',compact('orders'));
+  if (auth()->user()->role == 'employee')
+  {
+  $id = auth()->user()->id;
+  $emp_num = User::where('id',$id)->value('phone');
+  $emp_id = Employee::where('phone',$emp_num)->value('id');
+  $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
+
+  return view('employee.orders.accept',compact('orders'));
+  }
    }
 
    public function doneFromEmp()
    {
-    $id = auth()->user()->id;
-    $emp_num = User::where('id',$id)->value('phone');
-    $emp_id = Employee::where('phone',$emp_num)->value('id');
+    $results[] = DB::table('order_service')
+    ->join('orders', 'orders.id', 'order_service.order_id')
+    ->join('services', 'services.id', 'order_service.service_id')
+    ->select('services.name','services.type')
+    ->get();
 
-   $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->get();
-   return view('employee.orders.done',compact('orders'));
+  if (auth()->user()->role == 'employee')
+  {
+  $id = auth()->user()->id;
+  $emp_num = User::where('id',$id)->value('phone');
+  $emp_id = Employee::where('phone',$emp_num)->value('id');
+  $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->get();
+
+  return view('employee.orders.done',compact('orders'));
+  }
    }
 
    
