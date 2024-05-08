@@ -271,8 +271,6 @@ class EmployeeController extends Controller
     $images->afterImage = $newAfterImageName;     
     $images->update();
     session()->flash('Add', 'تم إضافة الصور بنجاح');
-   // return back();
-
    
    $order = Order::where('id',$orderId)->get();
    $order->status = 'منجز';
