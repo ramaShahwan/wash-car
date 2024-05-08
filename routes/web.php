@@ -198,6 +198,8 @@ Route:: prefix('beforAfter')->group(function () {
 
 });
 
+
+
 // User Routes
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
@@ -211,6 +213,8 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     
 });
 
+
+
 // employee Routes
 Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     
@@ -219,7 +223,9 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     });
 
     Route::get('get_orders', [EmployeeController::class, 'GetMyOrders'])->name('ord.get');
-    Route::get('open/{id}', [EmployeeController::class, 'openToUpload'])->name('ord.upload');
+    Route::post('open/{id}', [EmployeeController::class, 'openToUpload'])->name('ord.upload');
+
+    
     Route::post('image_orders/{id}', [EmployeeController::class, 'uploadOrderImage'])->name('ord.image');
     
     Route::get('myGallery', [EmployeeController::class, 'myGallery'])->name('ord.gallery');

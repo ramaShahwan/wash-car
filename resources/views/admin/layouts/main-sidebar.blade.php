@@ -120,6 +120,16 @@
 					</li>
 
 
+					<li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="{{ route('logout') }}"
+						onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
+						class="bx bx-log-out"></i>تسجيل خروج</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+						</form>
+					</li>
+					
+
 				</ul>
 			</div>
 		</aside>
