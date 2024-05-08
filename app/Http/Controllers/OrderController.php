@@ -286,7 +286,7 @@ class OrderController extends Controller
 
     public function getPendingOrders()
     { 
-        $orders = Order::where('status','معلق')->orderBy('created_at','Asc')->get();
+        $orders = Order::where('status','معلق')->whereNull('employee_id')->orderBy('created_at','Asc')->get();
         return view('admin.orders.pend',compact('orders'));
     }
 
@@ -345,7 +345,7 @@ class OrderController extends Controller
 
         $orders = Order::whereNotNull('employee_id')->get();
 
-        return view('waiting_for_emp',compact('orders'));
+        return view('admin.orders.waiting_for_emp',compact('orders'));
     }
 
 
