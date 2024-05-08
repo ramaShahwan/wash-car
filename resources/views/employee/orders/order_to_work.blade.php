@@ -98,25 +98,31 @@
 												@endif
 
 											@if(isset($results) && !empty($results))
+											<td>
 											@foreach($results as $result)
 												@foreach($result as $service)
 													@if(isset($service->type) && $service->type == 'أساسية')
-														<td>{{ $service->name }}</td>
+															
+															{{ $service->name }}
 													@endif
 												@endforeach
 											@endforeach
+										</td>
+
 											@else
 											<td> </td>
 											@endif
 								
 											@if(isset($results) && !empty($results))
+											<td>
 											@foreach($results as $result)
 												@foreach($result as $service)
 													@if(isset($service->type) && $service->type == 'إضافية')
-														<td>{{ $service->name }}</td>
+														{{ $service->name }}
 													@endif
 												@endforeach
 											@endforeach
+										</td>
 											@else
 												<td> </td>
 											@endif
