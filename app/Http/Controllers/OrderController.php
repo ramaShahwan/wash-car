@@ -342,17 +342,12 @@ class OrderController extends Controller
         return view('admin.orders.emp_area',compact('employees', 'orderId'));
     }
 
-    // public function seedOrderToEmp(Request $request, $orderId) {
+    public function waitingForEmp() {
 
-    //     $employeeId = $request->input('employee_id');
-    //     $order = Order::findOrFail($orderId);
-    //     $order->employee_id = $employeeId;
-    //     $order->status = 'قيد الإنجاز';
-    //     $order->update();
+        $orders = Order::whereNotNull('employee_id')->get();
 
-    //     session()->flash('Edit', 'تم اختيار الموظف بنجاح');
-    //     return redirect()->route('ord.pend');
-    // }
+        return view('waiting_for_emp',compact('orders'));
+    }
 
 
 
@@ -362,18 +357,15 @@ class OrderController extends Controller
         if ($employeeId) {
             $order = Order::findOrFail($orderId);
             $order->employee_id = $employeeId;
-            $order->status = 'قيد الإنجاز';
             $order->update();
     
             session()->flash('Edit', 'تم اختيار الموظف بنجاح');
             return redirect()->route('ord.pend');
         } else {
-            return redirect()->back()->with('error', 'يرجى اختيار موظف أولاً');
+            session()->flash('Edit',  'يرجى اختيار موظف أولاً');
+            return redirect()->back();
         }
     }
-
-
-
 
 
     public function getOrderDetails($id)
