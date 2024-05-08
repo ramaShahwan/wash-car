@@ -244,7 +244,7 @@ class EmployeeController extends Controller
     $validated = $request->validate([
       'beforeImage' => 'required',
       'afterImage' => 'required',
-  ]);
+   ]);
 
     $id = auth()->user()->id;
     $emp_num = User::where('id',$id)->value('phone');
@@ -272,7 +272,7 @@ class EmployeeController extends Controller
     $images->update();
     session()->flash('Add', 'تم إضافة الصور بنجاح');
    
-   $order = Order::where('id',$orderId)->get();
+   $order = Order::where('id',$orderId)->first();
    $order->status = 'منجز';
    $order->update();
 
@@ -304,7 +304,7 @@ class EmployeeController extends Controller
   $emp_id = Employee::where('phone',$emp_num)->value('id');
   $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
 
-  return view('employee.orders.accept',compact('orders'));
+  return view('employee.orders.accept',compact('orders','results'));
   }
    }
 
@@ -323,7 +323,7 @@ class EmployeeController extends Controller
   $emp_id = Employee::where('phone',$emp_num)->value('id');
   $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->get();
 
-  return view('employee.orders.done',compact('orders'));
+  return view('employee.orders.done',compact('orders','results'));
   }
    }
 
