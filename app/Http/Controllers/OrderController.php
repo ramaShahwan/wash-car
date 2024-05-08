@@ -103,7 +103,6 @@ class OrderController extends Controller
 
         // dd($request->all());
 
-        
         // return dd($locationId);
 
         $user = auth()->user();
@@ -131,7 +130,6 @@ class OrderController extends Controller
         $order->user_id = $user->id;
         $order->payWay_id = $request->payWay_id;
         $order->status = 'معلق';
-        
 
         $order->save();
 
@@ -218,6 +216,15 @@ class OrderController extends Controller
             'orderTime' => $time,
         ]);
     }
+
+    elseif(auth()->user()->role == "employee") {
+
+        return view('employee.site.summary', [
+            'totalPrice' => $totalPrice,
+            'orderDate' => $date,
+            'orderTime' => $time,
+        ]);
+    }
 }
 
 
@@ -231,6 +238,9 @@ class OrderController extends Controller
         elseif(auth()->user()->role == "user") {
             return view('site.pay',compact('pay'));
         }
+        elseif(auth()->user()->role == "employee") {
+            return view('employee.site.pay',compact('pay'));
+        }
     }
     
     public function setPayway(Request $request)
@@ -243,28 +253,25 @@ class OrderController extends Controller
             'payWay_id' => $pay->id,
         ]);
 
-        if(auth()->user()->role == "admin") {
+        // if(auth()->user()->role == "admin") {
 
-            session()->flash('Add', 'تم تثبيت طلبك بنجاح');
+        //     session()->flash('Add', 'تم تثبيت طلبك بنجاح');
             return redirect('/'); 
-        }
-        elseif(auth()->user()->role == "user") {
+        // }
+        // elseif(auth()->user()->role == "user") {
             
-            // return view('site.home'); 
-            return redirect('/'); 
-        }
+        //     // return view('site.home'); 
+        //     return redirect('/'); 
+        // }
+
+        // elseif(auth()->user()->role == "employee") {
+            
+        //     // return view('site.home'); 
+        //     return redirect('/'); 
+        // }
     }
     
   //functions for admin
-    // public function getDoneOrders()
-    // { 
-    //     $ord = Order::where('orderDate', '<', now())->get();
-    //     $ord->status = 'منجز';
-    //     $ord->update();
-
-    //     $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
-    //     return view('admin.orders.done',compact('orders'));
-    // }
 
     public function getDoneOrders()
     { 
