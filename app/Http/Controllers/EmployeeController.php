@@ -227,7 +227,7 @@ class EmployeeController extends Controller
      $emp_num = User::where('id',$id)->value('phone');
     $emp_id = Employee::where('phone',$emp_num)->value('id');
     // return dd($emp_id);
-      $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
+      $orders = Order::where('employee_id',$emp_id)->where('status','معلق')->get();
       return view('employee.orders.order_to_work',compact('orders','results'));
     }
 
@@ -236,7 +236,7 @@ class EmployeeController extends Controller
   public function openToUpload($orderId)
   {
     $order = Order::findOrFail($orderId);
-    return view('employee.orders.done',compact('order'));
+    return view('employee.orders.upload_img',compact('order'));
   }
 
   public function uploadOrderImage(Request $request,$orderId)
@@ -290,6 +290,28 @@ class EmployeeController extends Controller
    $gallery = BeforAfter::where('employee_id',$emp_id)->get();
    return view('employee.before_after.show',compact('gallery'));
    }
+
+   public function acceptedFromEmp()
+   {
+    $id = auth()->user()->id;
+    $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
+
+   $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
+   return view('employee.orders.accept',compact('orders'));
+   }
+
+   public function doneFromEmp()
+   {
+    $id = auth()->user()->id;
+    $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
+
+   $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->get();
+   return view('employee.orders.done',compact('orders'));
+   }
+
+   
   }
 
 
