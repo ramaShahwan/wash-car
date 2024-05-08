@@ -317,22 +317,22 @@
 
    <div class="row">
 
-<div class="col-md-4">
-   <div class="form-group">
-      <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
-      <select name="location_id" class="form-control select @error('location_id') is-invalid @enderror"> 
-         <option value="لايوجد">اختر المنطقة</option>
+   <div class="col-md-4">
+      <div class="form-group">
+         <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
+         <select name="location_id" class="form-control select @error('location_id') is-invalid @enderror"> 
+            <option value="لايوجد">اختر المنطقة</option>
 
-         @foreach($areas as $area)
-            <option value="{{$area->area}}">{{$area->area}}</option>
-         @endforeach  
-      </select>
+            @foreach($areas as $area)
+               <option value="{{$area->area}}">{{$area->area}}</option>
+            @endforeach  
+         </select>
 
-      @error('location_id')
-         <div class="alert alert-danger">يجب إدخال موقع السيارة</div>
-      @enderror
-   </div>
-</div><br>
+         @error('location_id')
+            <div class="alert alert-danger">يجب إدخال موقع السيارة</div>
+         @enderror
+      </div>
+   </div><br>
 
       <div class="col-md-4">
           <div class="form-group">
