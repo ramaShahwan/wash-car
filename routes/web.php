@@ -96,6 +96,7 @@ Route:: prefix('order')->group(function () {
     Route::get('show_wait', [OrderController::class, 'getWaitingOrders'])->name('ord.wait');
     Route::get('show_pend', [OrderController::class, 'getPendingOrders'])->name('ord.pend');
     Route::get('show_cancel', [OrderController::class, 'getCanceledOrders'])->name('ord.cancel');
+    Route::get('waitingForEmp', [OrderController::class, 'waitingForEmp'])->name('ord.waitingForEmp');
 
     // Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
     Route::post('updatePenddingToCanceled/{id}', [OrderController::class, 'updatePenddingToCanceled'])->name('ord.updatePenddingToCanceled');
