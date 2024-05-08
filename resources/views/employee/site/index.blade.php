@@ -316,26 +316,6 @@
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
 
    <div class="row">
-      
-{{-- <div class="col-md-4">
-   <div class="form-group">
-      <label style="font-size: 16px; font-weight: bolder; color: black;">موقع السيارة</label>
-         <div class="wrapper">
-            <div class="select-btn">
-               <span>اختر المنطقة</span>
-               <i class="uil uil-angle-down"></i>
-            </div>
-            <div class="content">
-               <div class="search">
-                  <i class="uil uil-search"></i>
-                  <input spellcheck="false" type="text" placeholder="search">
-               </div>
-               <ul class="options">
-               </ul>
-            </div>
-         </div>
-   </div>
-</div> --}}
 
 <div class="col-md-4">
    <div class="form-group">
@@ -365,18 +345,6 @@
            @enderror
           </div>
       </div>
-
-        {{-- <div class="col-md-4">
-          <div class="form-group">
-              <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
-              <div class="time-icon" style="display: flex; align-items: center;">
-                  <input name="typeOfCar" type="text" class="form-control @error('typeOfCar') is-invalid @enderror">
-              </div>
-          </div>
-          @error('typeOfCar')
-          <div class="alert alert-danger">يجب إدخال نوع السيارة</div>
-       @enderror
-      </div> --}}
 
       <div class="col-md-4">
         <div class="form-group">
