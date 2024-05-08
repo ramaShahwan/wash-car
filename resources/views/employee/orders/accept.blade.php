@@ -13,7 +13,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">الطلبات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الطلبات قيد انتظار الإنجاز</span>
+							<h4 class="content-title mb-0 my-auto">الطلبات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الطلبات المقبولة</span>
 						</div>
 					</div>
 				</div>
@@ -28,7 +28,7 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">الطلبات قيد انتظار الإنجاز</h4>
+									<h4 class="card-title mg-b-0">الطلبات المقبولة</h4>
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
 							</div>
@@ -51,6 +51,8 @@
 												<th class="wd-15p border-bottom-0">السعر الإجمالي</th>
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
+
+												<th class="wd-15p border-bottom-0">تم الإنجاز</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -107,6 +109,15 @@
 												<td>{{$order->totalPrice}}</td>
 												<td>{{$order->orderDate}}</td>
 												<td>{{$order->orderTime}}</td>
+
+												<td>
+													<form action="{{ route('ord.upload', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('POST')
+														<button class="btn btn-sm btn-success" title="تم الإنجاز"><i class="fa fa-check"></i></button>
+													</form>
+												</td>
+
 											</tr>
 											@endforeach
 										</tbody>
