@@ -7,16 +7,6 @@
 
 @section('content')
 
-@if(session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-	<strong>{{ session()->get('Add') }}</strong>
-	<button type="button" class="close" data_dismiss="alert" aria_lable="Close">
-		<span aria_hidden="true">&times;</span>
-	</button>
-</div>
-@endif
-
-
 <body>
 
       <!-- banner section start -->
