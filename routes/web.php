@@ -237,6 +237,12 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     Route::get('emp_pay', [OrderController::class, 'getPayway'])->name('emp_ord.pay');
     Route::post('emp_set_pay', [OrderController::class, 'setPayway'])->name('emp_ord.setPay');
 
+    Route::get('acceptedFromEmp', [EmployeeController::class, 'acceptedFromEmp'])->name('emp_ord.accepted');
+    Route::get('doneFromEmp', [EmployeeController::class, 'doneFromEmp'])->name('emp_ord.done');
+
+
+    
+
 });
 
 

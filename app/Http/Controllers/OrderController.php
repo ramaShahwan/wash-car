@@ -301,7 +301,6 @@ class OrderController extends Controller
        $orders = Order::findOrFail($id);
        $orders->status = 'قيد الإنجاز';
        $orders->update();
-
         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
         return back();
     }
