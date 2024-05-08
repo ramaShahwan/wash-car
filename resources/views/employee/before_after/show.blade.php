@@ -37,13 +37,11 @@
 								@foreach($gallery as $dt)
 
                                 <div class="row">
-                                    
                                     <div class="col-md-6 text-center">
                                         <div>
                                             <h4>قبل</h4>
                                             <img src="{{ URL::asset('/site/img/gallery/'.$dt->beforeImage) }}" style="height: 300px; width: 300px;">
                                             <br><br>
-                                        
                                             <br><br><br>
                                         </div>
                                     </div>
@@ -53,14 +51,12 @@
                                             <h4>بعد</h4>
                                             <img src="{{ URL::asset('/site/img/gallery/'.$dt->afterImage) }}" style="height: 300px; width: 300px;">
                                             <br><br>
-                                        
                                             <br><br><br>
                                         </div>
                                     </div>
                                 </div>  
                                     
                                 @endforeach
-
 								</div>
 							</div>
 						</div>

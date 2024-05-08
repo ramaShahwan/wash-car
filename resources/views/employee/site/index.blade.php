@@ -343,9 +343,9 @@
       <select name="location_id" class="form-control select @error('location_id') is-invalid @enderror"> 
          <option value="لايوجد">اختر المنطقة</option>
 
-         {{-- @foreach($areas as $area)
+         @foreach($areas as $area)
             <option value="{{$area->area}}">{{$area->area}}</option>
-         @endforeach   --}}
+         @endforeach  
       </select>
 
       @error('location_id')
@@ -384,9 +384,9 @@
            <select name="typeOfCar" class="form-control select @error('typeOfCar') is-invalid @enderror" id="typeOfCar"> 
             <option value="لايوجد">اختر نوع السيارة</option>
 
-            {{-- @foreach($types as $type)
+            @foreach($types as $type)
             <option value="{{$type->name}}">{{$type->name}}</option>
-            @endforeach  --}}
+            @endforeach 
          </select>
          @error('typeOfCar')
          <div class="alert alert-danger">يجب إدخال نوع السيارة</div>
