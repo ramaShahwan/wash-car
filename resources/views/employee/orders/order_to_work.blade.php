@@ -97,7 +97,7 @@
 												<td> </td>
 												@endif
 
-											@if(isset($results) && !empty($results))
+											{{-- @if(isset($results) && !empty($results))
 											
 											@foreach($results as $result)
 												@foreach($result as $service)
@@ -112,21 +112,42 @@
 
 											@else
 											<td> </td>
+											@endif --}}
+
+																					@if(isset($results) && !empty($results))
+											@foreach($results as $result)
+												@php
+													$found = false;
+												@endphp
+												@foreach($result as $service)
+													@if(!$found && isset($service->type) && $service->type == 'أساسية')
+														<td>  
+															{{ $service->name }}
+														</td>
+														@php
+															$found = true;
+														@endphp
+														@break
+													@endif
+													@endforeach
+													@if(!$found)
+														<td> </td>
+													@endif
+												@endforeach
+											@else
+												<td> </td>
 											@endif
 								
 											@if(isset($results) && !empty($results))
-											@foreach($results as $result)
-											<td>
-
-												@foreach($result as $service)
-
-													@if(isset($service->type) && $service->type == 'إضافية')
-														{{ $service->name }}
-													@endif
+												@foreach($results as $result)
+													<td>
+														@foreach($result as $service)
+															@if(isset($service->type) && $service->type == 'إضافية')
+																{{ $service->name }}
+															@endif
+														@endforeach
+													</td>
 												@endforeach
-										</td>
-
-											@endforeach
 											@else
 												<td> </td>
 											@endif
