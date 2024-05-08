@@ -53,23 +53,24 @@
 									<div class="row">
 										<div class="col">
 										    <label for="exampleTextarea">صورة قبل التنظيف</label>
+											<br>
 										    <input type="file" name="beforeImage" class="dropify" accept=".jpg, .png, image/jpeg, image/png" data-height="70" />
 										</div>
 									</div><br><br>  
-					
+
                                     <div class="row">
 										<div class="col">
 										    <label for="exampleTextarea">صورة بعد التنظيف</label>
+											<br>
 										    <input type="file" name="afterImage" class="dropify" accept=".jpg, .png, image/jpeg, image/png" data-height="70" />
 										</div>
 									</div><br><br>  
-
                                       <br><br> 
 
 									  <div class="d-flex justify-content-center">
 										<button type="submit" class="btn btn-primary">حفظ البيانات</button>
 									  </div>
-			
+
 								</form>
 							</div>
 						</div>

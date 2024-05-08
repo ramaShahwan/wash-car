@@ -35,6 +35,7 @@
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ url('/order/show_pend') }}">الطلبات المعلقة</a></li>
 							<li><a class="slide-item" href="{{ url('/order/show_wait') }}">الطلبات قيد الإنجاز</a></li>
+							<li><a class="slide-item" href="{{ url('/order/waitingForEmp') }}">بانتظار القبول من الموظف</a></li>
 							<li><a class="slide-item" href="{{ url('/order/show_done') }}">الطلبات المنجزة</a></li>
 							<li><a class="slide-item" href="{{ url('/order/show_cancel') }}">الطلبات المرفوضة</a></li>
 						</ul>

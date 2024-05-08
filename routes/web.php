@@ -98,7 +98,7 @@ Route:: prefix('order')->group(function () {
     Route::get('show_cancel', [OrderController::class, 'getCanceledOrders'])->name('ord.cancel');
     Route::get('waitingForEmp', [OrderController::class, 'waitingForEmp'])->name('ord.waitingForEmp');
 
-    Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
+    // Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
     Route::post('updatePenddingToCanceled/{id}', [OrderController::class, 'updatePenddingToCanceled'])->name('ord.updatePenddingToCanceled');
 
 
@@ -239,10 +239,9 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
 
     Route::get('acceptedFromEmp', [EmployeeController::class, 'acceptedFromEmp'])->name('emp_ord.accepted');
     Route::get('doneFromEmp', [EmployeeController::class, 'doneFromEmp'])->name('emp_ord.done');
-
-
     
 
+    Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
 });
 
 
