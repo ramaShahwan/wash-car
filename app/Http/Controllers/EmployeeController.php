@@ -82,6 +82,7 @@ class EmployeeController extends Controller
        $emp->image = $newImageName;
        $emp->update();
      }
+
         session()->flash('Add', 'تم إضافة الموظف بنجاح');
         return redirect()->route('employee.accepted');
     }
