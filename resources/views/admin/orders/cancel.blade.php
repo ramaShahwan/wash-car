@@ -68,6 +68,7 @@
 
 												<th class="wd-15p border-bottom-0">سبب الرفض</th>
 												<th class="wd-15p border-bottom-0">قبول</th>
+												<th class="wd-15p border-bottom-0">حذف</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -105,6 +106,37 @@
 													@csrf
 													@method('POST')
 													<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
+												</form>
+											</td>
+
+											<td>
+												<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
+												data-target="#delete{{$order->id}}"><i class="las la-trash"></i></a>
+												<form action="{{route('ord.delete', $order->id)}}" method="POST" enctype="multipart/form-data">
+														@csrf
+														@method('DELETE')
+													<div id="delete{{$order->id}}" class="modal fade delete-modal" role="dialog">
+														<div class="modal-dialog modal-dialog-centered">
+															<div class="modal-content">
+		
+																<div class="modal-header">
+																	<h6 class="modal-title">حذف الطلب: &nbsp; {{$order->id}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+																		type="button"><span aria-hidden="true">&times;</span></button>
+																</div>
+		
+																<div class="modal-body text-center">
+																	<img src="{{URL::asset('assets/img/media/sent.png')}}" alt="" width="50" height="46">
+																	<br><br>
+																	<h5>هل أنت متأكد من عملية الحذف؟</h5>
+																	<br>
+																	<div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">إلغاء</a>
+																		<button type="submit" class="btn btn-danger">حذف</button>
+																	</div>
+																	<br>
+																</div>
+															</div>
+														</div>
+													</div>
 												</form>
 											</td>
 
