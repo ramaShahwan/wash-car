@@ -183,12 +183,13 @@
 {{-- flatpicker --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-	config = {
-    	dateFormat: "Y-m-d",
-		altInput: true,
-		altFormat: "F j, Y"
-	}
-	flatpickr("input[type=datetime]", config);
+    config = {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "F j, Y",
+        maxDate: new Date().getFullYear() - 10 + "-01-01" // تحديد الحد الأعلى للتاريخ كتاريخ قبل 10 سنوات
+    }
+    flatpickr("input[type=datetime]", config);
 </script>
 
 
