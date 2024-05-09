@@ -370,7 +370,7 @@ class OrderController extends Controller
             $order = Order::findOrFail($orderId);
             $order->employee_id = $employeeId;
             $order->note = '';
-            $order->staus = 'معلق';
+            $order->status = 'معلق';
             $order->update();
     
             session()->flash('Edit', 'تم اختيار الموظف بنجاح');
@@ -433,6 +433,19 @@ class OrderController extends Controller
             }
     
          
+    }
+
+    
+    public function destroy( $id)
+    {
+      $orders = Order_Service::where('order_id',$id)->get();
+      foreach($orders as $order)
+      {
+       $order->delete();
+      }
+      Order::findOrFail($id)->delete();
+      session()->flash('delete', 'تم حذف الطلب بنجاح');
+      return back();
     }
           
 

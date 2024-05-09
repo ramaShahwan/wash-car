@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
 
 class UserController extends Controller
 {
@@ -70,6 +71,11 @@ class UserController extends Controller
 
     public function destroy( $id)
     {
+        $orders = Order::where('user_id',$id)->get();
+        foreach($orders as $order)
+        {
+         $order->delete();
+        }
       User::findOrFail($id)->delete();
       session()->flash('delete', 'تم حذف المستخدم بنجاح');
       return back();

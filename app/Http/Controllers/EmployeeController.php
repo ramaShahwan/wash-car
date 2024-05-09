@@ -210,6 +210,13 @@ class EmployeeController extends Controller
 
     public function destroy($id)
     {
+     $orders = Order::where('employee_id',$id)->get();
+     foreach($orders as $order)
+     {
+      $order->employee_id = null;
+      $order->update();
+     }
+
       Employee::findOrFail($id)->delete();
       session()->flash('delete', 'تم حذف الموظف بنجاح');
       return back();

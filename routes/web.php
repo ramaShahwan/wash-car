@@ -105,6 +105,8 @@ Route:: prefix('order')->group(function () {
     Route::post('chooseEmp/{id}', [OrderController::class, 'chooseEmp'])->name('ord.chooseEmp');
     Route::post('seedOrderToEmp/{id}', [OrderController::class, 'seedOrderToEmp'])->name('ord.seedOrderToEmp');
 
+    Route::delete('delete/{id}', [OrderController::class, 'destroy'])->name('ord.delete');
+
     Route::get('canceledFormEmp', [OrderController::class, 'getCanceledOrdersByEmp'])->name('ord.canceledFormEmp');
 
 });

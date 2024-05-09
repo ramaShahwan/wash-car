@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Order_Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -77,6 +78,11 @@ class ServiceController extends Controller
 
     public function destroy( $id)
     {
+      $srvices_orders = Order_Service::where('service_id',$id)->get();
+      foreach($srvices_orders as $order)
+      {
+       $order->delete();
+      }
       Service::findOrFail($id)->delete();
       session()->flash('delete', 'تم حذف الخدمة بنجاح');
       return back();

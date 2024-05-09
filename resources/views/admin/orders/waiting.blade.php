@@ -56,13 +56,8 @@
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
 												<th class="wd-15p border-bottom-0">اسم صاحب الطلب</th>
+												<th class="wd-15p border-bottom-0">اسم الموظف</th>
 												<th class="wd-15p border-bottom-0">الموقع</th>
-												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
-
-												<th class="wd-15p border-bottom-0">نوع السيارة</th>
-												<th class="wd-15p border-bottom-0">حجم السيارة</th>
-												<th class="wd-15p border-bottom-0">رقم السيارة</th>
-												<th class="wd-15p border-bottom-0">السعر الإجمالي</th>
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
 											</tr>
@@ -77,25 +72,35 @@
 												@else
 												<td> </td>
 												@endif
+
+												@if($order->employee_id)
+												<td>{{ App\Models\Employee::findOrFail($order->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($order->employee_id)->lastName }}</td>
+												@else
+												<td> </td>
+												@endif
+												<td>
+
 												@if($order->location_id)
 												<td>{{ App\Models\Location::findOrFail($order->location_id)->area }}</td>
 												@else
 												<td> </td>
 												@endif
 											
-												@if($order->payWay_id)
+												{{-- @if($order->payWay_id)
 												<td>{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}</td>
 												@else
 												<td> </td>
-												@endif
+												@endif --}}
 
 
-												<td>{{$order->typeOfCar}}</td>
+												{{-- <td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
 												<td>{{$order->numOfCar}}</td>
-												<td>{{$order->totalPrice}}</td>
+												<td>{{$order->totalPrice}}</td> --}}
 												<td>{{$order->orderDate}}</td>
 												<td>{{$order->orderTime}}</td>
+
+											
 											</tr>
 											@endforeach
 										</tbody>
