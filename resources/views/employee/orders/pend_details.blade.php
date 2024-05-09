@@ -29,7 +29,6 @@
 
 @section('content')
 
-
 				<!-- row -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
@@ -37,8 +36,6 @@
 							<div class="card-body">
 								<form action="{{ route('emp_ord.pend_details',$order->id) }}" method="post"  enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
-
-                                {{-- @foreach ($order as $ord) --}}
 
 								<div class="row">
 									<div class="col">
@@ -127,7 +124,6 @@
 										</div>
 									</div><br>
 
-
 									<div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">رقم السيارة</label>
@@ -137,7 +133,6 @@
 										</div>
 									</div><br>
 
-
 									<div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">نوع السيارة</label>
@@ -146,9 +141,7 @@
 											id="inputName" name="typeOfCar" value="{{ $order->typeOfCar }}" readonly>
 										</div>
 									</div><br>
-
 								
-
 									<div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label"> طريقة الدفع</label>
@@ -179,22 +172,48 @@
 											<img src="{{ URL::asset('/site/img/gallery/'.$afterImage) }}" style="height: 300px; width: 300px;">
 										</div>
 									</div><br>
-									
 									<br>
-
-									{{-- <div class="d-flex justify-content-center">
-                                        <a href="{{ url('/order/show_done') }}" class="btn btn-primary" style="align-items: center;">رجوع &nbsp; <i class="fa fa-arrow-left"></i></a>
-                                    </div> --}}
-
-                                    <div class="center" style="text-align: center;">
-                                        <a class="btn btn-success" href="{{ route('emp_ord.accepted', $order->id) }}" style="align-items: center; font-size: 14px;">قبول &nbsp; <i class="fas fa-check"></i></a> &nbsp;
-                                        <a class="btn btn-danger" href="{{ route('notice.destroyNotice', $order->id) }}" style="align-items: center; font-size: 14px;">رفض &nbsp; <i class="fas fa-times"></i></a> &nbsp;
-                                    </div>
-
-
-									{{-- @endforeach --}}
-			
 								</form>
+
+
+								<div class="center" style="text-align: center;">
+
+									<a class="btn btn-success" href="{{ route('ord.updatePenddingToWaiting', $order->id) }}" style="align-items: center; font-size: 14px;">قبول &nbsp; <i class="fas fa-check"></i></a> &nbsp;
+
+									<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"
+									data-target="#delete"><i class="fas fa-times"></i></a>
+									<form action="{{route('emp_ord.cancel', $order->id)}}" method="POST" enctype="multipart/form-data">
+											@csrf
+											@method('POST')
+										<div id="delete" class="modal fade delete-modal" role="dialog">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+
+													<div class="modal-header">
+														<h6 class="modal-title">سبب رفض طلب : &nbsp; {{ App\Models\User::findOrFail($order->user_id)->name }} </h6><button aria-label="Close" class="close" data-dismiss="modal"
+															type="button"><span aria-hidden="true">&times;</span></button>
+													</div>
+
+													<div class="modal-body text-center">
+														<h5>سبب الرفض</h5>
+														<br>
+														<input type="text" class="form-control" id="inputName" name="note">
+														{{-- <img src="{{URL::asset('assets/img/media/sent.png')}}" alt="" width="50" height="46"> --}}
+														<br>
+														{{-- <h5>هل أنت متأكد من عملية الحذف؟</h5> --}}
+														<br>
+														<div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">إلغاء</a>
+															<button type="submit" class="btn btn-success">إرسال</button>
+														</div>
+														<br>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+
+
 							</div>
 						</div>
 					</div>
