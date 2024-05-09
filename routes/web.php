@@ -246,7 +246,7 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     Route::get('pend_details/{id}', [OrderController::class, 'getOrderDetails'])->name('emp_ord.pend_details');
     Route::get('accept_details/{id}', [OrderController::class, 'getAcceptOrderDetails'])->name('emp_ord.accept_details');
 
-    Route::post('cancel_order', [EmployeeController::class, 'cancelByEmp'])->name('emp_ord.cancel');
+    Route::post('cancel_order/{id}', [EmployeeController::class, 'cancelByEmp'])->name('emp_ord.cancel');
 
     
     Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
