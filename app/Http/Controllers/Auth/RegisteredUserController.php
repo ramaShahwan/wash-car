@@ -47,8 +47,9 @@ class RegisteredUserController extends Controller
         ]);
 
       $num =  $user->phone;
-      $value = Employee::where('phone',$num)->get();
-      if($value )
+      $value = Employee::where('phone',$num)->where('status','accepted')->first();
+    //   return dd($value);
+      if($value)
       {
       User::where('phone', $num)->update(['role' => 'employee']);
       }

@@ -168,7 +168,7 @@
 
 									<a class="btn btn-success" href="{{ route('ord.updatePenddingToWaiting', $order->id) }}" style="cursor: pointer; align-items: center; font-size: 14px;">قبول &nbsp; <i class="fas fa-check"></i></a> &nbsp;
 
-									<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer; align-items: center; font-size: 14px;"
+									<a class="modal-effect btn btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer; align-items: center; font-size: 14px;"
 									data-target="#delete"> رفض &nbsp; <i class="fas fa-times"></i></a>
 									<form action="{{route('emp_ord.cancel', $order->id)}}" method="POST" enctype="multipart/form-data">
 											@csrf
