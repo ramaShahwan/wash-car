@@ -42,9 +42,6 @@
 												<th class="wd-15p border-bottom-0">الموقع</th>
 												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
 
-												<th class="wd-15p border-bottom-0">الخدمة الأساسية</th>
-												<th class="wd-15p border-bottom-0">الخدمات الإضافية</th>
-
 												<th class="wd-15p border-bottom-0">نوع السيارة</th>
 												<th class="wd-15p border-bottom-0">حجم السيارة</th>
 												<th class="wd-15p border-bottom-0">رقم السيارة</th>
@@ -52,7 +49,7 @@
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
 
-												<th class="wd-15p border-bottom-0">تم الإنجاز</th>
+												<th class="wd-15p border-bottom-0">تفاصيل الطلب</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -79,30 +76,6 @@
 												<td> </td>
 												@endif
 
-											@if(isset($results) && !empty($results))
-											@foreach($results as $result)
-												@foreach($result as $service)
-													@if(isset($service->type) && $service->type == 'أساسية')
-														<td>{{ $service->name }}</td>
-													@endif
-												@endforeach
-											@endforeach
-											@else
-											<td> </td>
-											@endif
-								
-											@if(isset($results) && !empty($results))
-											@foreach($results as $result)
-												@foreach($result as $service)
-													@if(isset($service->type) && $service->type == 'إضافية')
-														<td>{{ $service->name }}</td>
-													@endif
-												@endforeach
-											@endforeach
-											@else
-												<td> </td>
-											@endif
-
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
 												<td>{{$order->numOfCar}}</td>
@@ -111,10 +84,10 @@
 												<td>{{$order->orderTime}}</td>
 
 												<td>
-													<form action="{{ route('ord.upload', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+													<form action="{{ route('emp_ord.accept_details', $order->id) }}" method="GET" enctype="multipart/form-data" autocomplete="off">
 														@csrf
-														@method('POST')
-														<button class="btn btn-sm btn-success" title="تم الإنجاز"><i class="fa fa-check"></i></button>
+														@method('GET')
+														<button class="btn btn-sm btn-info" title="تفاصيل الطلب"><i class="la la-archive"></i></button>
 													</form>
 												</td>
 

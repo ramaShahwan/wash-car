@@ -8,6 +8,7 @@
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
+
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
@@ -42,8 +43,8 @@
 												<th class="wd-15p border-bottom-0">الموقع</th>
 												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
 
-												<th class="wd-15p border-bottom-0">الخدمة الأساسية</th>
-												<th class="wd-15p border-bottom-0">الخدمات الإضافية</th>
+												{{-- <th class="wd-15p border-bottom-0">الخدمة الأساسية</th>
+												<th class="wd-15p border-bottom-0">الخدمات الإضافية</th> --}}
 
 												<th class="wd-15p border-bottom-0">نوع السيارة</th>
 												<th class="wd-15p border-bottom-0">حجم السيارة</th>
@@ -76,7 +77,7 @@
 												@else
 												<td> </td>
 												@endif
-
+{{-- 
 											@if(isset($results) && !empty($results))
 											@foreach($results as $result)
 												@foreach($result as $service)
@@ -100,7 +101,7 @@
 											@else
 												<td> </td>
 											@endif
-
+ --}}
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
 												<td>{{$order->numOfCar}}</td>
