@@ -60,9 +60,6 @@
 												<th class="wd-15p border-bottom-0">الموقع</th>
 												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
 
-												<th class="wd-15p border-bottom-0">الخدمة الأساسية</th>
-												<th class="wd-15p border-bottom-0">الخدمات الإضافية</th>
-
 												<th class="wd-15p border-bottom-0">نوع السيارة</th>
 												<th class="wd-15p border-bottom-0">حجم السيارة</th>
 												<th class="wd-15p border-bottom-0">رقم السيارة</th>
@@ -70,12 +67,14 @@
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
 
-												<th class="wd-15p border-bottom-0">قبول</th>
+												<th class="wd-15p border-bottom-0">تفاصيل الطلب</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
 											@foreach($orders as $order)
+
+											@if($order->status == 'معلق')
 											<tr>
 												<td>{{$i++}}</td>
 
@@ -97,60 +96,6 @@
 												<td> </td>
 												@endif
 
-											{{-- @if(isset($results) && !empty($results))
-											
-											@foreach($results as $result)
-												@foreach($result as $service)
-													@if(isset($service->type) && $service->type == 'أساسية')
-													<td>	
-															{{ $service->name }}
-														</td>
-													@endif
-												@endforeach
-											@endforeach
-									
-
-											@else
-											<td> </td>
-											@endif --}}
-
-																					@if(isset($results) && !empty($results))
-											@foreach($results as $result)
-												@php
-													$found = false;
-												@endphp
-												@foreach($result as $service)
-													@if(!$found && isset($service->type) && $service->type == 'أساسية')
-														<td>  
-															{{ $service->name }}
-														</td>
-														@php
-															$found = true;
-														@endphp
-														@break
-													@endif
-													@endforeach
-													@if(!$found)
-														<td> </td>
-													@endif
-												@endforeach
-											@else
-												<td> </td>
-											@endif
-								
-											@if(isset($results) && !empty($results))
-												@foreach($results as $result)
-													<td>
-														@foreach($result as $service)
-															@if(isset($service->type) && $service->type == 'إضافية')
-																{{ $service->name }}
-															@endif
-														@endforeach
-													</td>
-												@endforeach
-											@else
-												<td> </td>
-											@endif
 
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
@@ -160,14 +105,16 @@
 												<td>{{$order->orderTime}}</td>
 												
 												<td>
-													<form action="{{ route('ord.updatePenddingToWaiting', $order->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+													<form action="{{ route('emp_ord.pend_details', $order->id) }}" method="GET" enctype="multipart/form-data" autocomplete="off">
 														@csrf
-														@method('POST')
-														<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
+														@method('GET')
+														<button class="btn btn-sm btn-info" title="تفاصيل الطلب"><i class="la la-archive"></i></button>
 													</form>
 												</td>
 
 											</tr>
+											@endif
+											
 											@endforeach
 										</tbody>
 									</table>

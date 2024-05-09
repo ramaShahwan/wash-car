@@ -224,7 +224,7 @@ class EmployeeController extends Controller
      if (auth()->user()->role == 'employee')
      {
       $id = auth()->user()->id;
-     $emp_num = User::where('id',$id)->value('phone');
+      $emp_num = User::where('id',$id)->value('phone');
     $emp_id = Employee::where('phone',$emp_num)->value('id');
     // return dd($emp_id);
       $orders = Order::where('employee_id',$emp_id)->where('status','معلق')->get();

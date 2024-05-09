@@ -94,7 +94,7 @@
 													<form action="{{ route('ord.details', $order->id) }}" method="get" enctype="multipart/form-data" autocomplete="off">
 														@csrf
 														@method('GET')
-														<button class="btn btn-sm btn-success" title="تفاصيل"><i class="la la-archive"></i></button>
+														<button class="btn btn-sm btn-info" title="تفاصيل"><i class="la la-archive"></i></button>
 													</form>
 												</td>
 											</tr>

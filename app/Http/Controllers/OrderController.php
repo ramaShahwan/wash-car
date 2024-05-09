@@ -379,8 +379,9 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $serviceOrder = Order_Service::where('order_id', $id)->pluck('service_id')->toArray();
         
-        $primary=[] ;
+        $primary=[];
         $sec = [];
+        
         foreach ($serviceOrder as $service) {
             $primary[] = Service::where('id', $service)->where('type', 'أساسية')->value('name');
             $sec[] = Service::where('id', $service)->where('type', 'إضافية')->value('name');
