@@ -167,19 +167,6 @@
 										</div>
 									</div><br>
 
-									<div class="row">
-										<div class="col-6 text-center">
-											<label for="inputName" class="control-label">صورة السيارة قبل التنظيف</label>
-											<br>
-											<img src="{{ URL::asset('/site/img/gallery/'.$beforeImage) }}" style="height: 300px; width: 300px;">
-										</div>
-										<div class="col-6 text-center">
-											<label for="inputName" class="control-label">صورة السيارة بعد التنظيف</label>
-											<br>
-											<img src="{{ URL::asset('/site/img/gallery/'.$afterImage) }}" style="height: 300px; width: 300px;">
-										</div>
-									</div><br>
-									
 									<br>
 
 									{{-- <div class="d-flex justify-content-center">

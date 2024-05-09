@@ -160,28 +160,16 @@
 										</div>
 									</div><br>
 
-									<div class="row">
-										<div class="col-6 text-center">
-											<label for="inputName" class="control-label">صورة السيارة قبل التنظيف</label>
-											<br>
-											<img src="{{ URL::asset('/site/img/gallery/'.$beforeImage) }}" style="height: 300px; width: 300px;">
-										</div>
-										<div class="col-6 text-center">
-											<label for="inputName" class="control-label">صورة السيارة بعد التنظيف</label>
-											<br>
-											<img src="{{ URL::asset('/site/img/gallery/'.$afterImage) }}" style="height: 300px; width: 300px;">
-										</div>
-									</div><br>
 									<br>
 								</form>
 
 
 								<div class="center" style="text-align: center;">
 
-									<a class="btn btn-success" href="{{ route('ord.updatePenddingToWaiting', $order->id) }}" style="align-items: center; font-size: 14px;">قبول &nbsp; <i class="fas fa-check"></i></a> &nbsp;
+									<a class="btn btn-success" href="{{ route('ord.updatePenddingToWaiting', $order->id) }}" style="cursor: pointer; align-items: center; font-size: 14px;">قبول &nbsp; <i class="fas fa-check"></i></a> &nbsp;
 
-									<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer;"
-									data-target="#delete"><i class="fas fa-times"></i></a>
+									<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer; align-items: center; font-size: 14px;"
+									data-target="#delete"> رفض &nbsp; <i class="fas fa-times"></i></a>
 									<form action="{{route('emp_ord.cancel', $order->id)}}" method="POST" enctype="multipart/form-data">
 											@csrf
 											@method('POST')
