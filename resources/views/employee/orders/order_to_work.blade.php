@@ -114,43 +114,26 @@
 											<td> </td>
 											@endif --}}
 
-																					@if(isset($results) && !empty($results))
-											@foreach($results as $result)
-												@php
-													$found = false;
-												@endphp
-												@foreach($result as $service)
-													@if(!$found && isset($service->type) && $service->type == 'أساسية')
-														<td>  
-															{{ $service->name }}
-														</td>
-														@php
-															$found = true;
-														@endphp
-														@break
-													@endif
-													@endforeach
-													@if(!$found)
-														<td> </td>
-													@endif
-												@endforeach
-											@else
-												<td> </td>
-											@endif
-								
 											@if(isset($results) && !empty($results))
-												@foreach($results as $result)
-													<td>
-														@foreach($result as $service)
-															@if(isset($service->type) && $service->type == 'إضافية')
-																{{ $service->name }}
-															@endif
+											@foreach($results as $result)
+												<td>
+													@if(isset($result['basicService']))
+														{{ $result['basicService']->name }}
+													@endif
+												</td>
+												<td>
+													@if(isset($result['additionalServices']) && count($result['additionalServices']) > 0)
+														@foreach($result['additionalServices'] as $additionalService)
+															{{ $additionalService->name }}
 														@endforeach
-													</td>
-												@endforeach
-											@else
-												<td> </td>
-											@endif
+													@endif
+												</td>
+											@endforeach
+										@else
+											<td> </td>
+											<td> </td>
+										@endif
+										
 
 												<td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>

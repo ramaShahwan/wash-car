@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Models\BeforAfter;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Order_Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\DB;
@@ -175,7 +176,7 @@ class EmployeeController extends Controller
       // Update the image record with the new image name
       $emp->image = $newImageName;
       }
-
+      
       $emp->update();
   
       session()->flash('Edit', 'تم تعديل الموظف بنجاح');
@@ -214,24 +215,46 @@ class EmployeeController extends Controller
     }
 
     public function GetMyOrders()
-    {
-      $results[] = DB::table('order_service')
-        ->join('orders', 'orders.id', 'order_service.order_id')
-        ->join('services', 'services.id', 'order_service.service_id')
-        ->select('services.name','services.type')
-        ->get();
-    // return dd($results);
-     if (auth()->user()->role == 'employee')
-     {
-      $id = auth()->user()->id;
-     $emp_num = User::where('id',$id)->value('phone');
-    $emp_id = Employee::where('phone',$emp_num)->value('id');
-    // return dd($emp_id);
-      $orders = Order::where('employee_id',$emp_id)->where('status','معلق')->get();
-      return view('employee.orders.order_to_work',compact('orders','results'));
+{
+    // $results = [];
+    $id = auth()->user()->id;
+    if (auth()->user()->role == 'employee') {
+        $emp_num = User::where('id', $id)->value('phone');
+        $emp_id = Employee::where('phone', $emp_num)->value('id');
+        
+        // // Retrieve orders related to the employee
+        $order = Order::where('employee_id', $emp_id)->where('status', 'معلق')->get();
+  
+        // $serviceIdsArray = [];
+        // foreach($order as $ord){
+        //     $serviceIds = Order_Service::where('order_id', $ord->id)->pluck('service_id');
+        //     $serviceIdsArray[] = $serviceIds;
+        // }
+        
+        return view('employee.orders.order_to_work', compact('orders'));
     }
+}
 
-  }
+
+
+  //      public function GetMyOrders()
+  //   {
+  //     $results[] = DB::table('order_service')
+  //       ->join('orders', 'orders.id', 'order_service.order_id')
+  //       ->join('services', 'services.id', 'order_service.service_id')
+  //       ->select('services.name','services.type')
+  //       ->get();
+  //   // return dd($results);
+  //    if (auth()->user()->role == 'employee')
+  //    {
+  //     $id = auth()->user()->id;
+  //    $emp_num = User::where('id',$id)->value('phone');
+  //   $emp_id = Employee::where('phone',$emp_num)->value('id');
+  //   // return dd($emp_id);
+  //     $orders = Order::where('employee_id',$emp_id)->where('status','معلق')->get();
+  //     return view('employee.orders.order_to_work',compact('orders','results'));
+  //   }
+  // }
 
   public function openToUpload($orderId)
   {
@@ -291,30 +314,30 @@ class EmployeeController extends Controller
 
    public function acceptedFromEmp()
    {
-    $results[] = DB::table('order_service')
-    ->join('orders', 'orders.id', 'order_service.order_id')
-    ->join('services', 'services.id', 'order_service.service_id')
-    ->select('services.name','services.type')
-    ->get();
+    // $results[] = DB::table('order_service')
+    // ->join('orders', 'orders.id', 'order_service.order_id')
+    // ->join('services', 'services.id', 'order_service.service_id')
+    // ->select('services.name','services.type')
+    // ->get();
 
   if (auth()->user()->role == 'employee')
-  {
-  $id = auth()->user()->id;
-  $emp_num = User::where('id',$id)->value('phone');
-  $emp_id = Employee::where('phone',$emp_num)->value('id');
-  $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
+    {
+    $id = auth()->user()->id;
+    $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
+    $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
 
-  return view('employee.orders.accept',compact('orders','results'));
+    return view('employee.orders.accept',compact('orders'));
   }
    }
 
    public function doneFromEmp()
    {
-    $results[] = DB::table('order_service')
-    ->join('orders', 'orders.id', 'order_service.order_id')
-    ->join('services', 'services.id', 'order_service.service_id')
-    ->select('services.name','services.type')
-    ->get();
+    // $results[] = DB::table('order_service')
+    // ->join('orders', 'orders.id', 'order_service.order_id')
+    // ->join('services', 'services.id', 'order_service.service_id')
+    // ->select('services.name','services.type')
+    // ->get();
 
   if (auth()->user()->role == 'employee')
   {
@@ -323,8 +346,23 @@ class EmployeeController extends Controller
   $emp_id = Employee::where('phone',$emp_num)->value('id');
   $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->get();
 
-  return view('employee.orders.done',compact('orders','results'));
+  return view('employee.orders.done',compact('orders'));
   }
+   }
+
+   public function cancelByEmp(Request $request,$id)
+   {
+   if (auth()->user()->role == 'employee')
+    {
+    $id = auth()->user()->id;
+    $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
+    $order = Order::where('employee_id',$emp_id)->where('id',$id)->get();
+    $order->status ='مرفوض من قبل الموظف';
+    $order->note =$request->note;
+    $order->update();
+    return back();
+    }
    }
 
    

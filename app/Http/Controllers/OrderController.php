@@ -287,7 +287,7 @@ class OrderController extends Controller
 
     public function getWaitingOrders()
     { 
-        $orders = Order::where('status','قيد الإنجاز')->orderBy('created_at','Asc')->get();
+        $orders = Order::where('status','قيد الإنجاز')->orderBy('updated_at','Asc')->get();
         return view('admin.orders.waiting',compact('orders'));
     }
 
@@ -299,8 +299,14 @@ class OrderController extends Controller
 
     public function getCanceledOrders()
     { 
-        $orders = Order::where('status','مرفوض')->orderBy('created_at','Asc')->get();
+        $orders = Order::where('status','مرفوض')->orderBy('updated_at','Asc')->get();
         return view('admin.orders.cancel',compact('orders'));
+    }
+
+    public function getCanceledOrdersByEmp()
+    { 
+        $orders = Order::where('status',' مرفوض من قبل الموظف')->orderBy('updated_at','Asc')->get();
+        return view('admin.orders.cancel_from_emp',compact('orders'));
     }
 
     public function updatePenddingToWaiting($id)
@@ -323,12 +329,12 @@ class OrderController extends Controller
        return back();
     }
 
-    public function updateWaitingToDone()
-    {
-       $orders = Order::where('orderDate', '<', now())->get();
-       $orders->status = 'منجز';
-       $orders->update();
-    }
+    // public function updateWaitingToDone()
+    // {
+    //    $orders = Order::where('orderDate', '<', now())->get();
+    //    $orders->status = 'منجز';
+    //    $orders->update();
+    // }
 
     public function searchByArea(Request $request)
     {
@@ -363,6 +369,8 @@ class OrderController extends Controller
         if ($employeeId) {
             $order = Order::findOrFail($orderId);
             $order->employee_id = $employeeId;
+            $order->note = '';
+            $order->staus = 'معلق';
             $order->update();
     
             session()->flash('Edit', 'تم اختيار الموظف بنجاح');
@@ -390,11 +398,41 @@ class OrderController extends Controller
         //  $employee = Employee::where('id', $empOrd)->get();
         $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
         $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
-    
+        if(auth()->user()->role == "admin") {
         return view('admin.orders.details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
-    }
+         }
+
+         elseif(auth()->user()->role == "employee") {
+            return view('employee.orders.pend_details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
+             }
     
+         
+    }
+
+
+    public function getAcceptOrderDetails($id)
+    {
+        $order = Order::findOrFail($id);
+        $serviceOrder = Order_Service::where('order_id', $id)->pluck('service_id')->toArray();
+        
+        $primary=[] ;
+        $sec = [];
+        foreach ($serviceOrder as $service) {
+            $primary[] = Service::where('id', $service)->where('type', 'أساسية')->value('name');
+            $sec[] = Service::where('id', $service)->where('type', 'إضافية')->value('name');
+        }
+    
+        //  $empOrd = Order::where('id', $id)->value('employee_id');
+        //  $employee = Employee::where('id', $empOrd)->get();
+        $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
+        $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
+     
+         if(auth()->user()->role == "employee") {
+            return view('employee.orders.accept_details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
+            }
+    
+         
+    }
+          
 
 }
-
-
