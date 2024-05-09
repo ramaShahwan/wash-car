@@ -58,6 +58,7 @@
 												<th class="wd-15p border-bottom-0">السعر الإجمالي</th>
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
+											    <th class="wd-15p border-bottom-0">اسم الموظف</th>
 
 												<th class="wd-15p border-bottom-0">تغيير الموظف</th>
 											</tr>
@@ -92,7 +93,11 @@
 												<td>{{$order->totalPrice}}</td>
 												<td>{{$order->orderDate}}</td>
 												<td>{{$order->orderTime}}</td>
-												
+												@if($order->employee_id)
+												<td>{{ App\Models\Employee::findOrFail($order->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($order->employee_id)->lastName }}</td>
+												@else
+												<td> </td>
+												@endif
 												<td>
 													<form action="{{ route('ord.chooseEmp', $order->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 														@csrf

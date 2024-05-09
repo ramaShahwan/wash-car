@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -66,6 +67,12 @@ class LocationController extends Controller
 
     public function destroy( $id)
     {
+      $orders = Order::where('location_id',$id)->get();
+      foreach($orders as $order)
+      {
+       $order->location_id = null;
+       $order->update();
+      }
       Location::findOrFail($id)->delete();
       session()->flash('delete', 'تم حذف الحي بنجاح');
       return back();

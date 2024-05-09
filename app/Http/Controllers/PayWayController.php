@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PayWay;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 
@@ -107,6 +108,12 @@ class PayWayController extends Controller
 
     public function destroy( $id)
     {
+      $orders = Order::where('payWay_id',$id)->get();
+      foreach($orders as $order)
+      {
+       $order->payWay_id = null;
+       $order->update();
+      }
       PayWay::findOrFail($id)->delete();
       session()->flash('delete', 'تم حذف الحساب بنجاح');
       return back();

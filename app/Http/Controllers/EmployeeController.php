@@ -82,6 +82,7 @@ class EmployeeController extends Controller
        $emp->image = $newImageName;
        $emp->update();
      }
+
         session()->flash('Add', 'تم إضافة الموظف بنجاح');
         return redirect()->route('employee.accepted');
     }
@@ -209,6 +210,13 @@ class EmployeeController extends Controller
 
     public function destroy($id)
     {
+     $orders = Order::where('employee_id',$id)->get();
+     foreach($orders as $order)
+     {
+      $order->employee_id = null;
+      $order->update();
+     }
+
       Employee::findOrFail($id)->delete();
       session()->flash('delete', 'تم حذف الموظف بنجاح');
       return back();
