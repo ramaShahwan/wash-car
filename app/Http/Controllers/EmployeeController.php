@@ -223,7 +223,7 @@ class EmployeeController extends Controller
         $emp_id = Employee::where('phone', $emp_num)->value('id');
         
         // // Retrieve orders related to the employee
-        $order = Order::where('employee_id', $emp_id)->where('status', 'معلق')->get();
+        $orders = Order::where('employee_id', $emp_id)->where('status', 'معلق')->get();
   
         // $serviceIdsArray = [];
         // foreach($order as $ord){
