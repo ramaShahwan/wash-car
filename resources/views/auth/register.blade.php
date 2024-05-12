@@ -44,11 +44,12 @@
             <input style="direction: rtl" type="text" class="mail_text_1 @error('password') is-invalid @enderror" 
             placeholder="رقم الموبايل" name="phone" id="phone" :value="old('phone')" required autocomplete="phone">
             @error('phone')
-            <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-            </span>
+                {{-- <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span> --}}
+                <div class="alert alert-danger">يرجى التأكد من رقم الموبايل</div>
             @enderror
-          </div>
+        </div>
 
         <!-- Password -->
         {{-- <div class="mt-4">
