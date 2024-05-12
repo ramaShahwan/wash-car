@@ -65,6 +65,7 @@
 				<div class="dash-widget-info text-right">
 					<br>
 						<h3 style="color: black;">الأعمال قيد الإنجاز</h3>
+						<span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
 				  	<br>
 				</div>
 			</div>
@@ -81,6 +82,7 @@
 				<div class="dash-widget-info text-right">
 					<br>
 						<h3 style="color: black;">الأعمال المعلقة</h3>
+						<span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
 				  	<br>
 				</div>
 			</div>
@@ -92,6 +94,7 @@
 				<div class="dash-widget-info text-right">
 					<br>
 						<h3 style="color: black;">الأعمال المرفوضة</h3>
+						<span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
 				  	<br>
 				</div>
 			</div>
@@ -107,6 +110,7 @@
 				<div class="dash-widget-info text-right">
 					<br>
 						<h3 style="color: black;">إجمالي الأجور</h3>
+						<span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
 				  	<br>
 				</div>
 			</div>
