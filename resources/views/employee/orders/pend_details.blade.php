@@ -164,7 +164,7 @@
 								</form>
 
 
-								<div class="center" style="text-align: center;">
+								<div class="center d-flex justify-content-center" style="text-align: center;">
 
                                    <form action="{{ route('ord.updatePenddingToWaiting', $order->id) }}" method="POST">
 										@csrf
