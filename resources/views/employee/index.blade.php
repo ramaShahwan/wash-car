@@ -50,31 +50,33 @@
 @section('content')
 <!-- row -->
 <div class="row">
-	<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
-		{{-- <a href="{{ url('admin/member/show') }}"> --}}
-			{{-- <div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-users" aria-hidden="true"></i></span>
+
+	<div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
+		<a href="{{ url('/get_orders') }}">
+			<div class="dash-widget">
+				<span class="dash-widget-bg1"><i class="fa fa-bell" aria-hidden="true"></i></span>
 				<div class="dash-widget-info text-right">
 					<br>
-						<h3 style="color: black;">الأعضاء</h3>
+						<h3 style="color: black;">الطلبات المعلقة</h3>
 				  	<br>
 				</div>
 			</div>
-		</a> --}}
+		</a>
 	</div>
 
-	<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
-		{{-- <a href="{{ url('admin/user/show') }}"> --}}
-			{{-- <div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-user" aria-hidden="true"></i></span>
+	<div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
+		<a href="{{ url('/myGallery') }}">
+			<div class="dash-widget">
+				<span class="dash-widget-bg1"><i class="fa fa-eye" aria-hidden="true"></i></span>
 				<div class="dash-widget-info text-right">
 					<br>
-						<h3 style="color: black;">المدراء</h3>
+						<h3 style="color: black;">صور أعمالي</h3>
 				  	<br>
 				</div>
 			</div>
-		</a> --}}
+		</a>
 	</div>
+
 </div>
 <!-- row closed -->
 

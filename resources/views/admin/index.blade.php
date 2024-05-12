@@ -37,7 +37,7 @@
 						font-size: 40px;
 						height: 65px;
 					}
-					.dash-widget-info > span.widget-title1 {
+					.dash-widget-info > span.widget-title1{
 						background: #0162e8;
 						color: #fff;
 						padding: 5px 10px;
@@ -53,28 +53,42 @@
 	<div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
 		<a href="{{ url('/order/show_pend') }}">
 			<div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-users" aria-hidden="true"></i></span>
+				<span class="dash-widget-bg1"><i class="fa fa-bell" aria-hidden="true"></i></span>
 				<div class="dash-widget-info text-right">
 					<br>
-						<h3 style="color: black;">الطلبات</h3>
+						<h3 style="color: black;">الطلبات المعلقة</h3>
 				  	<br>
 				</div>
 			</div>
 		</a>
 	</div>
 
-	<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
-		{{-- <a href="{{ url('admin/user/show') }}"> --}}
-			{{-- <div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-user" aria-hidden="true"></i></span>
+	<div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
+		<a href="{{ url('/service/show') }}">
+			<div class="dash-widget">
+				<span class="dash-widget-bg1"><i class="fa fa-cubes" aria-hidden="true"></i></span>
 				<div class="dash-widget-info text-right">
 					<br>
-						<h3 style="color: black;">المدراء</h3>
+						<h3 style="color: black;">جميع الخدمات</h3>
 				  	<br>
 				</div>
 			</div>
-		</a> --}}
+		</a>
 	</div>
+
+	<div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
+		<a href="{{ url('/employee/showPending') }}">
+			<div class="dash-widget">
+				<span class="dash-widget-bg1"><i class="fa fa-users" aria-hidden="true"></i></span>
+				<div class="dash-widget-info text-right">
+					<br>
+						<h3 style="color: black;">طلبات الانضمام للموظفين الجدد</h3>
+				  	<br>
+				</div>
+			</div>
+		</a>
+	</div>
+
 </div>
 <!-- row closed -->
 
