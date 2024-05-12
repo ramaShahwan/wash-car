@@ -31,32 +31,32 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+       $val= $request->validate([
            'name' => ['required', 'string', 'max:255'],
-           'phone' => ['required', 'string', 'max:10', 'min:10'],
+           'phone' => ['required', 'string', 'max:10', 'min:10' ,'unique:users,phone'],
           //  'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
           // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
           'password' => ['required', 'confirmed']
         ]);
-
         $user = User::create([
-           'name' => $request->name,
-           // 'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-        ]);
+          'name' => $request->name,
+          // 'email' => $request->email,
+           'phone' => $request->phone,
+           'password' => Hash::make($request->password),
+       ]);
 
-      $num =  $user->phone;
-      $value = Employee::where('phone',$num)->where('status','accepted')->first();
-    //   return dd($value);
-      if($value)
-      {
-      User::where('phone', $num)->update(['role' => 'employee']);
-      }
-        event(new Registered($user));
+     $num =  $user->phone;
+     $value = Employee::where('phone',$num)->where('status','accepted')->first();
+   //   return dd($value);
+     if($value)
+     {
+     User::where('phone', $num)->update(['role' => 'employee']);
+     }
+     event(new Registered($user));
 
-        Auth::login($user);
+     Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+     return redirect(RouteServiceProvider::HOME);
+
     }
 }

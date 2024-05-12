@@ -41,9 +41,9 @@
                         <div class="col-md-4">
                             <div class="" style="text-align: center; border: 2px solid #0c426e; padding: 20px;">
                               @if ($item->image)
-                                <img src="{{URL::asset('/site/img/pay/'.$item->image)}}" style="width: 100px;">
+                                <img src="{{URL::asset('/site/img/pay/'.$item->image)}}" style="width: 100px; height: 100px;">
                               @else  
-                                <img src="{{URL::asset('site/img/pay/mobile-payment.png')}}" style="width: 100px;">
+                                <img src="{{URL::asset('site/img/pay/mobile-payment.png')}}" style="width: 100px;  height: 100px;">
                               @endif
                                 <br><br>
                                 <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $item->way }} </p>
@@ -58,8 +58,8 @@
                             </div>
                         </div>
                     @endforeach
-         <br><br>
-         <br><br>
+                    <br><br>
+                 <br><br>
                 </div>
               </div>
            </div>
