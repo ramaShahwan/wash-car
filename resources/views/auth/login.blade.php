@@ -41,6 +41,8 @@
                   @enderror
                 </div>
 
+                
+
                   <div class="mt-4">
                   <input style="direction: rtl" id="password" type="password" class="mail_text_1 @error('password') is-invalid @enderror" 
                   placeholder="كلمة السر"
