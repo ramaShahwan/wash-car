@@ -76,6 +76,7 @@
 												<th class="wd-15p border-bottom-0">نبذة حول الموظف</th>
 												<th class="wd-15p border-bottom-0">صورة</th>
 
+												<th class="wd-15p border-bottom-0">أعمال الموظف</th>
 												<th class="wd-15p border-bottom-0">تعديل</th>
 												<th class="wd-15p border-bottom-0">حذف</th>
 											</tr>
@@ -98,6 +99,10 @@
 								                @else
 									                <td><img src="{{URL::asset('site/img/emp/user.jpg')}}"  style="width: 50px;"></td>
 								                @endif
+
+												<td>
+													<a class="btn btn-sm btn-success" href="{{ route('employee.showCount', $emp->id) }}" title="أعمال الموظف"><i class="fa fa-cubes"></i></a>
+												</td>
 
 												<td>
 													<a class="btn btn-sm btn-info" href="{{ route('employee.edit', $emp->id) }}" title="تعديل"><i class="las la-pen"></i></a>

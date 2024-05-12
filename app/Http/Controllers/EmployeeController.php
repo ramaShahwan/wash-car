@@ -400,8 +400,9 @@ class EmployeeController extends Controller
     $waitOrders = Order::where('employee_id',$id)->where('status','قيد الإنجاز')->count();
     $canceledOrders = Order::where('employee_id',$id)->where('status','مرفوض من قبل الموظف')->count();
     $total =Order::where('employee_id',$id)->where('status','منجز')->sum('totalPrice');
+    $emp_name = Employee::where('id', $id)->first();
     
-    return view('admin.employees.show_count' , compact('doneOrders','pendOrders','waitOrders','canceledOrders','total'));
+    return view('admin.employees.show_count' , compact('doneOrders','pendOrders','waitOrders','canceledOrders','total', 'emp_name'));
   }
 
    
