@@ -305,7 +305,7 @@ class OrderController extends Controller
 
     public function getCanceledOrdersByEmp()
     { 
-        $orders = Order::where('status',' مرفوض من قبل الموظف')->orderBy('updated_at','Asc')->get();
+        $orders = Order::where('status','مرفوض من قبل الموظف')->orderBy('updated_at','Asc')->get();
         return view('admin.orders.cancel_from_emp',compact('orders'));
     }
 
@@ -356,7 +356,7 @@ class OrderController extends Controller
 
     public function waitingForEmp() {
 
-        $orders = Order::whereNotNull('employee_id')->get();
+        $orders = Order::whereNotNull('employee_id')->where('status','معلق')->get();
 
         return view('admin.orders.waiting_for_emp',compact('orders'));
     }

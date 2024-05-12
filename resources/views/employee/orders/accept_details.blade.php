@@ -172,13 +172,19 @@
 									{{-- <div class="d-flex justify-content-center">
                                         <a href="{{ url('/order/show_done') }}" class="btn btn-primary" style="align-items: center;">رجوع &nbsp; <i class="fa fa-arrow-left"></i></a>
                                     </div> --}}
-
-                                    <div class="center" style="text-align: center;">
-                                        <a class="btn btn-success" href="{{ route('ord.upload', $order->id) }}" style="align-items: center; font-size: 14px;">تم الإنجاز &nbsp; <i class="fas fa-check"></i></a> &nbsp;
-                                    </div>
-
+                                    
+                                 
 									{{-- @endforeach --}}
 			
+								</form>
+
+								<form action="{{ route('ord.upload', $order->id) }}" method="post">
+									@csrf
+									@method('POST')
+									<div class="center" style="text-align: center;">
+                                        <button type="submit" class="btn btn-success"  style="align-items: center; font-size: 14px;">تم الإنجاز &nbsp; <i class="fas fa-check"></i></button> &nbsp;
+                                    </div>
+
 								</form>
 							</div>
 						</div>

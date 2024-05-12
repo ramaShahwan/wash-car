@@ -358,20 +358,42 @@ class EmployeeController extends Controller
   }
    }
 
-   public function cancelByEmp(Request $request,$id)
-   {
-   if (auth()->user()->role == 'employee')
-    {
-    $id = auth()->user()->id;
-    $emp_num = User::where('id',$id)->value('phone');
-    $emp_id = Employee::where('phone',$emp_num)->value('id');
-    $order = Order::where('employee_id',$emp_id)->where('id',$id)->get();
-    $order->status ='مرفوض من قبل الموظف';
-    $order->note =$request->note;
-    $order->update();
-    return back();
-    }
-   }
+  //  public function cancelByEmp(Request $request,$id)
+  //  {
+  //  if (auth()->user()->role == 'employee')
+  //   {
+  //   $id = auth()->user()->id;
+  //   $emp_num = User::where('id',$id)->value('phone');
+  //   $emp_id = Employee::where('phone',$emp_num)->value('id');
+  //   $order = Order::where('employee_id',$emp_id)->where('id',$id)->first();
+  //   $order->status ='مرفوض من قبل الموظف';
+  //   $order->note =$request->note;
+  //   $order->update();
+  //   return back();
+  //   }
+  //  }
+
+  public function cancelByEmp(Request $request, $orderId)
+  {
+
+      if (auth()->user()->role == 'employee')
+      {
+          $userId = auth()->user()->id;
+          $emp_num = User::where('id', $userId)->value('phone');
+          $emp_id = Employee::where('phone', $emp_num)->value('id');
+          $order = Order::where('employee_id', $emp_id)->where('id', $orderId)->first();
+          // return dd($order);
+  
+          if ($order) {
+              $order->status ='مرفوض من قبل الموظف';
+              $order->note = $request->note;
+              $order->update();
+          }
+  
+          return redirect('get_orders');
+      }
+  }
+
 
    
   }
