@@ -315,7 +315,7 @@ class OrderController extends Controller
        $orders->status = 'قيد الإنجاز';
        $orders->update();
         session()->flash('Edit', 'تم  قبول الطلب بنجاح');
-        return back();
+        return redirect('acceptedFromEmp');
     }
 
     public function updatePenddingToCanceled(Request $request,$id)
