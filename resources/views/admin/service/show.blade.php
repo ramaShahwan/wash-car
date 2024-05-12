@@ -70,7 +70,7 @@
 												<th class="wd-15p border-bottom-0">نوع الخدمة  </th>
 												<th class="wd-15p border-bottom-0"> اسم الخدمة  </th>
 												<th class="wd-15p border-bottom-0"> سعر الخدمة  </th>
-												<th class="wd-15p border-bottom-0"> مدة الخدمة بالدقائق  </th>
+												<th class="wd-15p border-bottom-0"> مدة الخدمة </th>
 												<th class="wd-15p border-bottom-0"> وصف عن الخدمة  </th>
 
 												<th class="wd-15p border-bottom-0">تعديل</th>

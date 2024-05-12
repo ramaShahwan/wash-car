@@ -202,7 +202,7 @@
             <hr>
             <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $ser->price }} </p>
             <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->period }} min </p>
+            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->period }} </p>
             <hr>
             <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->description }} </p>
          </div>

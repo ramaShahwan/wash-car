@@ -102,11 +102,9 @@
 										<div class="col">
 											<label for="inputName" class="control-label">محتوى الصفحة</label>
 											<input type="hidden" name="content" value="{{ $page->content }}">
-											{{-- <input type="text" class="form-control @error('content') is-invalid @enderror" 
-											id="inputName" name="content" value="{{ $page->content }}" required> --}}
-
+										
                                             <textarea class="ckeditor form-control @error('content') is-invalid @enderror" 
-                                             name="content">{{$page->content}}</textarea>
+                                             name="content" id="con">{{$page->content}}</textarea>
 
 											@error('content')
 												<div class="alert alert-danger">{{ $message }}</div>
@@ -147,6 +145,17 @@
 @endsection
 
 @section('js')
+
+{{-- ckeditor --}}
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+	ClassicEditor
+	.create(document.querySelector('#con'))
+	.catch( error=> {
+		console.error(error);
+	});
+</script>
+
 
 <!--Internal  Datepicker js -->
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
