@@ -180,7 +180,9 @@ Route:: prefix('employee')->group(function () {
     Route::get('edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
     Route::post('update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::delete('delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
-  
+    
+    Route::get('showCount/{id}', [EmployeeController::class, 'showCount'])->name('employee.showCount');
+
 });
 
 

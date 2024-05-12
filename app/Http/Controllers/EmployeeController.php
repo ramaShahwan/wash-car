@@ -393,7 +393,16 @@ class EmployeeController extends Controller
           return redirect('get_orders');
       }
   }
-
+  public function showCount($id) 
+  {
+    $doneOrders = Order::where('employee_id',$id)->where('status','منجز')->count();
+    $pendOrders = Order::where('employee_id',$id)->where('status','معلق')->count();
+    $waitOrders = Order::where('employee_id',$id)->where('status','قيد الإنجاز')->count();
+    $canceledOrders = Order::where('employee_id',$id)->where('status','مرفوض من قبل الموظف')->count();
+    $total =Order::where('employee_id',$id)->where('status','منجز')->sum('totalPrice');
+    
+    return view('admin.employees.show_count' , compact('doneOrders','pendOrders','waitOrders','canceledOrders','total'));
+  }
 
    
   }

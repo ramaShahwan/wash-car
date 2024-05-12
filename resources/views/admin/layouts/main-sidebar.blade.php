@@ -62,6 +62,7 @@
 							<li><a class="slide-item" href="{{ url('/employee/showAccepted') }}">الموظفون المقبولون</a></li>
 							<li><a class="slide-item" href="{{ url('/employee/showPending') }}">الموظفون المعلقون</a></li>
 							<li><a class="slide-item" href="{{ url('/employee/showCanceled') }}">الموظفون المرفوضون</a></li>
+							{{-- <li><a class="slide-item" href="{{ url('/employee/showCount') }}"> إحصائية أعمال الموظفون</a></li> --}}
 							<li><a class="slide-item" href="{{ url('/employee/addForAdmin') }}">إضافة موظف</a></li>
 						</ul>
 					</li>
