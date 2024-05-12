@@ -2,7 +2,6 @@
 @section('css')
 @endsection
 
-
 @section('content')
 
 <body>  
@@ -17,8 +16,8 @@
 
         <!-- Name -->
         <div class="mt-4">
-            <input style="direction: rtl" type="text" class="mail_text_1 @error('password') is-invalid @enderror" 
-            placeholder="الإسم" name="name" id="name" :value="old('name')" required autofocus autocomplete="name" >
+            <input style="direction: rtl" type="text" class="mail_text_1 @error('name') is-invalid @enderror" 
+            placeholder="الاسم" name="name" id="name" :value="old('name')" required autofocus autocomplete="name" >
             @error('name')
             <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -41,15 +40,15 @@
 
          <!-- phone -->
         <div class="mt-4">
-            <input style="direction: rtl" type="text" class="mail_text_1 @error('password') is-invalid @enderror" 
+            <input style="direction: rtl" type="text" class="mail_text_1 @error('phone') is-invalid @enderror" 
             placeholder="رقم الموبايل" name="phone" id="phone" :value="old('phone')" required autocomplete="phone">
             @error('phone')
-                {{-- <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                </span> --}}
-                <div class="alert alert-danger">يرجى التأكد من رقم الموبايل</div>
+                </span>
             @enderror
         </div>
+
 
         <!-- Password -->
         {{-- <div class="mt-4">
@@ -78,7 +77,7 @@
             <input style="direction: rtl" id="password" type="password" class="mail_text_1 @error('password') is-invalid @enderror" 
             placeholder="كلمة السر"
             required autocomplete="current-password" 
-            name="password"   required autocomplete="new-password">
+            name="password" required autocomplete="new-password">
             @error('password')
             <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -91,14 +90,13 @@
                 <input  style="direction: rtl" id="password_confirmation" type="password" class="mail_text_1 @error('password_confirmation') is-invalid @enderror" 
                 placeholder="تأكيد كلمة السر "
                 required autocomplete="current-password" 
-                name="password_confirmation"   required autocomplete="new-password">
+                name="password_confirmation"  required autocomplete="new-password">
                 @error('password_confirmation')
                 <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
-
 
              &nbsp;  
             <div class="flex items-center justify-end mt-4">

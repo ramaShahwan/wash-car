@@ -165,11 +165,13 @@
 
 
 								<div class="center" style="text-align: center;">
+
                                    <form action="{{ route('ord.updatePenddingToWaiting', $order->id) }}" method="POST">
-									@csrf
-									@method('POST')
-									<button type="submit" class="btn btn-success"style="cursor: pointer; align-items: center; font-size: 14px;">قبول &nbsp; <i class="fas fa-check"></i></button> &nbsp;
+										@csrf
+										@method('POST')
+										<button type="submit" class="btn btn-success"style="cursor: pointer; align-items: center; font-size: 14px;">قبول &nbsp; <i class="fas fa-check"></i></button> &nbsp;
 								   </form>
+
 									<a class="modal-effect btn btn-danger" data-toggle="modal" title="رفض" style="cursor: pointer; align-items: center; font-size: 14px;"
 									data-target="#delete"> رفض &nbsp; <i class="fas fa-times"></i></a>
 									<form action="{{route('emp_ord.cancel', $order->id)}}" method="POST" enctype="multipart/form-data">

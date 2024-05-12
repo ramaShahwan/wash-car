@@ -67,6 +67,7 @@
 											@foreach($orders as $order)
 											<tr>
 												<td>{{$i++}}</td>
+
 												@if($order->user_id)
 												<td>{{ App\Models\User::findOrFail($order->user_id)->name }}</td>
 												@else
@@ -78,7 +79,6 @@
 												@else
 												<td> </td>
 												@endif
-												<td>
 
 												@if($order->location_id)
 												<td>{{ App\Models\Location::findOrFail($order->location_id)->area }}</td>
