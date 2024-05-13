@@ -83,7 +83,7 @@ class SettingController extends Controller
                 // 'Is_hide' => $request->btnhide ? true : false,
                 
             ]);
-
+            session()->flash('Add', 'تم إضافة الإعدادات بنجاح');
             return back();
         } else {
             
@@ -101,7 +101,7 @@ class SettingController extends Controller
                 $newImage->move(public_path('site/img/icon/'), $newImageName);
             }
 
-            $insertTODatabase = DB::table('settings')->create([
+            $insertTODatabase =Setting:: create([
                 'nameWebsite' => $request->nameWebsite,
                 'linkWebsite' => $request->linkWebsite,
                 'Description' => $request->Description,
@@ -114,6 +114,7 @@ class SettingController extends Controller
                 // 'Is_hide' => $request->btnhide,
                 'icon' =>$newImageName 
             ]);
+            session()->flash('Edit', 'تم تعديل الإعدادات بنجاح');
             return back();
         }
     }
