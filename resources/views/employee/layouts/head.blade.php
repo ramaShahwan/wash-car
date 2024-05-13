@@ -1,7 +1,7 @@
 <!-- Title -->
 <title> Clean Car </title>
 <!-- Favicon -->
-<link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
+<link rel="icon" href="{{ asset('site/img/icon/icon.webp') }}" type="image/x-icon"/>
 <!-- Icons css -->
 <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 <!--  Custom Scroll bar-->
