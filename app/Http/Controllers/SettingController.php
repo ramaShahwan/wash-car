@@ -43,8 +43,10 @@ class SettingController extends Controller
         }
         $newImage = $request->file('icon');
         //for change image name
-        $name = hexdec(uniqid());
-        $newImageName = 'icon' .$name.  '.'  . '.webp';
+      //  $name = hexdec(uniqid());
+      //  $newImageName = 'icon' .$name.  '.'  . '.webp';
+      $newImageName = 'icon' . '.webp';
+
         $newImage->move(public_path('site/img/icon/'), $newImageName);
 
         DB::table('settings')->where('id' , $get_id->id)->update([
@@ -95,8 +97,10 @@ class SettingController extends Controller
             if($request->hasFile('icon')){
                 $newImage = $request->file('icon');
                 //for change image name
-                $name = hexdec(uniqid());
-                $newImageName = 'icon' .$name.  '.'  . '.webp';
+             //   $name = hexdec(uniqid());
+              //  $newImageName = 'icon' .$name.  '.'  . '.webp';
+              $newImageName = 'icon' . '.webp';
+
                 $newImage->move(public_path('site/img/icon/'), $newImageName);
             }
 
