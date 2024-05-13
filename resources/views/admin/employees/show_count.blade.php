@@ -49,7 +49,7 @@
 <div class="row">
 	<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
 			<div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-bell" aria-hidden="true"></i></span>
+				<span class="dash-widget-bg1"><i class="fa fa-check" aria-hidden="true"></i></span>
 				<div class="dash-widget-info text-right">
 					<br>
 						<h3 style="color: black;">{{ $doneOrders }}</h3>
@@ -60,17 +60,16 @@
 	</div>
 
 	<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
-			<div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-cubes" aria-hidden="true"></i></span>
-				<div class="dash-widget-info text-right">
-					<br>
-						<h3 style="color: black;">{{ $waitOrders }}</h3>
-						<span class="widget-title1"><i class="fa fa-check" aria-hidden="true"></i> &nbsp; الأعمال قيد الإنجاز</span>
-				  	<br>
-				</div>
+		<div class="dash-widget">
+			<span class="dash-widget-bg1"><i class="fa fa-times" aria-hidden="true"></i></span>
+			<div class="dash-widget-info text-right">
+				<br>
+					<h3 style="color: black;">{{ $canceledOrders }}</h3>
+					<span class="widget-title1"><i class="fa fa-check" aria-hidden="true"></i> &nbsp; الأعمال المرفوضة</span>
+				  <br>
 			</div>
+		</div>
 	</div>
-
 </div>
 <!-- row closed -->
 
@@ -78,7 +77,7 @@
 <div class="row">
 	<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
 			<div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-users" aria-hidden="true"></i></span>
+				<span class="dash-widget-bg1"><i class="fa fa-bell" aria-hidden="true"></i></span>
 				<div class="dash-widget-info text-right">
 					<br>
 						<h3 style="color: black;">{{ $pendOrders }}</h3>
@@ -88,17 +87,17 @@
 			</div>
 	</div>
 
-    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
-			<div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-users" aria-hidden="true"></i></span>
-				<div class="dash-widget-info text-right">
-					<br>
-						<h3 style="color: black;">{{ $canceledOrders }}</h3>
-						<span class="widget-title1"><i class="fa fa-check" aria-hidden="true"></i> &nbsp; الأعمال المرفوضة</span>
-				  	<br>
-				</div>
+	<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+		<div class="dash-widget">
+			<span class="dash-widget-bg1"><i class="fa fa-cubes" aria-hidden="true"></i></span>
+			<div class="dash-widget-info text-right">
+				<br>
+					<h3 style="color: black;">{{ $waitOrders }}</h3>
+					<span class="widget-title1"><i class="fa fa-check" aria-hidden="true"></i> &nbsp; الأعمال قيد الإنجاز</span>
+				  <br>
 			</div>
-	</div>
+		</div>
+</div>
 </div>
 <!-- row closed -->
 
@@ -106,7 +105,7 @@
 <div class="row">
     <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
 			<div class="dash-widget">
-				<span class="dash-widget-bg1"><i class="fa fa-users" aria-hidden="true"></i></span>
+				<span class="dash-widget-bg1"><i class="fa fa-coins" aria-hidden="true"></i></span>
 				<div class="dash-widget-info text-right">
 					<br>
 						<h3 style="color: black;">{{ $total }}</h3>
