@@ -58,9 +58,10 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form action="{{ route('settings.save') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form action="{{ route('settings.set') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="row">
+
                             <div class="col">
                                 <label for="inputName" class="control-label">اسم الموقع</label>
                                 <input type="text" class="form-control @error('nameWebsite') is-invalid @enderror" 

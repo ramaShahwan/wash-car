@@ -64,8 +64,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     });
 
    //settings
-   Route::get('getShowSettings/', [SettingController::class, 'getShowSettings'])->name('settings.show');
-   Route::get('getSettingForFooter/', [SettingController::class, 'getSettingForFooter'])->name('settings.footer');
+   Route::get('getSetting', [SettingController::class, 'getSetting'])->name('settings.show');
+//    Route::get('getSettingForFooter', [SettingController::class, 'getSettingForFooter'])->name('settings.footer');
    Route::post('setSettings', [SettingController::class, 'setSettings'])->name('settings.set');
 
    
