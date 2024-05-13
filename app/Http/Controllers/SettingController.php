@@ -15,7 +15,7 @@ class SettingController extends Controller
         $getShowSettings = Setting::first();
         // dd($getShowSettings);
 
-        return view('admin.sittings.show', compact('getShowSettings'));
+        return view('admin.settings.show', compact('getShowSettings'));
     }
 
     public function getSettingForFooter()
