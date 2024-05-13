@@ -86,7 +86,7 @@
                             <input type="hidden" name="linkWebsite" value="{{ $getShowSettings->linkWebsite }}">
 
                             <input type="text" class="form-control @error('linkWebsite') is-invalid @enderror" 
-                            id="inputName" name="linkWebsite" value="{{ $getShowSettings->linkWebsite }}" required>
+                            id="inputName" name="linkWebsite" value="{{ $getShowSettings->linkWebsite }}">
                            
                             @error('linkWebsite')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -100,7 +100,7 @@
                           <input type="hidden" name="socialMidiaFacebook" value="{{ $getShowSettings->socialMidiaFacebook }}">
 
                           <input type="text" class="form-control @error('socialMidiaFacebook') is-invalid @enderror" 
-                          id="inputName" name="socialMidiaFacebook" value="{{ $getShowSettings->socialMidiaFacebook }}" required>
+                          id="inputName" name="socialMidiaFacebook" value="{{ $getShowSettings->socialMidiaFacebook }}">
                           
                           @error('socialMidiaFacebook')
                               <div class="alert alert-danger">{{ $message }}</div>
@@ -114,7 +114,7 @@
                           <input type="hidden" name="socialMidiaTelegram" value="{{ $getShowSettings->socialMidiaTelegram }}">
 
                           <input type="text" class="form-control @error('socialMidiaTelegram') is-invalid @enderror" 
-                          id="inputName" name="socialMidiaTelegram" value="{{ $getShowSettings->socialMidiaTelegram }}" required>
+                          id="inputName" name="socialMidiaTelegram" value="{{ $getShowSettings->socialMidiaTelegram }}">
                          
                           @error('socialMidiaTelegram')
                               <div class="alert alert-danger">{{ $message }}</div>
@@ -128,7 +128,7 @@
                           <input type="hidden" name="socialMidiaInstagram" value="{{ $getShowSettings->socialMidiaInstagram }}">
 
                           <input type="text" class="form-control @error('socialMidiaInstagram') is-invalid @enderror" 
-                          id="inputName" name="socialMidiaInstagram" value="{{ $getShowSettings->socialMidiaInstagram }}" required>
+                          id="inputName" name="socialMidiaInstagram" value="{{ $getShowSettings->socialMidiaInstagram }}">
                           
                           @error('socialMidiaInstagram')
                               <div class="alert alert-danger">{{ $message }}</div>
@@ -142,7 +142,7 @@
                           <input type="hidden" name="socialMidiaYoutube" value="{{ $getShowSettings->socialMidiaYoutube }}">
 
                           <input type="text" class="form-control @error('socialMidiaYoutube') is-invalid @enderror" 
-                          id="inputName" name="socialMidiaYoutube" value="{{ $getShowSettings->socialMidiaYoutube }}" required>
+                          id="inputName" name="socialMidiaYoutube" value="{{ $getShowSettings->socialMidiaYoutube }}">
                           
                           @error('socialMidiaYoutube')
                               <div class="alert alert-danger">{{ $message }}</div>
@@ -156,7 +156,7 @@
                             <input type="hidden" name="Description" value="{{ $getShowSettings->Description }}">
 
                             <input type="text" class="form-control @error('Description') is-invalid @enderror" 
-                              id="inputName" name="Description" value="{{ $getShowSettings->Description }}">
+                              id="inputName" name="Description" value="{{ $getShowSettings->Description }}" required>
 
                             @error('Description')
                                 <div class="alert alert-danger">{{ $message }}</div>
