@@ -182,7 +182,6 @@
 											@else
 												<img src="{{ URL::asset('site/img/emp/user.jpg') }}" style="width: 100px;">
 											@endif
-
 											<br>    
 											<input type="File"  id="Img" name="image" class="dropify" accept=".jpg, .png, image/jpeg, image/png" data-height="70" />
 										</div>

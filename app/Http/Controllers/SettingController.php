@@ -27,7 +27,6 @@ class SettingController extends Controller
 
     public function setSettings(Request $request)
     {
-        
         $validation = $request->validate([
             'nameWebsite' => "max:30",
            'Description' => "max:256"
