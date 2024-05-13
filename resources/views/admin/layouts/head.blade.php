@@ -1,7 +1,7 @@
-<!-- Title -->
-<title> Clear car </title>
+
+{{-- <title> Clear car </title> --}}
 <!-- Favicon -->
-<link rel="icon" href="{{URL::asset('/img/icon/icon.webp')}}" type="image/x-icon"/>
+{{-- <link rel="icon" href="{{URL::asset('/img/icon/icon.webp')}}" type="image/x-icon"/> --}}
 <!-- Icons css -->
 <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 <!--  Custom Scroll bar-->

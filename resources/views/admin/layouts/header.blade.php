@@ -1,10 +1,9 @@
 <html>
     
 <head>
-<!-- Title -->
-<title> @yield('title') </title>
+{{-- <title> @yield('title') </title> --}}
 <!-- Favicon -->
-<link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
+{{-- <link rel="icon" href="{{URL::asset('site/img/icon/icon.webp')}}" type="image/x-icon"/> --}}
 <!-- Icons css -->
 <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 <!--  Custom Scroll bar-->
@@ -28,12 +27,12 @@
 			<div class="main-header sticky side-header nav nav-item">
 				<div class="container-fluid">
 					<div class="main-header-left ">
-						<div class="responsive-logo">
+						{{-- <div class="responsive-logo">
 							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/logo.png')}}" class="logo-1" alt="logo"></a>
 							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/logo-white.png')}}" class="dark-logo-1" alt="logo"></a>
 							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="logo-2" alt="logo"></a>
 							<a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="dark-logo-2" alt="logo"></a>
-						</div>
+						</div> --}}
 						<div class="app-sidebar__toggle" data-toggle="sidebar">
 							<a class="open-toggle" href="#"><i class="header-icon fe fe-align-left" ></i></a>
 							<a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>

@@ -18,10 +18,18 @@ class SettingController extends Controller
         return view('admin.settings.show', compact('getShowSettings'));
     }
 
-    public function getSettingForFooter()
+    // public function getSettingFooter()
+    // {
+    //     $getShowSettings = Setting::first();
+    //     // dd($getShowSettings);
+
+    //     return view('admin.settings.footer', compact('settings'));
+    // }
+
+    public function getSettingFooter()
     {
         $getShowSettings = Setting::first();
-        return view('site.layouts.footer', compact('getShowSettings'));
+        return view('site.layouts.master', compact('getShowSettings'));
     }
 
 
@@ -54,20 +62,6 @@ class SettingController extends Controller
         ]);
            }
             
-            // if($request->hasFile('icon')){
-            //     $get_id = Setting::select('id', 'icon')->first();
-            //     $pathImg = str_replace('\\', '/', public_path('uploading/')) . $get_id->icon;
-            //     if (File::exists($pathImg)) {
-            //         File::delete($pathImg);
-            //     }
-            //     $image = $request->file('icon');
-            //     $name = hexdec(uniqid());
-            //     $real_path = './public/uploading/';
-            //   //  Image::make($image->getRealPath())->encode('webp', 100)->resize(150, 150)->save(public_path('uploading/'  .  $name . '.webp'));
-            //     DB::table('sittings')->where('id' , $get_id->id)->update([
-            //         'icon' => $name . '.' . 'webp'
-            //     ]);
-            // }
             
             $insertTODatabase = DB::table('settings')->update([
                 'nameWebsite' => $request->nameWebsite,
@@ -88,11 +82,6 @@ class SettingController extends Controller
             return back();
         } else {
             
-            // if ($request->hasFile('icon')) {
-            //     $myimage = $request->input('icon');
-            //     $time = time();
-            //   //  Image::make($request->file('icon')->getRealPath())->encode('webp', 100)->resize(150, 150)->save(public_path('uploading/' .  $time . '.webp'));
-            // }
 
             if($request->hasFile('icon')){
                 $newImage = $request->file('icon');
