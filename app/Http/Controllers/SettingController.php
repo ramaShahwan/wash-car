@@ -15,7 +15,7 @@ class SettingController extends Controller
         $getShowSettings = Setting::first();
         // dd($getShowSettings);
 
-        return view('admin.sittings.show', compact('getShowSettings'));
+        return view('admin.settings.show', compact('getShowSettings'));
     }
 
     public function getSettingForFooter()
@@ -48,7 +48,7 @@ class SettingController extends Controller
         $newImageName = 'icon' .$name.  '.'  . '.webp';
         $newImage->move(public_path('site/img/icon/'), $newImageName);
 
-        DB::table('sittings')->where('id' , $get_id->id)->update([
+        DB::table('settings')->where('id' , $get_id->id)->update([
             'icon' => $newImageName 
         ]);
            }
@@ -101,7 +101,7 @@ class SettingController extends Controller
                 $newImage->move(public_path('site/img/icon/'), $newImageName);
             }
 
-            $insertTODatabase = DB::table('sittings')->insert([
+            $insertTODatabase = DB::table('settings')->insert([
                 'nameWebsite' => $request->nameWebsite,
                 'linkWebsite' => $request->linkWebsite,
                 'Description' => $request->Description,
