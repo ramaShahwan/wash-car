@@ -68,7 +68,6 @@ class EmployeeController extends Controller
         $emp->aboutYou  = $request->aboutYou;
         $emp->area  = $request->area;
         $emp->status = 'accepted';
-        $emp->role = 'employee';
         $emp->note  = $request->note;
         $emp->save();
 
@@ -109,7 +108,6 @@ class EmployeeController extends Controller
         $emp->aboutYou  = $request->aboutYou;
         $emp->area  = $request->area;
         $emp->status = 'Pending';
-        // $emp->role = 'employee';
         $emp->note  = $request->note;
         $emp->save();
 
@@ -160,7 +158,6 @@ class EmployeeController extends Controller
        $emp->aboutYou  = $request->aboutYou;
        $emp->area  = $request->area;
        $emp->status = 'accepted';
-       $emp->role = 'employee';
        $emp->note  = $request->note;
   
      // update newImage

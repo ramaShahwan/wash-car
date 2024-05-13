@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
-    public function __construct(){
-        $this->middleware('admin');
-    }
-
     public function getSetting()
     {
         $getShowSettings = Setting::first();
@@ -34,27 +30,43 @@ class SettingController extends Controller
         
         $validation = $request->validate([
             'nameWebsite' => "max:30",
-           // 'Description' => "max:256"
+           'Description' => "max:256"
         ]);
+
         $get_id = Setting::select('id','icon')->first();
-        $pathImg = str_replace('\\', '/', public_path('uploading/')) . $get_id->icon;
         if (Setting::select('id')->exists()) {
             
+      // store image
+       if($request->hasFile('icon')){
+        $pathImg = str_replace('\\', '/', public_path('icon/')) . $get_id->icon;
+        if (File::exists($pathImg)) {
+            File::delete($pathImg);
+        }
+        $newImage = $request->file('icon');
+        //for change image name
+        $name = hexdec(uniqid());
+        $newImageName = 'icon' .$name.  '.'  . '.webp';
+        $newImage->move(public_path('site/img/icon/'), $newImageName);
+
+        DB::table('sittings')->where('id' , $get_id->id)->update([
+            'icon' => $newImageName 
+        ]);
+           }
             
-            if($request->hasFile('icon')){
-                $get_id = Setting::select('id', 'icon')->first();
-                $pathImg = str_replace('\\', '/', public_path('uploading/')) . $get_id->icon;
-                if (File::exists($pathImg)) {
-                    File::delete($pathImg);
-                }
-                $image = $request->file('icon');
-                $name = hexdec(uniqid());
-                $real_path = './public/uploading/';
-              //  Image::make($image->getRealPath())->encode('webp', 100)->resize(150, 150)->save(public_path('uploading/'  .  $name . '.webp'));
-                DB::table('sittings')->where('id' , $get_id->id)->update([
-                    'icon' => $name . '.' . 'webp'
-                ]);
-            }
+            // if($request->hasFile('icon')){
+            //     $get_id = Setting::select('id', 'icon')->first();
+            //     $pathImg = str_replace('\\', '/', public_path('uploading/')) . $get_id->icon;
+            //     if (File::exists($pathImg)) {
+            //         File::delete($pathImg);
+            //     }
+            //     $image = $request->file('icon');
+            //     $name = hexdec(uniqid());
+            //     $real_path = './public/uploading/';
+            //   //  Image::make($image->getRealPath())->encode('webp', 100)->resize(150, 150)->save(public_path('uploading/'  .  $name . '.webp'));
+            //     DB::table('sittings')->where('id' , $get_id->id)->update([
+            //         'icon' => $name . '.' . 'webp'
+            //     ]);
+            // }
             
             $insertTODatabase = DB::table('settings')->update([
                 'nameWebsite' => $request->nameWebsite,
@@ -65,19 +77,30 @@ class SettingController extends Controller
                 'socialMidiaInstagram' => $request->socialMidiaInstagram,
                 'socialMidiaYoutube' => $request->socialMidiaYoutube,
                 'Keywords' => $request->Keywords,
+                //'icon' => $newImageName,
+
              //   'insertQuick' => $request->insertCheck ? true : false ,
-                'Is_hide' => $request->btnhide ? true : false,
+                // 'Is_hide' => $request->btnhide ? true : false,
                 
             ]);
 
-            return redirect()->back()->with('msg', 'تم الحفظ بنجاح');
+            return back();
         } else {
             
-            if ($request->hasFile('icon')) {
-                $myimage = $request->input('icon');
-                $time = time();
-              //  Image::make($request->file('icon')->getRealPath())->encode('webp', 100)->resize(150, 150)->save(public_path('uploading/' .  $time . '.webp'));
+            // if ($request->hasFile('icon')) {
+            //     $myimage = $request->input('icon');
+            //     $time = time();
+            //   //  Image::make($request->file('icon')->getRealPath())->encode('webp', 100)->resize(150, 150)->save(public_path('uploading/' .  $time . '.webp'));
+            // }
+
+            if($request->hasFile('icon')){
+                $newImage = $request->file('icon');
+                //for change image name
+                $name = hexdec(uniqid());
+                $newImageName = 'icon' .$name.  '.'  . '.webp';
+                $newImage->move(public_path('site/img/icon/'), $newImageName);
             }
+
             $insertTODatabase = DB::table('sittings')->insert([
                 'nameWebsite' => $request->nameWebsite,
                 'linkWebsite' => $request->linkWebsite,
@@ -87,11 +110,11 @@ class SettingController extends Controller
                 'socialMidiaInstagram' => $request->socialMidiaInstagram,
                 'socialMidiaYoutube' => $request->socialMidiaYoutube,
                 'Keywords' => $request->Keywords,
-                'insertQuick' => $request->insertCheck,
-                'Is_hide' => $request->btnhide,
-                'icon' => $time . '.' . 'webp'
+                // 'insertQuick' => $request->insertCheck,
+                // 'Is_hide' => $request->btnhide,
+                'icon' =>$newImageName 
             ]);
-            return redirect()->back()->with('msg', 'تم الحفظ بنجاح');
+            return back();
         }
     }
 

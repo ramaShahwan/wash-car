@@ -9,7 +9,10 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\Searchajax;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
 
@@ -60,18 +63,25 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         return view('admin.index');
     });
 
+   //settings
+   Route::get('getShowSettings/', [SettingController::class, 'getShowSettings'])->name('settings.show');
+   Route::get('getSettingForFooter/', [SettingController::class, 'getSettingForFooter'])->name('settings.footer');
+   Route::post('setSettings', [SettingController::class, 'setSettings'])->name('settings.set');
+
+   
+   
     Route::get('searchSites/', [Searchajax::class, 'liveAjaxSearch'])->name('live_search.action');
 
 
 // Pinned Pages
 Route:: prefix('pages')->group(function () {
 
-    Route::get('show', [App\Http\Controllers\PageController::class, 'index'])->name('page.show');
-    Route::get('add', [App\Http\Controllers\PageController::class, 'create']);
-    Route::post('save', [App\Http\Controllers\PageController::class, 'store'])->name('page.save');
-    Route::get('edit/{id}', [App\Http\Controllers\PageController::class, 'edit'])->name('page.edit');
-    Route::post('update/{id}', [App\Http\Controllers\PageController::class, 'update'])->name('page.update');
-    Route::delete('delete/{id}', [App\Http\Controllers\PageController::class, 'destroy'])->name('page.delete');
+    Route::get('show', [PageController::class, 'index'])->name('page.show');
+    Route::get('add', [PageController::class, 'create']);
+    Route::post('save', [PageController::class, 'store'])->name('page.save');
+    Route::get('edit/{id}', [PageController::class, 'edit'])->name('page.edit');
+    Route::post('update/{id}', [PageController::class, 'update'])->name('page.update');
+    Route::delete('delete/{id}', [PageController::class, 'destroy'])->name('page.delete');
 });
 
 
