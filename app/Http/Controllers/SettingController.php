@@ -101,7 +101,7 @@ class SettingController extends Controller
                 $newImage->move(public_path('site/img/icon/'), $newImageName);
             }
 
-            $insertTODatabase = DB::table('settings')->insert([
+            $insertTODatabase = DB::table('settings')->create([
                 'nameWebsite' => $request->nameWebsite,
                 'linkWebsite' => $request->linkWebsite,
                 'Description' => $request->Description,
