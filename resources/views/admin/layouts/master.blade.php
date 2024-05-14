@@ -26,7 +26,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('site/img/icon/' . $getShowSettings->icon) }}">
         <meta property="og:image" content="{{ asset('site/img/icon/' . $getShowSettings->icon) }}">
     @endisset
-@endif
+ @endif
 
 <!-- Title -->
 <title>{{ $getShowSettings->nameWebsite }}</title>
