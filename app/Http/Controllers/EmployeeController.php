@@ -36,7 +36,7 @@ class EmployeeController extends Controller
     public function create()
     {
       $areas = Location::all();
-      return view('join',compact('areas'));
+      return view('site.join',compact('areas'));
     }
     
     public function createForAdmin()
@@ -240,26 +240,6 @@ class EmployeeController extends Controller
     }
 }
 
-
-
-  //      public function GetMyOrders()
-  //   {
-  //     $results[] = DB::table('order_service')
-  //       ->join('orders', 'orders.id', 'order_service.order_id')
-  //       ->join('services', 'services.id', 'order_service.service_id')
-  //       ->select('services.name','services.type')
-  //       ->get();
-  //   // return dd($results);
-  //    if (auth()->user()->role == 'employee')
-  //    {
-  //     $id = auth()->user()->id;
-  //    $emp_num = User::where('id',$id)->value('phone');
-  //   $emp_id = Employee::where('phone',$emp_num)->value('id');
-  //   // return dd($emp_id);
-  //     $orders = Order::where('employee_id',$emp_id)->where('status','معلق')->get();
-  //     return view('employee.orders.order_to_work',compact('orders','results'));
-  //   }
-  // }
 
   public function openToUpload($orderId)
   {

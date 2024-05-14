@@ -29,34 +29,15 @@ class OrderController extends Controller
             return view('auth.login');
         }
 
-        else if(auth()->user()->role == "admin") {
-
-        return view('admin.site.index',
-        ['services' => $services,
-        'areas' => $areas,
-        'types' => $types
-       ]);
-        }
-
-        else if(auth()->user()->role == "user") {
-
+        else{
         return view('site.index',
         ['services' => $services,
         'areas' => $areas,
         'types' => $types
-      ]);
-        }
-      
-        else if(auth()->user()->role == "employee") {
-          
-            return view('employee.site.index',
-            ['services' => $services,
-            'areas' => $areas,
-            'types' => $types
-          ]);
-            }
-
+       ]);
+     }
     }
+
     
     public function create()
     {
@@ -64,28 +45,11 @@ class OrderController extends Controller
         $areas = Location::all();
         $types = Type::all();
 
-        if(auth()->user()->role == "admin") {
             
-            return view('admin.site.index',
-            ['services' => $services,
-            'areas' => $areas,
-            'types' => $types ]);}
-
-        elseif(auth()->user()->role == "user") {
-
             return view('site.index',
             ['services' => $services,
             'areas' => $areas,
             'types' => $types ]);
-        }
-
-        elseif(auth()->user()->role == "employee") {
-
-            return view('employee.site.index',
-            ['services' => $services,
-            'areas' => $areas,
-            'types' => $types ]);
-        }
     }
 
 
@@ -100,10 +64,6 @@ class OrderController extends Controller
             // إذا كانت القيمة هي اسم
             $locationId = Location::where('area', $areaId)->value('id');
         }
-
-        // dd($request->all());
-
-        // return dd($locationId);
 
         $user = auth()->user();
         $validated = $request->validate([
@@ -152,95 +112,53 @@ class OrderController extends Controller
             }
         }
 
-        // session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-
-        if(auth()->user()->role == "admin")
-        {
             // session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-            return redirect()->route('admin_ord.summary');
-        }
-
-        elseif(auth()->user()->role == "user")
-        {
-            // session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
             return redirect()->route('ord.summary');
-        }
-
-        elseif(auth()->user()->role == "employee")
-        {
-            // session()->flash('Add', 'تم تسجيل طلبك سيتم التواصل معك في أقرب وقت');
-            return redirect()->route('emp_ord.summary');
-        }
+     
     }
 
 
     public function summary()
-{
-    $user = auth()->user();
-    $order = Order::where('user_id', $user->id)->latest()->first();
+{ 
+     $user = auth()->user();
+     $order = Order::where('user_id', $user->id)->latest()->first();
     
-    $totalPrice = 0;
-    $date = $order->orderDate;
-    $time = $order->orderTime;
+     $totalPrice = 0;
+     $date = $order->orderDate;
+     $time = $order->orderTime;
     
-    // حساب القيمة الإجمالية لجميع الخدمات في الطلب
-    $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
+     // حساب القيمة الإجمالية لجميع الخدمات في الطلب
+     $allServices = Order_Service::where('order_id', $order->id)->pluck('service_id');
 
-    foreach ($allServices as $serviceId) {
+     foreach ($allServices as $serviceId) {
         $service = Service::find($serviceId);
         
         if ($service) {
             $totalPrice += $service->price;
         }
-    }
+     }
     
-    // تحديث قيمة totalPrice في الطلب الحالي
-    Order::find($order->id)->update([
+     // تحديث قيمة totalPrice في الطلب الحالي
+     Order::find($order->id)->update([
         'totalPrice' => $totalPrice,
-    ]);
+      ]);
 
-    if(auth()->user()->role == "admin") {
-
-        return view('admin.site.summary', [
-            'totalPrice' => $totalPrice,
-            'orderDate' => $date,
-            'orderTime' => $time,
-        ]);
-    }
-
-    elseif(auth()->user()->role == "user") {
 
         return view('site.summary', [
             'totalPrice' => $totalPrice,
             'orderDate' => $date,
             'orderTime' => $time,
         ]);
-    }
-
-    elseif(auth()->user()->role == "employee") {
-
-        return view('employee.site.summary', [
-            'totalPrice' => $totalPrice,
-            'orderDate' => $date,
-            'orderTime' => $time,
-        ]);
-    }
 }
+
 
 
     public function getPayway()
     {
         $pay = PayWay::all();
 
-        if(auth()->user()->role == "admin") {
-            return view('admin.site.pay',compact('pay'));
-        }
-        elseif(auth()->user()->role == "user") {
-            return view('site.pay',compact('pay'));
-        }
-        elseif(auth()->user()->role == "employee") {
-            return view('employee.site.pay',compact('pay'));
-        }
+          return view('site.pay',compact('pay'));
+     
     }
     
     public function setPayway(Request $request)
@@ -253,25 +171,12 @@ class OrderController extends Controller
             'payWay_id' => $pay->id,
         ]);
 
-        // if(auth()->user()->role == "admin") {
-
         //     session()->flash('Add', 'تم تثبيت طلبك بنجاح');
             return redirect('/'); 
-        // }
-        // elseif(auth()->user()->role == "user") {
-            
-        //     // return view('site.home'); 
-        //     return redirect('/'); 
-        // }
-
-        // elseif(auth()->user()->role == "employee") {
-            
-        //     // return view('site.home'); 
-        //     return redirect('/'); 
-        // }
+   
     }
     
-  //functions for admin
+   //functions for admin
 
     public function getDoneOrders()
     { 

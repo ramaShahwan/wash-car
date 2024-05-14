@@ -124,12 +124,12 @@ Route:: prefix('order')->group(function () {
 });
 
 
-  Route::get('admin_add', [OrderController::class, 'create']);
-  Route::post('admin_save_order', [OrderController::class, 'store'])->name('admin_ord.save');
+//   Route::get('admin_add', [OrderController::class, 'create']);
+//   Route::post('admin_save_order', [OrderController::class, 'store'])->name('admin_ord.save');
   
-  Route::get('admin_summary', [OrderController::class, 'summary'])->name('admin_ord.summary');
-  Route::get('admin_pay', [OrderController::class, 'getPayway'])->name('admin_ord.pay');
-  Route::post('admin_set_pay', [OrderController::class, 'setPayway'])->name('admin_ord.setPay');
+//   Route::get('admin_summary', [OrderController::class, 'summary'])->name('admin_ord.summary');
+//   Route::get('admin_pay', [OrderController::class, 'getPayway'])->name('admin_ord.pay');
+//   Route::post('admin_set_pay', [OrderController::class, 'setPayway'])->name('admin_ord.setPay');
 
 
   //service
@@ -222,13 +222,13 @@ Route:: prefix('beforAfter')->group(function () {
 // User Routes
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
-    Route::get('add', [OrderController::class, 'create']);
-    Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
-    Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
-   // Route::get('getArea', [LocationController::class, 'show'])->name('getArea.show');
+//     Route::get('add', [OrderController::class, 'create']);
+//     Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+//     Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
+//    // Route::get('getArea', [LocationController::class, 'show'])->name('getArea.show');
 
-    Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
-    Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
+//     Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
+//     Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
     
 });
 
@@ -249,12 +249,12 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     
     Route::get('myGallery', [EmployeeController::class, 'myGallery'])->name('ord.gallery');
 
-    Route::get('emp_add', [OrderController::class, 'create']);
-    Route::post('emp_save_order', [OrderController::class, 'store'])->name('emp_ord.save');
-    Route::get('emp_summary', [OrderController::class, 'summary'])->name('emp_ord.summary');
+    // Route::get('emp_add', [OrderController::class, 'create']);
+    // Route::post('emp_save_order', [OrderController::class, 'store'])->name('emp_ord.save');
+    // Route::get('emp_summary', [OrderController::class, 'summary'])->name('emp_ord.summary');
 
-    Route::get('emp_pay', [OrderController::class, 'getPayway'])->name('emp_ord.pay');
-    Route::post('emp_set_pay', [OrderController::class, 'setPayway'])->name('emp_ord.setPay');
+    // Route::get('emp_pay', [OrderController::class, 'getPayway'])->name('emp_ord.pay');
+    // Route::post('emp_set_pay', [OrderController::class, 'setPayway'])->name('emp_ord.setPay');
 
     Route::get('acceptedFromEmp', [EmployeeController::class, 'acceptedFromEmp'])->name('emp_ord.accepted');
     Route::get('doneFromEmp', [EmployeeController::class, 'doneFromEmp'])->name('emp_ord.done');
@@ -285,6 +285,12 @@ Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 
 
+Route::get('add_order', [OrderController::class, 'create']);
+Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
+
+Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
+Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
+Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
 
 
 
