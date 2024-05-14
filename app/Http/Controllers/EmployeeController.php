@@ -54,7 +54,6 @@ class EmployeeController extends Controller
         'Gender'=>'required',
         'phone'=>'required',
         'area'=>'required',
-
         //  'aboutYou'=>'required',
         // 'image'=>'required'
       ]);
