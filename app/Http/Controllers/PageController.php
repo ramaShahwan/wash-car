@@ -112,4 +112,12 @@ class PageController extends Controller
        session()->flash('delete', 'تم حذف الصفحة بنجاح');
        return  redirect()->route('page.show');
    }
+
+
+     public function generation($href){
+    $all_pinned_page = Page::all();
+    $get_data = Page::select('id' , 'name', 'href' , 'content','title', 'keyword')->where('href' , $href)->get();
+
+    return view('site.layouts.footer' , compact([ 'all_pinned_page','get_data']));
+   }
 }

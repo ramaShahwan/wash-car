@@ -82,6 +82,8 @@ Route:: prefix('pages')->group(function () {
     Route::get('edit/{id}', [PageController::class, 'edit'])->name('page.edit');
     Route::post('update/{id}', [PageController::class, 'update'])->name('page.update');
     Route::delete('delete/{id}', [PageController::class, 'destroy'])->name('page.delete');
+
+    Route::get('pages/{href}', [PageController::class, 'generation'])->name('page.generation');
 });
 
 
