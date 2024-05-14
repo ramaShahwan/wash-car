@@ -391,6 +391,12 @@
        </div>
     </div><br>
 
+
+    @foreach ($all_pinned_page as $get_pinned)
+                           <li><label>{{ $get_pinned->name}}</label>
+                              <b class="space"></b></li>
+                        @endforeach
+
       <button type="submit" class="btn btn-primary" style="background-color: #0c426e; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>
 
   </div>

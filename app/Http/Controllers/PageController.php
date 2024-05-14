@@ -118,6 +118,6 @@ class PageController extends Controller
     $all_pinned_page = Page::all();
     $get_data = Page::select('id' , 'name', 'href' , 'content','title', 'keyword')->where('href' , $href)->get();
 
-    return view('site.layouts.footer' , compact('all_pinned_page','get_data'));
+    return view('site.index', compact('all_pinned_page','get_data'));
    }
 }
