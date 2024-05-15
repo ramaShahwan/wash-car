@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Order_Service;
+use App\Models\Page;
 use App\Models\PayWay;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -17,9 +18,17 @@ use DateTime;
 
 class OrderController extends Controller
 {
+    // public function generation($href){
+    //     $all_pinned_page = Page::first();
+    //     $get_data = Page::where('href' , $href)->first();
+    //     return view('site.index',compact('all_pinned_page','get_data'));
+    
+    //     // return view('site.index', compact('all_pinned_page','get_data'));
+    //    }
 
     public function index()
     {
+        // $all_pinned_page = Page::all();
         $services = Service::all();
         $areas = Location::all();
         $types = Type::all();
@@ -30,29 +39,40 @@ class OrderController extends Controller
         }
 
         else{
-        return view('site.index',
-        ['services' => $services,
-        'areas' => $areas,
-        'types' => $types
-       ]);
+            return view('site.index',
+           ['services' => $services,
+           'areas' => $areas,
+           'types' => $types,
+        //    'all_pinned_page'=>$all_pinned_page
+          ]);
      }
     }
-
     
     public function create()
     {
-        $services = Service::all();
-        $areas = Location::all();
-        $types = Type::all();
+             $services = Service::all();
+             $areas = Location::all();
+            $types = Type::all();
+            // $all_pinned_page = Page::all();
 
-            
-            return view('site.index',
-            ['services' => $services,
-            'areas' => $areas,
-            'types' => $types ]);
+        
+                
+           if(!auth()->check())
+           {
+            return view('auth.login');
+            }
+
+         else{
+                return view('site.index',
+                ['services' => $services,
+                'areas' => $areas,
+                'types' => $types,
+        //    'all_pinned_page'=>$all_pinned_page
+
+             ]); 
+            }
+        
     }
-
-
     public function store(Request $request)
     {
         $areaId = $request->location_id;

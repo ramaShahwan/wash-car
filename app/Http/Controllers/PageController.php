@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\File;
 
 class PageController extends Controller
 {
-   //  for secure
-   public function __construct()
-   {
-       $this->middleware('admin');
-   }
-
+   
    public function index()
    {
        $pages = Page::orderBy('created_at','Asc')->get();
@@ -113,11 +108,9 @@ class PageController extends Controller
        return  redirect()->route('page.show');
    }
 
-
-     public function generation($href){
-    $all_pinned_page = Page::all();
+    public function generation($href){
     $get_data = Page::select('id' , 'name', 'href' , 'content','title', 'keyword')->where('href' , $href)->get();
-
-    return view('site.index', compact('all_pinned_page','get_data'));
-   }
+    // return view('site.index')->with('all_pinned_page', $all_pinned_page)->with('get_data', $get_data);
+    return view('site.'.$get_data->name, compact('get_data'));
+    }
 }
