@@ -17,11 +17,11 @@
                        <li><a href="{{ url('get_img') }}">أعمالنا</a></li>
                        <li><a href="{{ url('about_us') }}">من نحن؟</a></li>
                        <li><a href="{{ url('add_emp') }}">انضم لفريقنا</a></li>
-
+{{-- 
                         @foreach ($all_pinned_page as $get_pinned)
                            <li><a href="{{ route('page.generation', [$get_pinned->href]) }}">{{ $get_pinned->name }}</a>
                               <b class="space"></b></li>
-                        @endforeach
+                        @endforeach --}}
 
                     </ul>
                  </div>
