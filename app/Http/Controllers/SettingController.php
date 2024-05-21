@@ -18,13 +18,16 @@ class SettingController extends Controller
         return view('admin.settings.show', compact('getShowSettings'));
     }
 
-    // public function getSettingFooter()
-    // {
-    //     $getShowSettings = Setting::first();
-    //     // dd($getShowSettings);
+    public function getSettingFooter1()
+    {
 
-    //     return view('admin.settings.footer', compact('settings'));
-    // }
+        $settings = Setting::first();
+        $face = Setting::value('socialMidiaFacebook')->get();
+
+        // dd($getShowSettings);
+
+        return view('site.layouts.footer', compact('settings', 'face'));
+    }
 
     public function getSettingFooter()
     {
@@ -37,7 +40,7 @@ class SettingController extends Controller
     {
         $validation = $request->validate([
             'nameWebsite' => "max:30",
-           'Description' => "max:256"
+            'Description' => "max:256"
         ]);
 
         $get_id = Setting::select('id','icon')->first();

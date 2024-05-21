@@ -18,10 +18,18 @@
                        <li><a href="{{ url('about_us') }}">من نحن؟</a></li>
                        <li><a href="{{ url('add_emp') }}">انضم لفريقنا</a></li>
 
+                        {{-- @php
+                           $all_pinned_page = $all_pinned_page ?? [];
+                        @endphp --}}
+
+                     {{-- @isset($all_pinned_page)
+
                         @foreach ($all_pinned_page as $get_pinned)
-                           <li><a href="{{ route('page.generation', [$get_pinned->href]) }}">{{ $get_pinned->name }}</a>
-                              <b class="space"></b></li>
+                           <li><a href="{{ route('page.generation', $get_pinned->href) }}">{{ $get_pinned->name }}</a></li>
                         @endforeach
+
+                     @endisset --}}
+
 
                     </ul>
                  </div>
@@ -38,10 +46,10 @@
            </div>
            <div class="social_icon">
               <ul>
-                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                 <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                 {{-- <li><a href="{{ $settings->socialMidiaFacebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                 <li><a href="{{ $settings->socialMidiaTelegram }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                 <li><a href="{{ $settings->socialMidiaYoutube }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li> --}}
+                 {{-- <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i> {{ $face }} </a></li> --}}
               </ul>
            </div>
         </div>

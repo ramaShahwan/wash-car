@@ -83,7 +83,6 @@ Route:: prefix('pages')->group(function () {
     Route::post('update/{id}', [PageController::class, 'update'])->name('page.update');
     Route::delete('delete/{id}', [PageController::class, 'destroy'])->name('page.delete');
 
-    Route::get('pages/{href}', [PageController::class, 'generation'])->name('page.generation');
 });
 
 
@@ -293,6 +292,7 @@ Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
 Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
 
 
+Route::get('pages/{href}', [PageController::class, 'generation'])->name('page.generation');
 
 
 
