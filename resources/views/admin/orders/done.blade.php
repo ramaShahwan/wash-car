@@ -61,7 +61,6 @@
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
 												<th class="wd-15p border-bottom-0">تفاصيل الطلب</th>
-
 											</tr>
 										</thead>
 										<tbody>

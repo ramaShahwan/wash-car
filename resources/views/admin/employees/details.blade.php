@@ -34,84 +34,91 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-								<form action="{{ route('employee.detailes',$emp->id) }}" method="post"  enctype="multipart/form-data" autocomplete="off">
-									{{ csrf_field() }}
-
+								
+                                @foreach ($employees as $emp)
+                                    
 								<div class="row">
 									<div class="col">
 										<label for="inputName" class="control-label">الاسم</label>
-										<input type="hidden" name="firstName" value="{{ $employees->firstName }}">
+										<input type="hidden" name="firstName" value="{{ $emp->firstName }}">
 										<input type="text" class="form-control "
-										id="inputName" name="firstName" value="{{ $employees->firstName }}" readonly>
+										id="inputName" name="firstName" value="{{ $emp->firstName }}" readonly>
 									</div>
 								</div><br>
 
 								<div class="row">
 									<div class="col">
 										<label for="inputName" class="control-label">الكنية</label>
-										<input type="hidden" name="lastName" value="{{ $employees->lastName }}">
+										<input type="hidden" name="lastName" value="{{ $emp->lastName }}">
 										<input type="text" class="form-control"
-										id="inputName" name="lastName" value="{{ $employees->lastName }}" readonly>
+										id="inputName" name="lastName" value="{{ $emp->lastName }}" readonly>
 									</div>
 								</div><br>
 
 								<div class="row">
 									<div class="col">
 										<label for="inputName" class="control-label">تاريخ الولادة</label>
-										<input type="hidden" name="birthDate" value="{{ $employees->birthDate }}">
+										<input type="hidden" name="birthDate" value="{{ $emp->birthDate }}">
 										<input type="text" class="form-control "
-										id="inputName" name="birthDate" value="{{ $employees->birthDate }}" readonly>
+										id="inputName" name="birthDate" value="{{ $emp->birthDate }}" readonly>
 									</div>
 								</div><br>
 									
 									<div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">الجنس</label>
-											<input type="hidden" name="Gender" value="{{ $employees->Gender }}">
+											<input type="hidden" name="Gender" value="{{ $emp->Gender }}">
 											<input type="text" class="form-control "
-											id="inputName" name="Gender" value="{{ $employees->Gender }}" readonly>
+											id="inputName" name="Gender" value="{{ $emp->Gender }}" readonly>
 										</div>
 									</div><br>
 
 									<div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">رقم الموبايل</label>
-											<input type="hidden" name="phone" value="{{ $employees->phone }}">
-											<input type="text" class="form-control" id="inputName" name="phone" value="{{ $employees->phone }}" readonly>
+											<input type="hidden" name="phone" value="{{ $emp->phone }}">
+											<input type="text" class="form-control" id="inputName" name="phone" value="{{ $emp->phone }}" readonly>
 										</div>
 									</div><br>
 									
                                     <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">نبذة حول الموظف</label>
-											<input type="hidden" name="aboutYou" value="{{ $employees->aboutYou }}">
-											<input type="text" class="form-control" id="inputName" name="aboutYou" value="{{ $employees->aboutYou }}" readonly>
+											<input type="hidden" name="aboutYou" value="{{ $emp->aboutYou }}">
+											<input type="text" class="form-control" id="inputName" name="aboutYou" value="{{ $emp->aboutYou }}" readonly>
                                         </div>
 									</div><br>
                                     
                                     <div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">المنطقة</label>
-											<input type="hidden" name="area" value="{{ $employees->area }}">
-											<input type="text" class="form-control" id="inputName" name="area" value="{{ $employees->area }}" readonly>
+											<input type="hidden" name="area" value="{{ $emp->area }}">
+											<input type="text" class="form-control" id="inputName" name="area" value="{{ $emp->area }}" readonly>
                                         </div>
 									</div><br>
 								
 									<div class="row">
-										<div class="col-6 text-center">
+										<div class="col">
 											<label for="inputName" class="control-label">صورة الموظف</label>
 											<br>
-											<img src="{{ URL::asset('/site/img/emp/'.$image) }}" style="height: 300px; width: 300px;">
+
+                                            @if ($emp->Image)
+                                                <img src="{{URL::asset('/site/img/emp/'.$emp->image)}}" style="width: 200px; height: 200px;">
+                                            @else	
+                                                <img src="{{URL::asset('/site/img/emp/user.jpg')}}"  style="width: 200px; height: 200px;">
+                                            @endif
+
 										</div>
 									</div><br>
 									
 									<br>
 
 									<div class="d-flex justify-content-center">
-                                        <a href="{{ url('/order/show_done') }}" class="btn btn-primary" style="align-items: center;">رجوع &nbsp; <i class="fa fa-arrow-left"></i></a>
+                                        <a href="{{ url('/employee/showPending') }}" class="btn btn-primary" style="align-items: center;">رجوع &nbsp; <i class="fa fa-arrow-left"></i></a>
                                     </div>
 			
-								</form>
+                                    @endforeach
+							
 							</div>
 						</div>
 					</div>
