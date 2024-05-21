@@ -10,8 +10,14 @@ class TypeController extends Controller
 {
     public function index()
     { 
-         $types = Type::orderBy('created_at','Asc')->get();
-         return view('admin.type.show',compact('types'));
+         $types = Type::orderBy('created_at','DESC')->paginate(50);
+         $dataCount = Type::get()->count();
+         $paginationLinks = $types->withQueryString()->links('pagination::bootstrap-4'); 
+         return view('admin.type.show', [
+          'types' => $types,
+          'dataCount'=>$dataCount,
+         'paginationLinks' => $paginationLinks
+       ]);
     }
 
     public function create()

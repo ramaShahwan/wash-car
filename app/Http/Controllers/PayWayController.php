@@ -19,8 +19,14 @@ class PayWayController extends Controller
 
     public function index()
     { 
-         $pay = PayWay::orderBy('created_at','Asc')->get();
-         return view('admin.payWay.show',compact('pay'));
+      $pay = PayWay::orderBy('created_at','DESC')->paginate(50);
+      $dataCount = PayWay::get()->count();
+      $paginationLinks = $pay->withQueryString()->links('pagination::bootstrap-4'); 
+      return view('admin.payWay.show', [
+       'pay' => $pay,
+       'dataCount'=>$dataCount,
+      'paginationLinks' => $paginationLinks
+    ]);
     }
 
     public function create()

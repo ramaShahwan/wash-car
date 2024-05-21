@@ -12,15 +12,27 @@ class BeforAfterController extends Controller
 {
 
     public function index()
-    { 
-        $data = BeforAfter::orderBy('created_at','Asc')->get();
-        return view('admin.before_after.show',compact('data'));
+    {
+        $data = BeforAfter::orderBy('created_at', 'DESC')->paginate(50);
+        $dataCount = BeforAfter::get()->count();
+        $paginationLinks = $data->withQueryString()->links('pagination::bootstrap-4'); 
+        return view('admin.before_after.show', [
+            'data' => $data,
+            'dataCount'=>$dataCount,
+            'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function show()
     { 
-        $data = BeforAfter::orderBy('created_at','Asc')->get();
-        return view('site.before_after',compact('data'));
+        $data = BeforAfter::orderBy('created_at', 'DESC')->paginate(50);
+        $dataCount = BeforAfter::get()->count();
+        $paginationLinks = $data->withQueryString()->links('pagination::bootstrap-4'); 
+        return view('site.before_after', [
+            'data' => $data,
+            'dataCount'=>$dataCount,
+            'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function create()
