@@ -69,12 +69,12 @@
 												<th class="wd-15p border-bottom-0">#</th>
 												<th class="wd-15p border-bottom-0">الاسم</th>
 												<th class="wd-15p border-bottom-0">النسبة</th>
-												<th class="wd-15p border-bottom-0">تاريخ الولادة</th>
-												<th class="wd-15p border-bottom-0">الجنس</th>
+												{{-- <th class="wd-15p border-bottom-0">تاريخ الولادة</th>
+												<th class="wd-15p border-bottom-0">الجنس</th> --}}
 												<th class="wd-15p border-bottom-0">رقم الموبايل</th>
 												<th class="wd-15p border-bottom-0">المنطقة</th>
-												<th class="wd-15p border-bottom-0">نبذة حول الموظف</th>
-												<th class="wd-15p border-bottom-0">صورة</th>
+												{{-- <th class="wd-15p border-bottom-0">نبذة حول الموظف</th>
+												<th class="wd-15p border-bottom-0">صورة</th> --}}
 
 												<th class="wd-15p border-bottom-0">أعمال الموظف</th>
 												<th class="wd-15p border-bottom-0">تعديل</th>
@@ -88,17 +88,17 @@
 												<td>{{$i++}}</td>
 												<td>{{$emp->firstName}}</td>
 												<td>{{$emp->lastName}}</td>
-												<td>{{$emp->birthDate}}</td>
-												<td>{{$emp->Gender}}</td>
+												{{-- <td>{{$emp->birthDate}}</td>
+												<td>{{$emp->Gender}}</td> --}}
 												<td>{{$emp->phone}}</td>
 												<td>{{$emp->area}}</td>
-												<td>{{$emp->aboutYou}}</td>
+												{{-- <td>{{$emp->aboutYou}}</td> --}}
                                                 
-                                                @if ($emp->image)
+                                                {{-- @if ($emp->image)
 									                <td><img src="{{URL::asset('site/img/emp/'.$emp->image)}}" style="width: 50px;"></td>
 								                @else
 									                <td><img src="{{URL::asset('site/img/emp/user.jpg')}}"  style="width: 50px;"></td>
-								                @endif
+								                @endif --}}
 
 												<td>
 													<a class="btn btn-sm btn-success" href="{{ route('employee.showCount', $emp->id) }}" title="أعمال الموظف"><i class="fa fa-cubes"></i></a>
