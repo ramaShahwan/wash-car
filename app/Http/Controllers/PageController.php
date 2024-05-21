@@ -108,9 +108,11 @@ class PageController extends Controller
        return  redirect()->route('page.show');
    }
 
+
     public function generation($href){
     $get_data = Page::select('id' , 'name', 'href' , 'content','title', 'keyword')->where('href' , $href)->get();
     // return view('site.index')->with('all_pinned_page', $all_pinned_page)->with('get_data', $get_data);
     return view('site.'.$get_data->name, compact('get_data'));
     }
+
 }

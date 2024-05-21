@@ -381,10 +381,12 @@
           <label style="font-size: 16px; font-weight: bolder; color: black;">نوع السيارة</label>
             <select name="typeOfCar" class="form-control select @error('typeOfCar') is-invalid @enderror" id="typeOfCar"> 
              <option value="لايوجد">اختر نوع السيارة</option>
+             
              @foreach($types as $type)
-             <option value="{{$type->name}}">{{$type->name}}</option>
+               <option value="{{$type->name}}">{{$type->name}}</option>
              @endforeach 
-          </select>
+          
+            </select>
           @error('typeOfCar')
           <div class="alert alert-danger">يجب إدخال نوع السيارة</div>
        @enderror
