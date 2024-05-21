@@ -182,6 +182,8 @@ Route:: prefix('employee')->group(function () {
     Route::get('showAccepted', [EmployeeController::class, 'getAcceptedEmp'])->name('employee.accepted');
     Route::get('showCanceled', [EmployeeController::class, 'getCanceledEmp'])->name('employee.canceled');
     Route::get('showPending', [EmployeeController::class, 'getPendingEmp'])->name('employee.pending');
+    Route::get('showDetails', [EmployeeController::class, 'getPendingEmpDetailes'])->name('employee.detailes');
+
 
     Route::post('updatePenddingToAccepted/{id}', [EmployeeController::class, 'updatePenddingToAccepted'])->name('employee.updateAccepted');
     Route::post('updatePenddingToCanceled/{id}', [EmployeeController::class, 'updatePenddingToCanceled'])->name('employee.updateCanceled');
@@ -193,7 +195,7 @@ Route:: prefix('employee')->group(function () {
     Route::delete('delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
     
     Route::get('showCount/{id}', [EmployeeController::class, 'showCount'])->name('employee.showCount');
-
+    
 });
 
 
