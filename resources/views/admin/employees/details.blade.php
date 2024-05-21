@@ -102,7 +102,7 @@
 											<label for="inputName" class="control-label">صورة الموظف</label>
 											<br>
 
-                                            @if ($emp->Image)
+                                            @if ($emp->image)
                                                 <img src="{{URL::asset('/site/img/emp/'.$emp->image)}}" style="width: 200px; height: 200px;">
                                             @else	
                                                 <img src="{{URL::asset('/site/img/emp/user.jpg')}}"  style="width: 200px; height: 200px;">
