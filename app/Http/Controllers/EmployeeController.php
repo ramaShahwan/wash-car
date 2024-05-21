@@ -17,20 +17,38 @@ class EmployeeController extends Controller
 
     public function getAcceptedEmp()
     { 
-      $employees = Employee::where('status','accepted')->orderBy('created_at','Asc')->get();
-      return view('admin.employees.accept',compact('employees'));
+      $employees = Employee::where('status','accepted')->orderBy('created_at','DESC')->paginate(50);
+      $dataCount = Employee::get()->count();
+      $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+      return view('admin.employees.accept', [
+          'employees' => $employees,
+          'dataCount'=>$dataCount,
+          'paginationLinks' => $paginationLinks
+      ]);
     }
 
     public function getCanceledEmp()
     { 
-      $employees = Employee::where('status','canceled')->orderBy('created_at','Asc')->get();
-      return view('admin.employees.cancel',compact('employees'));
+      $employees = Employee::where('status','canceled')->orderBy('created_at','DESC')->paginate(50);
+      $dataCount = Employee::get()->count();
+      $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+      return view('admin.employees.cancel', [
+          'employees' => $employees,
+          'dataCount'=>$dataCount,
+          'paginationLinks' => $paginationLinks
+      ]);
     }
 
     public function getPendingEmp()
     { 
-      $employees = Employee::where('status','Pending')->orderBy('created_at','Asc')->get();
-      return view('admin.employees.pend',compact('employees'));
+      $employees = Employee::where('status','Pending')->orderBy('created_at','DESC')->paginate(50);
+      $dataCount = Employee::get()->count();
+      $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+      return view('admin.employees.pend', [
+          'employees' => $employees,
+          'dataCount'=>$dataCount,
+          'paginationLinks' => $paginationLinks
+      ]);
     }
 
     public function getPendingEmpDetailes()
@@ -225,23 +243,28 @@ class EmployeeController extends Controller
     }
 
     public function GetMyOrders()
-{
+  {
     // $results = [];
     $id = auth()->user()->id;
     if (auth()->user()->role == 'employee') {
         $emp_num = User::where('id', $id)->value('phone');
         $emp_id = Employee::where('phone', $emp_num)->value('id');
-        
-        // // Retrieve orders related to the employee
-        $orders = Order::where('employee_id', $emp_id)->where('status', 'معلق')->get();
-  
+
         // $serviceIdsArray = [];
         // foreach($order as $ord){
         //     $serviceIds = Order_Service::where('order_id', $ord->id)->pluck('service_id');
         //     $serviceIdsArray[] = $serviceIds;
         // }
-        
-        return view('employee.orders.order_to_work', compact('orders'));
+
+        // // Retrieve orders related to the employee
+        $orders = Order::where('employee_id', $emp_id)->where('status', 'معلق')->orderBy('created_at','DESC')->paginate(50);
+       $dataCount = Order::get()->count();
+       $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+      return view('employee.orders.order_to_work', [
+          'orders' => $orders,
+          'dataCount'=>$dataCount,
+          'paginationLinks' => $paginationLinks
+      ]);
     }
 }
 
@@ -298,8 +321,14 @@ class EmployeeController extends Controller
     $emp_num = User::where('id',$id)->value('phone');
     $emp_id = Employee::where('phone',$emp_num)->value('id');
 
-   $gallery = BeforAfter::where('employee_id',$emp_id)->get();
-   return view('employee.before_after.show',compact('gallery'));
+   $gallery = BeforAfter::where('employee_id',$emp_id)->orderBy('created_at','DESC')->paginate(50);
+   $dataCount = BeforAfter::get()->count();
+   $paginationLinks = $gallery->withQueryString()->links('pagination::bootstrap-4'); 
+  return view('employee.before_after.show', [
+      'gallery' => $gallery,
+      'dataCount'=>$dataCount,
+      'paginationLinks' => $paginationLinks
+  ]);
    }
 
    public function acceptedFromEmp()
@@ -315,10 +344,16 @@ class EmployeeController extends Controller
     $id = auth()->user()->id;
     $emp_num = User::where('id',$id)->value('phone');
     $emp_id = Employee::where('phone',$emp_num)->value('id');
-    $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->get();
-
-    return view('employee.orders.accept',compact('orders'));
-  }
+    
+    $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
+    $dataCount = Order::get()->count();
+    $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+   return view('employee.orders.accept', [
+       'orders' => $orders,
+       'dataCount'=>$dataCount,
+      'paginationLinks' => $paginationLinks
+    ]);
+   }
    }
 
    public function doneFromEmp()
@@ -334,9 +369,15 @@ class EmployeeController extends Controller
   $id = auth()->user()->id;
   $emp_num = User::where('id',$id)->value('phone');
   $emp_id = Employee::where('phone',$emp_num)->value('id');
-  $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->get();
 
-  return view('employee.orders.done',compact('orders'));
+    $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->orderBy('created_at','DESC')->paginate(50);
+    $dataCount = Order::get()->count();
+    $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+    return view('employee.orders.done', [
+       'orders' => $orders,
+       'dataCount'=>$dataCount,
+      'paginationLinks' => $paginationLinks
+    ]);
   }
    }
 

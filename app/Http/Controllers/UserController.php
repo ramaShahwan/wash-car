@@ -11,8 +11,14 @@ class UserController extends Controller
 {
     public function index()
     { 
-         $users = User::orderBy('created_at','Asc')->get();
-         return view('admin.users.show',compact('users'));
+         $users = User::orderBy('created_at','DESC')->paginate(50);
+         $dataCount = User::get()->count();
+         $paginationLinks = $users->withQueryString()->links('pagination::bootstrap-4'); 
+         return view('admin.users.show', [
+          'users' => $users,
+          'dataCount'=>$dataCount,
+         'paginationLinks' => $paginationLinks
+       ]);
     }
 
     public function create()

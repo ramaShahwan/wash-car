@@ -10,8 +10,14 @@ class ServiceController extends Controller
 {
     public function index()
     { 
-         $service = Service::orderBy('created_at','Asc')->get();
-         return view('admin.service.show',compact('service'));
+       $service = Service::orderBy('created_at','DESC')->paginate(50);
+      $dataCount = Service::get()->count();
+      $paginationLinks = $service->withQueryString()->links('pagination::bootstrap-4'); 
+      return view('admin.service.show', [
+       'service' => $service,
+       'dataCount'=>$dataCount,
+      'paginationLinks' => $paginationLinks
+    ]);
     }
 
     public function create()
