@@ -14,11 +14,18 @@ class LocationController extends Controller
          return view('site.index',compact('areas'));
     }
     
-    // public function index()
-    // { 
-    //      $areas = Location::orderBy('created_at','Asc')->get();
-    //      return view('admin.location.show',compact('areas'));
-    // }
+    public function index()
+    { 
+      $areas = Location::orderBy('created_at','DESC')->paginate(50);
+      $dataCount = Location::get()->count();
+      $paginationLinks = $areas->withQueryString()->links('pagination::bootstrap-4'); 
+      
+      return view('admin.location.show', [
+        'areas' => $areas,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+      ]);
+    }
 
     public function create()
     {

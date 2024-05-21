@@ -57,6 +57,9 @@
                                 </div>  
                                     
                                 @endforeach
+
+								{!! $paginationLinks !!}
+
 								</div>
 							</div>
 						</div>

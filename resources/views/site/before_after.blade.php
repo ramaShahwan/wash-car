@@ -33,6 +33,7 @@
                <br><br><br>
            @endforeach
            
+					{!! $paginationLinks !!}
                
 
                  {{-- <div class="col-md-3">
