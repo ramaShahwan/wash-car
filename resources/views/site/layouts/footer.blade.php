@@ -18,6 +18,7 @@
                        <li><a href="{{ url('about_us') }}">من نحن؟</a></li>
                        <li><a href="{{ url('add_emp') }}">انضم لفريقنا</a></li>
 
+
                         {{-- @php
                            $all_pinned_page = $all_pinned_page ?? [];
                         @endphp --}}

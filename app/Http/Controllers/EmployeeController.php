@@ -33,6 +33,12 @@ class EmployeeController extends Controller
       return view('admin.employees.pend',compact('employees'));
     }
 
+    public function getPendingEmpDetailes()
+    { 
+      $employees = Employee::where('status','Pending')->orderBy('created_at','Asc')->get();
+      return view('admin.employees.details',compact('employees'));
+    }
+
     public function create()
     {
       $areas = Location::all();
