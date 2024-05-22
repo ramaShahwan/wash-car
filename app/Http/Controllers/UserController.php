@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 class UserController extends Controller
 {
     public function index()
@@ -74,6 +76,29 @@ class UserController extends Controller
       session()->flash('Edit', 'تم تعديل المستخدم بنجاح');
        return redirect()->route('user.show');
     }
+
+    public function destroyProfile(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+        $orders = Order::where('user_id',$user->id)->get();
+        foreach($orders as $order)
+        {
+         $order->delete();
+        }
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return view('auth.register');
+      }
+
 
     public function destroy( $id)
     {
