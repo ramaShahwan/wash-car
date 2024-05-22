@@ -78,15 +78,20 @@
                     <a class="nav-link" href="contact.html"> تواصل معنا </a>
                  </li> --}}
                  
+
+                 <li class="nav-item">
+                     @if (auth()->user())
+                        <a class="nav-link" title="الملف الشخصي" style="font-size: 20px; color: white;" href="{{ route('profile.edit') }}"><i class="fa fa-user"></i></a>
+                     @endif
+                 </li>
                  
                  <li class="nav-item">
-
                   @if (auth()->user())
-                  
-                <form method="POST" action="{{ route('logout') }}">
-                  @csrf
-                  <button class="nav-link" title="تسجيل خروج" style="background: none; color:white; font-size: 20px;" type="submit"><i class="fa fa-sign-in"></i></button>                
-               </form>
+
+                  <form method="POST" action="{{ route('logout') }}">
+                     @csrf
+                     <button class="nav-link" title="تسجيل خروج" style="background: none; color:white; font-size: 20px;" type="submit"><i class="fa fa-sign-in"></i></button>                
+                  </form>
 
         @else
 
