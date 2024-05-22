@@ -161,6 +161,7 @@
                                     
                                 @endforeach
 
+								{!! $paginationLinks !!}
 
 								</div>
 							</div>
@@ -169,11 +170,7 @@
 					<!--/div-->
 				</div>
 				<!-- /row -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
-
+	
 		
 @endsection
 @section('js')

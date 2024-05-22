@@ -50,8 +50,8 @@ class OrderController extends Controller
     
     public function create()
     {
-             $services = Service::all();
-             $areas = Location::all();
+            $services = Service::all();
+            $areas = Location::all();
             $types = Type::all();
             // $all_pinned_page = Page::all();
 
@@ -206,32 +206,67 @@ class OrderController extends Controller
         //     $ord->save();
         // });
 
-        $orders = Order::where('status','منجز')->orderBy('created_at','Asc')->get();
-        return view('admin.orders.done',compact('orders'));
+        $orders = Order::where('status','منجز')->orderBy('created_at','DESC')->paginate(50);
+        $dataCount = Order::get()->count();
+        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.done', [
+        'orders' => $orders,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function getWaitingOrders()
     { 
-        $orders = Order::where('status','قيد الإنجاز')->orderBy('updated_at','Asc')->get();
-        return view('admin.orders.waiting',compact('orders'));
+        $orders = Order::where('status','قيد الإنجاز')->orderBy('updated_at','DESC')->paginate(50);
+        $dataCount = Order::get()->count();
+        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.waiting', [
+        'orders' => $orders,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function getPendingOrders()
-    { 
-        $orders = Order::where('status','معلق')->whereNull('employee_id')->orderBy('created_at','Asc')->get();
-        return view('admin.orders.pend',compact('orders'));
+    {
+        $orders = Order::where('status','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
+        $dataCount = Order::get()->count();
+        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.pend', [
+        'orders' => $orders,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function getCanceledOrders()
     { 
-        $orders = Order::where('status','مرفوض')->orderBy('updated_at','Asc')->get();
-        return view('admin.orders.cancel',compact('orders'));
+        $orders = Order::where('status','مرفوض')->orderBy('updated_at','DESC')->paginate(50);
+        $dataCount = Order::get()->count();
+        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.cancel', [
+        'orders' => $orders,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function getCanceledOrdersByEmp()
     { 
-        $orders = Order::where('status','مرفوض من قبل الموظف')->orderBy('updated_at','Asc')->get();
-        return view('admin.orders.cancel_from_emp',compact('orders'));
+        $orders = Order::where('status','مرفوض من قبل الموظف')->orderBy('updated_at','DESC')->paginate(50);
+        $dataCount = Order::get()->count();
+        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.cancel_from_emp', [
+        'orders' => $orders,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function updatePenddingToWaiting($id)
@@ -239,8 +274,9 @@ class OrderController extends Controller
        $orders = Order::findOrFail($id);
        $orders->status = 'قيد الإنجاز';
        $orders->update();
-        session()->flash('Edit', 'تم  قبول الطلب بنجاح');
-        return redirect('acceptedFromEmp');
+        
+       session()->flash('Edit', 'تم  قبول الطلب بنجاح');
+       return redirect('acceptedFromEmp');
     }
 
     public function updatePenddingToCanceled(Request $request,$id)
@@ -273,17 +309,29 @@ class OrderController extends Controller
     {
         $LocationId = Order::where('id',$orderId)->value('location_id');
         $LocationArea = Location::where('id',$LocationId)->value('area');
-        $employees = Employee::where('area',$LocationArea)->where('status','accepted')->get();
 
-        // return dd($employees);
-        return view('admin.orders.emp_area',compact('employees', 'orderId'));
+        $employees = Employee::where('area',$LocationArea)->where('status','accepted')->orderBy('updated_at','DESC')->paginate(50);
+        $dataCount = Employee::get()->count();
+        $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.emp_area', [
+        'employees' => $employees,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 
     public function waitingForEmp() {
 
-        $orders = Order::whereNotNull('employee_id')->where('status','معلق')->get();
-
-        return view('admin.orders.waiting_for_emp',compact('orders'));
+        $orders = Order::whereNotNull('employee_id')->where('status','معلق')->orderBy('updated_at','DESC')->paginate(50);
+        $dataCount = Order::get()->count();
+        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.waiting_for_emp', [
+        'orders' => $orders,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 
 

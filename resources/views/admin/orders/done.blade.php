@@ -100,6 +100,9 @@
 											@endforeach
 										</tbody>
 									</table>
+
+								{!! $paginationLinks !!}
+
 								</div>
 							</div>
 						</div>

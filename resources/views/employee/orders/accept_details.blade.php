@@ -127,7 +127,6 @@
 										</div>
 									</div><br>
 
-
 									<div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">رقم السيارة</label>
@@ -137,7 +136,6 @@
 										</div>
 									</div><br>
 
-
 									<div class="row">
 										<div class="col">
 											<label for="inputName" class="control-label">نوع السيارة</label>
@@ -146,8 +144,6 @@
 											id="inputName" name="typeOfCar" value="{{ $order->typeOfCar }}" readonly>
 										</div>
 									</div><br>
-
-								
 
 									<div class="row">
 										<div class="col">

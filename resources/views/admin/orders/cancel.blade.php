@@ -144,6 +144,9 @@
 											@endforeach
 										</tbody>
 									</table>
+
+								{!! $paginationLinks !!}
+
 								</div>
 							</div>
 						</div>
@@ -151,10 +154,6 @@
 					<!--/div-->
 				</div>
 				<!-- /row -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
 
 		
 @endsection

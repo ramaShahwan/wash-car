@@ -11,8 +11,15 @@ class PageController extends Controller
    
    public function index()
    {
-       $pages = Page::orderBy('created_at','Asc')->get();
-       return view('admin.pages.AllpinnedPage' , compact('pages'));
+       $pages = Page::orderBy('created_at','DESC')->paginate(50);
+       $dataCount = Page::get()->count();
+       $paginationLinks = $pages->withQueryString()->links('pagination::bootstrap-4'); 
+       
+       return view('admin.pages.AllpinnedPage', [
+       'pages' => $pages,
+       'dataCount'=>$dataCount,
+       'paginationLinks' => $paginationLinks
+       ]);
    }
 
 
