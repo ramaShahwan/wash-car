@@ -71,12 +71,12 @@ class OrderController extends Controller
 
              ]); 
             }
-        
     }
+
     public function store(Request $request)
     {
         $areaId = $request->location_id;
-    // return dd($areaId);
+       // return dd($areaId);
         if (is_numeric($areaId)) {
             // إذا كانت القيمة هي id
             $locationId = $areaId;
