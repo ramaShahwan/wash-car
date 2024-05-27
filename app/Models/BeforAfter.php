@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class BeforAfter extends Model
 {
-    protected $table = 'beforeAfters';
     use HasFactory;
-    protected $fillable = ['beforeImage', 'afterImage'];
 
+    protected $table = 'beforeAfters';
+
+    protected $fillable = ['beforeImage', 'afterImage', 'order_id', 'home_orders_id', 'employee_id'];
+
+
+    
 }

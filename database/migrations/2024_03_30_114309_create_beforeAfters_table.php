@@ -18,7 +18,8 @@ return new class extends Migration
 
             $table->foreignId('order_id')->nullable();
             $table->foreignId('employee_id')->nullable();
-
+            $table->foreignId('home_orders_id')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('role')->default('employee')->nullable();
 
             $table->string('note')->nullable();
-
+            $table->string('typeOfWork')->nullable();
+            
             $table->timestamps();
         });
     }
