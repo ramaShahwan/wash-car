@@ -13,7 +13,30 @@ return new class extends Migration
     {
         Schema::create('home_orders', function (Blueprint $table) {
             $table->id();
+            $table->string('typeOfHome')->nullable();
+            $table->string('numOfBuild')->nullable();
+            $table->string('numOfFloor')->nullable();
+            $table->integer('numOfEmp')->nullable();
+            $table->integer('numOfHours')->nullable();
+            $table->boolean('cleanMaterial')->nullable();
+
+            $table->string('totalPrice')->nullable();
+            $table->date('orderDate')->nullable();
+            $table->string('orderTime')->nullable();
+
+            $table->string('note')->nullable();
+            $table->string('status')->default('معلق')->nullable();
+
             $table->timestamps();
+            
+              //locations_table
+              $table->foreignId('location_id')->nullable();
+              //users_table
+             $table->foreignId('user_id')->nullable();
+             //payWays_table
+              $table->foreignId('payWay_id')->nullable();
+              //Employees_table
+             $table->foreignId('employee_id')->nullable();
         });
     }
 

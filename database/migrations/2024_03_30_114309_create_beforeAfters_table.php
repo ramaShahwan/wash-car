@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('beforeImage')->nullable();
             $table->string('afterImage')->nullable();
 
+            $table->foreignId('home_orders_id')->nullable();
             $table->foreignId('order_id')->nullable();
             $table->foreignId('employee_id')->nullable();
 

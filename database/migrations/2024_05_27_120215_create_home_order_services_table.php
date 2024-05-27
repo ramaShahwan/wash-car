@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('home_order_services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('home_orders_id')->nullable();
+            $table->foreignId('home_services_id')->nullable();
+
             $table->timestamps();
         });
     }

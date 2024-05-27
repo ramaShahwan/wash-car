@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('home_services', function (Blueprint $table) {
             $table->id();
+            $table->string('type')->nullable()->default('أساسية');
+            $table->string('name')->nullable();
+            $table->integer('price')->nullable();
+            $table->string('period')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
