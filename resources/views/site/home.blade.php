@@ -23,7 +23,7 @@
                           </div>
                           <div class="btn_main">
                              <div class="quote_bt active"><a href="{{ url('/index') }}">غسيل سيارات</a></div>
-                             <div class="contact_bt"><a href="#"> تنظيف منزلي </a></div>
+                             <div class="contact_bt"><a href="{{ url('/index_home') }}"> تنظيف منزلي </a></div>
                           </div>
                        </div>
                        <div class="col-md-6">
@@ -40,7 +40,7 @@
                           </div>
                           <div class="btn_main">
                              <div class="quote_bt active"><a href="{{ url('/index') }}">غسيل سيارات</a></div>
-                             <div class="contact_bt"><a href="#"> تنظيف منزلي </a></div>
+                             <div class="contact_bt"><a href="{{ url('/index_home') }}"> تنظيف منزلي </a></div>
                           </div>
                        </div>
                        <div class="col-md-6">
@@ -57,7 +57,7 @@
                           </div>
                           <div class="btn_main">
                              <div class="quote_bt active"><a href="{{ url('/index') }}">غسيل سيارات</a></div>
-                             <div class="contact_bt"><a href="#"> تنظيف منزلي </a></div>
+                             <div class="contact_bt"><a href="{{ url('/index_home') }}"> تنظيف منزلي </a></div>
                           </div>
                        </div>
                        <div class="col-md-6">
@@ -132,7 +132,7 @@
             وبهذا نكون قد قدمنا لكم أفضل مغسلة سيارات متنقلة وعدد من التطبيقات التي تقدم خدمة غسيل السيارات المتنقل في سوريا
            </p>
            <div class="quote_bt_1"><a href="{{ url('/index') }}"> اطلب لغسيل سيارتك</a></div>
-           <div class="quote_bt_1"><a href=""> اطلب لتنظيف منزلك</a></div>
+           <div class="quote_bt_1"><a href="{{ url('/index_home') }}"> اطلب لتنظيف منزلك</a></div>
 
         </div>
      </div>

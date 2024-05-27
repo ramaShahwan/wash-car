@@ -133,7 +133,7 @@
          <div class="container">
             <h1 class="services_taital"><span style="color: #0c426e">اطلب الآن</span></h1>
 
-            <form action="{{ route('ord.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <form action="{{ route('ord.home.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                @csrf
                @method('POST')
 
@@ -335,10 +335,10 @@
           <div class="form-group">
               <label style="font-size: 16px; font-weight: bolder; color: black;">رقم البناء</label>
               <div class="cal-icon" style="display: flex; align-items: center;">
-                  <input name="numOfCar" type="text" class="form-control" @error('numOfCar') is-invalid @enderror>
+                  <input name="NumOfbulding" type="text" class="form-control" @error('NumOfbulding') is-invalid @enderror>
               </div>
           </div>
-          @error('numOfCar')
+          @error('NumOfbulding')
           <div class="alert alert-danger" style="font-size: 14px;"> يجب إدخال رقم البناء </div>
       @enderror
       </div>
@@ -347,10 +347,10 @@
          <div class="form-group">
              <label style="font-size: 16px; font-weight: bolder; color: black;">رقم الطابق</label>
              <div class="cal-icon" style="display: flex; align-items: center;">
-                 <input name="numOfCar" type="text" class="form-control" @error('numOfCar') is-invalid @enderror>
+                 <input name="NumOfFloor" type="text" class="form-control" @error('NumOfFloor') is-invalid @enderror>
              </div>
          </div>
-         @error('numOfCar')
+         @error('NumOfFloor')
          <div class="alert alert-danger" style="font-size: 14px;"> يجب إدخال رقم الطابق </div>
      @enderror
      </div>
@@ -364,7 +364,7 @@
    <div class="col-md-4">
       <div class="form-group">
          <label style="font-size: 16px; font-weight: bolder; color: black;">عدد العاملات</label>
-         <select name="location_id" class="form-control select @error('location_id') is-invalid @enderror"> 
+         <select name="NumOfEmp" class="form-control select @error('NumOfEmp') is-invalid @enderror"> 
             <option value="لايوجد">اختر عدد العاملات</option>
             <option value="1">عاملة واحدة</option>
             <option value="2">عاملتان</option>
@@ -372,7 +372,7 @@
             <option value="4">أربع عاملات</option>
          </select>
    
-         @error('location_id')
+         @error('NumOfEmp')
             <div class="alert alert-danger">يجب إدخال عدد العاملات</div>
          @enderror
       </div>
@@ -381,7 +381,7 @@
    <div class="col-md-4">
       <div class="form-group">
          <label style="font-size: 16px; font-weight: bolder; color: black;">عدد الساعات</label>
-         <select name="location_id" class="form-control select @error('location_id') is-invalid @enderror"> 
+         <select name="NumOfHour" class="form-control select @error('NumOfHour') is-invalid @enderror"> 
             <option value="لايوجد">اختر عدد الساعات</option>
             <option value="1">ساعة واحدة</option>
             <option value="2">ساعتان</option>
@@ -393,7 +393,7 @@
             <option value="8">ثماني ساعات</option>
          </select>
    
-         @error('location_id')
+         @error('NumOfHour')
             <div class="alert alert-danger">يجب إدخال عدد الساعات</div>
          @enderror
       </div>
@@ -408,13 +408,13 @@
       <div class="form-check form-check-inline">
           <label class="form-check-label" style="color: black;" for="status_inactive"> نعم </label>
           &nbsp;
-          <input class="form-check-input" type="radio" name="Gender" id="status_inactive" value="نعم">
+          <input class="form-check-input" type="radio" name="cleanMaterial" id="status_inactive" value="1">
       </div>
 
       <div class="form-check form-check-inline">
           <label class="form-check-label" style="color: black;" for="status_active"> لا </label>
           &nbsp;
-          <input class="form-check-input" type="radio" name="Gender" id="status_active" value="لا" checked>
+          <input class="form-check-input" type="radio" name="cleanMaterial" id="status_active" value="0" checked>
       </div> 
    </div> 
   </div><br>

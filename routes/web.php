@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BeforAfterController;
-use App\Http\Controllers\PayWayController;
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HomeOrdersController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PayWayController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Searchajax;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -53,7 +55,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/index', [OrderController::class, 'create']);
-Route::get('/index_home', [OrderController::class, 'create']);
+Route::get('/index_home', [HomeOrdersController::class, 'create']);
 
 
 // Admin Routes
@@ -287,7 +289,7 @@ Route::get('add_emp', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 
-
+// for car
 Route::get('add_order', [OrderController::class, 'create']);
 Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
 
@@ -295,10 +297,12 @@ Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
 Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
 Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
 
-Route::get('pages/{href}', [PageController::class, 'generation'])->name('page.generation');
 
 
-Route::get('pages/{href}', [PageController::class, 'generation'])->name('page.generation');
+// for home
+Route::post('save_order_home', [HomeOrdersController::class, 'store'])->name('ord.home.save');
+
+Route::get('summary_home', [HomeOrdersController::class, 'summary'])->name('ord.home.summary');
 
 
 
