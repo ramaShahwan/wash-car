@@ -90,7 +90,7 @@ class HomeOrdersController extends Controller
         $order->location_id = $locationId;
         $order->user_id = $user->id;
         // $order->payWay_id = $request->payWay_id;
-        $order->status = 'معلق';
+        $order->statuss = 'معلق';
         $order->save();
 
         $order_ser = HomeOrders::where('user_id',$user->id)->latest()->first()->id;

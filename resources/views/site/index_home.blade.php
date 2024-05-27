@@ -151,19 +151,19 @@
                <div class="row">
                    <div class="col-md-4">
                        <div class="choose_box" style="text-align: center;">
-                           <img src="site/images/barn.png" alt="" style="width: 100px;">
+                           <img src="site/images/barn.png" alt="" style="width: 100px;"><br><br>
                            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> مزرعة </p>
                        </div>
                    </div>
                    <div class="col-md-4">
                        <div class="choose_box" style="text-align: center;">
-                           <img src="site/images/workplace.png" alt="" style="width: 100px;">
+                           <img src="site/images/workplace.png" alt="" style="width: 100px;"><br><br>
                            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> مكتب </p>
                        </div>
                    </div>
                    <div class="col-md-4">
                        <div class="choose_box" style="text-align: center;">
-                           <img src="site/images/home.png" alt="" style="width: 100px;">
+                           <img src="site/images/home.png" alt="" style="width: 100px;"><br><br>
                            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> منزل </p>
                        </div>
                    </div>
