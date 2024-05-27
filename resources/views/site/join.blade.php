@@ -71,7 +71,17 @@
                     @csrf
 
                         <div class="row" style="text-align: right;">
-                            <div class="col">
+                            <div class="col-6">
+                                <label for="inputName" class="control-label" style="font-weight: bold; color: black;">النسبة</label>
+                                <input style="direction: rtl;" type="text" class="form-control @error('lastName') is-invalid @enderror" 
+                                id="inputName" name="lastName">
+
+                                @error('lastName')
+                                    <div class="alert alert-danger">يجب إدخال النسبة</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-6">
                                 <label for="inputName" class="control-label" style="font-weight: bold; color: black;">الاسم</label>
                                 <input style="direction: rtl;" type="text" class="form-control @error('firstName') is-invalid @enderror" 
                                 id="inputName" name="firstName">
@@ -82,31 +92,7 @@
                         </div><br>
 
                         <div class="row" style="text-align: right;">
-                            <div class="col">
-                                <label for="inputName" class="control-label" style="font-weight: bold; color: black;">النسبة</label>
-                                <input style="direction: rtl;" type="text" class="form-control @error('lastName') is-invalid @enderror" 
-                                id="inputName" name="lastName">
-
-                                @error('lastName')
-                                    <div class="alert alert-danger">يجب إدخال النسبة</div>
-                                @enderror
-                            </div>
-                        </div><br>
-
-                        <div class="row" style="text-align: right;">
-                            <div class="col">
-                              <label style="font-weight: bold; color: black;" for="inputName" class="control-label">رقم الموبايل</label>
-                              <input style="direction: rtl;" type="text" class="form-control @error('phone') is-invalid @enderror" 
-                              id="inputName" name="phone">
-
-                            @error('phone')
-                                <div class="alert alert-danger">يجب إدخال رقم الموبايل ويجب أن يكون 10 أرقام</div>
-                            @enderror
-                            </div>
-                        </div><br>
-
-                        <div class="row" style="text-align: right;">
-                            <div class="col">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label style="font-weight: bold; color: black;">تاريخ الولادة</label>
                                         <input style="direction: rtl;" type="datetime" class="form-control @error('birthDate') is-invalid @enderror" 
@@ -117,8 +103,28 @@
                                         @enderror
                                 </div>
                             </div>
-                        </div><br>
 
+                            <div class="col-6">
+                              <label style="font-weight: bold; color: black;" for="inputName" class="control-label">رقم الموبايل</label>
+                              <input style="direction: rtl;" type="text" class="form-control @error('phone') is-invalid @enderror" 
+                              id="inputName" name="phone">
+
+                            @error('phone')
+                                <div class="alert alert-danger">يجب إدخال رقم الموبايل ويجب أن يكون 10 أرقام</div>
+                            @enderror
+                            </div>
+                        </div><br>
+                        
+                        <div class="row" style="text-align: right;">
+
+                            <div class="col-6">
+                                <div class="input-container">
+                                    <label for="image" style="font-weight: bold; color: black;">صورة شخصية</label>
+                                    <input type="file" style="direction: rtl;" class="form-control" id="image" name="image">
+                                </div>
+                                </div>
+
+                        <div class="col-6">
                         <div class="form-group" style="text-align: right;">
                             <label class="display-block" style="font-weight: bold; color: black;">الجنس</label> <br>
                            
@@ -133,23 +139,52 @@
                                 &nbsp;
                                 <input class="form-check-input" type="radio" name="Gender" id="status_active" value="ذكر" checked>
                             </div> 
-                        </div><br>
-                        
-                        <div class="form-group" style="text-align: right;">
-                            <label style="font-weight: bold; color: black;">المنطقة التي ترغب في العمل ضمنها</label>
-                            <select style="direction: rtl;" name="area" class="form-control select @error('area') is-invalid @enderror"> 
-                                <option value="لايوجد">اختر المنطقة</option>
-                                
-                                @foreach($areas as $area)
-                                <option value="{{$area->area}}">{{$area->area}}</option>
-                                @endforeach 
+                        </div> 
 
-                            </select>
+                        </div>
 
-                            @error('area')
-                                <div class="alert alert-danger">يجب اختيار المنطقة</div>
-                            @enderror
-                        </div><br>
+                        </div><br><br>
+
+
+                        <div class="row" style="text-align: right;">
+                            <div class="col-6">
+                            <div class="form-group" style="text-align: right;">
+                                <label style="font-weight: bold; color: black;">المنطقة التي ترغب في العمل ضمنها</label>
+                                <select style="direction: rtl;" name="area" class="form-control select @error('area') is-invalid @enderror"> 
+                                    <option value="لايوجد">اختر المنطقة</option>
+                                    
+                                    @foreach($areas as $area)
+                                    <option value="{{$area->area}}">{{$area->area}}</option>
+                                    @endforeach 
+    
+                                </select>
+    
+                                @error('area')
+                                    <div class="alert alert-danger">يجب اختيار المنطقة</div>
+                                @enderror
+                            </div>
+                            </div><br>
+    
+                            <div class="col-6">
+    
+                            <div class="form-group" style="text-align: right;">
+                                <label style="font-weight: bold; color: black;">نوع العمل الذي ترغب به</label>
+                                <select style="direction: rtl;" name="area" class="form-control select @error('area') is-invalid @enderror"> 
+                                    <option value="لايوجد">اختر نوع العمل</option>
+                                    
+                                    @foreach($areas as $area)
+                                    <option value="{{$area->area}}">{{$area->area}}</option>
+                                    @endforeach 
+    
+                                </select>
+    
+                                @error('area')
+                                    <div class="alert alert-danger">يجب اختيار نوع العمل</div>
+                                @enderror
+                            </div>
+                            </div>
+                            </div><br>
+    
 
 						<div class="row" style="text-align: right;">
 							<div class="col">
@@ -161,12 +196,9 @@
 									<div class="alert alert-danger">يجب إدخال نبذة عنك</div>
 								@enderror
 							</div>
-						</div><br>
+						</div><br><br>
                     
-                        <div class="input-container">
-                            <label for="image" style="font-weight: bold; color: black;">صورة شخصية</label>
-                            <input type="file" style="direction: rtl;" class="form-control" id="image" name="image">
-                        </div><br><br>
+                    
 
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">إرسال البيانات</button>

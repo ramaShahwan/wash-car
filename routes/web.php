@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/index', [OrderController::class, 'create']);
+Route::get('/index_home', [OrderController::class, 'create']);
 
 
 // Admin Routes
@@ -66,7 +67,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
    //settings
    Route::get('getSetting', [SettingController::class, 'getSetting'])->name('settings.show');
-//    Route::get('getSettingForFooter', [SettingController::class, 'getSettingForFooter'])->name('settings.footer');
+  // Route::get('getSettingForFooter', [SettingController::class, 'getSettingForFooter'])->name('settings.footer');
    Route::post('setSettings', [SettingController::class, 'setSettings'])->name('settings.set');
 
    
