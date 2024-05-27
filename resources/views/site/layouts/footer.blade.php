@@ -42,7 +42,8 @@
               </div>
               <div class="col-sm-6 col-lg-3">
                  <h1 class="useful_text" style="text-align: right;">اطلب خدمتك الآن</h1>
-                 <div class="subscribe_bt" style="text-align: right; float: right;"><a href="{{ url('/') }}">اطلب الآن</a></div>
+                 <div class="subscribe_bt" style="text-align: right; float: right;"><a href="{{ url('/') }}">غسيل سيارات</a></div>
+                 <div class="subscribe_bt" style="text-align: right; float: right;"><a href="{{ url('/') }}">تنظيف منزلي</a></div>
               </div>
            </div>
            <div class="social_icon">

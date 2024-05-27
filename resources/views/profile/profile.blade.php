@@ -4,14 +4,14 @@
 
 @section('content')
 
-{{-- <body>  
-<div class="contact_section layout_padding">
+ <body>  
+ <div class="contact_section layout_padding">
     <div class="container">
         <h1 class="contact_taital">الملف الشخصي</h1>
 
          <div class="contact_section_2 layout_padding">
 
-    <form method="POST" action="{{ route('profile.update') }}">
+{{--  <form method="POST" action="{{ route('profile.update') }}">
         @csrf
 
         <!-- Name -->
@@ -81,18 +81,104 @@
                 @enderror
             </div>
 
+</form> --}}
 
 
-
-
-
-
-
-        </form>
+<form action="{{ route('profile.update') }}" method="POST">
+    @csrf
+    @method('patch')
+    <div class="container">
+        <div class="heading_container">
+            <h5>
+                معلومات الملف الشخصي
+            </h5>
         </div>
+        <br>
+            <div class="col-md-12">
+                <div class="form_container contact-form" style="padding-right: 10%;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                            <x-input-label for="name" :value="__('الاسم')" /><br>
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" style="width: 90%;" />
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        
+                            </div>
+                        </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group form-focus">
+                        <x-input-label for="phone" :value="__('رقم الموبايل')" /><br>
+                        <x-text-input id="phone" name="phone" type="phone" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autocomplete="phone" style="width: 90%;"/>
+                        <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                    </div>
+                </div>
+                        <br>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">حفظ البيانات</button>
+                        </div>
+                        <br>
+                    </div>
+                    <hr>
+                    <br>
+                </div>
+            </div>
     </div>
-</div>
-</body> --}}
+</form>
+
+    <form action="{{ route('password.update') }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="heading_container">
+            <h5 style="padding-right: 5%;">
+                تعديل كلمة المرور
+            </h5>
+        </div>
+        <br>
+            <div class="col-md-12">
+                <div class="form_container contact-form" style="padding-right: 15%;">
+                    {{-- <div class="row"> --}}
+                        <div class="col-md-6">
+                        <div class="form-group form-focus">
+                            <x-input-label for="update_password_current_password" :value="__('كلمة المرور الحالية')" /><br>
+                            <x-text-input id="update_password_current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" style="width: 85%;"/>
+                            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+                        </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <x-input-label for="update_password_password" :value="__('كلمة المرور الجديدة')" /><br>
+                                <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" style="width: 85%; float: right;"/>
+                                <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+                            </div>
+                        </div><br>
+                        <div class="col-md-6">
+                            <div class="form-group form-focus">
+                                <x-input-label for="update_password_password_confirmation" :value="__('تأكيد كلمة المرور')" /><br>
+                                <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" style="width: 85%;"/>
+                                <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+                            </div>
+                        </div>
+                    
+                        <br>
+                        <div class="d-flex justify-content-center" style="float: right;">
+                            <button type="submit" class="btn btn-primary">حفظ البيانات</button>
+                        </div>
+                        <br><br>
+                    {{-- </div> --}}
+                    <hr>
+                    <br>
+                </div>
+            </div>
+    </form>
+
+    </div>
+    </div>
+</div> 
+
+
+</body> 
 
 
 

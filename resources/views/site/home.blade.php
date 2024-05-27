@@ -22,8 +22,8 @@
                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                           </div>
                           <div class="btn_main">
-                             <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                             <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
+                             <div class="quote_bt active"><a href="{{ url('/index') }}">غسيل سيارات</a></div>
+                             <div class="contact_bt"><a href="#"> تنظيف منزلي </a></div>
                           </div>
                        </div>
                        <div class="col-md-6">
@@ -39,8 +39,8 @@
                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                           </div>
                           <div class="btn_main">
-                             <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                             <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
+                             <div class="quote_bt active"><a href="{{ url('/index') }}">غسيل سيارات</a></div>
+                             <div class="contact_bt"><a href="#"> تنظيف منزلي </a></div>
                           </div>
                        </div>
                        <div class="col-md-6">
@@ -56,8 +56,8 @@
                              {{-- <p class="banner_text">There are many variations of passages of Lorem Ipsum available</p> --}}
                           </div>
                           <div class="btn_main">
-                             <div class="quote_bt active"><a href="{{ url('/index') }}">اطلب الآن</a></div>
-                             <div class="contact_bt"><a href="#"> من نحن؟ </a></div>
+                             <div class="quote_bt active"><a href="{{ url('/index') }}">غسيل سيارات</a></div>
+                             <div class="contact_bt"><a href="#"> تنظيف منزلي </a></div>
                           </div>
                        </div>
                        <div class="col-md-6">
@@ -131,7 +131,9 @@
             <br><br>
             وبهذا نكون قد قدمنا لكم أفضل مغسلة سيارات متنقلة وعدد من التطبيقات التي تقدم خدمة غسيل السيارات المتنقل في سوريا
            </p>
-           <div class="quote_bt_1"><a href="{{ url('/index') }}">اطلب الآن</a></div>
+           <div class="quote_bt_1"><a href="{{ url('/index') }}"> اطلب لغسيل سيارتك</a></div>
+           <div class="quote_bt_1"><a href=""> اطلب لتنظيف منزلك</a></div>
+
         </div>
      </div>
      <!-- quality section end -->
