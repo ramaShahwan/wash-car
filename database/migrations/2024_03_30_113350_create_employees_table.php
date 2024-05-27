@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('aboutYou')->nullable();
             $table->string('image')->nullable();
             $table->string('area')->nullable();
+            $table->string('typeOfWork')->nullable();
             $table->string('status')->default('Pending')->nullable();
             $table->string('role')->default('employee')->nullable();
 

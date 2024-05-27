@@ -11,25 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beforeAfters', function (Blueprint $table) {
+        Schema::create('home_order_services', function (Blueprint $table) {
             $table->id();
-            $table->string('beforeImage')->nullable();
-            $table->string('afterImage')->nullable();
+            $table->foreignId('home_orders_id')->nullable();
+            $table->foreignId('home_services_id')->nullable();
 
-            $table->foreignId('home_orders_id')->nullable();
-            $table->foreignId('order_id')->nullable();
-            $table->foreignId('employee_id')->nullable();
-            $table->foreignId('home_orders_id')->nullable();
-            
             $table->timestamps();
         });
     }
-     
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('before_after');
+        Schema::dropIfExists('home_order_services');
     }
 };
