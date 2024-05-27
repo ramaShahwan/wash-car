@@ -69,7 +69,7 @@ class EmployeeController extends Controller
       return view('admin.employees.add',compact('areas'));
     }
 
-    public function storeForAdmin(  Request $request)
+    public function storeForAdmin(Request $request)
     {
       $validated = $request->validate([
         'firstName' => 'required',
@@ -184,10 +184,10 @@ class EmployeeController extends Controller
        $emp->note  = $request->note;
   
      // update newImage
-       if ($request->hasFile('image')) {
+      if ($request->hasFile('image')) {
       // Delete the old image from the server
       if ($oldImageName) {
-           File::delete(public_path('site/img/emp/') . $oldImageName);
+         File::delete(public_path('site/img/emp/') . $oldImageName);
       }
       // Upload new image
       $newImage = $request->file('image');

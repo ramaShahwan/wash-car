@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('beforeImage')->nullable();
             $table->string('afterImage')->nullable();
+
+            $table->foreignId('order_id')->nullable();
+            $table->foreignId('employee_id')->nullable();
+
             $table->timestamps();
         });
     }
-
+     
     /**
      * Reverse the migrations.
      */
