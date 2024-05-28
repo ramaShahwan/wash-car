@@ -133,7 +133,7 @@
          <div class="container">
             <h1 class="services_taital"><span style="color: #0c426e">اطلب الآن</span></h1>
 
-            <form action="{{ route('ord.home.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+         <form action="{{ route('ord.home.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                @csrf
                @method('POST')
 
@@ -168,62 +168,62 @@
                        </div>
                    </div>
                </div>
-   <br><br>
+            <br><br>
            </div>
 
-{{-- -------------2------------- --}}
+            {{-- -------------2------------- --}}
 
-<div class="layout_padding" style="text-align: right; direction: rtl;">
-   <div class="number_1">
-      <h4 class="number_text" style="font-size: 18px; font-weight: bolder">02</h4> &nbsp;&nbsp;
-      <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder">نوع التنظيف</h4>
-   </div>
-   <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> ما هو التنظيف الأفضل لعقارك؟ </p>
-</div>
-<br><br>
+            <div class="layout_padding" style="text-align: right; direction: rtl;">
+               <div class="number_1">
+                  <h4 class="number_text" style="font-size: 18px; font-weight: bolder">02</h4> &nbsp;&nbsp;
+                  <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder">نوع التنظيف</h4>
+               </div>
+               <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> ما هو التنظيف الأفضل لعقارك؟ </p>
+            </div>
+            <br><br>
 
-<div class="choose_section_2">
-   <div class="row">
+            <div class="choose_section_2">
+               <div class="row">
 
-      @if(isset($services) && !$services->isEmpty()) 
+                  @if(isset($services) && !$services->isEmpty()) 
 
-      @foreach($services as $ser)
-      @if($ser->type == 'أساسية')
-   
-      <div class="col-md-4">
-         <div class="choose_box1" style="text-align: center;">
-            <input type="hidden" name="service" value="{{ $ser->id }}">
-            <h2 style="font-weight: bolder"> {{ $ser->name }} </h2>
-            <hr>
-            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $ser->price }} </p>
-            <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->period }} </p>
-            <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->description }} </p>
+                  @foreach($services as $ser)
+                  @if($ser->type == 'أساسية')
+               
+            <div class="col-md-4">
+               <div class="choose_box1" style="text-align: center;">
+                  <input type="hidden" name="service" value="{{ $ser->id }}">
+                  <h2 style="font-weight: bolder"> {{ $ser->name }} </h2>
+                  <hr>
+                  <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $ser->price }} </p>
+                  <hr>
+                  <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->period }} </p>
+                  <hr>
+                  <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->description }} </p>
+               </div>
+            </div>
+
+               @endif
+               @endforeach
+            
+               @endif
+
+            </div>
+            <br><br>
+
          </div>
-      </div>
-
-      @endif
-      @endforeach
-   
-      @endif
-
-   </div>
-   <br><br>
-
-</div>
 
 
-{{-- -------------3------------- --}}
+               {{-- -------------3------------- --}}
 
-<div class="layout_padding" style="text-align: right; direction: rtl;">
-   <div class="number_1">
-      <h4 class="number_text" style="font-size: 18px; font-weight: bolder">03</h4> &nbsp;&nbsp;
-      <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder">خدمات إضافية</h4>
-   </div>
-   <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> أضف الخدمات إلى الطلب الخاص بك </p>
-</div>
-<br><br>
+               <div class="layout_padding" style="text-align: right; direction: rtl;">
+                  <div class="number_1">
+                     <h4 class="number_text" style="font-size: 18px; font-weight: bolder">03</h4> &nbsp;&nbsp;
+                     <h4 class="trusted_text" style="font-size: 18px; font-weight: bolder">خدمات إضافية</h4>
+                  </div>
+                  <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> أضف الخدمات إلى الطلب الخاص بك </p>
+               </div>
+               <br><br>
 
 <div class="choose_section_2" style="text-align: right; direction: rtl;">
    <div class="row">
@@ -463,7 +463,7 @@
      
              // يمكنك الآن استخدام selectedValue لتخزينها في قاعدة البيانات
              // على سبيل المثال، يمكنك إضافة هذه القيمة إلى نموذجك كقيمة مخفية
-             $('form').append('<input type="hidden" name="sizeOfCar" value="' + selectedValue + '">');
+             $('form').append('<input type="hidden" name="typeOfHome" value="' + selectedValue + '">');
          });
      });
 </script>
