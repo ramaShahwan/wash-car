@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('home_orders', function (Blueprint $table) {
             $table->id();
             $table->string('typeOfHome')->nullable();
-            $table->string('NumOfbuilding')->nullable();
+            $table->string('NumOfbulding')->nullable();
             $table->string('NumOfFloor')->nullable();
             $table->integer('NumOfEmp')->nullable();
             $table->integer('NumOfHour')->nullable();
             $table->boolean('cleanMaterial')->nullable();
 
             $table->string('totalPrice')->nullable();
-            $table->date('orderDate')->nullable();
-            $table->string('orderTime')->nullable();
+            $table->date('OrderDate')->nullable();
+            $table->string('OrderTime')->nullable();
 
             $table->string('note')->nullable();
             $table->string('statuss')->default('معلق')->nullable();

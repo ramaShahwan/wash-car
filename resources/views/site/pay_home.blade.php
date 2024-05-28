@@ -30,7 +30,7 @@
            <h1 class="services_taital"><span style="color: #0c426e"> طريقة الدفع </span></h1>
            {{-- <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p> --}}
 
-           <form action="{{ route('ord.setPay') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+           <form action="{{ route('ord.home.setPay') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @method('POST')
              <div class="services_section_2 layout_padding">

@@ -64,25 +64,25 @@ class HomeOrdersController extends Controller
         $user = auth()->user();
 
         $validated = $request->validate([
-            'typeOfHome' => 'required',
-            'NumOfbuilding' => 'required',
-            'NumOfFloor' => 'required|max:6|min:6',
-            'NumOfEmp' => 'required',
-            'orderDate' => 'required',
-            'orderTime'=>'required',
-           'location_id' => 'required',
-           // 'user_id' => 'required',
-            'NumOfHour' => 'required',
-            'cleanMaterial' => 'required',
+        //     'typeOfHome' => 'required',
+        //     'NumOfbuilding' => 'required',
+        //     'NumOfFloor' => 'required',
+        //     'NumOfEmp' => 'required',
+        //     'orderDate' => 'required',
+        //     'orderTime'=>'required',
+        //    'location_id' => 'required',
+        //    // 'user_id' => 'required',
+        //     'NumOfHour' => 'required',
+        //     'cleanMaterial' => 'required',
         ]);
 
         $order = new HomeOrders(); 
         $order->typeOfHome = $request->typeOfHome;
-        $order->NumOfbuilding = $request->NumOfbuilding;
+        $order->NumOfbulding = $request->NumOfbulding;
         $order->NumOfFloor = $request->NumOfFloor;
         $order->NumOfEmp = $request->NumOfEmp;
-        $order->orderDate = $request->orderDate;
-        $order->orderTime = $request->orderTime;
+        $order->OrderDate = $request->OrderDate;
+        $order->OrderTime = $request->OrderTime;
         $order->NumOfHour = $request->NumOfHour;
         $order->cleanMaterial = $request->cleanMaterial;
 
@@ -91,6 +91,9 @@ class HomeOrdersController extends Controller
         $order->user_id = $user->id;
         // $order->payWay_id = $request->payWay_id;
         $order->statuss = 'معلق';
+
+        // return dd($order);
+
         $order->save();
 
         $order_ser = HomeOrders::where('user_id',$user->id)->latest()->first()->id;
@@ -123,8 +126,8 @@ class HomeOrdersController extends Controller
          $order = HomeOrders::where('user_id', $user->id)->latest()->first();
         
          $totalPrice = 0;
-         $date = $order->orderDate;
-         $time = $order->orderTime;
+         $date = $order->OrderDate;
+         $time = $order->OrderTime;
         
          // حساب القيمة الإجمالية لجميع الخدمات في الطلب
          $allServices = Home_Order_Services::where('home_orders_id', $order->id)->pluck('home_services_id');
@@ -150,8 +153,8 @@ class HomeOrdersController extends Controller
     
             return view('site.summary_home', [
                 'totalPrice' => $totalPrice,
-                'orderDate' => $date,
-                'orderTime' => $time,
+                'OrderDate' => $date,
+                'OrderTime' => $time,
             ]);
     }
 

@@ -268,11 +268,11 @@
                <label style="font-size: 16px; font-weight: bolder; color: black;">التاريخ</label>
                <div class="cal-icon" style="display: flex; align-items: center;">
                   <img src="site/images/calander.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input name="orderDate" type="datetime-local" class="form-control" @error('orderDate') is-invalid @enderror>
+                  <input name="OrderDate" type="datetime-local" class="form-control" @error('OrderDate') is-invalid @enderror>
                </div>
             </div>
 
-            @error('orderDate')
+            @error('OrderDate')
                <div class="alert alert-danger">يجب تحديد تاريخ تقديم الخدمة</div>
             @enderror
       </div>
@@ -282,11 +282,11 @@
                <label style="font-size: 16px; font-weight: bolder; color: black;">الوقت</label>
                <div class="time-icon" style="display: flex; align-items: center;">
                   <img src="site/images/clock.png" alt="" style="width:20px; height: 20px;"> &nbsp;
-                  <input name="orderTime" type="datetime" class="form-control" @error('orderTime') is-invalid @enderror>
+                  <input name="OrderTime" type="datetime" class="form-control" @error('OrderTime') is-invalid @enderror>
                </div>
          </div>
 
-            @error('orderTime')
+            @error('OrderTime')
                <div class="alert alert-danger">يجب تحديد وقت تقديم الخدمة</div>
             @enderror
       </div>
