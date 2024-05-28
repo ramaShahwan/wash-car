@@ -65,26 +65,26 @@ class HomeOrdersController extends Controller
 
         $validated = $request->validate([
             'typeOfHome' => 'required',
-            'numOfBuild' => 'required',
-            'numOfFloor' => 'required|max:6|min:6',
-            'numOfEmp' => 'required',
+            'NumOfbuilding' => 'required',
+            'NumOfFloor' => 'required|max:6|min:6',
+            'NumOfEmp' => 'required',
             'orderDate' => 'required',
             'orderTime'=>'required',
            'location_id' => 'required',
            // 'user_id' => 'required',
-            'numOfHours' => 'required',
+            'NumOfHour' => 'required',
             'cleanMaterial' => 'required',
         ]);
 
         $order = new HomeOrders(); 
         $order->typeOfHome = $request->typeOfHome;
-        $order->numOfBuild = $request->numOfBuild;
-        $order->numOfFloor = $request->numOfFloor;
-        $order->numOfEmp = $request->numOfEmp;
+        $order->NumOfbuilding = $request->NumOfbuilding;
+        $order->NumOfFloor = $request->NumOfFloor;
+        $order->NumOfEmp = $request->NumOfEmp;
         $order->orderDate = $request->orderDate;
         $order->orderTime = $request->orderTime;
-        $order->numOfHours = $request->orderTime;
-        $order->cleanMaterial = $request->orderTime;
+        $order->NumOfHour = $request->NumOfHour;
+        $order->cleanMaterial = $request->cleanMaterial;
 
         $order->note = '';
         $order->location_id = $locationId;
