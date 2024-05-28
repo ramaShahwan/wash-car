@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('home_orders', function (Blueprint $table) {
             $table->id();
             $table->string('typeOfHome')->nullable();
-            $table->string('numOfBuild')->nullable();
-            $table->string('numOfFloor')->nullable();
-            $table->integer('numOfEmp')->nullable();
-            $table->integer('numOfHours')->nullable();
+            $table->string('NumOfbuilding')->nullable();
+            $table->string('NumOfFloor')->nullable();
+            $table->integer('NumOfEmp')->nullable();
+            $table->integer('NumOfHour')->nullable();
             $table->boolean('cleanMaterial')->nullable();
 
             $table->string('totalPrice')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('orderTime')->nullable();
 
             $table->string('note')->nullable();
-            $table->string('status')->default('معلق')->nullable();
+            $table->string('statuss')->default('معلق')->nullable();
 
             $table->timestamps();
             
