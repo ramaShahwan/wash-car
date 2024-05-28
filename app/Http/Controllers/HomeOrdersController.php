@@ -148,7 +148,7 @@ class HomeOrdersController extends Controller
           ]);
     
     
-            return view('site.summary', [
+            return view('site.summary_home', [
                 'totalPrice' => $totalPrice,
                 'orderDate' => $date,
                 'orderTime' => $time,
@@ -175,6 +175,5 @@ class HomeOrdersController extends Controller
 
         //     session()->flash('Add', 'تم تثبيت طلبك بنجاح');
             return redirect('/'); 
-   
     }
 }
