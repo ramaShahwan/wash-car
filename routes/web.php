@@ -289,6 +289,7 @@ Route::get('add_emp', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
 
 
+
 // for car
 Route::get('add_order', [OrderController::class, 'create']);
 Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
@@ -301,8 +302,8 @@ Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay'
 
 // for home
 Route::post('save_order_home', [HomeOrdersController::class, 'store'])->name('ord.home.save');
-
 Route::get('summary_home', [HomeOrdersController::class, 'summary'])->name('ord.home.summary');
+Route::get('pay_home', [HomeOrdersController::class, 'getPayway'])->name('ord.home.pay');
 
 
 
