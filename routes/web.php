@@ -14,6 +14,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeServicesController;
+use App\Models\HomeOrders;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
@@ -105,7 +106,7 @@ Route:: prefix('pay')->group(function () {
 
 //order
 Route:: prefix('order')->group(function () {
-
+//for car
     Route::get('show_done', [OrderController::class, 'getDoneOrders'])->name('ord.done');
     
     Route::get('show_details/{id}', [OrderController::class, 'getOrderDetails'])->name('ord.details');
@@ -124,6 +125,12 @@ Route:: prefix('order')->group(function () {
     Route::delete('delete/{id}', [OrderController::class, 'destroy'])->name('ord.delete');
 
     Route::get('canceledFormEmp', [OrderController::class, 'getCanceledOrdersByEmp'])->name('ord.canceledFormEmp');
+
+
+
+    //for home
+    Route::get('show_pend_home', [HomeOrdersController::class, 'getPendingOrders'])->name('ord.pend_home');
+
 
 });
 
