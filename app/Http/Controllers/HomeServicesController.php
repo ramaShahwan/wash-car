@@ -45,7 +45,7 @@ class HomeServicesController extends Controller
 
         session()->flash('Add', 'تم إضافة الخدمة بنجاح');
         // return back();
-        return redirect()->route('service_home.show');
+        return redirect()->route('service.show_home');
 
     }
 
@@ -54,7 +54,7 @@ class HomeServicesController extends Controller
   public function edit( $id)
   {
     $service = HomeServices::findOrFail($id);
-    return view('admin.service.edit',compact('service'));
+    return view('admin.service_home.edit',compact('service'));
   }
  
    
@@ -79,7 +79,7 @@ class HomeServicesController extends Controller
 
       session()->flash('Edit', 'تم تعديل الخدمة بنجاح');
      //   return back();
-      return redirect()->route('service_home.show');
+      return redirect()->route('service.show_home');
  
     }
 
