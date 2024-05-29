@@ -13,6 +13,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeServicesController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
@@ -137,13 +138,21 @@ Route:: prefix('order')->group(function () {
 
   //service
 Route:: prefix('service')->group(function () {
-
+//for car
     Route::get('show', [ServiceController::class, 'index'])->name('service.show');
     Route::get('add', [ServiceController::class, 'create']);
     Route::post('save', [ServiceController::class, 'store'])->name('service.save');
     Route::get('edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
     Route::post('update/{id}', [ServiceController::class, 'update'])->name('service.update');
     Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
+
+//for home
+    Route::get('show', [HomeServicesController::class, 'index'])->name('service.show_home');
+    Route::get('add', [HomeServicesController::class, 'create']);
+    Route::post('save', [HomeServicesController::class, 'store'])->name('service.save_home');
+    Route::get('edit/{id}', [HomeServicesController::class, 'edit'])->name('service.edit_home');
+    Route::post('update/{id}', [HomeServicesController::class, 'update'])->name('service.update_home');
+    Route::delete('delete/{id}', [HomeServicesController::class, 'destroy'])->name('service.delete_home');
 });
 
    //location
