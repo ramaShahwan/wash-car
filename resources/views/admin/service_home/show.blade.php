@@ -17,7 +17,7 @@
 						</div>
 					</div>
 					<div class="d-flex my-xl-auto right-content">
-						<a href="{{ url('/service_home/add') }}" type="button" class="btn btn-primary" style="color: white">إضافة خدمة</a>
+						<a href="{{ url('/service/add_home') }}" type="button" class="btn btn-primary" style="color: white">إضافة خدمة</a>
 					</div>
 				</div>
 				<!-- breadcrumb -->

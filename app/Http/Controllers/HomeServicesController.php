@@ -83,9 +83,9 @@ class HomeServicesController extends Controller
  
     }
 
-    public function destroy( $id)
+    public function destroy($id)
     {
-      $srvices_orders = Home_Order_Services::where('service_id',$id)->get();
+      $srvices_orders = Home_Order_Services::where('home_services_id',$id)->get();
       foreach($srvices_orders as $order)
       {
        $order->delete();
