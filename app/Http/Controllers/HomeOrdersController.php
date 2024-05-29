@@ -140,7 +140,7 @@ class HomeOrdersController extends Controller
             }
          }
          $mul = $order->NumOfEmp * $order->NumOfHour;
-         $totalPrice = $totalPrice *$mul;
+         $totalPrice = $totalPrice * $mul;
          if( $order->cleanMaterial == 1)
          {
             $totalPrice += 50000;

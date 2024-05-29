@@ -147,12 +147,12 @@ Route:: prefix('service')->group(function () {
     Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
 
 //for home
-    Route::get('show', [HomeServicesController::class, 'index'])->name('service.show_home');
-    Route::get('add', [HomeServicesController::class, 'create']);
-    Route::post('save', [HomeServicesController::class, 'store'])->name('service.save_home');
-    Route::get('edit/{id}', [HomeServicesController::class, 'edit'])->name('service.edit_home');
-    Route::post('update/{id}', [HomeServicesController::class, 'update'])->name('service.update_home');
-    Route::delete('delete/{id}', [HomeServicesController::class, 'destroy'])->name('service.delete_home');
+    Route::get('show_home', [HomeServicesController::class, 'index'])->name('service.show_home');
+    Route::get('add_home', [HomeServicesController::class, 'create']);
+    Route::post('save_home', [HomeServicesController::class, 'store'])->name('service.save_home');
+    Route::get('edit_home/{id}', [HomeServicesController::class, 'edit'])->name('service.edit_home');
+    Route::post('update_home/{id}', [HomeServicesController::class, 'update'])->name('service.update_home');
+    Route::delete('delete_home/{id}', [HomeServicesController::class, 'destroy'])->name('service.delete_home');
 });
 
    //location
