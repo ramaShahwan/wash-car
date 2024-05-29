@@ -129,7 +129,7 @@ Route:: prefix('order')->group(function () {
 
 
     //for home
-    Route::get('show_pend_home', [HomeOrdersController::class, 'getPendingOrders'])->name('ord.pend_home');
+    // Route::get('show_pend_home', [HomeOrdersController::class, 'getPendingOrders'])->name('ord.pend_home');
 
 
 });
