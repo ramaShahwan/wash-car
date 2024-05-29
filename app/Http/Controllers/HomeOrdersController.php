@@ -64,16 +64,16 @@ class HomeOrdersController extends Controller
         $user = auth()->user();
 
         $validated = $request->validate([
-        //     'typeOfHome' => 'required',
-        //     'NumOfbuilding' => 'required',
-        //     'NumOfFloor' => 'required',
-        //     'NumOfEmp' => 'required',
-        //     'orderDate' => 'required',
-        //     'orderTime'=>'required',
-        //    'location_id' => 'required',
-        //    // 'user_id' => 'required',
-        //     'NumOfHour' => 'required',
-        //     'cleanMaterial' => 'required',
+            'typeOfHome' => 'required',
+            'NumOfbuilding' => 'required',
+            'NumOfFloor' => 'required',
+            'NumOfEmp' => 'required',
+            'orderDate' => 'required',
+            'orderTime'=>'required',
+           'location_id' => 'required',
+           // 'user_id' => 'required',
+            'NumOfHour' => 'required',
+            'cleanMaterial' => 'required',
         ]);
 
         $order = new HomeOrders(); 
@@ -178,5 +178,20 @@ class HomeOrdersController extends Controller
 
         //     session()->flash('Add', 'تم تثبيت طلبك بنجاح');
             return redirect('/'); 
+    }
+
+
+    //functions for admin
+    public function getPendingOrders()
+    {
+        $orders_home = HomeOrders::where('statuss','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
+        $dataCount = HomeOrders::get()->count();
+        $paginationLinks = $orders_home->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.pend', [
+        'order_home' => $orders_home,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
     }
 }
