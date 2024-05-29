@@ -254,7 +254,7 @@
 										</tbody>
 									</table>
 
-								{!! $paginationLinks !!}
+								{{-- {!! $paginationLinks !!} --}}
 
 								</div>
 							</div>

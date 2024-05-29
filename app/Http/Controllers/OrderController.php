@@ -235,25 +235,21 @@ class OrderController extends Controller
     public function getPendingOrders()
     {
         $orders = Order::where('status','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
-        $dataCount = Order::get()->count();
-        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        // $dataCount = Order::get()->count();
+        // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        $orders_home = HomeOrders::where('statuss','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
+        // $dataCount = HomeOrders::get()->count();
+        // $paginationLinks = $orders_home->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.pend', [
         'orders' => $orders,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
+        'orders_home' => $orders_home,
+
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
         ]);
 
-
-        $orders_home = HomeOrders::where('statuss','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
-        $dataCount = HomeOrders::get()->count();
-        $paginationLinks = $orders_home->withQueryString()->links('pagination::bootstrap-4'); 
-        
-        return view('admin.orders.pend', [
-        'order_home' => $orders_home,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
-        ]);
     }
 
     public function getCanceledOrders()
