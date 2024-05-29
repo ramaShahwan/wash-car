@@ -189,7 +189,7 @@ class HomeOrdersController extends Controller
         $paginationLinks = $orders_home->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.pend', [
-        'order_home' => $orders_home,
+        'orders_home' => $orders_home,
         'dataCount'=>$dataCount,
         'paginationLinks' => $paginationLinks
         ]);

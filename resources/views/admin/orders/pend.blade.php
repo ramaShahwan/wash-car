@@ -77,7 +77,7 @@
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
-											@if ($orders)
+											{{-- @if ($orders) --}}
 												
 											@foreach($orders as $order)
 											<tr>
@@ -160,11 +160,11 @@
 											</tr>
 											@endforeach
 
-											@endif
+											{{-- @endif --}}
 
 
 
-											@if ($orders_home)
+											{{-- @if ($orders_home) --}}
 												
 											@foreach($orders_home as $order)
 											<tr>
@@ -248,7 +248,7 @@
 											</tr>
 											@endforeach
 
-											@endif
+											{{-- @endif --}}
 
 
 										</tbody>
