@@ -11,6 +11,8 @@ use App\Models\Order_Service;
 use App\Models\Page;
 use App\Models\PayWay;
 use App\Models\Type;
+use App\Models\HomeOrders;
+
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -238,6 +240,17 @@ class OrderController extends Controller
         
         return view('admin.orders.pend', [
         'orders' => $orders,
+        'dataCount'=>$dataCount,
+        'paginationLinks' => $paginationLinks
+        ]);
+
+
+        $orders_home = HomeOrders::where('statuss','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
+        $dataCount = HomeOrders::get()->count();
+        $paginationLinks = $orders_home->withQueryString()->links('pagination::bootstrap-4'); 
+        
+        return view('admin.orders.pend', [
+        'order_home' => $orders_home,
         'dataCount'=>$dataCount,
         'paginationLinks' => $paginationLinks
         ]);

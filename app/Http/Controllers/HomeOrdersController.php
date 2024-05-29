@@ -182,16 +182,12 @@ class HomeOrdersController extends Controller
 
 
     //functions for admin
-    public function getPendingOrders()
-    {
-        $orders_home = HomeOrders::where('statuss','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
-        $dataCount = HomeOrders::get()->count();
-        $paginationLinks = $orders_home->withQueryString()->links('pagination::bootstrap-4'); 
+    // public function getPendingOrders()
+    // {
+    //     $orders_home = HomeOrders::where('statuss','معلق')->whereNull('employee_id')->orderBy('created_at','DESC')->paginate(50);
+    //     $dataCount = HomeOrders::get()->count();
+    //     $paginationLinks = $orders_home->withQueryString()->links('pagination::bootstrap-4'); 
         
-        return view('admin.orders.pend', [
-        'orders_home' => $orders_home,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
-        ]);
+
     }
 }
