@@ -49,13 +49,14 @@
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
 							</div>
+
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table text-md-nowrap" id="example1">
 										<thead>
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
-												<th class="wd-15p border-bottom-0">اسم صاحب الطلب</th>
+												<th class="wd-15p border-bottom-0">اسم صاحب الطلب (سيارة) </th>
 												<th class="wd-15p border-bottom-0">اسم الموظف</th>
 												<th class="wd-15p border-bottom-0">الموقع</th>
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
@@ -101,10 +102,70 @@
 										</tbody>
 									</table>
 
-								{!! $paginationLinks !!}
+								{{-- {!! $paginationLinks !!} --}}
 
 								</div>
 							</div>
+
+
+
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table text-md-nowrap" id="example1">
+										<thead>
+											<tr>
+												<th class="wd-15p border-bottom-0">#</th>
+												<th class="wd-15p border-bottom-0">اسم صاحب الطلب (عقار) </th>
+												<th class="wd-15p border-bottom-0">اسم الموظف</th>
+												<th class="wd-15p border-bottom-0">الموقع</th>
+												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
+												<th class="wd-15p border-bottom-0">وقت الطلب</th>
+												<th class="wd-15p border-bottom-0">تفاصيل الطلب</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php $i = 1 ?>
+											@foreach($orders_home as $home)
+											<tr>
+											
+												<td>{{$i++}}</td>
+												@if($home->user_id)
+												<td>{{ App\Models\User::findOrFail($home->user_id)->name }}</td>
+												@else
+												<td> </td>
+												@endif
+												@if($home->employee_id)
+												<td>{{ App\Models\Employee::findOrFail($home->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($home->employee_id)->lastName }}</td>
+												@else
+												<td> </td>
+												@endif
+											
+												@if($home->location_id)
+												<td>{{ App\Models\Location::findOrFail($home->location_id)->area }}</td>
+												@else
+												<td> </td>
+												@endif
+
+												<td>{{$home->OrderDate}}</td>
+												<td>{{$home->OrderTime}}</td>
+
+												<td>
+													<form action="{{ route('ord.details', $home->id) }}" method="get" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('GET')
+														<button class="btn btn-sm btn-info" title="تفاصيل"><i class="la la-archive"></i></button>
+													</form>
+												</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+
+								{{-- {!! $paginationLinks !!} --}}
+
+								</div>
+							</div>
+
 						</div>
 					</div>
 					<!--/div-->
