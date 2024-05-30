@@ -67,7 +67,7 @@ class HomeOrdersController extends Controller
             'typeOfHome' => 'required',
             'NumOfbuilding' => 'required',
             'NumOfFloor' => 'required',
-            'NumOfEmp' => 'required',
+            // 'NumOfEmp' => 'required',
             'orderDate' => 'required',
             'orderTime'=>'required',
            'location_id' => 'required',
@@ -80,7 +80,7 @@ class HomeOrdersController extends Controller
         $order->typeOfHome = $request->typeOfHome;
         $order->NumOfbulding = $request->NumOfbulding;
         $order->NumOfFloor = $request->NumOfFloor;
-        $order->NumOfEmp = $request->NumOfEmp;
+        // $order->NumOfEmp = $request->NumOfEmp;
         $order->OrderDate = $request->OrderDate;
         $order->OrderTime = $request->OrderTime;
         $order->NumOfHour = $request->NumOfHour;
@@ -139,8 +139,8 @@ class HomeOrdersController extends Controller
                 $totalPrice += $service->price;
             }
          }
-         $mul = $order->NumOfEmp * $order->NumOfHour;
-         $totalPrice = $totalPrice * $mul;
+        //  $mul = $order->NumOfEmp * $order->NumOfHour;
+         $totalPrice = $totalPrice * $order->NumOfHour;
          if( $order->cleanMaterial == 1)
          {
             $totalPrice += 50000;

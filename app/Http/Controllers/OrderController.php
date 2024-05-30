@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BeforAfter;
 use App\Models\Employee;
+use App\Models\Home_Order_Services;
 use App\Models\Location;
 use App\Models\Order;
 use App\Models\Service;
@@ -12,7 +13,7 @@ use App\Models\Page;
 use App\Models\PayWay;
 use App\Models\Type;
 use App\Models\HomeOrders;
-
+use App\Models\HomeServices;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -346,17 +347,27 @@ class OrderController extends Controller
 
     public function chooseEmp($orderId)
     {
+        $orders = Order::findOrFail($orderId);
+        if($orders)
+    {
         $LocationId = Order::where('id',$orderId)->value('location_id');
         $LocationArea = Location::where('id',$LocationId)->value('area');
-
-        $employees = Employee::where('area',$LocationArea)->where('status','accepted')->orderBy('updated_at','DESC')->paginate(50);
-        $dataCount = Employee::get()->count();
-        $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+        $employees = Employee::where('area',$LocationArea)->where('status','accepted')->where('typeOfWork','عقار')->orderBy('updated_at','DESC')->paginate(50);
+    }
+   else
+     {
+      $orders = HomeOrders::findOrFail($orderId);
+      $LocationId = HomeOrders::where('id',$orderId)->value('location_id');
+      $LocationArea = Location::where('id',$LocationId)->value('area');
+      $employees = Employee::where('area',$LocationArea)->where('status','accepted')->where('typeOfWork','سيارة')->orderBy('updated_at','DESC')->paginate(50);
+     }
+        // $dataCount = Employee::get()->count();
+        // $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.emp_area', [
         'employees' => $employees,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
         ]);
     }
 
@@ -383,10 +394,21 @@ class OrderController extends Controller
     
         if ($employeeId) {
             $order = Order::findOrFail($orderId);
-            $order->employee_id = $employeeId;
-            $order->note = '';
-            $order->status = 'معلق';
-            $order->update();
+            if($order)
+            {
+                $order->employee_id = $employeeId;
+                $order->note = '';
+                $order->status = 'معلق';
+                $order->update(); 
+            }
+            else
+            {
+                $order = HomeOrders::findOrFail($orderId);
+                $order->employee_id = $employeeId;
+                $order->note = '';
+                $order->statuss = 'معلق';
+                $order->update();
+            }
     
             session()->flash('Edit', 'تم اختيار الموظف بنجاح');
             return redirect()->route('ord.pend');
@@ -400,20 +422,41 @@ class OrderController extends Controller
     public function getOrderDetails($id)
     {
         $order = Order::findOrFail($id);
-        $serviceOrder = Order_Service::where('order_id', $id)->pluck('service_id')->toArray();
+        if($order)
+        {
+            $serviceOrder = Order_Service::where('order_id', $id)->pluck('service_id')->toArray();
         
-        $primary=[];
-        $sec = [];
+            $primary=[];
+            $sec = [];
+            
+            foreach ($serviceOrder as $service) {
+                $primary[] = Service::where('id', $service)->where('type', 'أساسية')->value('name');
+                $sec[] = Service::where('id', $service)->where('type', 'إضافية')->value('name');
+            }
         
-        foreach ($serviceOrder as $service) {
-            $primary[] = Service::where('id', $service)->where('type', 'أساسية')->value('name');
-            $sec[] = Service::where('id', $service)->where('type', 'إضافية')->value('name');
+            //  $empOrd = Order::where('id', $id)->value('employee_id');
+            //  $employee = Employee::where('id', $empOrd)->get();
+            $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
+            $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
         }
-    
-        //  $empOrd = Order::where('id', $id)->value('employee_id');
-        //  $employee = Employee::where('id', $empOrd)->get();
-        $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
-        $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
+         else
+         {
+           $order = HomeOrders::findOrFail($id);
+            $serviceOrder = Home_Order_Services::where('order_id', $id)->pluck('home_services_id')->toArray();
+        
+            $primary=[];
+            $sec = [];
+            
+            foreach ($serviceOrder as $service) {
+                $primary[] = HomeServices::where('id', $service)->where('type', 'أساسية')->value('name');
+                $sec[] = HomeServices::where('id', $service)->where('type', 'إضافية')->value('name');
+            }
+        
+            //  $empOrd = Order::where('id', $id)->value('employee_id');
+            //  $employee = Employee::where('id', $empOrd)->get();
+            $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
+            $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
+         }
         if(auth()->user()->role == "admin") {
         return view('admin.orders.details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
          }
@@ -421,10 +464,7 @@ class OrderController extends Controller
          elseif(auth()->user()->role == "employee") {
             return view('employee.orders.pend_details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
              }
-    
-         
     }
-
 
     public function getAcceptOrderDetails($id)
     {
