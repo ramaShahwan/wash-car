@@ -209,26 +209,32 @@ class OrderController extends Controller
         // });
 
         $orders = Order::where('status','منجز')->orderBy('created_at','DESC')->paginate(50);
-        $dataCount = Order::get()->count();
-        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        $orders_home = HomeOrders::where('statuss','منجز')->orderBy('created_at','DESC')->paginate(50);
+
+        // $dataCount = Order::get()->count();
+        // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.done', [
         'orders' => $orders,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
+        'orders_home'=>$orders_home
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
         ]);
     }
 
     public function getWaitingOrders()
     { 
         $orders = Order::where('status','قيد الإنجاز')->orderBy('updated_at','DESC')->paginate(50);
-        $dataCount = Order::get()->count();
-        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        $orders_home = HomeOrders::where('statuss','قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
+
+        // $dataCount = Order::get()->count();
+        // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.waiting', [
         'orders' => $orders,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
+        'orders_home'=>$orders_home,
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
         ]);
     }
 
@@ -255,34 +261,49 @@ class OrderController extends Controller
     public function getCanceledOrders()
     { 
         $orders = Order::where('status','مرفوض')->orderBy('updated_at','DESC')->paginate(50);
-        $dataCount = Order::get()->count();
-        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        $orders_home = HomeOrders::where('statuss','مرفوض')->orderBy('created_at','DESC')->paginate(50);
+
+        // $dataCount = Order::get()->count();
+        // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.cancel', [
         'orders' => $orders,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
+        'orders_home'=>$orders_home,
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
         ]);
     }
 
     public function getCanceledOrdersByEmp()
     { 
         $orders = Order::where('status','مرفوض من قبل الموظف')->orderBy('updated_at','DESC')->paginate(50);
-        $dataCount = Order::get()->count();
-        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        $orders_home = HomeOrders::where('statuss','مرفوض من قبل الموظف')->orderBy('created_at','DESC')->paginate(50);
+
+        // $dataCount = Order::get()->count();
+        // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.cancel_from_emp', [
         'orders' => $orders,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
+        'orders_home'=>$orders_home
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
         ]);
     }
 
     public function updatePenddingToWaiting($id)
     {
        $orders = Order::findOrFail($id);
-       $orders->status = 'قيد الإنجاز';
-       $orders->update();
+       if($orders)
+       {
+        $orders->status = 'قيد الإنجاز';
+        $orders->update();
+       }
+     else
+     {
+        $orders = HomeOrders::findOrFail($id);
+        $orders->statuss = 'قيد الإنجاز';
+        $orders->update();
+     }
         
        session()->flash('Edit', 'تم  قبول الطلب بنجاح');
        return redirect('acceptedFromEmp');
@@ -290,11 +311,20 @@ class OrderController extends Controller
 
     public function updatePenddingToCanceled(Request $request,$id)
     {
-       $orders = Order::findOrFail($id);
+        $orders = Order::findOrFail($id);
+        if($orders)
+        {
        $orders->status = 'مرفوض';
        $orders->note = $request->note;
        $orders->update();
-
+        }
+        else
+        {
+            $orders = HomeOrders::findOrFail($id);
+            $orders->statuss = 'مرفوض';
+            $orders->note = $request->note;
+            $orders->update();
+        }
        session()->flash('delete', 'تم  رفض الطلب بنجاح');
        return back();
     }
