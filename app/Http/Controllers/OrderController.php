@@ -363,13 +363,16 @@ class OrderController extends Controller
     public function waitingForEmp() {
 
         $orders = Order::whereNotNull('employee_id')->where('status','معلق')->orderBy('updated_at','DESC')->paginate(50);
-        $dataCount = Order::get()->count();
-        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+        $orders_home = HomeOrders::whereNotNull('employee_id')->where('statuss','معلق')->orderBy('created_at','DESC')->paginate(50);
+
+        // $dataCount = Order::get()->count();
+        // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.waiting_for_emp', [
         'orders' => $orders,
-        'dataCount'=>$dataCount,
-        'paginationLinks' => $paginationLinks
+        'orders_home'=>$orders_home
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
         ]);
     }
 
