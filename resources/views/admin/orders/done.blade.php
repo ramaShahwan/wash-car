@@ -127,23 +127,24 @@
 											<?php $i = 1 ?>
 											@foreach($orders_home as $home)
 											<tr>
-											
 												<td>{{$i++}}</td>
+
 												@if($home->user_id)
-												<td>{{ App\Models\User::findOrFail($home->user_id)->name }}</td>
+													<td>{{ App\Models\User::findOrFail($home->user_id)->name }}</td>
 												@else
-												<td> </td>
+													<td> </td>
 												@endif
+
 												@if($home->employee_id)
-												<td>{{ App\Models\Employee::findOrFail($home->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($home->employee_id)->lastName }}</td>
+													<td>{{ App\Models\Employee::findOrFail($home->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($home->employee_id)->lastName }}</td>
 												@else
-												<td> </td>
+													<td> </td>
 												@endif
 											
 												@if($home->location_id)
-												<td>{{ App\Models\Location::findOrFail($home->location_id)->area }}</td>
+													<td>{{ App\Models\Location::findOrFail($home->location_id)->area }}</td>
 												@else
-												<td> </td>
+													<td> </td>
 												@endif
 
 												<td>{{$home->OrderDate}}</td>
