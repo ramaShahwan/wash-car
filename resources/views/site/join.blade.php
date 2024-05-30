@@ -169,16 +169,13 @@
     
                             <div class="form-group" style="text-align: right;">
                                 <label style="font-weight: bold; color: black;">نوع العمل الذي ترغب به</label>
-                                <select style="direction: rtl;" name="area" class="form-control select @error('area') is-invalid @enderror"> 
+                                <select style="direction: rtl;" name="typeOfWork" class="form-control select @error('typeOfWork') is-invalid @enderror"> 
                                     <option value="لايوجد">اختر نوع العمل</option>
-                                    
-                                    @foreach($areas as $area)
-                                    <option value="{{$area->area}}">{{$area->area}}</option>
-                                    @endforeach 
-    
+                                    <option value="سيارة">غسيل سيارات</option>
+                                    <option value="عقار">تنظيف منازل</option>
                                 </select>
     
-                                @error('area')
+                                @error('typeOfWork')
                                     <div class="alert alert-danger">يجب اختيار نوع العمل</div>
                                 @enderror
                             </div>

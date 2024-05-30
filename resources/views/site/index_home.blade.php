@@ -361,7 +361,7 @@
 
   <div class="row">
 
-   <div class="col-md-4">
+   {{-- <div class="col-md-4">
       <div class="form-group">
          <label style="font-size: 16px; font-weight: bolder; color: black;">عدد العاملات</label>
          <select name="NumOfEmp" class="form-control select @error('NumOfEmp') is-invalid @enderror"> 
@@ -376,7 +376,7 @@
             <div class="alert alert-danger">يجب إدخال عدد العاملات</div>
          @enderror
       </div>
-   </div><br>
+   </div><br> --}}
    
    <div class="col-md-4">
       <div class="form-group">

@@ -69,7 +69,7 @@
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
 
-												<th class="wd-15p border-bottom-0">عدد الموظفين المطلوبين</th>
+												{{-- <th class="wd-15p border-bottom-0">عدد الموظفين المطلوبين</th> --}}
 
 												<th class="wd-15p border-bottom-0">اختر الموظف</th>
 												<th class="wd-15p border-bottom-0">رفض</th>
@@ -111,7 +111,7 @@
 													</form>
 												</td> --}}
 
-												<td>1</td>
+												{{-- <td>1</td> --}}
 
 												<td>
 													<form action="{{ route('ord.chooseEmp', $order->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
@@ -187,7 +187,7 @@
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
 
-												<th class="wd-15p border-bottom-0">عدد الموظفين المطلوبين</th>
+												{{-- <th class="wd-15p border-bottom-0">عدد الموظفين المطلوبين</th> --}}
 
 												<th class="wd-15p border-bottom-0">اختر الموظف</th>
 												<th class="wd-15p border-bottom-0">رفض</th>
@@ -230,7 +230,7 @@
 												  </form>
 												</td> --}}
 						
-												<td>{{ $home->NumOfEmp }}</td>
+												{{-- <td>{{ $home->NumOfEmp }}</td> --}}
 						
 												<td>
 												  <form action="{{ route('ord.chooseEmp', $home->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">

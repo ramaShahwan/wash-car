@@ -32,6 +32,9 @@
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
 							</div>
+
+							@if (auth()->user()->typeOfWork == 'سيارة' )
+								
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table text-md-nowrap" id="example1">
@@ -100,6 +103,80 @@
 
 								</div>
 							</div>
+
+							@else
+
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table text-md-nowrap" id="example1">
+										<thead>
+											<tr>
+												<th class="wd-15p border-bottom-0">#</th>
+											    <th class="wd-15p border-bottom-0">اسم صاحب الطلب</th>
+												<th class="wd-15p border-bottom-0">الموقع</th>
+												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
+
+												<th class="wd-15p border-bottom-0">نوع العقار</th>
+												<th class="wd-15p border-bottom-0">عدد الساعات</th>
+												<th class="wd-15p border-bottom-0">مواد تنظيف</th>
+												<th class="wd-15p border-bottom-0">السعر الإجمالي</th>
+												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
+												<th class="wd-15p border-bottom-0">وقت الطلب</th>
+
+												<th class="wd-15p border-bottom-0">تفاصيل الطلب</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php $i = 1 ?>
+											@foreach($orders as $order)
+											<tr>
+												<td>{{$i++}}</td>
+
+												@if($order->user_id)
+												<td>{{ App\Models\User::findOrFail($order->user_id)->name }}</td>
+												@else
+												<td> </td>
+												@endif
+
+												@if($order->location_id)
+												<td>{{ App\Models\Location::findOrFail($order->location_id)->area }}</td>
+												@else
+												<td> </td>
+												@endif
+											
+												@if($order->payWay_id)
+												<td>{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}</td>
+												@else
+												<td> </td>
+												@endif
+
+												<td>{{$order->NumOfbulding}}</td>
+												<td>{{$order->NumOfHour}}</td>
+												<td>{{$order->cleanMaterial}}</td>
+												<td>{{$order->totalPrice}}</td>
+												<td>{{$order->orderDate}}</td>
+												<td>{{$order->orderTime}}</td>
+
+												<td>
+													<form action="{{ route('emp_ord.accept_details', $order->id) }}" method="GET" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('GET')
+														<button class="btn btn-sm btn-info" title="تفاصيل الطلب"><i class="la la-archive"></i></button>
+													</form>
+												</td>
+
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+
+								{!! $paginationLinks !!}
+
+								</div>
+							</div>
+
+							@endif
+
 						</div>
 					</div>
 					<!--/div-->

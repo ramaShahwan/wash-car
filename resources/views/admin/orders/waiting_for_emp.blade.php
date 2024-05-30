@@ -53,9 +53,9 @@
 												<th class="wd-15p border-bottom-0">الموقع</th>
 												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
 
-												<th class="wd-15p border-bottom-0">نوع السيارة</th>
+												{{-- <th class="wd-15p border-bottom-0">نوع السيارة</th>
 												<th class="wd-15p border-bottom-0">حجم السيارة</th>
-												<th class="wd-15p border-bottom-0">رقم السيارة</th>
+												<th class="wd-15p border-bottom-0">رقم السيارة</th> --}}
 												<th class="wd-15p border-bottom-0">السعر الإجمالي</th>
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
@@ -88,9 +88,9 @@
 												<td> </td>
 												@endif
 
-												<td>{{$order->typeOfCar}}</td>
+												{{-- <td>{{$order->typeOfCar}}</td>
 												<td>{{$order->sizeOfCar}}</td>
-												<td>{{$order->numOfCar}}</td>
+												<td>{{$order->numOfCar}}</td> --}}
 												<td>{{$order->totalPrice}}</td>
 												<td>{{$order->orderDate}}</td>
 												<td>{{$order->orderTime}}</td>
