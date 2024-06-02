@@ -20,6 +20,7 @@ class EmployeeController extends Controller
       $employees = Employee::where('status','accepted')->orderBy('created_at','DESC')->paginate(50);
       $dataCount = Employee::get()->count();
       $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+
       return view('admin.employees.accept', [
           'employees' => $employees,
           'dataCount'=>$dataCount,
@@ -27,11 +28,14 @@ class EmployeeController extends Controller
       ]);
     }
 
+
+
     public function getCanceledEmp()
     { 
       $employees = Employee::where('status','canceled')->orderBy('created_at','DESC')->paginate(50);
       $dataCount = Employee::get()->count();
       $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+
       return view('admin.employees.cancel', [
           'employees' => $employees,
           'dataCount'=>$dataCount,
@@ -39,11 +43,13 @@ class EmployeeController extends Controller
       ]);
     }
 
+
     public function getPendingEmp()
     { 
       $employees = Employee::where('status','Pending')->orderBy('created_at','DESC')->paginate(50);
       $dataCount = Employee::get()->count();
       $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
+
       return view('admin.employees.pend', [
           'employees' => $employees,
           'dataCount'=>$dataCount,
@@ -51,11 +57,13 @@ class EmployeeController extends Controller
       ]);
     }
 
-    public function getPendingEmpDetailes()
+
+    public function getPendingEmpDetailes($id)
     { 
-      $employees = Employee::where('status','Pending')->orderBy('created_at','Asc')->get();
+      $employees = Employee::where('id',$id)->where('status','Pending')->orderBy('created_at','Asc')->get();
       return view('admin.employees.details',compact('employees'));
     }
+
 
     public function create()
     {
@@ -63,11 +71,13 @@ class EmployeeController extends Controller
       return view('site.join',compact('areas'));
     }
     
+
     public function createForAdmin()
     {
       $areas = Location::all();
       return view('admin.employees.add',compact('areas'));
     }
+
 
     public function storeForAdmin(Request $request)
     {
@@ -78,6 +88,8 @@ class EmployeeController extends Controller
         'Gender'=>'required',
         'phone'=>'required',
         'area'=>'required',
+        'typeOfWork'=>'required',
+
         //  'aboutYou'=>'required',
         // 'image'=>'required'
       ]);
@@ -92,6 +104,7 @@ class EmployeeController extends Controller
         $emp->area  = $request->area;
         $emp->status = 'accepted';
         $emp->note  = $request->note;
+        $emp->typeOfWork  = $request->typeOfWork;
         $emp->save();
 
         // store image
@@ -105,9 +118,11 @@ class EmployeeController extends Controller
        $emp->update();
      }
 
-        session()->flash('Add', 'تم إضافة الموظف بنجاح');
-        return redirect()->route('employee.accepted');
+      session()->flash('Add', 'تم إضافة الموظف بنجاح');
+      return redirect()->route('employee.accepted');
     }
+
+
 
     public function store(  Request $request)
     {
@@ -118,6 +133,8 @@ class EmployeeController extends Controller
         'Gender'=>'required',
         'phone'=>'required',
         'area'=>'required',
+        'typeOfWork'=>'required',
+
         //  'aboutYou'=>'required',
         // 'image'=>'required'
       ]);
@@ -132,6 +149,7 @@ class EmployeeController extends Controller
         $emp->area  = $request->area;
         $emp->status = 'Pending';
         $emp->note  = $request->note;
+        $emp->typeOfWork  = $request->typeOfWork;
         $emp->save();
 
         // store image
@@ -147,8 +165,9 @@ class EmployeeController extends Controller
 
       session()->flash('Add', 'تم إرسال طلب توظيفك سيتم التواصل معك في أقرب وقت');
         return back();
-
     }
+
+
 
     public function edit( $id)
     {
@@ -156,6 +175,7 @@ class EmployeeController extends Controller
      $areas = Location::all();
      return view('admin.employees.edit',compact('emp','areas'));
     }
+
 
 
     public function update(Request $request, $id)
@@ -205,6 +225,8 @@ class EmployeeController extends Controller
       return redirect()->route('employee.accepted');
     }
 
+
+
     public function updatePenddingToAccepted($id)
     {
       $emp = Employee::findOrFail($id);
@@ -217,6 +239,8 @@ class EmployeeController extends Controller
       return back();
     }
 
+
+
     public function updatePenddingToCanceled(Request $request,$id)
     {
       $emp = Employee::findOrFail($id);
@@ -227,6 +251,8 @@ class EmployeeController extends Controller
       session()->flash('delete', 'تم  رفض الموظف بنجاح');
       return back();
     }
+
+
 
     public function destroy($id)
     {
@@ -241,6 +267,8 @@ class EmployeeController extends Controller
       session()->flash('delete', 'تم حذف الموظف بنجاح');
       return back();
     }
+
+
 
     public function GetMyOrders()
   {
@@ -258,9 +286,10 @@ class EmployeeController extends Controller
 
         // // Retrieve orders related to the employee
         $orders = Order::where('employee_id', $emp_id)->where('status', 'معلق')->orderBy('created_at','DESC')->paginate(50);
-       $dataCount = Order::get()->count();
-       $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
-      return view('employee.orders.order_to_work', [
+        $dataCount = Order::get()->count();
+        $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+
+        return view('employee.orders.order_to_work', [
           'orders' => $orders,
           'dataCount'=>$dataCount,
           'paginationLinks' => $paginationLinks
@@ -269,11 +298,14 @@ class EmployeeController extends Controller
 }
 
 
+
   public function openToUpload($orderId)
   {
     $order = Order::findOrFail($orderId);
     return view('employee.orders.upload_img',compact('order'));
   }
+
+
 
   public function uploadOrderImage(Request $request,$orderId)
   {
@@ -315,6 +347,8 @@ class EmployeeController extends Controller
    return redirect()->route('ord.get');
   }
     
+
+
   public function myGallery()
    {
     $id = auth()->user()->id;
@@ -330,6 +364,8 @@ class EmployeeController extends Controller
       'paginationLinks' => $paginationLinks
   ]);
    }
+
+
 
    public function acceptedFromEmp()
    {
@@ -356,6 +392,8 @@ class EmployeeController extends Controller
    }
    }
 
+
+
    public function doneFromEmp()
    {
     // $results[] = DB::table('order_service')
@@ -366,20 +404,21 @@ class EmployeeController extends Controller
 
   if (auth()->user()->role == 'employee')
   {
-  $id = auth()->user()->id;
-  $emp_num = User::where('id',$id)->value('phone');
-  $emp_id = Employee::where('phone',$emp_num)->value('id');
+    $id = auth()->user()->id;
+    $emp_num = User::where('id',$id)->value('phone');
+    $emp_id = Employee::where('phone',$emp_num)->value('id');
 
     $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->orderBy('created_at','DESC')->paginate(50);
     $dataCount = Order::get()->count();
     $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+
     return view('employee.orders.done', [
        'orders' => $orders,
        'dataCount'=>$dataCount,
       'paginationLinks' => $paginationLinks
     ]);
   }
-   }
+  }
 
   //  public function cancelByEmp(Request $request,$id)
   //  {
@@ -398,7 +437,6 @@ class EmployeeController extends Controller
 
   public function cancelByEmp(Request $request, $orderId)
   {
-
       if (auth()->user()->role == 'employee')
       {
           $userId = auth()->user()->id;
@@ -416,6 +454,9 @@ class EmployeeController extends Controller
           return redirect('get_orders');
       }
   }
+
+
+
   public function showCount($id) 
   {
     $doneOrders = Order::where('employee_id',$id)->where('status','منجز')->count();

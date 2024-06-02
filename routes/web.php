@@ -126,12 +126,9 @@ Route:: prefix('order')->group(function () {
 
     Route::get('canceledFormEmp', [OrderController::class, 'getCanceledOrdersByEmp'])->name('ord.canceledFormEmp');
 
-
-
+    
     //for home
     // Route::get('show_pend_home', [HomeOrdersController::class, 'getPendingOrders'])->name('ord.pend_home');
-
-
 });
 
 

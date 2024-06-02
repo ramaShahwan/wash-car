@@ -51,15 +51,15 @@ class OrderController extends Controller
      }
     }
     
+
+
     public function create()
     {
             $services = Service::all();
             $areas = Location::all();
             $types = Type::all();
             // $all_pinned_page = Page::all();
-
-        
-                
+          
            if(!auth()->check())
            {
             return view('auth.login');
@@ -75,6 +75,8 @@ class OrderController extends Controller
              ]); 
             }
     }
+
+
 
     public function store(Request $request)
     {
@@ -134,11 +136,10 @@ class OrderController extends Controller
                 ]);
             }
         }
-
             // session()->flash('Add', 'تم تثبيت طلبك بنجاح');
             return redirect()->route('ord.summary');
-     
     }
+
 
 
     public function summary()
@@ -179,11 +180,11 @@ class OrderController extends Controller
     public function getPayway()
     {
         $pay = PayWay::all();
-
-          return view('site.pay',compact('pay'));
-     
+        return view('site.pay',compact('pay'));
     }
     
+
+
     public function setPayway(Request $request)
     {
         $user = auth()->user();
@@ -195,11 +196,13 @@ class OrderController extends Controller
         ]);
 
         //     session()->flash('Add', 'تم تثبيت طلبك بنجاح');
-            return redirect('/'); 
+        return redirect('/'); 
    
     }
     
-   //functions for admin
+
+
+   //---------- functions for admin ----------
 
     public function getDoneOrders()
     { 
@@ -223,6 +226,8 @@ class OrderController extends Controller
         ]);
     }
 
+
+
     public function getWaitingOrders()
     { 
         $orders = Order::where('status','قيد الإنجاز')->orderBy('updated_at','DESC')->paginate(50);
@@ -238,6 +243,8 @@ class OrderController extends Controller
         // 'paginationLinks' => $paginationLinks
         ]);
     }
+
+
 
     public function getPendingOrders()
     {
@@ -256,8 +263,9 @@ class OrderController extends Controller
         // 'dataCount'=>$dataCount,
         // 'paginationLinks' => $paginationLinks
         ]);
-
     }
+
+
 
     public function getCanceledOrders()
     { 
@@ -275,6 +283,8 @@ class OrderController extends Controller
         ]);
     }
 
+
+
     public function getCanceledOrdersByEmp()
     { 
         $orders = Order::where('status','مرفوض من قبل الموظف')->orderBy('updated_at','DESC')->paginate(50);
@@ -290,6 +300,8 @@ class OrderController extends Controller
         // 'paginationLinks' => $paginationLinks
         ]);
     }
+
+
 
     public function updatePenddingToWaiting($id)
     {
@@ -310,14 +322,16 @@ class OrderController extends Controller
        return redirect('acceptedFromEmp');
     }
 
+
+
     public function updatePenddingToCanceled(Request $request,$id)
     {
         $orders = Order::findOrFail($id);
         if($orders)
         {
-       $orders->status = 'مرفوض';
-       $orders->note = $request->note;
-       $orders->update();
+            $orders->status = 'مرفوض';
+            $orders->note = $request->note;
+            $orders->update();
         }
         else
         {
@@ -337,6 +351,8 @@ class OrderController extends Controller
     //    $orders->update();
     // }
 
+
+
     public function searchByArea(Request $request)
     {
         $searchTerm = $request->input('search_area');
@@ -345,31 +361,38 @@ class OrderController extends Controller
         return view('site.index', compact('areas'));
     }
 
+
+
     public function chooseEmp($orderId)
     {
-        $orders = Order::findOrFail($orderId);
+        $orders = Order::find($orderId);
+
         if($orders)
-    {
-        $LocationId = Order::where('id',$orderId)->value('location_id');
-        $LocationArea = Location::where('id',$LocationId)->value('area');
-        $employees = Employee::where('area',$LocationArea)->where('status','accepted')->where('typeOfWork','عقار')->orderBy('updated_at','DESC')->paginate(50);
-    }
-   else
-     {
-      $orders = HomeOrders::findOrFail($orderId);
-      $LocationId = HomeOrders::where('id',$orderId)->value('location_id');
-      $LocationArea = Location::where('id',$LocationId)->value('area');
-      $employees = Employee::where('area',$LocationArea)->where('status','accepted')->where('typeOfWork','سيارة')->orderBy('updated_at','DESC')->paginate(50);
-     }
+        {
+            $LocationId = Order::where('id',$orderId)->value('location_id');
+            $LocationArea = Location::where('id',$LocationId)->value('area');
+            $employees = Employee::where('area',$LocationArea)->where('status','accepted')->where('typeOfWork','سيارة')->orderBy('updated_at','DESC')->paginate(50);
+        }
+        else
+        {
+            $orders = HomeOrders::find($orderId);
+            $LocationId = HomeOrders::where('id',$orderId)->value('location_id');
+            $LocationArea = Location::where('id',$LocationId)->value('area');
+            $employees = Employee::where('area',$LocationArea)->where('status','accepted')->where('typeOfWork','عقار')->orderBy('updated_at','DESC')->paginate(50);
+        }
         // $dataCount = Employee::get()->count();
         // $paginationLinks = $employees->withQueryString()->links('pagination::bootstrap-4'); 
         
         return view('admin.orders.emp_area', [
         'employees' => $employees,
+        'orders' => $orders,
+
         // 'dataCount'=>$dataCount,
         // 'paginationLinks' => $paginationLinks
         ]);
     }
+
+
 
     public function waitingForEmp() {
 
@@ -391,9 +414,9 @@ class OrderController extends Controller
 
     public function seedOrderToEmp(Request $request, $orderId) {
         $employeeId = $request->input('employee_id');
-    
+        
         if ($employeeId) {
-            $order = Order::findOrFail($orderId);
+            $order = Order::find($orderId);
             if($order)
             {
                 $order->employee_id = $employeeId;
@@ -403,7 +426,7 @@ class OrderController extends Controller
             }
             else
             {
-                $order = HomeOrders::findOrFail($orderId);
+                $order = HomeOrders::find($orderId);
                 $order->employee_id = $employeeId;
                 $order->note = '';
                 $order->statuss = 'معلق';
@@ -412,11 +435,14 @@ class OrderController extends Controller
     
             session()->flash('Edit', 'تم اختيار الموظف بنجاح');
             return redirect()->route('ord.pend');
-        } else {
+            // return view('admin.orders.pend');
+        } 
+        else {
             session()->flash('Edit',  'يرجى اختيار موظف أولاً');
             return redirect()->back();
         }
     }
+
 
 
     public function getOrderDetails($id)
@@ -439,9 +465,9 @@ class OrderController extends Controller
             $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
             $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
         }
-         else
-         {
-           $order = HomeOrders::findOrFail($id);
+        else
+        {
+            $order = HomeOrders::findOrFail($id);
             $serviceOrder = Home_Order_Services::where('order_id', $id)->pluck('home_services_id')->toArray();
         
             $primary=[];
@@ -454,41 +480,63 @@ class OrderController extends Controller
         
             //  $empOrd = Order::where('id', $id)->value('employee_id');
             //  $employee = Employee::where('id', $empOrd)->get();
-            $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
-            $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
-         }
+            $beforeImage = BeforAfter::where('home_orders_id', $id)->value('beforeImage');
+            $afterImage = BeforAfter::where('home_orders_id', $id)->value('afterImage');
+        }
         if(auth()->user()->role == "admin") {
-        return view('admin.orders.details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
-         }
+            return view('admin.orders.details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
+        }
 
          elseif(auth()->user()->role == "employee") {
             return view('employee.orders.pend_details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
-             }
+        }
     }
+
+
 
     public function getAcceptOrderDetails($id)
     {
         $order = Order::findOrFail($id);
-        $serviceOrder = Order_Service::where('order_id', $id)->pluck('service_id')->toArray();
+        if($order)
+        {
+            $serviceOrder = Order_Service::where('order_id', $id)->pluck('service_id')->toArray();
         
-        $primary=[] ;
-        $sec = [];
-        foreach ($serviceOrder as $service) {
-            $primary[] = Service::where('id', $service)->where('type', 'أساسية')->value('name');
-            $sec[] = Service::where('id', $service)->where('type', 'إضافية')->value('name');
-        }
-    
-        //  $empOrd = Order::where('id', $id)->value('employee_id');
-        //  $employee = Employee::where('id', $empOrd)->get();
-        $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
-        $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
-     
-         if(auth()->user()->role == "employee") {
-            return view('employee.orders.accept_details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
+            $primary=[] ;
+            $sec = [];
+            foreach ($serviceOrder as $service) {
+                $primary[] = Service::where('id', $service)->where('type', 'أساسية')->value('name');
+                $sec[] = Service::where('id', $service)->where('type', 'إضافية')->value('name');
             }
     
-         
+            //  $empOrd = Order::where('id', $id)->value('employee_id');
+            //  $employee = Employee::where('id', $empOrd)->get();
+            $beforeImage = BeforAfter::where('order_id', $id)->value('beforeImage');
+            $afterImage = BeforAfter::where('order_id', $id)->value('afterImage');
+        }
+        else
+        {
+           $order = HomeOrders::findOrFail($id);
+           $serviceOrder = Home_Order_Services::where('order_id', $id)->pluck('home_services_id')->toArray();
+        
+            $primary=[];
+            $sec = [];
+            
+            foreach ($serviceOrder as $service) {
+                $primary[] = HomeServices::where('id', $service)->where('type', 'أساسية')->value('name');
+                $sec[] = HomeServices::where('id', $service)->where('type', 'إضافية')->value('name');
+            }
+        
+            //  $empOrd = Order::where('id', $id)->value('employee_id');
+            //  $employee = Employee::where('id', $empOrd)->get();
+            $beforeImage = BeforAfter::where('home_orders_id', $id)->value('beforeImage');
+            $afterImage = BeforAfter::where('home_orders_id', $id)->value('afterImage');
+        }
+
+         if(auth()->user()->role == "employee") {
+            return view('employee.orders.accept_details', compact('order', 'primary', 'sec', 'beforeImage', 'afterImage'));
+        }      
     }
+
 
     
     public function destroy( $id)

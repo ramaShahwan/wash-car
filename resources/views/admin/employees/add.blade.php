@@ -132,6 +132,19 @@
 									  </div><br>
 
 									  <div class="form-group">
+										<label>نوع العمل</label>
+										<select name="typeOfWork" class="form-control select @error('typeOfWork') is-invalid @enderror"> 
+											<option value="لايوجد">اختر نوع العمل</option>
+											<option value="سيارة">غسيل سيارات</option>
+											<option value="عقار">تنظيف منازل</option>
+										</select>
+
+										@error('typeOfWork')
+											<div class="alert alert-danger">{{ $message }}</div>
+										@enderror
+									</div><br>
+
+									  <div class="form-group">
 										<label>المنطقة</label>
 										<select name="area" class="form-control select @error('area') is-invalid @enderror"> 
 											<option value="لايوجد">اختر المنطقة</option>

@@ -65,11 +65,11 @@ class HomeOrdersController extends Controller
 
         $validated = $request->validate([
             'typeOfHome' => 'required',
-            'NumOfbuilding' => 'required',
+            'NumOfbulding' => 'required',
             'NumOfFloor' => 'required',
             // 'NumOfEmp' => 'required',
-            'orderDate' => 'required',
-            'orderTime'=>'required',
+            'OrderDate' => 'required',
+            'OrderTime'=>'required',
            'location_id' => 'required',
            // 'user_id' => 'required',
             'NumOfHour' => 'required',

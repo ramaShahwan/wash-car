@@ -85,8 +85,9 @@
 														<button class="btn btn-sm btn-success" title="اختر الموظف"><i class="fa fa-check"></i></button>
 													</form> --}}
 
-													<form action="{{ route('ord.seedOrderToEmp', $orderId ) }}" method="POST">
+													<form action="{{ route('ord.seedOrderToEmp', $orders->id ) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
 														@csrf
+														@method('POST')
 														<input type="hidden" name="employee_id" value="{{ $emp->id }}">
 														<button type="submit" class="btn btn-sm btn-success" title="اختر الموظف"><i class="fa fa-check"></i></button>
 													</form>
@@ -97,7 +98,7 @@
 										</tbody>
 									</table>
 
-								{!! $paginationLinks !!}
+								{{-- {!! $paginationLinks !!} --}}
 
 								</div>
 							</div>
