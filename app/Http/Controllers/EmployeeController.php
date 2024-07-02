@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\Location;
 use App\Models\BeforAfter;
+use App\Models\Employee;
+use App\Models\HomeOrders;
+use App\Models\Location;
 use App\Models\Order;
-use App\Models\User;
 use App\Models\Order_Service;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File; 
 
 class EmployeeController extends Controller
 {
@@ -124,7 +125,7 @@ class EmployeeController extends Controller
 
 
 
-    public function store(  Request $request)
+    public function store(Request $request)
     {
       $validated = $request->validate([
         'firstName' => 'required',
@@ -169,7 +170,7 @@ class EmployeeController extends Controller
 
 
 
-    public function edit( $id)
+    public function edit($id)
     {
      $emp = Employee::findOrFail($id);
      $areas = Location::all();
@@ -241,7 +242,7 @@ class EmployeeController extends Controller
 
 
 
-    public function updatePenddingToCanceled(Request $request,$id)
+    public function updatePenddingToCanceled(Request $request, $id)
     {
       $emp = Employee::findOrFail($id);
       $emp->status = 'canceled';
@@ -284,7 +285,8 @@ class EmployeeController extends Controller
         //     $serviceIdsArray[] = $serviceIds;
         // }
 
-        // // Retrieve orders related to the employee
+
+       // Retrieve orders related to the employee
         $orders = Order::where('employee_id', $emp_id)->where('status', 'معلق')->orderBy('created_at','DESC')->paginate(50);
         $dataCount = Order::get()->count();
         $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
@@ -295,7 +297,7 @@ class EmployeeController extends Controller
           'paginationLinks' => $paginationLinks
       ]);
     }
-}
+  }
 
 
 
@@ -307,7 +309,7 @@ class EmployeeController extends Controller
 
 
 
-  public function uploadOrderImage(Request $request,$orderId)
+  public function uploadOrderImage(Request $request, $orderId)
   {
     $validated = $request->validate([
       'beforeImage' => 'required',
@@ -319,30 +321,34 @@ class EmployeeController extends Controller
     $emp_id = Employee::where('phone',$emp_num)->value('id');
 
 
-   $images = new BeforAfter(); 
-   $images->employee_id =$emp_id;
-   $images->order_id =$orderId;
-   $images->save();
+    $images = new BeforAfter(); 
+    $images->employee_id =$emp_id;
+    $images->order_id =$orderId;
+    $images->save();
+
 
     //store before image
-    $newBeforeImage = $request->file('beforeImage');
+      $newBeforeImage = $request->file('beforeImage');
     //for change image name
-     $newBeforeImageName = 'beforeImage_' .$images->id. '.' . $newBeforeImage->getClientOriginalExtension();
-     $newBeforeImage->move(public_path('site/img/gallery/'), $newBeforeImageName);
-     $images->beforeImage = $newBeforeImageName;     
+      $newBeforeImageName = 'beforeImage_' .$images->id. '.' . $newBeforeImage->getClientOriginalExtension();
+      $newBeforeImage->move(public_path('site/img/gallery/'), $newBeforeImageName);
+      $images->beforeImage = $newBeforeImageName;     
+
 
     //store after image
-     $newAfterImage = $request->file('afterImage');
+      $newAfterImage = $request->file('afterImage');
     //for change image name
-    $newAfterImageName = 'afterImage_' .$images->id. '.' . $newAfterImage->getClientOriginalExtension();
-    $newAfterImage->move(public_path('site/img/gallery/'), $newAfterImageName);
-    $images->afterImage = $newAfterImageName;     
+      $newAfterImageName = 'afterImage_' .$images->id. '.' . $newAfterImage->getClientOriginalExtension();
+      $newAfterImage->move(public_path('site/img/gallery/'), $newAfterImageName);
+      $images->afterImage = $newAfterImageName;    
+    
+    
     $images->update();
     session()->flash('Add', 'تم إضافة الصور بنجاح');
    
-   $order = Order::where('id',$orderId)->first();
-   $order->status = 'منجز';
-   $order->update();
+    $order = Order::where('id',$orderId)->first();
+    $order->status = 'منجز';
+    $order->update();
 
    return redirect()->route('ord.get');
   }
@@ -350,75 +356,103 @@ class EmployeeController extends Controller
 
 
   public function myGallery()
-   {
-    $id = auth()->user()->id;
-    $emp_num = User::where('id',$id)->value('phone');
-    $emp_id = Employee::where('phone',$emp_num)->value('id');
-
-   $gallery = BeforAfter::where('employee_id',$emp_id)->orderBy('created_at','DESC')->paginate(50);
-   $dataCount = BeforAfter::get()->count();
-   $paginationLinks = $gallery->withQueryString()->links('pagination::bootstrap-4'); 
-  return view('employee.before_after.show', [
-      'gallery' => $gallery,
-      'dataCount'=>$dataCount,
-      'paginationLinks' => $paginationLinks
-  ]);
-   }
-
-
-
-   public function acceptedFromEmp()
-   {
-    // $results[] = DB::table('order_service')
-    // ->join('orders', 'orders.id', 'order_service.order_id')
-    // ->join('services', 'services.id', 'order_service.service_id')
-    // ->select('services.name','services.type')
-    // ->get();
-
-  if (auth()->user()->role == 'employee')
-    {
-    $id = auth()->user()->id;
-    $emp_num = User::where('id',$id)->value('phone');
-    $emp_id = Employee::where('phone',$emp_num)->value('id');
-    
-    $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
-    $dataCount = Order::get()->count();
-    $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
-   return view('employee.orders.accept', [
-       'orders' => $orders,
-       'dataCount'=>$dataCount,
-      'paginationLinks' => $paginationLinks
-    ]);
-   }
-   }
-
-
-
-   public function doneFromEmp()
-   {
-    // $results[] = DB::table('order_service')
-    // ->join('orders', 'orders.id', 'order_service.order_id')
-    // ->join('services', 'services.id', 'order_service.service_id')
-    // ->select('services.name','services.type')
-    // ->get();
-
-  if (auth()->user()->role == 'employee')
   {
     $id = auth()->user()->id;
     $emp_num = User::where('id',$id)->value('phone');
     $emp_id = Employee::where('phone',$emp_num)->value('id');
 
-    $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->orderBy('created_at','DESC')->paginate(50);
-    $dataCount = Order::get()->count();
-    $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
-
-    return view('employee.orders.done', [
-       'orders' => $orders,
-       'dataCount'=>$dataCount,
+    $gallery = BeforAfter::where('employee_id',$emp_id)->orderBy('created_at','DESC')->paginate(50);
+    $dataCount = BeforAfter::get()->count();
+    $paginationLinks = $gallery->withQueryString()->links('pagination::bootstrap-4'); 
+   
+    return view('employee.before_after.show', [
+      'gallery' => $gallery,
+      'dataCount'=>$dataCount,
       'paginationLinks' => $paginationLinks
     ]);
   }
+
+
+
+  public function acceptedFromEmp()
+  {
+    // $results[] = DB::table('order_service')
+    // ->join('orders', 'orders.id', 'order_service.order_id')
+    // ->join('services', 'services.id', 'order_service.service_id')
+    // ->select('services.name','services.type')
+    // ->get();
+
+    if (auth()->user()->role == 'employee')
+    {
+      $id = auth()->user()->id;
+      $emp_num = User::where('id',$id)->value('phone');
+      $emp_id = Employee::where('phone',$emp_num)->value('id');
+    
+      $employee = Employee::find($emp_id);
+
+      $orders = Order::where('employee_id',$emp_id)->where('status','قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
+      // $dataCount = Order::get()->count();
+
+      $orders_home = HomeOrders::where('employee_id',$emp_id)->where('statuss','قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
+      // $dataCount = HomeOrders::get()->count();
+
+      // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+      
+
+      return view('employee.orders.accept', [
+        'orders' => $orders,
+        'orders_home' => $orders_home,
+        'employee' => $employee,
+
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks
+      ]);
+    }
   }
+
+
+
+  public function doneFromEmp()
+  {
+    if (auth()->user()->role == 'employee')
+    {
+      $id = auth()->user()->id;
+      $emp_num = User::where('id',$id)->value('phone');
+      $emp_id = Employee::where('phone',$emp_num)->value('id');
+
+      $employee = Employee::find($emp_id);
+
+      $orders = Order::where('employee_id',$emp_id)->where('status','منجز')->orderBy('created_at','DESC')->paginate(50);
+      // $dataCount = Order::get()->count();
+      // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4'); 
+
+      $orders_home = HomeOrders::where('employee_id',$emp_id)->where('statuss','قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
+
+      foreach($orders as $order){
+        $totalPrice = $order->totalPrice;
+      }
+
+      $balance = auth()->user()->balance;
+      $balance = $balance + $totalPrice;
+
+
+      // تحديث قيمة balance في الطلب الحالي
+      User::find($id)->update([
+        'balance' => $balance,
+      ]);
+
+
+      return view('employee.orders.done', [
+        'orders' => $orders,
+        'orders_home' => $orders_home,
+        'employee' => $employee,
+
+        // 'dataCount'=>$dataCount,
+        // 'paginationLinks' => $paginationLinks,
+      ]);
+    }
+  }
+
 
   //  public function cancelByEmp(Request $request,$id)
   //  {
@@ -434,6 +468,7 @@ class EmployeeController extends Controller
   //   return back();
   //   }
   //  }
+
 
   public function cancelByEmp(Request $request, $orderId)
   {
@@ -459,17 +494,146 @@ class EmployeeController extends Controller
 
   public function showCount($id) 
   {
-    $doneOrders = Order::where('employee_id',$id)->where('status','منجز')->count();
-    $pendOrders = Order::where('employee_id',$id)->where('status','معلق')->count();
-    $waitOrders = Order::where('employee_id',$id)->where('status','قيد الإنجاز')->count();
-    $canceledOrders = Order::where('employee_id',$id)->where('status','مرفوض من قبل الموظف')->count();
-    $total =Order::where('employee_id',$id)->where('status','منجز')->sum('totalPrice');
+    $doneOrders = Order::where('employee_id', $id)->where('status','منجز')->count();
+    $pendOrders = Order::where('employee_id', $id)->where('status','معلق')->count();
+    $waitOrders = Order::where('employee_id', $id)->where('status','قيد الإنجاز')->count();
+    $canceledOrders = Order::where('employee_id', $id)->where('status','مرفوض من قبل الموظف')->count();
+    
+    $total =Order::where('employee_id', $id)->where('status','منجز')->sum('totalPrice');
     $emp_name = Employee::where('id', $id)->first();
     
     return view('admin.employees.show_count' , compact('doneOrders','pendOrders','waitOrders','canceledOrders','total', 'emp_name'));
   }
 
-   
+
+
+  // purchases in dashboard
+  public function GetMyPend()
+  {
+    $id = auth()->user()->id;
+
+    $orders = Order::where('user_id', $id)->where('status', 'معلق')->orderBy('created_at','DESC')->paginate(50);
+    $orders_home = HomeOrders::where('user_id', $id)->where('statuss', 'معلق')->orderBy('created_at','DESC')->paginate(50);
+      
+    if (auth()->user()->role == 'employee') {
+      return view('employee.purchases.pend', [
+        'orders' => $orders,
+        'orders_home' => $orders_home,
+      ]);
+    }
+
+  }
+
+  public function GetMyAccept()
+  {
+    $id = auth()->user()->id;
+
+    $orders = Order::where('user_id', $id)->where('status', 'قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
+    $orders_home = HomeOrders::where('user_id', $id)->where('statuss', 'قيد الإنجاز')->orderBy('created_at','DESC')->paginate(50);
+
+      if (auth()->user()->role == 'employee') {
+        return view('employee.purchases.accept', [
+          'orders' => $orders,
+          'orders_home' => $orders_home,
+      ]);
+    }
+  }
+
+  public function GetMyDone()
+  {
+    $id = auth()->user()->id;
+
+    $orders = Order::where('user_id', $id)->where('status', 'منجز')->orderBy('created_at','DESC')->paginate(50);
+    $orders_home = HomeOrders::where('user_id', $id)->where('statuss', 'منجز')->orderBy('created_at','DESC')->paginate(50);
+
+    if (auth()->user()->role == 'employee') {
+      return view('employee.purchases.done', [
+        'orders' => $orders,
+        'orders_home' => $orders_home,
+      ]);
+    }
+  }
+
+  public function GetMyCancel()
+  {
+    $id = auth()->user()->id;
+
+      // $emp_num = User::where('id', $id)->value('phone');
+      // $emp_id = Employee::where('phone', $emp_num)->value('id');
+
+      // cancel purchases related to the employee
+      $orders = Order::where('user_id', $id)->where('status', 'مرفوض')->orderBy('created_at','DESC')->paginate(50);
+      $orders_home = HomeOrders::where('user_id', $id)->where('statuss', 'مرفوض')->orderBy('created_at','DESC')->paginate(50);
+
+      // $dataCount = Order::get()->count();
+      // $paginationLinks = $orders->withQueryString()->links('pagination::bootstrap-4');
+
+      if (auth()->user()->role == 'employee') {
+        return view('employee.purchases.cancel', [
+          'orders' => $orders,
+          'orders_home' => $orders_home,
+
+          // 'dataCount'=>$dataCount,
+          // 'paginationLinks' => $paginationLinks
+      ]);
+    }
+  } 
+
+
+
+  // purchases in site
+  public function all_purchases(Request $request){
+
+    $id = auth()->user()->id;
+    $status = $request->status ?? []; 
+
+    if ($status) {
+    $orders = Order::where('user_id', $id)->whereIn('status', $status)->orderBy('created_at','DESC')->paginate(50);
+    $orders_home = HomeOrders::where('user_id', $id)->whereIn('statuss', $status)->orderBy('created_at','DESC')->paginate(50);
+    } 
+    else {
+      $orders = null;
+      $orders_home = null;
+    }
+
+    if(auth()->user()){
+      return view('site.profile.purchases', [
+        'orders' => $orders,
+        'orders_home' => $orders_home,
+        'status' => $status,
+      ]);
+    } 
   }
 
 
+  public function purchases(Request $request){
+
+    $results_order = Order::query();
+    $results_home = HomeOrders::query();
+
+    $id = auth()->user()->id;
+    $status = $request->status ?? []; 
+
+    
+    if ($status) {
+    $orders = Order::where('user_id', $id)->whereIn('status', $status)->orderBy('created_at','DESC')->paginate(50);
+    $orders_home = HomeOrders::where('user_id', $id)->whereIn('statuss', $status)->orderBy('created_at','DESC')->paginate(50);
+    }
+    else {
+      $orders = Order::where('user_id', $id)->orderBy('created_at','DESC')->paginate(50);
+      $orders_home = HomeOrders::where('user_id', $id)->orderBy('created_at','DESC')->paginate(50);
+    }
+
+    if(auth()->user()){
+      return view('site.profile.purchases', [
+        'orders' => $orders,
+        'orders_home' => $orders_home,
+        'status' => $status,
+      ]);
+    } 
+
+  }
+
+
+
+  }

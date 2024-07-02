@@ -2,6 +2,10 @@
 
 @section('css')
 
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
 @endsection
 
 
@@ -80,7 +84,7 @@
            <!-- services section start -->
            <div class="services_section layout_padding">
             <div class="container">
-               <h1 class="services_taital"> <span style="color: #0c426e">خدماتنا</span></h1>
+               <h1 class="services_taital"> <span style="color: #444444">خدماتنا</span></h1>
                {{-- <p class="services_text">t is a long established fact that a reader will be distracted by the readable content of a page when looking </p> --}}
                <div class="services_section_2 layout_padding">
                   <div class="row">
@@ -120,7 +124,7 @@
       <!-- quality section start -->
       <div class="providing_section layout_padding">
         <div class="container">
-           <h1 class="services_taital">نحن نقدم أفضل <span style="color: #0c426e">الخدمات ذات الجودة</span></h1>
+           <h1 class="services_taital">نحن نقدم أفضل <span style="color: #444444">الخدمات ذات الجودة</span></h1>
         </div>
      </div>
      <div class="providing_section_2 layout_padding">
@@ -131,8 +135,8 @@
             <br><br>
             وبهذا نكون قد قدمنا لكم أفضل مغسلة سيارات متنقلة وعدد من التطبيقات التي تقدم خدمة غسيل السيارات المتنقل في سوريا
            </p>
-           <div class="quote_bt_1"><a href="{{ url('/index') }}"> اطلب لغسيل سيارتك</a></div>
-           <div class="quote_bt_1"><a href="{{ url('/index_home') }}"> اطلب لتنظيف منزلك</a></div>
+           <div class="quote_bt_1" style="width: fit-content;"><a href="{{ url('/index') }}"> اطلب لغسيل سيارتك</a></div>
+           <div class="quote_bt_1" style="width: fit-content;"><a href="{{ url('/index_home') }}"> اطلب لتنظيف منزلك</a></div>
 
         </div>
      </div>

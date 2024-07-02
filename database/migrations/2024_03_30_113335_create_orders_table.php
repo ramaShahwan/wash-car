@@ -25,14 +25,14 @@ return new class extends Migration
 
             $table->timestamps();
             
-              //locations_table
-              $table->foreignId('location_id')->nullable();
-              //users_table
-             $table->foreignId('user_id')->nullable();
-             //payWays_table
-              $table->foreignId('payWay_id')->nullable();
-              //Employees_table
-             $table->foreignId('employee_id')->nullable();
+            //locations_table
+            $table->foreignId('location_id')->nullable();
+            //users_table
+            $table->foreignId('user_id')->nullable();
+            //payWays_table
+            $table->foreignId('payWay_id')->nullable();
+            //Employees_table
+            $table->foreignId('employee_id')->nullable();
         
         });
 

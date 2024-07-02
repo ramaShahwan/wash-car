@@ -45,7 +45,7 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">الطلبات قيد الإنجاز</h4>
+									<h4 class="card-title mg-b-0">الطلبات قيد الإنجاز (غسيل سيارات)</h4>
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
 							</div>
@@ -56,7 +56,7 @@
 										<thead>
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
-												<th class="wd-15p border-bottom-0">اسم صاحب الطلب (سيارة)</th>
+												<th class="wd-15p border-bottom-0">اسم صاحب الطلب</th>
 												<th class="wd-15p border-bottom-0">اسم الموظف</th>
 												<th class="wd-15p border-bottom-0">الموقع</th>
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
@@ -86,72 +86,9 @@
 												@else
 												<td> </td>
 												@endif
-											
-												{{-- @if($order->payWay_id)
-												<td>{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}</td>
-												@else
-												<td> </td>
-												@endif --}}
-
-
-												{{-- <td>{{$order->typeOfCar}}</td>
-												<td>{{$order->sizeOfCar}}</td>
-												<td>{{$order->numOfCar}}</td>
-												<td>{{$order->totalPrice}}</td> --}}
+					
 												<td>{{$order->orderDate}}</td>
 												<td>{{$order->orderTime}}</td>
-
-											
-											</tr>
-											@endforeach
-										</tbody>
-									</table>
-
-								{{-- {!! $paginationLinks !!} --}}
-
-								</div>
-							</div>
-
-
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table text-md-nowrap" id="example1">
-										<thead>
-											<tr>
-												<th class="wd-15p border-bottom-0">#</th>
-												<th class="wd-15p border-bottom-0">اسم صاحب الطلب (عقار) </th>
-												<th class="wd-15p border-bottom-0">اسم الموظف</th>
-												<th class="wd-15p border-bottom-0">الموقع</th>
-												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
-												<th class="wd-15p border-bottom-0">وقت الطلب</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php $i = 1 ?>
-											@foreach($orders_home as $home)
-											<tr>
-												<td>{{$i++}}</td>
-
-												@if($home->user_id)
-												<td>{{ App\Models\User::findOrFail($home->user_id)->name }}</td>
-												@else
-												<td> </td>
-												@endif
-
-												@if($home->employee_id)
-												<td>{{ App\Models\Employee::findOrFail($home->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($home->employee_id)->lastName }}</td>
-												@else
-												<td> </td>
-												@endif
-
-												@if($home->location_id)
-												<td>{{ App\Models\Location::findOrFail($home->location_id)->area }}</td>
-												@else
-												<td> </td>
-												@endif
-											
-												<td>{{$home->OrderDate}}</td>
-												<td>{{$home->OrderTime}}</td>
 
 											</tr>
 											@endforeach
@@ -168,6 +105,74 @@
 					<!--/div-->
 				</div>
 				<!-- /row -->
+
+
+								<!-- row opened -->
+								<div class="row row-sm">
+									<div class="col-xl-12">
+										<div class="card">
+											<div class="card-header pb-0">
+												<div class="d-flex justify-content-between">
+													<h4 class="card-title mg-b-0">الطلبات قيد الإنجاز (تنظيف منزلي)</h4>
+													<i class="mdi mdi-dots-horizontal text-gray"></i>
+												</div>
+											</div>
+				
+											<div class="card-body">
+												<div class="table-responsive">
+													<table class="table text-md-nowrap" id="example1">
+														<thead>
+															<tr>
+																<th class="wd-15p border-bottom-0">#</th>
+																<th class="wd-15p border-bottom-0">اسم صاحب الطلب</th>
+																<th class="wd-15p border-bottom-0">اسم الموظف</th>
+																<th class="wd-15p border-bottom-0">الموقع</th>
+																<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
+																<th class="wd-15p border-bottom-0">وقت الطلب</th>
+															</tr>
+														</thead>
+														<tbody>
+															<?php $i = 1 ?>
+															@foreach($orders_home as $home)
+															<tr>
+																<td>{{$i++}}</td>
+											
+																@if($home->user_id)
+																<td>{{ App\Models\User::findOrFail($home->user_id)->name }}</td>
+																@else
+																<td> </td>
+																@endif
+											
+																@if($home->employee_id)
+																<td>{{ App\Models\Employee::findOrFail($home->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($home->employee_id)->lastName }}</td>
+																@else
+																<td> </td>
+																@endif
+											
+																@if($home->location_id)
+																<td>{{ App\Models\Location::findOrFail($home->location_id)->area }}</td>
+																@else
+																<td> </td>
+																@endif
+															
+																<td>{{$home->OrderDate}}</td>
+																<td>{{$home->OrderTime}}</td>
+											
+															</tr>
+															@endforeach
+														</tbody>
+													</table>
+											
+												{{-- {!! $paginationLinks !!} --}}
+											
+												</div>
+											</div>
+				
+										</div>
+									</div>
+									<!--/div-->
+								</div>
+								<!-- /row -->
 		
 @endsection
 @section('js')

@@ -1,8 +1,13 @@
 {{-- <x-guest-layout> --}}
     <!-- Session Status -->
     {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
- @extends('site.layouts.master')
-    @section('css')
+@extends('site.layouts.master')
+@section('css')
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
 @endsection
 
 
@@ -67,7 +72,7 @@
         <br><br>
 
                   <div class="d-flex justify-content-center">
-                    <button class="btn btn-primary" type="submit" style="color: white; background-color: #0c426e;">تسجيل الدخول</button>
+                    <button class="btn btn-primary" type="submit" style="color: white; background-color: #444444; border: none;">تسجيل الدخول</button>
                 </div>
 
                </div>

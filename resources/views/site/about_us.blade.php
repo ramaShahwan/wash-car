@@ -2,6 +2,10 @@
 
 @section('css')
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
 @endsection
 
 
@@ -12,7 +16,7 @@
       <!-- contact section start -->
       <div class="contact_section layout_padding">
          <div class="container">
-            <h1 class="contact_taital"><span style="color: #0c426e"> من نحن؟ </span></h1>
+            <h1 class="contact_taital"><span style="color: #444444"> من نحن؟ </span></h1>
             <div class="contact_section_2 layout_padding">
 
                <div class="row">

@@ -53,6 +53,7 @@ class SettingController extends Controller
             File::delete($pathImg);
         }
         $newImage = $request->file('icon');
+        
         //for change image name
       //  $name = hexdec(uniqid());
       //  $newImageName = 'icon' .$name.  '.'  . '.webp';

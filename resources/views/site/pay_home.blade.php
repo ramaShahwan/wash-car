@@ -2,6 +2,10 @@
 
 @section('css')
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
 
 <style>
     .selected {
@@ -27,7 +31,7 @@
 
     <div class="services_section layout_padding">
         <div class="container">
-           <h1 class="services_taital"><span style="color: #0c426e"> طريقة الدفع </span></h1>
+           <h1 class="services_taital"><span style="color: #444444"> طريقة الدفع </span></h1>
            {{-- <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p> --}}
 
            <form action="{{ route('ord.home.setPay') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
@@ -39,7 +43,7 @@
                     <div class="row">
                     @foreach ($pay as $item)
                         <div class="col-md-4">
-                            <div class="" style="text-align: center; border: 2px solid #0c426e; padding: 20px;">
+                            <div class="" style="text-align: center; border: 2px solid #444444; padding: 20px;">
                               @if ($item->image)
                                 <img src="{{URL::asset('/site/img/pay/'.$item->image)}}" style="width: 100px; height: 100px;">
                               @else  

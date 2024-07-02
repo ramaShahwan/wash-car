@@ -56,17 +56,11 @@
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
 												<th class="wd-15p border-bottom-0">الاسم</th>
-												<th class="wd-15p border-bottom-0">النسبة</th>
-												{{-- <th class="wd-15p border-bottom-0">تاريخ الولادة</th>
-												<th class="wd-15p border-bottom-0">الجنس</th> --}}
 												<th class="wd-15p border-bottom-0">رقم الموبايل</th>
 												<th class="wd-15p border-bottom-0">المنطقة</th>
-												{{-- <th class="wd-15p border-bottom-0">نبذة حول الموظف</th> --}}
-												
+												<th class="wd-15p border-bottom-0">طبيعة العمل</th>
+									
 												<th class="wd-15p border-bottom-0">سبب الرفض</th>
-
-												{{-- <th class="wd-15p border-bottom-0">صورة</th> --}}
-
 												<th class="wd-15p border-bottom-0">قبول</th>
 											</tr>
 										</thead>
@@ -75,30 +69,20 @@
 											@foreach($employees as $emp)
 											<tr>
 												<td>{{$i++}}</td>
-												<td>{{$emp->firstName}}</td>
-												<td>{{$emp->lastName}}</td>
-												{{-- <td>{{$emp->birthDate}}</td>
-												<td>{{$emp->Gender}}</td> --}}
+												<td>{{$emp->firstName}} {{$emp->lastName}}</td>
 												<td>{{$emp->phone}}</td>
 												<td>{{$emp->area}}</td>
-												{{-- <td>{{$emp->aboutYou}}</td> --}}
+												<td> تنظيف {{$emp->typeOfWork}}</td>
 												
-											<td>{{$emp->note}}</td>
+												<td>{{$emp->note}}</td>
 
-											{{-- @if ($emp->image)
-												<td><img src="{{URL::asset('site/img/emp/'.$emp->image)}}" style="width: 50px;"></td>
-											@else
-												<td><img src="{{URL::asset('site/img/emp/user.jpg')}}"  style="width: 50px;"></td>
-											@endif --}}
-
-											<td>
-												<form action="{{ route('employee.updateAccepted', $emp->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
-													@csrf
-													@method('POST')
-													<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
-												</form>
-											</td>
-
+												<td>
+													<form action="{{ route('employee.updateAccepted', $emp->id) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+														@csrf
+														@method('POST')
+														<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
+													</form>
+												</td>
 											</tr>
 											@endforeach
 										</tbody>

@@ -91,6 +91,18 @@
 										</div>
 									</div><br>
 
+									<div class="row">
+										<div class="col">
+											<label for="inputName" class="control-label">الرصيد</label>
+											<input type="text" class="form-control @error('balance') is-invalid @enderror" 
+											id="inputName" name="balance" required>
+
+											@error('balance')
+												<div class="alert alert-danger">{{ $message }}</div>
+											@enderror
+										</div>
+									</div><br>
+
 									<div class="form-group">
 										<label>نوع المستخدم</label>
 											<select name="role" class="form-control select @error('role') is-invalid @enderror">

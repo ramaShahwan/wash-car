@@ -3,20 +3,22 @@
 use App\Http\Controllers\BeforAfterController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeOrdersController;
+use App\Http\Controllers\HomeServicesController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PayWayController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RechargeController;
 use App\Http\Controllers\Searchajax;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeServicesController;
 use App\Models\HomeOrders;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -110,6 +112,9 @@ Route:: prefix('order')->group(function () {
     Route::get('show_done', [OrderController::class, 'getDoneOrders'])->name('ord.done');
     
     Route::get('show_details/{id}', [OrderController::class, 'getOrderDetails'])->name('ord.details');
+    Route::get('show_details_home/{id}', [OrderController::class, 'getOrderDetailsHome'])->name('ord.details_home');
+
+    
     Route::get('show_wait', [OrderController::class, 'getWaitingOrders'])->name('ord.wait');
     Route::get('show_pend', [OrderController::class, 'getPendingOrders'])->name('ord.pend');
     Route::get('show_cancel', [OrderController::class, 'getCanceledOrders'])->name('ord.cancel');
@@ -123,22 +128,12 @@ Route:: prefix('order')->group(function () {
     Route::post('seedOrderToEmp/{id}', [OrderController::class, 'seedOrderToEmp'])->name('ord.seedOrderToEmp');
 
     Route::delete('delete/{id}', [OrderController::class, 'destroy'])->name('ord.delete');
+    Route::delete('delete_home/{id}', [OrderController::class, 'destroy_home'])->name('ord.delete_home');
+
 
     Route::get('canceledFormEmp', [OrderController::class, 'getCanceledOrdersByEmp'])->name('ord.canceledFormEmp');
 
-    
-    //for home
-    // Route::get('show_pend_home', [HomeOrdersController::class, 'getPendingOrders'])->name('ord.pend_home');
 });
-
-
-//   Route::get('admin_add', [OrderController::class, 'create']);
-//   Route::post('admin_save_order', [OrderController::class, 'store'])->name('admin_ord.save');
-  
-//   Route::get('admin_summary', [OrderController::class, 'summary'])->name('admin_ord.summary');
-//   Route::get('admin_pay', [OrderController::class, 'getPayway'])->name('admin_ord.pay');
-//   Route::post('admin_set_pay', [OrderController::class, 'setPayway'])->name('admin_ord.setPay');
-
 
   //service
 Route:: prefix('service')->group(function () {
@@ -190,7 +185,23 @@ Route:: prefix('user')->group(function () {
     Route::get('edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
+
+    Route::get('details/{id}',[UserController::class,'details'])->name('user.details');
+
+    Route::get('add_balance', [RechargeController::class, 'create']);
+    Route::post('save_balance', [RechargeController::class, 'store'])->name('balance.save');
+
 });
+
+
+    //financial
+    Route:: prefix('financial')->group(function () {
+
+        Route::get('increase', [RechargeController::class, 'index'])->name('financial.show');
+        Route::get('decrease', [RechargeController::class, 'decrease'])->name('financial.decrease');
+
+        // Route::get('details/{id}',[RechargeController::class,'details'])->name('financial.details');
+    });
 
     //employee
 Route:: prefix('employee')->group(function () {
@@ -222,7 +233,6 @@ Route:: prefix('beforAfter')->group(function () {
     Route::get('show', [BeforAfterController::class, 'index'])->name('beforAfter.show');
     Route::get('add', [BeforAfterController::class, 'create']);
     Route::post('save', [BeforAfterController::class, 'store'])->name('beforAfter.save');
-    // Route::get('edit/{id}', [BeforAfterController::class, 'edit'])->name('beforAfter.edit');
 
     Route::get('editAfter/{id}', [BeforAfterController::class, 'editAfter'])->name('after.edit');
     Route::get('editBefore/{id}', [BeforAfterController::class, 'editBefore'])->name('before.edit');
@@ -239,15 +249,7 @@ Route:: prefix('beforAfter')->group(function () {
 
 // User Routes
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
-
-//     Route::get('add', [OrderController::class, 'create']);
-//     Route::post('save_order', [OrderController::class, 'store'])->name('ord.save');
-//     Route::get('summary', [OrderController::class, 'summary'])->name('ord.summary');
-//    // Route::get('getArea', [LocationController::class, 'show'])->name('getArea.show');
-
-//     Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
-//     Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
-    
+ 
 });
 
 
@@ -267,13 +269,6 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
     
     Route::get('myGallery', [EmployeeController::class, 'myGallery'])->name('ord.gallery');
 
-    // Route::get('emp_add', [OrderController::class, 'create']);
-    // Route::post('emp_save_order', [OrderController::class, 'store'])->name('emp_ord.save');
-    // Route::get('emp_summary', [OrderController::class, 'summary'])->name('emp_ord.summary');
-
-    // Route::get('emp_pay', [OrderController::class, 'getPayway'])->name('emp_ord.pay');
-    // Route::post('emp_set_pay', [OrderController::class, 'setPayway'])->name('emp_ord.setPay');
-
     Route::get('acceptedFromEmp', [EmployeeController::class, 'acceptedFromEmp'])->name('emp_ord.accepted');
     Route::get('doneFromEmp', [EmployeeController::class, 'doneFromEmp'])->name('emp_ord.done');
     
@@ -282,10 +277,25 @@ Route::middleware(['auth', 'verified', 'employee'])->group(function () {
 
     Route::post('cancel_order/{id}', [EmployeeController::class, 'cancelByEmp'])->name('emp_ord.cancel');
 
-    
     Route::post('updatePenddingToWaiting/{id}', [OrderController::class, 'updatePenddingToWaiting'])->name('ord.updatePenddingToWaiting');
+
 });
 
+
+//purchases
+// site
+// Route::get('/all_purchases', [EmployeeController::class, 'purchases']);
+
+// Route::get('pend_pur', [EmployeeController::class, 'GetMyPendPurchases'])->name('pur.pend'); 
+// Route::get('accept_pur', [EmployeeController::class, 'GetMyAcceptPurchases'])->name('pur.accept'); 
+// Route::get('done_pur', [EmployeeController::class, 'GetMyDonePurchases'])->name('pur.done'); 
+// Route::get('cancel_pur', [EmployeeController::class, 'GetMyCancelPurchases'])->name('pur.cancel'); 
+
+//dashboard
+Route::get('pend', [EmployeeController::class, 'GetMyPend']);
+Route::get('accept', [EmployeeController::class, 'GetMyAccept']); 
+Route::get('done', [EmployeeController::class, 'GetMyDone']); 
+Route::get('cancel', [EmployeeController::class, 'GetMyCancel']); 
 
 
 Route::get('get_img', [BeforAfterController::class, 'show']);
@@ -298,9 +308,9 @@ Route::get('/about_us', function () {
     return view('site.about_us');
 });
 
+
 Route::get('add_emp', [EmployeeController::class, 'create']);
 Route::post('save', [EmployeeController::class, 'store'])->name('emp.save');
-
 
 
 // for car
@@ -312,12 +322,27 @@ Route::get('pay', [OrderController::class, 'getPayway'])->name('ord.pay');
 Route::post('set_pay', [OrderController::class, 'setPayway'])->name('ord.setPay');
 
 
-
 // for home
 Route::post('save_order_home', [HomeOrdersController::class, 'store'])->name('ord.home.save');
 Route::get('summary_home', [HomeOrdersController::class, 'summary'])->name('ord.home.summary');
 Route::get('pay_home', [HomeOrdersController::class, 'getPayway'])->name('ord.home.pay');
 Route::post('set_pay_home', [HomeOrdersController::class, 'setPayway'])->name('ord.home.setPay');
+
+
+// for profile in site (header)
+Route::get('edit_profile/{id}', [UserController::class, 'edit_profile'])->name('edit_profile');
+Route::post('/update_profile/{id}', [UserController::class, 'update_profile'])->name('update_profile');
+
+Route::get('/all_purchases', [EmployeeController::class, 'all_purchases'])->name('all_purchases');
+Route::get('/purchases', [EmployeeController::class, 'purchases'])->name('purchases');
+
+Route::get('/balance', [UserController::class, 'balance'])->name('balance');
+
+Route::post('pull_balance', [UserController::class, 'pull_balance'])->name('balance.pull');
+
+
+
+Route::get('generation/{href}', [PageController::class, 'generation'])->name('page.generation');
 
 
 

@@ -13,6 +13,7 @@ class TypeController extends Controller
          $types = Type::orderBy('created_at','DESC')->paginate(50);
          $dataCount = Type::get()->count();
          $paginationLinks = $types->withQueryString()->links('pagination::bootstrap-4'); 
+         
          return view('admin.type.show', [
           'types' => $types,
           'dataCount'=>$dataCount,

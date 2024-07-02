@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('password');
             $table->string('role')->default('user')->nullable();
+            $table->string('balance')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

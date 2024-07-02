@@ -2,6 +2,11 @@
 
 @section('css')
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
+
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -130,8 +135,15 @@
       <!-- choose section start -->
 
       <div class="choose_section layout_padding">
+
+         @if (session('message'))
+            <div class="alert alert-danger" style="text-align: right; direction: rtl;">
+               {{ session('message') }}
+            </div>
+         @endif
+
          <div class="container">
-            <h1 class="services_taital"><span style="color: #0c426e">اطلب الآن</span></h1>
+            <h1 class="services_taital"><span style="color: #444444">اطلب الآن</span></h1>
 
             <form action="{{ route('ord.save') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                @csrf
@@ -195,9 +207,9 @@
             <input type="hidden" name="service" value="{{ $ser->id }}">
             <h2 style="font-weight: bolder"> {{ $ser->name }} </h2>
             <hr>
-            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> {{ $ser->price }} </p>
+            <p class="dummy_text" style="font-size: 20px; font-weight: bolder"> <img src="site/images/wallet.png" alt="" style="width: 30px;"> &nbsp; {{ $ser->price }} </p>
             <hr>
-            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->period }} </p>
+            <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> <img src="site/images/clock1.png" alt="" style="width: 30px;"> &nbsp; {{ $ser->period }} </p>
             <hr>
             <p class="dummy_text" style="font-size: 16px; font-weight: bolder"> {{ $ser->description }} </p>
          </div>
@@ -235,7 +247,7 @@
 
    <div class="col-md-12">
       <input type="checkbox" name="service_ids[]" value="{{ $ser->id }}"> &nbsp;
-      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} : {{ $ser->description }} </p>
+      <p class="testimonial_text" style="display: inline;"> {{ $ser->name }} : {{ $ser->description }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; السعر: {{ $ser->price }} </p>
       <hr>
    </div>
 
@@ -398,8 +410,9 @@
                            <li><label>{{ $get_pinned->name}}</label>
                               <b class="space"></b></li>
                         @endforeach --}}
-
-      <button type="submit" class="btn btn-primary" style="background-color: #0c426e; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>
+  <div class="col-12">
+      <button type="submit" class="btn btn-primary" style="background-color: #444444; border: none; margin-left: auto; margin-right: auto; margin-top: 50px; display: block;">تثبيت الطلب</button>
+   </div>
 
   </div>
 

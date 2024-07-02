@@ -38,19 +38,15 @@
 								<form action="{{ route('emp_ord.accept_details',$order->id) }}" method="post"  enctype="multipart/form-data" autocomplete="off">
 									{{ csrf_field() }}
 
-                                {{-- @foreach ($order as $ord) --}}
-
 								<div class="row">
-									<div class="col">
+									<div class="col-6">
 										<label for="inputName" class="control-label"> اسم صاحب الطلب</label>
 										<input type="hidden" name="name" value="{{ App\Models\User::findOrFail($order->user_id)->name }}">
 										<input type="text" class="form-control "
 										id="inputName" name="name" value="{{ App\Models\User::findOrFail($order->user_id)->name }}" readonly>
 									</div>
-								</div><br>
 
-								<div class="row">
-									<div class="col">
+									<div class="col-6">
 										<label for="inputName" class="control-label"> اسم الموظف</label>
 										<input type="hidden" name="name" value="{{ App\Models\Employee::findOrFail($order->employee_id)->firstName }} {{ App\Models\Employee::findOrFail($order->employee_id)->lastName }}">
 										<input type="text" class="form-control"
@@ -59,16 +55,14 @@
 								</div><br>
 
 								<div class="row">
-									<div class="col">
+									<div class="col-6">
 										<label for="inputName" class="control-label">رقم السيارة</label>
 										<input type="hidden" name="numOfCar" value="{{ $order->numOfCar }}">
 										<input type="text" class="form-control "
 										id="inputName" name="numOfCar" value="{{ $order->numOfCar }}" readonly>
 									</div>
-								</div><br>
 									
-									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">حجم السيارة</label>
 											<input type="hidden" name="sizeOfCar" value="{{ $order->sizeOfCar }}">
 											<input type="text" class="form-control "
@@ -77,15 +71,13 @@
 									</div><br>
 
 									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">نوع الغسيل</label>
 											<input type="hidden" name="name" value="{{ implode($primary) }}">
 											<input type="text" class="form-control" id="inputName" name="name" value="{{ implode($primary) }}" readonly>
 										</div>
-									</div><br>
 									
-									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label"> الخدمات الإضافية</label>
 											@if(isset($sec) && is_array($sec) && !empty($sec))
 												@foreach($sec as $ser)
@@ -101,16 +93,14 @@
 									<br>
 
 									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">تاريخ الطلب</label>
 											<input type="hidden" name="orderDate" value="{{ $order->orderDate }}">
 											<input type="text" class="form-control "
 											id="inputName" name="orderDate" value="{{ $order->orderDate }}" readonly>
 										</div>
-									</div><br>
 
-									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">وقت الطلب</label>
 											<input type="hidden" name="orderTime" value="{{ $order->orderTime }}">
 											<input type="text" class="form-control "
@@ -119,16 +109,14 @@
 									</div><br>
 
 									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">موقع السيارة</label>
 											<input type="hidden" name="location_id" value="{{ App\Models\Location::findOrFail($order->location_id)->area }}">
 											<input type="text" class="form-control "
 											id="inputName" name="location_id" value="{{ App\Models\Location::findOrFail($order->location_id)->area }}" readonly>
 										</div>
-									</div><br>
 
-									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">رقم السيارة</label>
 											<input type="hidden" name="numOfCar" value="{{ $order->numOfCar }}">
 											<input type="text" class="form-control "
@@ -137,16 +125,14 @@
 									</div><br>
 
 									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">نوع السيارة</label>
 											<input type="hidden" name="typeOfCar" value="{{ $order->typeOfCar }}">
 											<input type="text" class="form-control "
 											id="inputName" name="typeOfCar" value="{{ $order->typeOfCar }}" readonly>
 										</div>
-									</div><br>
 
-									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label"> طريقة الدفع</label>
 											<input type="hidden" name="name" value="{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}">
 											<input type="text" class="form-control"

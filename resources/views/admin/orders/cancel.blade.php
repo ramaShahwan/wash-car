@@ -226,14 +226,15 @@
 													<button class="btn btn-sm btn-success" title="قبول"><i class="fa fa-check"></i></button>
 												</form>
 											</td>
-
+									
 											<td>
 												<a class="modal-effect btn btn-sm btn-danger" data-toggle="modal" style="cursor: pointer;"
-												data-target="#delete{{$home->id}}"><i class="las la-trash"></i></a>
-												<form action="{{route('ord.delete', $home->id)}}" method="POST" enctype="multipart/form-data">
-														@csrf
-														@method('DELETE')
+													data-target="#delete{{$home->id}}"><i class="las la-trash"></i></a>
+												<form action="{{route('ord.delete_home', $home->id)}}" method="POST" enctype="multipart/form-data">
+													@csrf
+													@method('DELETE')
 													<div id="delete{{$home->id}}" class="modal fade delete-modal" role="dialog">
+														
 														<div class="modal-dialog modal-dialog-centered">
 															<div class="modal-content">
 		
@@ -254,9 +255,14 @@
 																</div>
 															</div>
 														</div>
+
 													</div>
 												</form>
 											</td>
+											
+
+
+
 
 											</tr>
 											@endforeach

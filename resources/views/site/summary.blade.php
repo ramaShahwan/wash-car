@@ -2,6 +2,10 @@
 
 @section('css')
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
 @endsection
 
 
@@ -11,7 +15,7 @@
 
     <div class="services_section layout_padding">
         <div class="container">
-           <h1 class="services_taital"><span style="color: #0c426e">ملخص الطلب</span></h1>
+           <h1 class="services_taital"><span style="color: #444444">ملخص الطلب</span></h1>
            {{-- <p class="services_text"> يرجى التأكد من الطلب ليتم التثبيت </p> --}}
 
          <form action="{{ route('ord.pay') }}" method="GET" enctype="multipart/form-data" autocomplete="off">
@@ -70,7 +74,7 @@
            </div>
 
            <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary" style="background-color: #0c426e;"> &nbsp; <i class="fa fa-arrow-left"></i> &nbsp; انتقل للدفع &nbsp; </button>
+            <button type="submit" class="btn btn-primary" style="background-color: #444444;"> &nbsp; <i class="fa fa-arrow-left"></i> &nbsp; انتقل للدفع &nbsp; </button>
          </div>
 
          <br><br><br>

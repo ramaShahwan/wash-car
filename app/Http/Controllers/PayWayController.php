@@ -22,6 +22,7 @@ class PayWayController extends Controller
       $pay = PayWay::orderBy('created_at','DESC')->paginate(50);
       $dataCount = PayWay::get()->count();
       $paginationLinks = $pay->withQueryString()->links('pagination::bootstrap-4'); 
+
       return view('admin.payWay.show', [
        'pay' => $pay,
        'dataCount'=>$dataCount,
@@ -31,7 +32,7 @@ class PayWayController extends Controller
 
     public function create()
     {
-       return view('admin.payWay.add');
+      return view('admin.payWay.add');
     }
 
     public function store(Request $request)
@@ -56,7 +57,7 @@ class PayWayController extends Controller
        $pay->image = $newImageName;
        $pay->update();
        
-   }
+      }
         session()->flash('Add', 'تم إضافة الحساب بنجاح');
         return redirect()->route('pay.show');
         // return back();

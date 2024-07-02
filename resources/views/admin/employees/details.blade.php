@@ -38,16 +38,14 @@
                                 @foreach ($employees as $emp)
                                     
 								<div class="row">
-									<div class="col">
+									<div class="col-6">
 										<label for="inputName" class="control-label">الاسم</label>
 										<input type="hidden" name="firstName" value="{{ $emp->firstName }}">
 										<input type="text" class="form-control "
 										id="inputName" name="firstName" value="{{ $emp->firstName }}" readonly>
 									</div>
-								</div><br>
 
-								<div class="row">
-									<div class="col">
+									<div class="col-6">
 										<label for="inputName" class="control-label">الكنية</label>
 										<input type="hidden" name="lastName" value="{{ $emp->lastName }}">
 										<input type="text" class="form-control"
@@ -56,16 +54,14 @@
 								</div><br>
 
 								<div class="row">
-									<div class="col">
+									<div class="col-6">
 										<label for="inputName" class="control-label">تاريخ الولادة</label>
 										<input type="hidden" name="birthDate" value="{{ $emp->birthDate }}">
 										<input type="text" class="form-control "
 										id="inputName" name="birthDate" value="{{ $emp->birthDate }}" readonly>
 									</div>
-								</div><br>
 									
-									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">الجنس</label>
 											<input type="hidden" name="Gender" value="{{ $emp->Gender }}">
 											<input type="text" class="form-control "
@@ -74,27 +70,33 @@
 									</div><br>
 
 									<div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">رقم الموبايل</label>
 											<input type="hidden" name="phone" value="{{ $emp->phone }}">
 											<input type="text" class="form-control" id="inputName" name="phone" value="{{ $emp->phone }}" readonly>
 										</div>
-									</div><br>
 									
-                                    <div class="row">
-										<div class="col">
-											<label for="inputName" class="control-label">نبذة حول الموظف</label>
-											<input type="hidden" name="aboutYou" value="{{ $emp->aboutYou }}">
-											<input type="text" class="form-control" id="inputName" name="aboutYou" value="{{ $emp->aboutYou }}" readonly>
-                                        </div>
-									</div><br>
-                                    
-                                    <div class="row">
-										<div class="col">
+										<div class="col-6">
 											<label for="inputName" class="control-label">المنطقة</label>
 											<input type="hidden" name="area" value="{{ $emp->area }}">
 											<input type="text" class="form-control" id="inputName" name="area" value="{{ $emp->area }}" readonly>
                                         </div>
+
+									</div><br>
+                                    
+                                    <div class="row">
+										<div class="col-6">
+											<label for="inputName" class="control-label">نبذة حول الموظف</label>
+											<input type="hidden" name="aboutYou" value="{{ $emp->aboutYou }}">
+											<input type="text" class="form-control" id="inputName" name="aboutYou" value="{{ $emp->aboutYou }}" readonly>
+                                        </div>
+
+										<div class="col-6">
+											<label for="inputName" class="control-label">طبيعة العمل (نوع التنظيف)</label>
+											<input type="hidden" name="typeOfWork" value="{{ $emp->typeOfWork }}">
+											<input type="text" class="form-control" id="inputName" name="typeOfWork" value="{{ $emp->typeOfWork }}" readonly>
+                                        </div>
+										
 									</div><br>
 								
 									<div class="row">

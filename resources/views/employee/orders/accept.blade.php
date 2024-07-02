@@ -22,6 +22,8 @@
 
 @section('content')
 
+		@if ($employee && $employee->typeOfWork == 'سيارة')
+
 				<!-- row opened -->
 				<div class="row row-sm">
 					<div class="col-xl-12">
@@ -32,8 +34,6 @@
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
 							</div>
-
-							@if (auth()->user()->typeOfWork == 'سيارة' )
 								
 							<div class="card-body">
 								<div class="table-responsive">
@@ -99,89 +99,107 @@
 										</tbody>
 									</table>
 
-								{!! $paginationLinks !!}
+								{{-- {!! $paginationLinks !!} --}}
 
 								</div>
 							</div>
+						</div>
+					</div>
+					<!--/div-->
+				</div>
+				<!-- /row -->
 
-							@else
+		@elseif ($employee && $employee->typeOfWork == 'عقار')
 
+				<!-- row opened -->
+				<div class="row row-sm">
+					<div class="col-xl-12">
+						<div class="card">
+							<div class="card-header pb-0">
+								<div class="d-flex justify-content-between">
+									<h4 class="card-title mg-b-0">الطلبات المقبولة</h4>
+									<i class="mdi mdi-dots-horizontal text-gray"></i>
+								</div>
+							</div>
+								
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table text-md-nowrap" id="example1">
 										<thead>
 											<tr>
 												<th class="wd-15p border-bottom-0">#</th>
-											    <th class="wd-15p border-bottom-0">اسم صاحب الطلب</th>
+												<th class="wd-15p border-bottom-0">اسم صاحب الطلب</th>
 												<th class="wd-15p border-bottom-0">الموقع</th>
 												<th class="wd-15p border-bottom-0">طريقة الدفع</th>
-
+							
 												<th class="wd-15p border-bottom-0">نوع العقار</th>
 												<th class="wd-15p border-bottom-0">عدد الساعات</th>
 												<th class="wd-15p border-bottom-0">مواد تنظيف</th>
 												<th class="wd-15p border-bottom-0">السعر الإجمالي</th>
 												<th class="wd-15p border-bottom-0">تاريخ الطلب</th>
 												<th class="wd-15p border-bottom-0">وقت الطلب</th>
-
+							
 												<th class="wd-15p border-bottom-0">تفاصيل الطلب</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php $i = 1 ?>
-											@foreach($orders as $order)
+											@foreach($orders_home as $home)
 											<tr>
 												<td>{{$i++}}</td>
-
-												@if($order->user_id)
-												<td>{{ App\Models\User::findOrFail($order->user_id)->name }}</td>
+							
+												@if($home->user_id)
+												<td>{{ App\Models\User::findOrFail($home->user_id)->name }}</td>
 												@else
 												<td> </td>
 												@endif
-
-												@if($order->location_id)
-												<td>{{ App\Models\Location::findOrFail($order->location_id)->area }}</td>
+							
+												@if($home->location_id)
+												<td>{{ App\Models\Location::findOrFail($home->location_id)->area }}</td>
 												@else
 												<td> </td>
 												@endif
 											
-												@if($order->payWay_id)
-												<td>{{ App\Models\PayWay::findOrFail($order->payWay_id)->way }}</td>
+												@if($home->payWay_id)
+												<td>{{ App\Models\PayWay::findOrFail($home->payWay_id)->way }}</td>
 												@else
 												<td> </td>
 												@endif
-
-												<td>{{$order->NumOfbulding}}</td>
-												<td>{{$order->NumOfHour}}</td>
-												<td>{{$order->cleanMaterial}}</td>
-												<td>{{$order->totalPrice}}</td>
-												<td>{{$order->orderDate}}</td>
-												<td>{{$order->orderTime}}</td>
-
+							
+												<td>{{$home->NumOfbulding}}</td>
+												<td>{{$home->NumOfHour}}</td>
+												<td>{{$home->cleanMaterial}}</td>
+												<td>{{$home->totalPrice}}</td>
+												<td>{{$home->OrderDate}}</td>
+												<td>{{$home->OrderTime}}</td>
+							
 												<td>
-													<form action="{{ route('emp_ord.accept_details', $order->id) }}" method="GET" enctype="multipart/form-data" autocomplete="off">
+													<form action="{{ route('emp_ord.accept_details', $home->id) }}" method="GET" enctype="multipart/form-data" autocomplete="off">
 														@csrf
 														@method('GET')
 														<button class="btn btn-sm btn-info" title="تفاصيل الطلب"><i class="la la-archive"></i></button>
 													</form>
 												</td>
-
+							
 											</tr>
 											@endforeach
 										</tbody>
 									</table>
-
-								{!! $paginationLinks !!}
-
+							
+								{{-- {!! $paginationLinks !!} --}}
+							
 								</div>
 							</div>
-
-							@endif
-
+						
 						</div>
 					</div>
 					<!--/div-->
 				</div>
 				<!-- /row -->
+
+		@else
+
+		@endif
 
 @endsection
 

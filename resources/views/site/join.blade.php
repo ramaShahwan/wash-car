@@ -5,6 +5,11 @@
 
 @section('css')
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
+
 {{-- flatpicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -58,7 +63,7 @@
 
     <div class="services_section layout_padding">
         <div class="container">
-           <h1 class="services_taital"><span style="color: #0c426e">انضم لفريقنا</span></h1>
+           <h1 class="services_taital"><span style="color: #444444">انضم لفريقنا</span></h1>
            {{-- <p class="services_text">t is a long established fact that a reader will be distracted by the readable content of a page when looking </p> --}}
            <div class="services_section_2 layout_padding">
               <div class="row">
@@ -198,7 +203,7 @@
                     
 
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary" style="background-color: #0c426e;">إرسال البيانات</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #444444; border: none;">إرسال البيانات</button>
                         </div>
             </form>
 
