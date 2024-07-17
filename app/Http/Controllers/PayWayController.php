@@ -86,6 +86,7 @@ class PayWayController extends Controller
     //     'accountNumber'=>$request->accountNumber,
     //   ]);
 
+    
       $pay = PayWay::findOrFail($id);
      $oldImageName=$pay->image;
      $pay->way = $request->way;
