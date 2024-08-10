@@ -216,7 +216,9 @@ class UserController extends Controller
 
     public function pull_balance(Request $request)
     {
-      $user = auth()->user(); // الحصول على كائن المستخدم
+      $user_id = auth()->user(); // الحصول على كائن المستخدم
+      $user = User::findOrFail($user_id);
+
       $balance = $user->balance; // الحصول على الرصيد الحالي
 
       $amount = $request->balance;
